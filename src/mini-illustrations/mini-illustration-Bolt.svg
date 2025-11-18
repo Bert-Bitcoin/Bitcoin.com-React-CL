@@ -1,6 +1,12 @@
-<svg width="102" height="102" viewBox="0 0 102 102" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect x="0.5" y="0.5" width="101" height="101" rx="4.5" stroke="#9747FF" stroke-dasharray="10 5"/>
-<circle cx="50.5" cy="51.5" r="23.5" fill="#4169E1" stroke="#1C1C1C" stroke-width="0.5" stroke-linejoin="round"/>
-<circle cx="50.5" cy="48.2333" r="23.2333" fill="#CCD9FD" stroke="#1C1C1C" stroke-width="0.5" stroke-linejoin="round"/>
-<path fill-rule="evenodd" clip-rule="evenodd" d="M55.5577 33.0149C55.9403 33.1911 56.1466 33.6117 56.0517 34.0221L53.4296 45.367H60.1124C60.4478 45.367 60.7547 45.5558 60.9058 45.8553C61.0569 46.1547 61.0265 46.5137 60.8272 46.7835L47.5726 64.7301C47.3246 65.0658 46.8765 65.1838 46.4954 65.0136C46.1143 64.8434 45.903 64.431 45.9875 64.0223L48.2885 52.8918H41.7553C41.4199 52.8918 41.113 52.703 40.9619 52.4035C40.8108 52.104 40.8412 51.745 41.0405 51.4752L54.4712 33.294C54.7214 32.9552 55.1752 32.8387 55.5577 33.0149Z" fill="white" stroke="#1C1C1C" stroke-width="0.5" stroke-linejoin="round"/>
+<svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_18011_4451)">
+<circle cx="30.5" cy="31.5" r="23.5" fill="#4169E1" stroke="#1C1C1C" stroke-width="0.5" stroke-linejoin="round"/>
+<circle cx="30.5" cy="28.2333" r="23.2333" fill="#CCD9FD" stroke="#1C1C1C" stroke-width="0.5" stroke-linejoin="round"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M35.5577 13.0149C35.9403 13.1911 36.1466 13.6117 36.0517 14.0221L33.4296 25.367H40.1124C40.4478 25.367 40.7547 25.5558 40.9058 25.8553C41.0569 26.1547 41.0265 26.5137 40.8272 26.7835L27.5726 44.7301C27.3246 45.0658 26.8765 45.1838 26.4954 45.0136C26.1143 44.8434 25.903 44.431 25.9875 44.0223L28.2885 32.8918H21.7553C21.4199 32.8918 21.113 32.703 20.9619 32.4035C20.8108 32.104 20.8412 31.745 21.0405 31.4752L34.4712 13.294C34.7214 12.9552 35.1752 12.8387 35.5577 13.0149Z" fill="white" stroke="#1C1C1C" stroke-width="0.5" stroke-linejoin="round"/>
+</g>
+<defs>
+<clipPath id="clip0_18011_4451">
+<rect width="62" height="62" rx="5" fill="white"/>
+</clipPath>
+</defs>
 </svg>

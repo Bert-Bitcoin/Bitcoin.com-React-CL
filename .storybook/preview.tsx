@@ -21,6 +21,11 @@ const preview: Preview = {
         { name: 'Canvas', value: '#ffffff' }, // white surface
         { name: 'Surface Dark', value: '#232326' } // dark surface
       ]
+    },
+    options: {
+      storySort: {
+        order: ['Design System', 'Components', 'Assets']
+      }
     }
   },
   globalTypes: {

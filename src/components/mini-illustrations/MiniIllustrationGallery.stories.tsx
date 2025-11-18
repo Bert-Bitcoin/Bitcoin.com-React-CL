@@ -112,7 +112,7 @@ const MiniIllustrationGallery = () => {
 };
 
 const meta: Meta<typeof MiniIllustrationGallery> = {
-  title: 'Foundation/Mini Illustrations',
+  title: 'Assets/Mini Illustrations Gallery',
   component: MiniIllustrationGallery,
   parameters: {
     layout: 'padded',

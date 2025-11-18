@@ -34,7 +34,7 @@ const IconGallery = () =>
   );
 
 const meta: Meta<typeof IconGallery> = {
-  title: 'Foundation/Icons',
+  title: 'Assets/Icons',
   component: IconGallery,
   parameters: {
     layout: 'padded',

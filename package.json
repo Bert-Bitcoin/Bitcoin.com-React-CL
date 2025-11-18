@@ -21,7 +21,8 @@
     "lint": "tsc --noEmit",
     "sync:tokens": "tsx scripts/sync-figma-tokens.ts",
     "icons:generate": "tsx scripts/generate-icons.ts",
-    "illustrations:generate": "tsx scripts/generate-mini-illustrations.ts"
+    "illustrations:generate": "tsx scripts/generate-mini-illustrations.ts",
+    "asset-icons:generate": "tsx scripts/generate-asset-icons.ts"
   },
   "keywords": [
     "react",

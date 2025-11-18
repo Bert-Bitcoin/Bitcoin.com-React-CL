@@ -106,6 +106,30 @@ Example:
 <h1 className="font-['Elza_Narrow']">Bitcoin Rewards</h1>
 ```
 
+### Rule: ibm-plex-sans-numeric (STRICT)
+**Always use IBM Plex Sans font for displaying numeric values** (numbers, prices, amounts, quantities, percentages, etc.). IBM Plex Sans is designed for optimal readability of numbers and should be applied to any content that contains numeric data. Use the `font-['IBM_Plex_Sans']` class or ensure your typography token uses IBM Plex Sans when rendering numeric content.
+
+Example:
+```tsx
+// Correct - using IBM Plex Sans for numeric values
+<span className="font-['IBM_Plex_Sans']">$1,234.56</span>
+<div className="font-['IBM_Plex_Sans']">42.5%</div>
+<p className="font-['IBM_Plex_Sans']">0.00012345 BTC</p>
+
+// Incorrect - not using IBM Plex Sans for numbers
+<span className="font-satoshi">$1,234.56</span>
+<div>42.5%</div>
+```
+
+This applies to:
+- Cryptocurrency amounts and prices
+- Fiat currency values
+- Percentages
+- Quantities and counts
+- Transaction amounts
+- Wallet balances
+- Any numeric data display
+
 ---
 
 ## 🧩 Component Development

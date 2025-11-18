@@ -11,7 +11,7 @@ import {
 } from '.';
 
 const meta: Meta<typeof MiniIllustration> = {
-  title: 'Foundation/Mini Illustration',
+  title: 'Assets/Mini Illustration',
   component: MiniIllustration,
   parameters: {
     layout: 'centered',

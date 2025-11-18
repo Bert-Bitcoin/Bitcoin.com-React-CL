@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { TypographyShowcase } from './TypographyShowcase';
 
 const meta: Meta<typeof TypographyShowcase> = {
-  title: 'Foundation/Typography',
+  title: 'Design System/Typography',
   component: TypographyShowcase,
   parameters: {
     layout: 'padded',

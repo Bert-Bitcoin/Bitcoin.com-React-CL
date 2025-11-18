@@ -1,0 +1,17 @@
+[build]
+  # Build command to create the static Storybook site
+  command = "npm run build:storybook"
+  
+  # Directory containing the built Storybook files
+  publish = "storybook-static"
+  
+  # Node version to use (matching your engines requirement)
+  environment = { NODE_VERSION = "18.18.0" }
+
+# Optional: Redirect rules (if needed)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+

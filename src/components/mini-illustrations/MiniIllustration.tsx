@@ -1,42 +1,33 @@
-import type { ComponentType, SVGProps } from 'react';
-import { forwardRef } from 'react';
-import { twMerge } from 'tailwind-merge';
+import React from 'react';
 
-export type MiniIllustrationSize = 'sm' | 'md' | 'lg' | 'xl';
-
-export interface MiniIllustrationProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'height'> {
-  /**
-   * The illustration component to render
-   */
-  illustration: ComponentType<SVGProps<SVGSVGElement>>;
-  /**
-   * Size of the illustration
-   * @default "md"
-   */
-  size?: MiniIllustrationSize;
-  /**
-   * Additional CSS classes
-   */
+export interface MiniIllustrationProps {
+  illustration: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   className?: string;
 }
 
-const sizeClasses: Record<MiniIllustrationSize, string> = {
-  sm: 'w-16 h-16',
-  md: 'w-24 h-24',
-  lg: 'w-32 h-32',
-  xl: 'w-40 h-40'
+const sizeClasses = {
+  sm: 'w-8 h-8',
+  md: 'w-16 h-16',
+  lg: 'w-24 h-24',
+  xl: 'w-32 h-32',
 };
 
-export const MiniIllustration = forwardRef<SVGSVGElement, MiniIllustrationProps>(
-  ({ illustration: Illustration, size = 'md', className, ...props }, ref) => {
-    return (
-      <Illustration
-        ref={ref}
-        className={twMerge(sizeClasses[size], className)}
-        {...props}
-      />
-    );
-  }
-);
+export const MiniIllustration: React.FC<MiniIllustrationProps> = ({
+  illustration: Illustration,
+  size = 'md',
+  className,
+}) => {
+  const classes = className 
+    ? `${sizeClasses[size]} ${className}` 
+    : sizeClasses[size];
+  
+  return (
+    <div className={classes}>
+      <Illustration className="w-full h-full" />
+    </div>
+  );
+};
 
 MiniIllustration.displayName = 'MiniIllustration';
+
