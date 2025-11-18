@@ -617,5 +617,5 @@ Run Storybook to see live examples:
 npm run storybook
 ```
 
-Navigate to: **Form Elements > DatePicker**
+Navigate to: **Components > DatePicker**
 

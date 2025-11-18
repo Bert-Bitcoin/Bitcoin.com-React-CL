@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ArrowCircleLeftIcon, ArrowCircleRightIcon, CalendarIcon } from '../../icons';
+import { ArrowCircleLeftIcon, ArrowCircleRightIcon, CalendarIcon } from '../icons';
 import type { DatePickerProps } from './DatePicker.types';
 import {
   addMonths,

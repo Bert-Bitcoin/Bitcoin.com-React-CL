@@ -241,7 +241,7 @@ View the component in Storybook:
 npm run storybook
 ```
 
-Navigate to: **Form Elements > DatePicker**
+Navigate to: **Components > DatePicker**
 
 ## Contributing
 
