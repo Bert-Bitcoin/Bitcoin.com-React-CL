@@ -1,4 +1,3 @@
-export * from './components/asset-icons';
 export * from './components/button';
 export * from './components/checkbox';
 export * from './components/dropdown';
