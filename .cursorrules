@@ -1,0 +1,187 @@
+# Cursor AI Rules for Design System Integration
+# Project: React + Tailwind + Tokens + Figma MCP + Storybook
+
+## Project Metadata
+
+- **Figma Design File**: https://www.figma.com/design/whUdbUxyPxMpIMbTapDqdn/Web-component-library--AI-?node-id=17998-17298&t=fCYrU0ejGmjVXf4L-1
+- **Icons Path**: `src/icons`
+- **Fonts Path**: `src/fonts`
+- **Tokens Path**: `src/tokens`
+- **Tailwind Config**: `tailwind.config.ts`
+- **Component Path**: `src/components`
+- **Storybook Static Dir**: `storybook-static`
+- **Sync Scripts**: `scripts/sync-figma-tokens.ts`, `scripts/generate-icons.ts`
+- **Theme Strategy**: `tailwind-dark-mode-class`
+
+---
+
+## 🔗 Figma Design System Integration
+
+### Rule: figma-mpc-sync (REQUIRED)
+Sync Figma design tokens and components via `scripts/sync-figma-tokens.ts`. Ensure names and tokens map 1:1.
+
+### Rule: figma-component-variations (STRICT)
+Before creating or modifying a component, **always check the Figma component library** for defined variations (e.g., sizes, states, variants). Respect and implement all variations exactly as specified in Figma. Component props and variants in code must match Figma's component structure. Use Figma MCP tools to inspect component variations and states.
+
+### Rule: figma-component-grouping (STRICT)
+Always follow the component grouping and organization as defined in the Figma design file (https://www.figma.com/design/whUdbUxyPxMpIMbTapDqdn/Web-component-library--AI-). When creating or organizing components in the codebase and Storybook, mirror the exact grouping structure from Figma. This ensures consistency between design and development. Component categories, subcategories, and naming conventions must match the Figma file structure.
+
+Example Figma groupings to follow:
+- **Design System** - Colors, tokens, theme variables
+- **Foundation** - Icons, typography, illustrations, spacing
+- **Components** - Grouped by function (Form Elements, UI Elements, etc.)
+
+Reference: [Figma Web Component Library](https://www.figma.com/design/whUdbUxyPxMpIMbTapDqdn/Web-component-library--AI-?node-id=17998-17298&t=fCYrU0ejGmjVXf4L-1)
+
+---
+
+## 🎨 Tailwind & Tokens
+
+### Rule: tailwind-token-usage (STRICT)
+Use Tailwind utility classes **only** when backed by values from `src/tokens` or Tailwind config. Avoid arbitrary values unless mirrored from Figma tokens.
+
+### Rule: prefer-token-class (STRICT)
+Prefer using `className` with tokenized Tailwind utilities (e.g., `text-token-heading-lg`) over inline styles.
+
+### Rule: no-hardcoded-css (STRICT)
+Do not use hardcoded `style={{ ... }}` props for spacing, color, or typography unless absolutely required.
+
+### Rule: color-palette-only (STRICT)
+Only use colors that are defined in the design system color palette (found in `src/tokens` or `src/components/colorpalette`). No custom colors, hex values, or arbitrary color values are allowed outside of the approved color palette. All color usage must reference tokenized color values from the design system.
+
+---
+
+## 🌗 Theming
+
+### Rule: theme-support (STRICT)
+Ensure all components support both light and dark themes using `dark:` variants in Tailwind or CSS variables.
+
+### Rule: validate-tailwind-themes (RECOMMENDED)
+Ensure both themes render correctly using `tailwind.config.ts` theme extensions and CSS vars from tokens.
+
+### Rule: figma-dark-mode-colors (STRICT)
+Each color defined in Figma has a corresponding dark mode variant. Always implement both light and dark color variants for each component, matching the Figma design system's color definitions. When syncing tokens or creating components, ensure every color token has its dark mode counterpart applied.
+
+---
+
+## 📁 File/Folder Structure
+
+### Rule: component-structure (REQUIRED)
+Follow `src/components/ComponentName/Component.tsx` + co-located `stories.tsx`, `test.tsx`, and `index.ts` structure.
+
+Example:
+```
+src/components/Button/
+  - Button.tsx
+  - Button.stories.tsx
+  - Button.test.tsx
+  - index.ts
+```
+
+### Rule: script-placement (RECOMMENDED)
+Token and icon sync scripts should live in `scripts/` folder and be self-documented.
+
+---
+
+## 📦 Icon & Font Asset Rules
+
+### Rule: icon-usage (STRICT)
+Use only icons from `src/icons`. Each must be imported from the `index.ts` barrel file.
+
+### Rule: font-usage (STRICT)
+Fonts must be loaded from `src/fonts` and referenced via Tailwind `extend.fontFamily` config.
+
+### Rule: elza-font-capitalization (STRICT)
+When using the Elza font family (Elza, Elza Narrow) on any HTML element or component, the text content **must always be capitalized**. The Elza font is used for display and heading text in the design system. All typography tokens that use Elza (display, heading-xl, heading-lg, heading-md, heading-sm) have `textTransform: 'uppercase'` built-in. If manually applying Elza font, always add the Tailwind `uppercase` class or `text-transform: uppercase` CSS property.
+
+Example:
+```tsx
+// Correct - using typography token (uppercase is automatic)
+<h1 className="text-display">Bitcoin Rewards</h1>
+
+// Correct - manually applying Elza with uppercase
+<h1 className="font-['Elza_Narrow'] uppercase">Bitcoin Rewards</h1>
+
+// Incorrect - missing uppercase when manually using Elza
+<h1 className="font-['Elza_Narrow']">Bitcoin Rewards</h1>
+```
+
+---
+
+## 🧩 Component Development
+
+### Rule: typescript-enforcement (STRICT)
+All components must be written in TypeScript (`.tsx`) and fully typed. No `any` types unless absolutely necessary.
+
+### Rule: accessibility-baseline (RECOMMENDED)
+Use semantic HTML and ARIA roles where applicable. Buttons must be real `<button>` elements, not divs with click handlers.
+
+---
+
+## 📚 Storybook Integration
+
+### Rule: storybook-sync (REQUIRED)
+Every component must have an up-to-date Storybook story (`*.stories.tsx`) covering default, variants, and both themes.
+
+### Rule: storybook-controls (RECOMMENDED)
+Expose all component props using `argTypes` and Storybook Controls for interactive documentation.
+
+### Rule: storybook-dark-mode (REQUIRED)
+Use Storybook theming addon or wrapper to preview light/dark styles consistently.
+
+---
+
+## 🔁 Change Sync Behavior
+
+### Rule: token-sync-watch (REQUIRED)
+When `src/tokens` changes or `scripts/sync-figma-tokens.ts` is run, affected components and stories must be re-evaluated for consistency.
+
+### Rule: icon-regeneration (REQUIRED)
+Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to refresh the icon set.
+
+---
+
+## Implementation Guidelines
+
+### When Creating New Components:
+1. **Check Figma first** - Use Figma MCP tools to inspect the component's variations, properties, and states
+2. **Verify component grouping** - Check the [Figma file](https://www.figma.com/design/whUdbUxyPxMpIMbTapDqdn/Web-component-library--AI-?node-id=17998-17298&t=fCYrU0ejGmjVXf4L-1) to see which category the component belongs to
+3. Create folder in `src/components/ComponentName/`
+4. Create `ComponentName.tsx` with full TypeScript types matching Figma variants
+5. Create `ComponentName.stories.tsx` with the correct Storybook path matching Figma grouping
+6. Export from `index.ts`
+7. Use only token-based Tailwind classes
+8. Support both light and dark themes
+9. Test accessibility with semantic HTML
+
+### When Inspecting Figma Components:
+1. Open the [Figma design file](https://www.figma.com/design/whUdbUxyPxMpIMbTapDqdn/Web-component-library--AI-?node-id=17998-17298&t=fCYrU0ejGmjVXf4L-1) to identify component location and grouping
+2. Use `mcp_Figma_Desktop_get_design_context` to view component structure and variations
+3. Use `mcp_Figma_Desktop_get_variable_defs` to see design tokens applied to variants
+4. Use `mcp_Figma_Desktop_get_screenshot` to visually reference the component
+5. Document all variants found (e.g., size: sm/md/lg, state: default/hover/disabled)
+6. Note the component's category/grouping in Figma for proper Storybook organization
+7. Ensure TypeScript props/types align with Figma component properties
+
+### When Modifying Styles:
+1. Check if tokens exist in `src/tokens` first
+2. Use Tailwind utilities backed by tokens
+3. Avoid arbitrary values like `text-[#123456]`
+4. **Only use colors from the approved color palette** - no custom hex values or arbitrary colors
+5. Always include `dark:` variants for theming
+6. **For display/heading text** - use typography tokens (text-display, text-heading-xl, etc.) which have Elza font and uppercase built-in
+7. **When manually using Elza font** - always add `uppercase` class for capitalization
+8. Test in both light and dark modes
+
+### When Syncing Design Tokens:
+1. Run `scripts/sync-figma-tokens.ts`
+2. Review changes in `src/tokens/generated.ts`
+3. Update affected components if token names changed
+4. Rebuild Storybook to verify visual consistency
+
+### When Adding Icons:
+1. Add SVG to `src/icons`
+2. Run `scripts/generate-icons.ts`
+3. Import from `src/components/icons/index.ts`
+4. Use consistent naming conventions
+

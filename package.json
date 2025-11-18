@@ -1,0 +1,72 @@
+{
+  "name": "bitcoin-react-component-library",
+  "version": "0.1.0",
+  "description": "Reusable React component library aligned with Figma design tokens.",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "src",
+    "tokens",
+    "tailwind.config.ts"
+  ],
+  "scripts": {
+    "clean": "rm -rf dist storybook-static",
+    "prebuild": "npm run sync:tokens",
+    "dev": "storybook dev -p 6006",
+    "build": "tsup",
+    "build:storybook": "storybook build",
+    "lint": "tsc --noEmit",
+    "sync:tokens": "tsx scripts/sync-figma-tokens.ts",
+    "icons:generate": "tsx scripts/generate-icons.ts",
+    "illustrations:generate": "tsx scripts/generate-mini-illustrations.ts"
+  },
+  "keywords": [
+    "react",
+    "component-library",
+    "tailwind",
+    "figma"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "dependencies": {
+    "clsx": "^2.1.1",
+    "dotenv": "^17.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tailwind-merge": "^3.4.0"
+  },
+  "devDependencies": {
+    "@storybook/addon-a11y": "^8.6.14",
+    "@storybook/addon-essentials": "^8.6.14",
+    "@storybook/addon-interactions": "^8.6.14",
+    "@storybook/react-vite": "^8.6.14",
+    "@storybook/testing-library": "^0.2.2",
+    "@svgr/core": "^8.1.0",
+    "@svgr/plugin-jsx": "^8.1.0",
+    "@svgr/plugin-svgo": "^8.1.0",
+    "@types/node": "^24.10.1",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.22",
+    "camelcase": "^9.0.0",
+    "postcss": "^8.5.6",
+    "storybook": "^8.6.14",
+    "tailwindcss": "^3.4.13",
+    "tsup": "^8.5.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  }
+}

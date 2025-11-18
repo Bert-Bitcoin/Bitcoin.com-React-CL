@@ -1,0 +1,14 @@
+node_modules
+dist
+storybook-static
+.turbo
+.swc
+.tsbuildinfo
+.cache
+.env
+.env.local
+.DS_Store
+tokens/.cache
+.figma-tokens.json
+
+
