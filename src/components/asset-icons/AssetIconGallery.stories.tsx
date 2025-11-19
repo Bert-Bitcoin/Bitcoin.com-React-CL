@@ -3,7 +3,7 @@ import { AssetIcon } from './AssetIcon';
 import * as AssetIcons from '.';
 
 const meta: Meta = {
-  title: 'Assets/Asset Icon Gallery',
+  title: 'Assets/Asset Icons/Gallery',
   parameters: {
     layout: 'padded'
   }

@@ -40,7 +40,7 @@ export const ModeToggle = forwardRef<HTMLButtonElement, ModeToggleProps>(
     );
 
     const knobClasses = twMerge(
-      'absolute top-1 w-6 h-6 rounded-pill shadow-sm transition-all duration-300',
+      'absolute top-1 w-6 h-6 rounded-pill transition-all duration-300',
       checked ? 'left-[36px] bg-shades-semi-dark' : 'left-1 bg-white',
       disabled && 'opacity-50'
     );

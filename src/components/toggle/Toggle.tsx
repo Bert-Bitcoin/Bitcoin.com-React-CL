@@ -55,7 +55,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
     );
 
     const knobClasses = twMerge(
-      'inline-flex items-center justify-center rounded-full bg-white shadow-sm transition-transform duration-150',
+      'inline-flex items-center justify-center rounded-full bg-white transition-transform duration-150',
       sizeConfig.knob,
       checked ? sizeConfig.translate : 'translate-x-0',
       disabled && 'bg-shades-extra-light'

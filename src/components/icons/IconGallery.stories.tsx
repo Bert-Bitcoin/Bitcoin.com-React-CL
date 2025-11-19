@@ -14,7 +14,7 @@ const IconGallery = () =>
       {iconEntries.map(([name, Icon]) => (
         <div
           key={name}
-          className="flex items-center gap-s rounded-lg border border-shades-extra-light bg-shades-white p-m shadow-sm"
+          className="flex items-center gap-s rounded-lg border border-shades-extra-light bg-shades-white p-m"
         >
           <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-10 text-primary-100">
             <Icon className="h-5 w-5" aria-hidden />

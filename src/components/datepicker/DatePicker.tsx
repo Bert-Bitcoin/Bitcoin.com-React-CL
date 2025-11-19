@@ -142,7 +142,7 @@ export const DatePicker = ({
       {isOpen && (
         <div className={twMerge(
           'absolute top-full left-0 mt-xs z-50',
-          'bg-surface border border-border rounded-s shadow-md',
+          'bg-surface border border-border rounded-s',
           'p-m',
           'w-max' // Allow calendar to be as wide as needed, not constrained by input
         )}>

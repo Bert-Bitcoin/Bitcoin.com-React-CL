@@ -74,7 +74,7 @@ export const TypographyShowcase = () => {
         return (
           <div
             key={name}
-            className="rounded-lg border border-shades-extra-light bg-shades-white p-m shadow-sm"
+            className="rounded-lg border border-shades-extra-light bg-shades-white p-m"
           >
             <div className="flex items-center justify-between gap-s">
               <p className="text-label-sm font-medium uppercase text-shades-mid">

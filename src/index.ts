@@ -8,6 +8,8 @@ export * from './components/mini-illustrations';
 export * from './components/option';
 export * from './components/radiobutton';
 export * from './components/tabs';
+export * from './components/logo';
+export * from './components/logomark';
 export * from './components/textarea';
 export * from './components/toggle';
 export * from './components/typography';

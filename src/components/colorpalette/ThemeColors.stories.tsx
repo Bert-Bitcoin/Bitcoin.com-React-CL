@@ -35,7 +35,7 @@ const ThemeColorSwatch = ({
             style={{ backgroundColor: lightValue }}
           >
             <span
-              className="text-xs font-mono px-2 py-1 rounded bg-white/95 backdrop-blur-sm shadow-sm"
+              className="text-xs font-mono px-2 py-1 rounded bg-white/95 backdrop-blur-sm"
               style={{ color: lightValue }}
             >
               {lightValue}
@@ -53,7 +53,7 @@ const ThemeColorSwatch = ({
             style={{ backgroundColor: darkValue }}
           >
             <span
-              className="text-xs font-mono px-2 py-1 rounded bg-black/95 backdrop-blur-sm shadow-sm"
+              className="text-xs font-mono px-2 py-1 rounded bg-black/95 backdrop-blur-sm"
               style={{ color: darkValue }}
             >
               {darkValue}

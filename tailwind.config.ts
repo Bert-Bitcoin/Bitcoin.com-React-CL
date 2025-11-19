@@ -44,6 +44,7 @@ const shadeColors = {
 };
 
 const config: Config = {
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     './src/**/*.{js,ts,jsx,tsx,mdx}',
     './storybook/**/*.{js,ts,jsx,tsx,mdx}',

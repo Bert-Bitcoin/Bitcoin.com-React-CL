@@ -24,7 +24,12 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Design System', 'Components', 'Assets']
+        order: ['Design System', 'Components', 'Assets', [
+          'Logos',
+          'Icons',
+          'Mini Illustrations',
+          'Asset Icons'
+        ]]
       }
     }
   },

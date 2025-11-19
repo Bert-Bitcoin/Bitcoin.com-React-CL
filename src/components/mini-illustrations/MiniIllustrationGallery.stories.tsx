@@ -84,7 +84,7 @@ const MiniIllustrationGallery = () => {
           {filteredIllustrations.map(([name, Illustration]) => (
             <div
               key={name}
-              className="flex flex-col items-center gap-s p-m rounded-s border border-border bg-surface hover:shadow-sm transition-shadow"
+              className="flex flex-col items-center gap-s p-m rounded-s border border-border bg-surface"
             >
               <div className="flex items-center justify-center">
                 <Illustration className={sizeClasses[selectedSize]} aria-hidden />
@@ -112,7 +112,7 @@ const MiniIllustrationGallery = () => {
 };
 
 const meta: Meta<typeof MiniIllustrationGallery> = {
-  title: 'Assets/Mini Illustrations Gallery',
+  title: 'Assets/Mini Illustrations/Gallery',
   component: MiniIllustrationGallery,
   parameters: {
     layout: 'padded',

@@ -11,7 +11,7 @@ import {
 } from '.';
 
 const meta: Meta<typeof AssetIcon> = {
-  title: 'Assets/Asset Icon',
+  title: 'Assets/Asset Icons/Asset Icon',
   component: AssetIcon,
   parameters: {
     layout: 'centered',
