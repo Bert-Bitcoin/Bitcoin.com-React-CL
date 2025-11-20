@@ -1,3 +1,4 @@
+export * from './components/accordion';
 export * from './components/button';
 export * from './components/checkbox';
 export * from './components/dropdown';
@@ -15,6 +16,7 @@ export * from './components/logomark';
 export * from './components/textarea';
 export * from './components/toggle';
 export * from './components/typography';
+export * from './components/sidebar';
 export { designTokens } from './tokens';
 export type { DesignTokens, TextStyleToken } from './tokens';
 

@@ -111,7 +111,7 @@ export const Header = ({
           <LogoMark size="md" className="w-[35px] h-[35px]" />
 
           {/* Center: Navigation Pill */}
-          <nav className="bg-shades-almost-black rounded-[40px] flex items-center justify-center gap-xs flex-wrap max-w-[400px] h-[35px] px-xs">
+          <nav className="bg-shades-almost-black rounded-[40px] flex items-center justify-center gap-xs flex-wrap max-w-[400px] h-[35px] px-xs ml-[24px]">
             {menuItems.slice(0, 6).map((item, index) => (
               <a
                 key={index}
