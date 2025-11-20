@@ -1,6 +1,6 @@
 import { forwardRef } from 'react';
 
-import { CircularCloseIcon, SearchIcon } from '../icons';
+import { Icon } from '../icon';
 import { Input } from './Input';
 import type { InputProps } from './Input.types';
 
@@ -30,7 +30,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
       <Input
         ref={ref}
         shape="pill"
-        startIcon={startIcon ?? <SearchIcon className="h-4 w-4" />}
+        startIcon={startIcon ?? <Icon type="icon-search" size="sm" />}
         endIcon={
           showClear ? (
             <button
@@ -39,7 +39,7 @@ export const SearchInput = forwardRef<HTMLInputElement, SearchInputProps>(
               className="flex h-6 w-6 items-center justify-center text-icon transition-colors hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-field-border-active focus-visible:ring-opacity-30 focus-visible:ring-offset-2"
             >
               <span className="sr-only">Clear search</span>
-              <CircularCloseIcon className="h-3.5 w-3.5" />
+              <Icon type="icon-Circular Close" size="sm" />
             </button>
           ) : (
             endIcon

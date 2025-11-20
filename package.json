@@ -14,13 +14,13 @@
   ],
   "scripts": {
     "clean": "rm -rf dist storybook-static",
-    "prebuild": "npm run sync:tokens",
+    "prebuild": "npm run sync:tokens && npm run icon-map:generate",
     "dev": "storybook dev -p 6006",
     "build": "tsup",
     "build:storybook": "storybook build",
     "lint": "tsc --noEmit",
     "sync:tokens": "tsx scripts/sync-figma-tokens.ts",
-    "icons:generate": "tsx scripts/generate-icons.ts",
+    "icon-map:generate": "tsx scripts/generate-icon-map.ts",
     "illustrations:generate": "tsx scripts/generate-mini-illustrations.ts",
     "asset-icons:generate": "tsx scripts/generate-asset-icons.ts"
   },

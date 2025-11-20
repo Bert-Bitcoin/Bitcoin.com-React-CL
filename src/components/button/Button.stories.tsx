@@ -2,11 +2,11 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { Button } from './Button';
 import type { ButtonProps } from './Button.types';
-import { WalletAddIcon } from '../icons';
+import { Icon } from '../icon';
 
 const iconOptions = {
   None: undefined,
-  WalletAdd: <WalletAddIcon />
+  WalletAdd: <Icon type="icon-wallet-add" />
 } as const;
 
 const meta: Meta<typeof Button> = {

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { SearchIcon } from '../icons';
+import { Icon } from '../icon';
 import { Dropdown } from './Dropdown';
 
 const sampleOptions = [
@@ -80,7 +80,7 @@ export const WithHelperText: Story = {
 export const WithLeadingIcon: Story = {
   args: {
     label: 'Search',
-    leadingIcon: <SearchIcon className="size-4 text-icon" />,
+    leadingIcon: <Icon type="icon-search" className="size-4 text-icon" />,
     options: [
       { label: 'All Items', value: 'all' },
       { label: 'Documents', value: 'docs' },

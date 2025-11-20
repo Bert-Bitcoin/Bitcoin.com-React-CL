@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useEffect, useRef } from 'react';
 
-import { AboutIcon, CircularCloseIcon } from '../icons';
+import { Icon } from '../icon';
 import { Input } from './Input';
 import type { InputProps } from './Input.types';
 
@@ -56,8 +56,8 @@ export const Focused: Story = {
 
 export const WithIcons: Story = {
   args: {
-    startIcon: <AboutIcon className="h-4 w-4" />,
-    endIcon: <CircularCloseIcon className="h-4 w-4" />,
+    startIcon: <Icon type="icon-about" className="h-4 w-4" />,
+    endIcon: <Icon type="icon-circular-close" className="h-4 w-4" />,
     helperText: 'Icons can frame the value'
   }
 };
@@ -88,7 +88,7 @@ export const Playground: Story = {
   render: (args: InputProps) => <Input {...args} />,
   args: {
     helperText: 'Try different combinations',
-    startIcon: <AboutIcon className="h-4 w-4" />
+    startIcon: <Icon type="icon-about" className="h-4 w-4" />
   }
 };
 

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { AboutIcon } from '../icons';
+import { Icon } from '../icon';
 import { IconButton } from './IconButton';
 
 const meta: Meta<typeof IconButton> = {
@@ -17,7 +17,7 @@ const meta: Meta<typeof IconButton> = {
     }
   },
   args: {
-    icon: <AboutIcon />,
+    icon: <Icon type="icon-about" />,
     'aria-label': 'About',
     variant: 'primary',
     size: 'md'
@@ -139,12 +139,12 @@ export const DisabledDefault: Story = {
 export const AllVariants: Story = {
   render: () => (
     <div className="flex gap-s items-center">
-      <IconButton icon={<AboutIcon />} aria-label="About" variant="primary" />
-      <IconButton icon={<AboutIcon />} aria-label="About" variant="secondary" />
-      <IconButton icon={<AboutIcon />} aria-label="About" variant="default" />
-      <IconButton icon={<AboutIcon />} aria-label="About" variant="text" />
-      <IconButton icon={<AboutIcon />} aria-label="About" variant="link" />
-      <IconButton icon={<AboutIcon />} aria-label="About" variant="strong" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="primary" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="secondary" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="default" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="text" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="link" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="strong" />
     </div>
   )
 };
@@ -152,9 +152,9 @@ export const AllVariants: Story = {
 export const AllSizes: Story = {
   render: () => (
     <div className="flex gap-s items-center">
-      <IconButton icon={<AboutIcon />} aria-label="About" size="sm" />
-      <IconButton icon={<AboutIcon />} aria-label="About" size="md" />
-      <IconButton icon={<AboutIcon />} aria-label="About" size="lg" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" size="sm" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" size="md" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" size="lg" />
     </div>
   )
 };
@@ -163,19 +163,19 @@ export const AllStates: Story = {
   render: () => (
     <div className="flex flex-col gap-m">
       <div className="flex gap-s items-center">
-        <IconButton icon={<AboutIcon />} aria-label="About" />
-        <IconButton icon={<AboutIcon />} aria-label="About" loading />
-        <IconButton icon={<AboutIcon />} aria-label="About" disabled />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" loading />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" disabled />
       </div>
       <div className="flex gap-s items-center">
-        <IconButton icon={<AboutIcon />} aria-label="About" variant="secondary" />
-        <IconButton icon={<AboutIcon />} aria-label="About" variant="secondary" loading />
-        <IconButton icon={<AboutIcon />} aria-label="About" variant="secondary" disabled />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="secondary" />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="secondary" loading />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="secondary" disabled />
       </div>
       <div className="flex gap-s items-center">
-        <IconButton icon={<AboutIcon />} aria-label="About" variant="default" />
-        <IconButton icon={<AboutIcon />} aria-label="About" variant="default" loading />
-        <IconButton icon={<AboutIcon />} aria-label="About" variant="default" disabled />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="default" />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="default" loading />
+        <IconButton icon={<Icon type="icon-about" />} aria-label="About" variant="default" disabled />
       </div>
     </div>
   )

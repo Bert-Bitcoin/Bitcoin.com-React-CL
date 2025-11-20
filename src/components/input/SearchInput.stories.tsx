@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import { FilterSearchIcon } from '../icons';
+import { Icon } from '../icon';
 import { SearchInput } from './SearchInput';
 import type { SearchInputProps } from './SearchInput';
 
@@ -73,7 +73,7 @@ export const Error: Story = {
 
 export const WithCustomIcons: Story = {
   args: {
-    startIcon: <FilterSearchIcon className="h-4 w-4" />,
+    startIcon: <Icon type="icon-filter-search" className="h-4 w-4" />,
     helperText: 'Using a different leading icon'
   }
 };

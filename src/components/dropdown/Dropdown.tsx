@@ -1,7 +1,7 @@
 import { forwardRef, useId, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ArrowDownIcon } from '../icons';
+import { Icon } from '../icon';
 import type { DropdownProps, DropdownSize } from './Dropdown.types';
 
 const dropdownSizes: Record<DropdownSize, { text: string; height: string; iconSize: string }> = {
@@ -97,7 +97,8 @@ export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
             ))}
           </select>
           <div className="absolute right-s top-1/2 -translate-y-1/2 pointer-events-none">
-            <ArrowDownIcon
+            <Icon
+              type="icon-arrow-down"
               className={twMerge(
                 sizeConfig.iconSize,
                 'text-text-secondary'

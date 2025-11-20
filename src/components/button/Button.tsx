@@ -73,7 +73,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
     const iconClass = twMerge(
-      'pointer-events-none flex-shrink-0 text-current',
+      'pointer-events-none flex-shrink-0 text-current inline-flex items-center justify-center [&_svg]:!w-full [&_svg]:!h-full',
       iconSizes[size]
     );
     const isDisabled = disabled ?? loading;

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { ArrowCircleLeftIcon, ArrowCircleRightIcon, CalendarIcon } from '../icons';
+import { Icon } from '../icon';
 import type { DatePickerProps } from './DatePicker.types';
 import {
   addMonths,
@@ -123,7 +123,7 @@ export const DatePicker = ({
           mode === 'range' ? 'min-w-[256px]' : 'min-w-[160px]'
         )}
       >
-        <CalendarIcon className="w-4 h-4 text-icon flex-shrink-0" />
+        <Icon type="icon-calendar" className="w-4 h-4 text-icon flex-shrink-0" />
         <span className={twMerge(
           'flex-1 font-medium text-label',
           displayValue ? 'text-text-primary' : 'text-field-placeholder'
@@ -238,7 +238,7 @@ const Calendar = ({
             className="w-6 h-6 flex items-center justify-center text-text-primary hover:text-primary-100 transition-colors"
             aria-label="Previous month"
           >
-            <ArrowCircleLeftIcon className="w-full h-full" />
+            <Icon type="icon-arrow-circle-left" className="w-full h-full" />
           </button>
         ) : (
           <div className="w-6 h-6" />
@@ -257,7 +257,7 @@ const Calendar = ({
             className="w-6 h-6 flex items-center justify-center text-text-primary hover:text-primary-100 transition-colors"
             aria-label="Next month"
           >
-            <ArrowCircleRightIcon className="w-full h-full" />
+            <Icon type="icon-arrow-circle-right" className="w-full h-full" />
           </button>
         ) : (
           <div className="w-6 h-6" />

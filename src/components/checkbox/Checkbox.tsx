@@ -1,7 +1,7 @@
 import { forwardRef, useId } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { CheckmarkIcon } from '../icons';
+import { Icon } from '../icon';
 import type { CheckboxProps, CheckboxSize } from './Checkbox.types';
 
 const checkboxSizes: Record<CheckboxSize, { box: string; icon: string; label: string }> = {
@@ -68,7 +68,7 @@ export const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
           >
             <div className={boxClasses}>
               {checked && (
-                <CheckmarkIcon className={twMerge(sizeConfig.icon, 'text-white')} aria-hidden />
+                <Icon type="icon-checkmark" className={twMerge(sizeConfig.icon, 'text-white')} aria-hidden />
               )}
             </div>
             {label && (

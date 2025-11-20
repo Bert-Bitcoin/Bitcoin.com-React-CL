@@ -24,16 +24,16 @@ const variantClasses: Record<IconButtonVariant, string> = {
 
 const sizeClasses: Record<IconButtonSize, { button: string; icon: string }> = {
   sm: {
-    button: 'size-[32px]',
-    icon: 'size-4'
+    button: 'w-[32px] h-[32px]',
+    icon: 'w-4 h-4'
   },
   md: {
-    button: 'size-[35px]',
-    icon: 'size-4'
+    button: 'w-[35px] h-[35px]',
+    icon: 'w-4 h-4'
   },
   lg: {
-    button: 'size-[38px]',
-    icon: 'size-5'
+    button: 'w-[38px] h-[38px]',
+    icon: 'w-5 h-5'
   }
 };
 
@@ -94,7 +94,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             label="Loading"
           />
         ) : (
-          <span className={twMerge('pointer-events-none flex-shrink-0 text-current flex items-center justify-center', sizeConfig.icon)}>
+          <span className={twMerge('pointer-events-none flex-shrink-0 text-current inline-flex items-center justify-center [&_svg]:!w-full [&_svg]:!h-full -mt-0.5 -ml-0.5', sizeConfig.icon)}>
             {icon}
           </span>
         )}

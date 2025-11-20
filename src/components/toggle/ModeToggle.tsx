@@ -1,7 +1,7 @@
 import { forwardRef } from 'react';
 import { twMerge } from 'tailwind-merge';
 
-import { MoonIcon, SunIcon } from '../icons';
+import { Icon } from '../icon';
 
 export interface ModeToggleProps {
   /**
@@ -77,10 +77,10 @@ export const ModeToggle = forwardRef<HTMLButtonElement, ModeToggleProps>(
         
         {/* Icons on top with z-index */}
         <span className={sunIconWrapperClasses}>
-          <SunIcon className={sunIconClasses} aria-hidden />
+          <Icon type="icon-sun" className={sunIconClasses} aria-hidden />
         </span>
         <span className={moonIconWrapperClasses}>
-          <MoonIcon className={moonIconClasses} aria-hidden />
+          <Icon type="icon-moon" className={moonIconClasses} aria-hidden />
         </span>
       </button>
     );
