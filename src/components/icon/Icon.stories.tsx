@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { Icon, getAvailableIcons } from './Icon';
 
 const meta: Meta<typeof Icon> = {
-  title: 'Foundation/Icon',
+  title: 'Assets/Icons',
   component: Icon,
   parameters: {
     layout: 'centered',
