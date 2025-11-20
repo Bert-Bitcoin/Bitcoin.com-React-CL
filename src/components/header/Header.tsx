@@ -200,7 +200,7 @@ export const Header = ({
                     handleCloseMenu();
                   }}
                   className={twMerge(
-                    'font-medium text-heading-sm text-center transition-colors duration-200',
+                    'font-medium text-heading-sm text-center transition-colors duration-200 text-[20px]',
                     item.active
                       ? 'text-primary-100 dark:text-primary-100'
                       : 'text-shades-almost-black hover:text-primary-100 dark:text-white dark:hover:text-primary-100'
