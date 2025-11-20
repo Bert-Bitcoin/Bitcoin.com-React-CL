@@ -23,7 +23,7 @@ const SidebarMenuItemComponent = ({
           'flex items-center gap-2 w-full rounded-lg p-2 overflow-clip',
           'transition-colors duration-200',
           isActive
-            ? 'bg-warning-100 text-white'
+            ? 'bg-warning-10 dark:bg-warning-100/10'
             : 'bg-shades-off-white dark:bg-shades-off-white text-shades-extra-dark dark:text-shades-extra-dark hover:bg-shades-extra-light dark:hover:bg-shades-extra-light'
         )}
       >
@@ -32,7 +32,7 @@ const SidebarMenuItemComponent = ({
           size="lg"
           className={twMerge(
             'flex-shrink-0',
-            isActive ? 'text-white' : 'text-shades-semi-dark dark:text-shades-semi-dark'
+            isActive ? 'text-warning-100' : 'text-shades-semi-dark dark:text-shades-semi-dark'
           )}
           ariaHidden
         />
