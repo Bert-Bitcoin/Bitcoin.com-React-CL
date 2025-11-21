@@ -177,7 +177,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
                     <Icon
                       type={item.icon}
                       size="xs"
-                      className={item.variant === 'danger' ? 'text-alerts-100' : 'text-primary-100'}
+                      className={item.variant === 'danger' ? 'text-alerts-100' : 'text-shades-mid'}
                     />
                   )}
                   <span>{item.label}</span>

@@ -602,3 +602,127 @@ export const SortingDisabled: Story = {
   ]
 };
 
+/**
+ * Table with pagination - default variant
+ */
+export const WithPagination: Story = {
+  render: () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 4;
+    const totalResults = employeeData.length;
+    const totalPages = Math.ceil(totalResults / pageSize);
+    
+    // Get data for current page
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const currentData = employeeData.slice(startIndex, endIndex);
+
+    return (
+      <div style={{ width: '900px' }}>
+        <Table
+          columns={employeeColumnsNoActions}
+          data={currentData}
+          getRowKey={(row) => row.id}
+          pagination={{
+            currentPage,
+            totalPages,
+            totalResults,
+            pageSize,
+            onPageChange: setCurrentPage
+          }}
+        />
+      </div>
+    );
+  }
+};
+
+/**
+ * Table with pagination - bordered variant
+ */
+export const WithPaginationBordered: Story = {
+  render: () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const pageSize = 4;
+    const totalResults = employeeData.length;
+    const totalPages = Math.ceil(totalResults / pageSize);
+    
+    // Get data for current page
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const currentData = employeeData.slice(startIndex, endIndex);
+
+    return (
+      <div style={{ width: '900px' }}>
+        <Table
+          columns={employeeColumnsNoActions}
+          data={currentData}
+          variant="bordered"
+          getRowKey={(row) => row.id}
+          pagination={{
+            currentPage,
+            totalPages,
+            totalResults,
+            pageSize,
+            onPageChange: setCurrentPage
+          }}
+        />
+      </div>
+    );
+  }
+};
+
+/**
+ * Table with pagination and sorting
+ */
+export const WithPaginationAndSorting: Story = {
+  render: () => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [sortState, setSortState] = useState<SortState | null>(null);
+    const pageSize = 4;
+    
+    // Sort data
+    let sortedData = [...employeeData];
+    if (sortState) {
+      sortedData.sort((a, b) => {
+        const aVal = a[sortState.columnId as keyof Employee];
+        const bVal = b[sortState.columnId as keyof Employee];
+        const comparison = String(aVal).localeCompare(String(bVal));
+        return sortState.direction === 'asc' ? comparison : -comparison;
+      });
+    }
+    
+    const totalResults = sortedData.length;
+    const totalPages = Math.ceil(totalResults / pageSize);
+    
+    // Get data for current page
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const currentData = sortedData.slice(startIndex, endIndex);
+
+    const handleSort = (columnId: string, direction: 'asc' | 'desc') => {
+      setSortState({ columnId, direction });
+      setCurrentPage(1); // Reset to first page when sorting
+    };
+
+    return (
+      <div style={{ width: '900px' }}>
+        <Table
+          columns={employeeColumnsNoActions}
+          data={currentData}
+          variant="bordered"
+          getRowKey={(row) => row.id}
+          sortState={sortState}
+          onSort={handleSort}
+          pagination={{
+            currentPage,
+            totalPages,
+            totalResults,
+            pageSize,
+            onPageChange: setCurrentPage
+          }}
+        />
+      </div>
+    );
+  }
+};
+

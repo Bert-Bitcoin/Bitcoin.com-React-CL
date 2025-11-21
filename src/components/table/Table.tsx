@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { Icon } from '../icon/Icon';
+import { Pagination } from '../pagination';
 import type { TableProps } from './Table.types';
 
 /**
@@ -19,7 +20,8 @@ export const Table = <T extends Record<string, any>>({
   onRowClick,
   enableSorting = true,
   sortState,
-  onSort
+  onSort,
+  pagination
 }: TableProps<T>) => {
   const getCellValue = (row: T, column: typeof columns[0]): ReactNode => {
     if (typeof column.accessor === 'function') {
@@ -72,6 +74,14 @@ export const Table = <T extends Record<string, any>>({
         className="text-primary-100"
       />
     );
+  };
+
+  // Calculate pagination display text
+  const getPaginationText = () => {
+    if (!pagination) return '';
+    const start = (pagination.currentPage - 1) * pagination.pageSize + 1;
+    const end = Math.min(pagination.currentPage * pagination.pageSize, pagination.totalResults);
+    return `Showing ${start} to ${end} of ${pagination.totalResults} results`;
   };
 
   const tableContent = (
@@ -135,6 +145,29 @@ export const Table = <T extends Record<string, any>>({
           )}
         </div>
       ))}
+
+      {/* Pagination Footer */}
+      {pagination && (
+        <>
+          {/* Divider before pagination */}
+          <div className={variant === 'bordered' ? '' : 'px-m'}>
+            <div className="h-px w-full bg-shades-extra-light" />
+          </div>
+
+          {/* Pagination Row */}
+          <div className="bg-shades-white flex items-center justify-between px-m pt-s pb-m w-full">
+            <div className="font-['Satoshi_Variable'] font-medium text-[12px] text-shades-semi-dark leading-none">
+              {getPaginationText()}
+            </div>
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              onPageChange={pagination.onPageChange}
+              size="small"
+            />
+          </div>
+        </>
+      )}
     </>
   );
 

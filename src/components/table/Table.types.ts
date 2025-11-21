@@ -52,6 +52,29 @@ export interface TableColumn<T = any> {
   sortKey?: keyof T;
 }
 
+export interface TablePaginationConfig {
+  /**
+   * Current page (1-indexed)
+   */
+  currentPage: number;
+  /**
+   * Total number of pages
+   */
+  totalPages: number;
+  /**
+   * Total number of results
+   */
+  totalResults: number;
+  /**
+   * Number of items per page
+   */
+  pageSize: number;
+  /**
+   * Callback when page changes
+   */
+  onPageChange: (page: number) => void;
+}
+
 export interface TableProps<T = any> {
   /**
    * Array of column definitions
@@ -92,5 +115,9 @@ export interface TableProps<T = any> {
    * Callback when sort is requested
    */
   onSort?: (columnId: string, direction: 'asc' | 'desc') => void;
+  /**
+   * Optional pagination configuration
+   */
+  pagination?: TablePaginationConfig;
 }
 

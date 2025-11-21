@@ -13,6 +13,7 @@ A flexible data table component for displaying tabular data, based on the Bitcoi
 - ✅ Light dividers between rows
 - ✅ Bordered variant with rounded corners
 - ✅ **Sortable columns** with visual indicators
+- ✅ **Built-in pagination** with results display
 - ✅ TypeScript support
 - ✅ Design system aligned
 
@@ -77,6 +78,7 @@ function MyComponent() {
 | `enableSorting` | `boolean` | `true` | Enable/disable sorting functionality at table level |
 | `sortState` | `SortState \| null` | - | Current sort state (columnId and direction) |
 | `onSort` | `(columnId: string, direction: 'asc' \| 'desc') => void` | - | Callback when sort is requested |
+| `pagination` | `TablePaginationConfig` | - | Optional pagination configuration |
 
 ## TableColumn
 
@@ -365,6 +367,124 @@ Even if columns are marked as `sortable: true`, you can disable sorting for the 
   enableSorting={false}  // ✅ Disables all sorting
 />
 ```
+
+## Pagination
+
+The Table component includes optional built-in pagination support, displaying results information and page controls at the bottom of the table.
+
+### Features
+
+- ✅ Shows "Showing X to Y of Z results" text
+- ✅ Integrates with existing Pagination component
+- ✅ Matches Figma design specification
+- ✅ Works with both default and bordered variants
+- ✅ Compatible with sorting functionality
+- ✅ Responsive small size for compact display
+
+### Usage
+
+```tsx
+import { useState } from 'react';
+import { Table, TablePaginationConfig } from '@bitcoin-com/react-component-library';
+
+function PaginatedTable() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+  const totalResults = data.length;
+  const totalPages = Math.ceil(totalResults / pageSize);
+  
+  // Calculate data for current page
+  const startIndex = (currentPage - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const currentData = data.slice(startIndex, endIndex);
+
+  return (
+    <Table
+      columns={columns}
+      data={currentData}
+      pagination={{
+        currentPage,
+        totalPages,
+        totalResults,
+        pageSize,
+        onPageChange: setCurrentPage
+      }}
+    />
+  );
+}
+```
+
+### Pagination Config
+
+```tsx
+interface TablePaginationConfig {
+  currentPage: number;      // Current page (1-indexed)
+  totalPages: number;        // Total number of pages
+  totalResults: number;      // Total number of results
+  pageSize: number;          // Number of items per page
+  onPageChange: (page: number) => void;  // Callback when page changes
+}
+```
+
+### With Sorting
+
+Pagination works seamlessly with sorting. Remember to reset the page when sorting changes:
+
+```tsx
+function SortableAndPaginatedTable() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sortState, setSortState] = useState<SortState | null>(null);
+  const pageSize = 10;
+  
+  // Sort data first
+  let sortedData = [...data];
+  if (sortState) {
+    sortedData.sort((a, b) => {
+      const aVal = a[sortState.columnId];
+      const bVal = b[sortState.columnId];
+      const comparison = String(aVal).localeCompare(String(bVal));
+      return sortState.direction === 'asc' ? comparison : -comparison;
+    });
+  }
+  
+  // Then paginate
+  const totalResults = sortedData.length;
+  const totalPages = Math.ceil(totalResults / pageSize);
+  const startIndex = (currentPage - 1) * pageSize;
+  const currentData = sortedData.slice(startIndex, startIndex + pageSize);
+
+  const handleSort = (columnId: string, direction: 'asc' | 'desc') => {
+    setSortState({ columnId, direction });
+    setCurrentPage(1); // Reset to first page on sort
+  };
+
+  return (
+    <Table
+      columns={columns}
+      data={currentData}
+      sortState={sortState}
+      onSort={handleSort}
+      pagination={{
+        currentPage,
+        totalPages,
+        totalResults,
+        pageSize,
+        onPageChange: setCurrentPage
+      }}
+    />
+  );
+}
+```
+
+### Design
+
+The pagination footer follows the Figma design:
+- **Font**: Satoshi Variable Medium 12px for results text
+- **Color**: Semi-dark (#67666b) for results text
+- **Spacing**: 8px top padding, 16px bottom padding, 16px horizontal padding
+- **Layout**: Results text on left, pagination controls on right
+- **Size**: Small pagination size (24px buttons) for compact display
+- **Divider**: Light divider (#f0f0f5) separates pagination from table rows
 
 ## Storybook
 

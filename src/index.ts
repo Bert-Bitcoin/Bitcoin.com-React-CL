@@ -12,6 +12,7 @@ export * from './components/mini-illustrations';
 export * from './components/footer';
 export * from './components/header';
 export * from './components/option';
+export * from './components/pagination';
 export * from './components/radiobutton';
 export * from './components/table';
 export * from './components/tabs';
