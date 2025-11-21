@@ -2,9 +2,9 @@ import { forwardRef, useId, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { Icon } from '../icon';
-import type { DropdownProps, DropdownSize } from './Dropdown.types';
+import type { SelectProps, SelectSize } from './Select.types';
 
-const dropdownSizes: Record<DropdownSize, { text: string; height: string; iconSize: string }> = {
+const selectSizes: Record<SelectSize, { text: string; height: string; iconSize: string }> = {
   md: {
     text: 'text-label',
     height: 'h-[35px]',
@@ -17,7 +17,7 @@ const dropdownSizes: Record<DropdownSize, { text: string; height: string; iconSi
   }
 };
 
-export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
+export const Select = forwardRef<HTMLSelectElement, SelectProps>(
   (
     {
       size = 'md',
@@ -36,7 +36,7 @@ export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
   ) => {
     const generatedId = useId();
     const controlId = id ?? generatedId;
-    const sizeConfig = dropdownSizes[size];
+    const sizeConfig = selectSizes[size];
     const [isFocused, setIsFocused] = useState(false);
 
     const containerClasses = twMerge(
@@ -126,5 +126,5 @@ export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(
   }
 );
 
-Dropdown.displayName = 'Dropdown';
+Select.displayName = 'Select';
 

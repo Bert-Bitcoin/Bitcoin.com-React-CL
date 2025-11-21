@@ -5,7 +5,7 @@ import { Toggle } from './Toggle';
 import type { ToggleProps } from './Toggle.types';
 
 const meta: Meta<typeof Toggle> = {
-  title: 'Components/Toggles/Toggle',
+  title: 'Components/Forms/Toggle',
   component: Toggle,
   parameters: {
     layout: 'centered',

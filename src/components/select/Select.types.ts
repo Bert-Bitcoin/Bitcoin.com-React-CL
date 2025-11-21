@@ -1,26 +1,26 @@
 import type { SelectHTMLAttributes, ReactNode } from 'react';
 
-export type DropdownSize = 'md' | 'lg';
+export type SelectSize = 'md' | 'lg';
 
-export interface DropdownOption {
+export interface SelectOption {
   label: string;
   value: string;
   disabled?: boolean;
 }
 
-export interface DropdownProps
+export interface SelectProps
   extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'size'> {
   /**
    * Visual size
    * @default "md"
    */
-  size?: DropdownSize;
+  size?: SelectSize;
   /**
-   * Whether the dropdown has an error
+   * Whether the select has an error
    */
   error?: boolean;
   /**
-   * Whether the dropdown is in a complete/success state
+   * Whether the select is in a complete/success state
    */
   complete?: boolean;
   /**
@@ -28,7 +28,7 @@ export interface DropdownProps
    */
   label?: string;
   /**
-   * Helper text displayed below the dropdown
+   * Helper text displayed below the select
    */
   helperText?: string;
   /**
@@ -36,8 +36,8 @@ export interface DropdownProps
    */
   leadingIcon?: ReactNode;
   /**
-   * The options to display in the dropdown
+   * The options to display in the select
    */
-  options: DropdownOption[];
+  options: SelectOption[];
 }
 

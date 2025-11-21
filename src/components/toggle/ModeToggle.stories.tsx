@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ModeToggle } from './ModeToggle';
 
 const meta: Meta<typeof ModeToggle> = {
-  title: 'Components/Toggles/Mode Toggle',
+  title: 'Components/Elements/Mode Toggle',
   component: ModeToggle,
   parameters: {
     layout: 'centered',

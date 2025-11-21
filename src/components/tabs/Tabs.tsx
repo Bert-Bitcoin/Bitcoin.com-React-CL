@@ -49,8 +49,8 @@ export const Tabs = ({
               // Hover state (inactive only)
               !isActive && !isDisabled && 'hover:bg-shades-extra-light hover:border-shades-mid',
               // Dark mode
-              !isActive && 'dark:bg-shades-almost-black dark:border-shades-dark dark:text-shades-off-white',
-              !isActive && !isDisabled && 'dark:hover:bg-shades-extra-dark',
+              !isActive && 'dark:bg-shades-light dark:border-shades-extra-light dark:text-shades-almost-black',
+              !isActive && !isDisabled && 'dark:hover:bg-shades-extra-dark dark:hover:text-shades-white',
               // Disabled state
               isDisabled && 'opacity-50 cursor-not-allowed',
               // Full width

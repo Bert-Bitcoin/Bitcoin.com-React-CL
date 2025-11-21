@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Icon } from '../icon';
-import { Dropdown } from './Dropdown';
+import { Select } from './Select';
 
 const sampleOptions = [
   { label: 'Option 1', value: '1' },
@@ -10,9 +10,9 @@ const sampleOptions = [
   { label: 'Option 4', value: '4' }
 ];
 
-const meta: Meta<typeof Dropdown> = {
-  title: 'Components/Forms/Dropdown',
-  component: Dropdown,
+const meta: Meta<typeof Select> = {
+  title: 'Components/Forms/Select',
+  component: Select,
   parameters: {
     layout: 'centered',
     backgrounds: {
@@ -38,12 +38,12 @@ const meta: Meta<typeof Dropdown> = {
 
 export default meta;
 
-type Story = StoryObj<typeof Dropdown>;
+type Story = StoryObj<typeof Select>;
 
 export const Default: Story = {
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
@@ -54,7 +54,7 @@ export const WithLabel: Story = {
   },
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
@@ -72,7 +72,7 @@ export const WithHelperText: Story = {
   },
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
@@ -90,7 +90,7 @@ export const WithLeadingIcon: Story = {
   },
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
@@ -104,7 +104,7 @@ export const Error: Story = {
   },
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
@@ -118,7 +118,7 @@ export const Complete: Story = {
   },
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
@@ -126,11 +126,11 @@ export const Complete: Story = {
 export const Large: Story = {
   args: {
     size: 'lg',
-    label: 'Large dropdown'
+    label: 'Large select'
   },
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
@@ -142,7 +142,7 @@ export const Disabled: Story = {
   },
   render: (args) => (
     <div className="w-[300px]">
-      <Dropdown {...args} />
+      <Select {...args} />
     </div>
   )
 };
