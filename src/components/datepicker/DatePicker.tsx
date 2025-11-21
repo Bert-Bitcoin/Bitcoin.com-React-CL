@@ -114,7 +114,7 @@ export const DatePicker = ({
         disabled={disabled}
         className={twMerge(
           'flex items-center gap-s px-s py-s',
-          'min-h-[35px] rounded-s border',
+          'min-h-[35px] rounded-[8px] border',
           'bg-field-background border-field-border',
           'text-left transition-colors',
           'hover:border-field-border-active',
@@ -142,7 +142,7 @@ export const DatePicker = ({
       {isOpen && (
         <div className={twMerge(
           'absolute top-full left-0 mt-xs z-50',
-          'bg-surface border border-border rounded-s',
+          'bg-surface border border-border rounded-[8px]',
           'p-m',
           'w-max' // Allow calendar to be as wide as needed, not constrained by input
         )}>
