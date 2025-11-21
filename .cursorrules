@@ -15,6 +15,21 @@
 
 ---
 
+## 🤖 AI Agent Consumption Rules
+
+### Rule: ai-guide-adherence (REQUIRED)
+For detailed implementation patterns, strictly follow [AI_CONSUMPTION_GUIDE.md](./AI_CONSUMPTION_GUIDE.md). This file contains the "Gold Standard" for code generation in this project.
+
+### Rule: semantic-tokens-only (STRICT)
+AI Agents must NEVER generate code with raw hex values or standard Tailwind colors (e.g., `bg-blue-500`). ALWAYS use the project's semantic tokens (e.g., `bg-primary-100`, `text-surface`).
+
+### Rule: strict-typography-mapping (STRICT)
+- **Headings**: Always `Elza` + `uppercase` (e.g., `text-heading-lg`).
+- **Numbers**: Always `IBM Plex Sans` (e.g., `text-numeric`).
+- **Body**: `Satoshi` (e.g., `text-body`).
+
+---
+
 ## 🔗 Figma Design System Integration
 
 ### Rule: figma-mpc-sync (REQUIRED)
@@ -211,4 +226,3 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
 2. Run `scripts/generate-icons.ts`
 3. Import from `src/components/icons/index.ts`
 4. Use consistent naming conventions
-

@@ -1,15 +1,15 @@
 import { twMerge } from 'tailwind-merge';
 
-import type { TabsProps } from './Tabs.types';
+import type { PillTabsProps } from './PillTabs.types';
 
-export const Tabs = ({
+export const PillTabs = ({
   tabs,
   activeTab,
   onChange,
   className,
   tabClassName,
   fullWidth = false
-}: TabsProps) => {
+}: PillTabsProps) => {
   return (
     <div
       className={twMerge(
@@ -67,5 +67,5 @@ export const Tabs = ({
   );
 };
 
-Tabs.displayName = 'Tabs';
+PillTabs.displayName = 'PillTabs';
 

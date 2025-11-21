@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { useState } from 'react';
 
-import { Tabs } from './Tabs';
-import type { Tab } from './Tabs.types';
+import { PillTabs } from './PillTabs';
+import type { PillTab } from './PillTabs.types';
 
-const meta: Meta<typeof Tabs> = {
-  title: 'Components/Tabs/Tabs',
-  component: Tabs,
+const meta: Meta<typeof PillTabs> = {
+  title: 'Components/Tabs/PillTabs',
+  component: PillTabs,
   parameters: {
     layout: 'centered',
     docs: {
@@ -30,7 +30,7 @@ const meta: Meta<typeof Tabs> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof Tabs>;
+type Story = StoryObj<typeof PillTabs>;
 
 /**
  * Default tabs with multiple options
@@ -39,7 +39,7 @@ export const Default: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('tab1');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'tab1', label: 'Active Tab' },
       { id: 'tab2', label: 'Tab' },
       { id: 'tab3', label: 'Tab' },
@@ -49,7 +49,7 @@ export const Default: Story = {
 
     return (
       <div className="w-full max-w-2xl">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       </div>
     );
   }
@@ -62,7 +62,7 @@ export const ManyTabs: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('tab1');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'tab1', label: 'Active Tab' },
       { id: 'tab2', label: 'Tab' },
       { id: 'tab3', label: 'Tab' },
@@ -77,7 +77,7 @@ export const ManyTabs: Story = {
 
     return (
       <div className="w-full max-w-2xl">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       </div>
     );
   }
@@ -90,7 +90,7 @@ export const CustomLabels: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('overview');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'overview', label: 'Overview' },
       { id: 'transactions', label: 'Transactions' },
       { id: 'analytics', label: 'Analytics' },
@@ -99,7 +99,7 @@ export const CustomLabels: Story = {
 
     return (
       <div className="w-full max-w-2xl">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       </div>
     );
   }
@@ -112,7 +112,7 @@ export const WithDisabledTabs: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('tab1');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'tab1', label: 'Active' },
       { id: 'tab2', label: 'Available' },
       { id: 'tab3', label: 'Disabled', disabled: true },
@@ -122,7 +122,7 @@ export const WithDisabledTabs: Story = {
 
     return (
       <div className="w-full max-w-2xl">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       </div>
     );
   }
@@ -135,7 +135,7 @@ export const FullWidth: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('tab1');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'tab1', label: 'Overview' },
       { id: 'tab2', label: 'Details' },
       { id: 'tab3', label: 'Settings' }
@@ -143,7 +143,7 @@ export const FullWidth: Story = {
 
     return (
       <div className="w-full max-w-2xl">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} fullWidth />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} fullWidth />
       </div>
     );
   }
@@ -156,7 +156,7 @@ export const WithContent: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('home');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'home', label: 'Home' },
       { id: 'profile', label: 'Profile' },
       { id: 'messages', label: 'Messages' },
@@ -172,7 +172,7 @@ export const WithContent: Story = {
 
     return (
       <div className="w-full max-w-2xl flex flex-col gap-4">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
         <div className="p-6 bg-surface border border-border rounded-m">
           <p className="text-text-primary">{content[activeTab]}</p>
         </div>
@@ -189,7 +189,7 @@ export const ThemeComparison: Story = {
     const [activeTab1, setActiveTab1] = useState('tab1');
     const [activeTab2, setActiveTab2] = useState('tab1');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'tab1', label: 'Active Tab' },
       { id: 'tab2', label: 'Tab' },
       { id: 'tab3', label: 'Tab' },
@@ -202,13 +202,13 @@ export const ThemeComparison: Story = {
         {/* Light Theme */}
         <div className="flex flex-col gap-6">
           <h3 className="text-heading-sm font-bold text-text-primary">Light Theme</h3>
-          <Tabs tabs={tabs} activeTab={activeTab1} onChange={setActiveTab1} />
+          <PillTabs tabs={tabs} activeTab={activeTab1} onChange={setActiveTab1} />
         </div>
 
         {/* Dark Theme */}
         <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-m">
           <h3 className="text-heading-sm font-bold text-text-primary">Dark Theme</h3>
-          <Tabs tabs={tabs} activeTab={activeTab2} onChange={setActiveTab2} />
+          <PillTabs tabs={tabs} activeTab={activeTab2} onChange={setActiveTab2} />
         </div>
       </div>
     );
@@ -222,14 +222,14 @@ export const TwoTabs: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('buy');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'buy', label: 'Buy' },
       { id: 'sell', label: 'Sell' }
     ];
 
     return (
       <div className="w-full max-w-md">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       </div>
     );
   }
@@ -242,7 +242,7 @@ export const ThreeTabs: Story = {
   render: (args) => {
     const [activeTab, setActiveTab] = useState('all');
 
-    const tabs: Tab[] = [
+    const tabs: PillTab[] = [
       { id: 'all', label: 'All' },
       { id: 'active', label: 'Active' },
       { id: 'completed', label: 'Completed' }
@@ -250,7 +250,7 @@ export const ThreeTabs: Story = {
 
     return (
       <div className="w-full max-w-md">
-        <Tabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+        <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
       </div>
     );
   }

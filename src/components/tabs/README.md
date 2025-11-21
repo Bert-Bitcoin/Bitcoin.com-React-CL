@@ -1,4 +1,4 @@
-# Tabs Component
+# Pill Tabs Component
 
 A pill-style tabs component for navigation and content switching. Built with React, TypeScript, and Tailwind CSS, following the Bitcoin.com design system.
 
@@ -16,10 +16,10 @@ A pill-style tabs component for navigation and content switching. Built with Rea
 
 ## Usage
 
-### Basic Tabs
+### Basic Pill Tabs
 
 ```tsx
-import { Tabs } from '@/components/tabs';
+import { PillTabs } from '@/components/tabs';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -32,7 +32,7 @@ function MyComponent() {
   ];
 
   return (
-    <Tabs
+    <PillTabs
       tabs={tabs}
       activeTab={activeTab}
       onChange={setActiveTab}
@@ -44,7 +44,7 @@ function MyComponent() {
 ### With Content Panels
 
 ```tsx
-import { Tabs } from '@/components/tabs';
+import { PillTabs } from '@/components/tabs';
 import { useState } from 'react';
 
 function MyComponent() {
@@ -58,7 +58,7 @@ function MyComponent() {
 
   return (
     <div>
-      <Tabs
+      <PillTabs
         tabs={tabs}
         activeTab={activeTab}
         onChange={setActiveTab}
@@ -82,7 +82,7 @@ const tabs = [
   { id: 'tab3', label: 'Available' }
 ];
 
-<Tabs
+<PillTabs
   tabs={tabs}
   activeTab={activeTab}
   onChange={setActiveTab}
@@ -92,7 +92,7 @@ const tabs = [
 ### Full Width Tabs
 
 ```tsx
-<Tabs
+<PillTabs
   tabs={tabs}
   activeTab={activeTab}
   onChange={setActiveTab}
@@ -102,18 +102,18 @@ const tabs = [
 
 ## Props
 
-### TabsProps
+### PillTabsProps
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `tabs` | `Tab[]` | **required** | Array of tab items |
+| `tabs` | `PillTab[]` | **required** | Array of tab items |
 | `activeTab` | `string` | **required** | ID of the currently active tab |
 | `onChange` | `(tabId: string) => void` | **required** | Callback fired when a tab is clicked |
 | `className` | `string` | - | Additional CSS classes for the container |
 | `tabClassName` | `string` | - | Additional CSS classes for individual tabs |
 | `fullWidth` | `boolean` | `false` | Whether tabs should take full width |
 
-### Tab Interface
+### PillTab Interface
 
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
@@ -183,7 +183,7 @@ const tabs = [
 ### Custom Styling
 
 ```tsx
-<Tabs
+<PillTabs
   tabs={tabs}
   activeTab={activeTab}
   onChange={setActiveTab}
@@ -198,7 +198,7 @@ The component automatically adapts to dark mode when wrapped in a dark theme con
 
 ```tsx
 <div data-theme="dark">
-  <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+  <PillTabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
 </div>
 ```
 
@@ -214,11 +214,11 @@ The component automatically adapts to dark mode when wrapped in a dark theme con
 
 ```
 tabs/
-├── Tabs.tsx           # Main component
-├── Tabs.types.ts      # TypeScript type definitions
-├── Tabs.stories.tsx   # Storybook stories (9 examples)
-├── index.ts           # Barrel export
-└── README.md          # This file
+├── PillTabs.tsx           # Main component
+├── PillTabs.types.ts      # TypeScript type definitions
+├── PillTabs.stories.tsx   # Storybook stories (9 examples)
+├── index.ts               # Barrel export
+└── README.md              # This file
 ```
 
 ## Design Reference
@@ -233,7 +233,7 @@ View the component in Storybook:
 npm run storybook
 ```
 
-Navigate to: **Components > Tabs**
+Navigate to: **Components > Tabs > PillTabs**
 
 ### Available Stories
 
@@ -275,12 +275,12 @@ Navigate to: **Components > Tabs**
 // ✅ Good - Shows content changes
 const [activeTab, setActiveTab] = useState('home');
 
-<Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+<PillTabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
 {activeTab === 'home' && <HomeContent />}
 {activeTab === 'profile' && <ProfileContent />}
 
 // ❌ Bad - No visual feedback
-<Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
+<PillTabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
 ```
 
 ### 4. Consider Mobile
@@ -289,7 +289,7 @@ For many tabs on mobile, ensure horizontal scrolling is available:
 
 ```tsx
 <div className="overflow-x-auto">
-  <Tabs tabs={manyTabs} activeTab={activeTab} onChange={setActiveTab} />
+  <PillTabs tabs={manyTabs} activeTab={activeTab} onChange={setActiveTab} />
 </div>
 ```
 
@@ -329,15 +329,15 @@ const tradeTabs = [
 ## TypeScript Types
 
 ```typescript
-interface Tab {
+interface PillTab {
   id: string;
   label: string;
   icon?: React.ReactNode;
   disabled?: boolean;
 }
 
-interface TabsProps {
-  tabs: Tab[];
+interface PillTabsProps {
+  tabs: PillTab[];
   activeTab: string;
   onChange: (tabId: string) => void;
   className?: string;
@@ -363,8 +363,8 @@ interface TabsProps {
 
 When making changes to this component:
 
-1. Update types in `Tabs.types.ts`
-2. Add stories in `Tabs.stories.tsx`
+1. Update types in `PillTabs.types.ts`
+2. Add stories in `PillTabs.stories.tsx`
 3. Test in both light and dark modes
 4. Test accessibility with keyboard navigation
 5. Update this README with new features

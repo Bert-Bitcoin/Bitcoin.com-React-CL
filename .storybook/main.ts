@@ -15,7 +15,7 @@ const config: StorybookConfig = {
     autodocs: 'tag'
   },
   previewSort: {
-    order: ['Design System', 'Foundation', 'Components' ]
+    order: ['design System', 'components', 'layouts', 'assets' ]
   },
   staticDirs: []
 };

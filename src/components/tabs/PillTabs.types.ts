@@ -1,4 +1,4 @@
-export interface Tab {
+export interface PillTab {
   /**
    * Unique identifier for the tab
    */
@@ -21,11 +21,11 @@ export interface Tab {
   disabled?: boolean;
 }
 
-export interface TabsProps {
+export interface PillTabsProps {
   /**
    * Array of tab items
    */
-  tabs: Tab[];
+  tabs: PillTab[];
 
   /**
    * ID of the currently active tab
