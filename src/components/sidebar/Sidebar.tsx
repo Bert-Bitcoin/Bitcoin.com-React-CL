@@ -158,7 +158,7 @@ export const Sidebar = ({
       >
         {showLogo && (
           <div className="w-full mb-1">
-            <Logo size="md" theme="auto" />
+            <Logo size="lg" theme="auto" />
           </div>
         )}
         <nav className="flex flex-col flex-1 gap-1 py-4">
@@ -182,8 +182,8 @@ export const Sidebar = ({
         )}
       >
         {showLogo && (
-          <div className="flex-shrink-0 mb-4">
-            <LogoMark size="lg" />
+          <div className="flex-shrink-0">
+            <LogoMark size="md" />
           </div>
         )}
         <nav className="flex flex-col flex-1 w-full gap-1 py-4">
