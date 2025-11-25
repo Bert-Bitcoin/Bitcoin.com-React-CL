@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
-import type { SidebarMenuItem } from '../sidebar/Sidebar.types';
-import type { FooterLink } from '../footer/Footer';
+import type { SidebarMenuItem } from '../../components/sidebar/Sidebar.types';
+import type { FooterLink } from '../../components/footer/Footer';
 
 export interface WebAppLayoutProps {
   /**

@@ -1,7 +1,7 @@
 import { twMerge } from 'tailwind-merge';
 
-import { Sidebar } from '../sidebar/Sidebar';
-import { Footer } from '../footer/Footer';
+import { Sidebar } from '../../components/sidebar/Sidebar';
+import { Footer } from '../../components/footer/Footer';
 import type { WebAppLayoutProps } from './WebAppLayout.types';
 
 /**

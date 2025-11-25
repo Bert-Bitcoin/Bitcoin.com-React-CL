@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { WebAppLayout } from './WebAppLayout';
-import type { SidebarMenuItem } from '../sidebar/Sidebar.types';
-import { CardWithSubComponents as Card } from '../card/Card';
+import type { SidebarMenuItem } from '../../components/sidebar/Sidebar.types';
+import { CardWithSubComponents as Card } from '../../components/card/Card';
 
 const meta = {
-  title: 'Layouts/Web App/Layout',
+  title: 'Layouts/Web App Layout',
   component: WebAppLayout,
   parameters: {
     layout: 'fullscreen',

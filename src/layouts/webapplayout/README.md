@@ -26,7 +26,7 @@ A responsive web application layout component that provides a consistent structu
 ### Basic Layout
 
 ```tsx
-import { WebAppLayout } from '@/components/layout';
+import { WebAppLayout } from '@/layout/webapplayout';
 import type { SidebarMenuItem } from '@/components/sidebar/Sidebar.types';
 
 function MyApp() {

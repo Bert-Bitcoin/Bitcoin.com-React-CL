@@ -24,7 +24,7 @@ export * from './components/toggle';
 export * from './components/typography';
 export * from './components/sidebar';
 export * from './components/slider';
-export * from './components/layout';
+export * from './layouts/webapplayout';
 export { designTokens } from './tokens';
 export type { DesignTokens, TextStyleToken } from './tokens';
 
