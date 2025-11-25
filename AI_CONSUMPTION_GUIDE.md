@@ -68,7 +68,7 @@ Use the t-shirt size scale for margin/padding/gap:
 - `text-numeric-lg`
 - `text-numeric`
 - `text-numeric-sm`
-- OR manual: `font-['IBM_Plex_Sans']`
+- OR manual: `font-['IBMPlexSans']` (use this exact class name when creating new components)
 
 ### 3. Body & UI Text
 **Font**: `Satoshi` (Default sans)

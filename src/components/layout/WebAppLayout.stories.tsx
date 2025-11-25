@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 
 import { WebAppLayout } from './WebAppLayout';
 import type { SidebarMenuItem } from '../sidebar/Sidebar.types';
+import { CardWithSubComponents as Card } from '../card/Card';
 
 const meta = {
   title: 'Layouts/Web App/Layout',
@@ -81,33 +82,30 @@ const SampleContent = ({ title = 'Page Content' }: { title?: string }) => (
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-m mt-m">
         {[1, 2, 3, 4, 5, 6].map((i) => (
-          <div
-            key={i}
-            className="p-m bg-surface-muted rounded-lg border border-border"
-          >
-            <h3 className="text-heading-sm text-text-primary uppercase font-semibold mb-s">
-              Card {i}
-            </h3>
-            <p className="text-body text-text-secondary">
-              Sample content card demonstrating the layout's content area.
-            </p>
-          </div>
+          <Card key={i}>
+            <Card.Header>
+              <Card.Title>Card {i}</Card.Title>
+              <Card.Description className='text-sm'>
+                Sample content card demonstrating the layout's content area.
+              </Card.Description>
+            </Card.Header>
+          </Card>
         ))}
       </div>
       {/* Add more content to demonstrate scrolling */}
       <div className="mt-xl space-y-m">
         <h2 className="font-['Elza_Narrow'] text-heading-lg text-text-primary uppercase font-bold">More Content</h2>
         {[1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="p-m bg-surface border border-border rounded-lg">
-            <h3 className="text-heading-sm text-text-primary uppercase font-semibold mb-xs">
-              Section {i}
-            </h3>
-            <p className="text-body text-text-secondary">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris.
-            </p>
-          </div>
+          <Card key={i}>
+            <Card.Header>
+              <Card.Title>Section {i}</Card.Title>
+              <Card.Description className='text-sm'>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris.
+              </Card.Description>
+            </Card.Header>
+          </Card>
         ))}
       </div>
     </div>
@@ -189,15 +187,15 @@ export const ScrollableContent: Story = {
         </p>
         <div className="space-y-m">
           {Array.from({ length: 20 }, (_, i) => (
-            <div key={i} className="p-m bg-surface-muted rounded-lg border border-border">
-              <h3 className="text-heading-sm text-text-primary uppercase font-semibold mb-xs">
-                Content Block {i + 1}
-              </h3>
-              <p className="text-body text-text-secondary">
-                This is content block number {i + 1}. The content area is scrollable while the
-                navigation stays fixed in place.
-              </p>
-            </div>
+                <Card key={i}>
+                    <Card.Header>
+                    <Card.Title>Content Block {i + 1}</Card.Title>
+                    <Card.Description className='text-sm'>
+                        This is content block number {i + 1}. The content area is scrollable while the
+                        navigation stays fixed in place.
+                    </Card.Description>
+                    </Card.Header>
+                </Card>
           ))}
         </div>
       </div>
@@ -259,22 +257,24 @@ export const DashboardExample: Story = {
             { label: 'Ethereum', value: '3.21 ETH', change: '-2.1%' },
             { label: 'Transactions', value: '127', change: '+8' }
           ].map((stat, i) => (
-            <div key={i} className="p-m bg-surface border border-border rounded-lg">
-              <p className="text-label text-text-secondary mb-xs">{stat.label}</p>
-              <p className="text-heading-md text-text-primary uppercase font-bold mb-xs">
-                {stat.value}
-              </p>
-              <p className="text-label-sm text-success-100">{stat.change}</p>
-            </div>
+            <Card key={i}>
+              <Card.Content className="gap-xs">
+                <p className="text-label text-text-secondary">{stat.label}</p>
+                <p className="text-heading-md text-text-primary uppercase font-bold">
+                  {stat.value}
+                </p>
+                <p className="text-label-sm text-success-100">{stat.change}</p>
+              </Card.Content>
+            </Card>
           ))}
         </div>
 
         {/* Recent Activity */}
-        <div className="bg-surface border border-border rounded-lg p-m">
-          <h2 className="font-['Elza_Narrow'] text-heading-md text-text-primary uppercase font-bold mb-m">
-            Recent Activity
-          </h2>
-          <div className="space-y-s">
+        <Card>
+          <Card.Header>
+            <Card.Title variant="heading-md">Recent Activity</Card.Title>
+          </Card.Header>
+          <Card.Content className="gap-s mt-m">
             {Array.from({ length: 5 }, (_, i) => (
               <div
                 key={i}
@@ -293,13 +293,13 @@ export const DashboardExample: Story = {
                     </p>
                   </div>
                 </div>
-                <p className="text-body font-bold text-text-primary font-['IBM_Plex_Sans']">
+                <p className="text-body font-bold text-text-primary font-['IBMPlexSans']">
                   +0.0125 BTC
                 </p>
               </div>
             ))}
-          </div>
-        </div>
+          </Card.Content>
+        </Card>
       </div>
     )
   }
