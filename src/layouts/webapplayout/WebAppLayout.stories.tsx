@@ -5,7 +5,7 @@ import type { SidebarMenuItem } from '../../components/sidebar/Sidebar.types';
 import { CardWithSubComponents as Card } from '../../components/card/Card';
 
 const meta = {
-  title: 'Layouts/Web App Layout',
+  title: 'Layouts/Web Apps',
   component: WebAppLayout,
   parameters: {
     layout: 'fullscreen',

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { WebLayout } from './WebLayout';
 
 const meta = {
-  title: 'Layouts/WebLayout',
+  title: 'Layouts/Websites',
   component: WebLayout,
   parameters: {
     layout: 'fullscreen',
