@@ -7,6 +7,9 @@ export default defineConfig({
   clean: true,
   treeshake: true,
   external: ['react', 'react-dom'],
+  loader: {
+    '.svg': 'dataurl'
+  },
   dts: {
     entry: {
       index: 'src/index.ts'

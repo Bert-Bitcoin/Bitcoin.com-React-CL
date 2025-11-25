@@ -26,6 +26,11 @@ const meta: Meta<typeof Logo> = {
       options: ['auto', 'light', 'dark'],
       description: 'Theme mode - auto follows current theme, light/dark forces specific variant'
     },
+    align: {
+      control: 'select',
+      options: ['left', 'center', 'right'],
+      description: 'Horizontal alignment of the logo'
+    },
     ariaLabel: {
       control: 'text',
       description: 'Accessibility label for screen readers'
@@ -320,6 +325,34 @@ export const Responsive: Story = {
         <p className="text-body-sm text-text-secondary mt-m">
           This logo uses responsive sizing: sm on mobile, md on tablet, lg on desktop
         </p>
+      </div>
+    </div>
+  )
+};
+
+/**
+ * Alignment options
+ */
+export const Alignment: Story = {
+  render: () => (
+    <div className="flex flex-col gap-l w-full max-w-2xl">
+      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-m">
+        <div className="w-full">
+          <Logo size="md" align="left" />
+        </div>
+        <span className="text-label-xs text-text-secondary">Left aligned (default)</span>
+      </div>
+      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-m">
+        <div className="w-full">
+          <Logo size="md" align="center" />
+        </div>
+        <span className="text-label-xs text-text-secondary">Center aligned</span>
+      </div>
+      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-m">
+        <div className="w-full">
+          <Logo size="md" align="right" />
+        </div>
+        <span className="text-label-xs text-text-secondary">Right aligned</span>
       </div>
     </div>
   )

@@ -2,6 +2,8 @@ export type LogoSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
 
 export type LogoTheme = 'auto' | 'light' | 'dark';
 
+export type LogoAlign = 'left' | 'center' | 'right';
+
 export interface LogoProps {
   /**
    * Size of the logo
@@ -16,6 +18,11 @@ export interface LogoProps {
    * @default 'auto'
    */
   theme?: LogoTheme;
+  /**
+   * Horizontal alignment of the logo
+   * @default 'left'
+   */
+  align?: LogoAlign;
   /**
    * Custom className for additional styling
    */

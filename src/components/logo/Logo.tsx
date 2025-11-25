@@ -1,6 +1,6 @@
 import { twMerge } from 'tailwind-merge';
 
-import type { LogoProps, LogoSize } from './Logo.types';
+import type { LogoAlign, LogoProps, LogoSize } from './Logo.types';
 
 // Logo aspect ratio is 336:71 (approximately 4.73:1)
 const sizeConfig: Record<LogoSize, string> = {
@@ -12,9 +12,16 @@ const sizeConfig: Record<LogoSize, string> = {
   '2xl': 'h-20' // 80px height, ~378px width
 };
 
+const alignConfig: Record<LogoAlign, string> = {
+  left: 'justify-start',
+  center: 'justify-center',
+  right: 'justify-end'
+};
+
 export const Logo = ({
   size = 'md',
   theme = 'auto',
+  align = 'left',
   className,
   ariaLabel = 'Bitcoin.com'
 }: LogoProps) => {
@@ -27,7 +34,8 @@ export const Logo = ({
   return (
     <div
       className={twMerge(
-        'inline-flex items-center justify-center',
+        'flex items-center w-full',
+        alignConfig[align],
         sizeConfig[size],
         themeClasses[theme],
         className
