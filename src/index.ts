@@ -10,6 +10,7 @@ export * from './components/indicator';
 export * from './components/input';
 export * from './components/menu-dropdown';
 export * from './components/mini-illustrations';
+export * from './components/notification';
 export * from './components/footer';
 export * from './components/header';
 export * from './components/option';

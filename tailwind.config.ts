@@ -73,7 +73,35 @@ const config: Config = {
       fontSize: tailwindTheme.fontSize,
       fontWeight: tailwindTheme.fontWeight,
       lineHeight: tailwindTheme.lineHeight,
-      letterSpacing: tailwindTheme.letterSpacing
+      letterSpacing: tailwindTheme.letterSpacing,
+      keyframes: {
+        slideIn: {
+          '0%': { transform: 'translateX(100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' }
+        },
+        slideOut: {
+          '0%': { transform: 'translateX(0)', opacity: '1' },
+          '100%': { transform: 'translateX(100%)', opacity: '0' }
+        },
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-8px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' }
+        },
+        fadeOut: {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(-8px)' }
+        },
+        bounceIn: {
+          '0%': { transform: 'scale(0.3)', opacity: '0' },
+          '50%': { transform: 'scale(1.05)' },
+          '70%': { transform: 'scale(0.9)' },
+          '100%': { transform: 'scale(1)', opacity: '1' }
+        },
+        bounceOut: {
+          '0%': { transform: 'scale(1)', opacity: '1' },
+          '100%': { transform: 'scale(0.8)', opacity: '0' }
+        }
+      }
     }
   },
   plugins: [

@@ -207,10 +207,12 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
           )}
         >
           {/* Desktop Layout - Grid with columns */}
-          <div className={twMerge(
-            "hidden lg:grid",
-            showDownloadSection ? "grid-cols-7" : "grid-cols-5 gap-xl"
-          )}>
+          <div 
+            className="hidden lg:grid gap-xl"
+            style={{
+              gridTemplateColumns: `repeat(${linkGroups.length + (showDownloadSection ? 2 : 0)}, minmax(0, 1fr))`
+            }}
+          >
             {showDownloadSection && (
               <div className="col-span-2 flex flex-col gap-m max-w-[240px]">
                 <p className="text-heading-sm text-[#FFFFFF]">{downloadTitle}</p>

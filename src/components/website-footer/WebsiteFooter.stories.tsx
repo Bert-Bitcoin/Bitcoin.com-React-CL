@@ -128,4 +128,33 @@ export const WithoutDownloadSectionMobile: Story = {
   }
 };
 
+export const WithFewerLinkGroups: Story = {
+  args: {
+    linkGroups: [
+      {
+        heading: 'Company',
+        links: [
+          { label: 'About', href: 'https://www.bitcoin.com/about-us/' },
+          { label: 'Contact', href: 'https://www.bitcoin.com/contact-us/' },
+          { label: 'Legal', href: 'https://www.bitcoin.com/legal/user-agreement/' }
+        ]
+      },
+      {
+        heading: 'Products',
+        links: [
+          { label: 'Bitcoin.com Wallet', href: 'https://wallet.bitcoin.com/' },
+          { label: 'Buy Bitcoin', href: 'https://buy.bitcoin.com/' }
+        ]
+      },
+      {
+        heading: 'Follow',
+        links: [
+          { label: 'X', href: 'https://x.com/bitcoincom/', isExternal: true },
+          { label: 'Discord', href: 'https://discord.com/invite/bitcoin-com/', isExternal: true }
+        ]
+      }
+    ]
+  }
+};
+
 
