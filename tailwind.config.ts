@@ -92,15 +92,23 @@ const config: Config = {
           '100%': { opacity: '0', transform: 'translateY(-8px)' }
         },
         bounceIn: {
-          '0%': { transform: 'scale(0.3)', opacity: '0' },
-          '50%': { transform: 'scale(1.05)' },
-          '70%': { transform: 'scale(0.9)' },
+          '0%': { transform: 'scale(0.6)', opacity: '0' },
+          '50%': { transform: 'scale(1.02)', opacity: '1' },
+          '70%': { transform: 'scale(0.9)', opacity: '1' },
           '100%': { transform: 'scale(1)', opacity: '1' }
         },
         bounceOut: {
           '0%': { transform: 'scale(1)', opacity: '1' },
           '100%': { transform: 'scale(0.8)', opacity: '0' }
         }
+      },
+      animation: {
+        slideIn: 'slideIn 0.2s ease-out',
+        slideOut: 'slideOut 0.2s ease-in',
+        fadeIn: 'fadeIn 0.15s ease-out',
+        fadeOut: 'fadeOut 0.15s ease-in',
+        bounceIn: 'bounceIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        bounceOut: 'bounceOut 0.2s ease-in'
       }
     }
   },
