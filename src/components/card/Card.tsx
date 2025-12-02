@@ -70,7 +70,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
             : undefined
         }
         className={twMerge(
-          'rounded-m overflow-hidden',
+          'rounded-md overflow-hidden',
           variantClasses[effectiveVariant],
           paddingClasses[padding],
           fullWidth && 'w-full',
@@ -208,10 +208,10 @@ const CardMedia = ({
       className={twMerge(
         'overflow-hidden',
         aspectRatioClasses[aspectRatio],
-        position === 'top' && '-mt-m -mx-m mb-m rounded-t-m',
-        position === 'bottom' && '-mb-m -mx-m mt-m rounded-b-m',
-        position === 'left' && '-ml-m -my-m mr-m rounded-l-m',
-        position === 'right' && '-mr-m -my-m ml-m rounded-r-m',
+        position === 'top' && '-mt-m -mx-m mb-m rounded-t-md',
+        position === 'bottom' && '-mb-m -mx-m mt-m rounded-b-md',
+        position === 'left' && '-ml-m -my-m mr-m rounded-l-md',
+        position === 'right' && '-mr-m -my-m ml-m rounded-r-md',
         className
       )}
     >
@@ -279,7 +279,7 @@ const CardIcon = ({
       className={twMerge(
         'flex items-center justify-center flex-shrink-0',
         iconSizeClasses[size],
-        withBackground && 'rounded-s bg-surface-muted',
+        withBackground && 'rounded-sm bg-surface-muted',
         className
       )}
       style={backgroundColor ? { backgroundColor } : undefined}

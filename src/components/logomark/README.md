@@ -94,7 +94,7 @@ The LogoMark component is part of the Design System category in Storybook. It us
 
 ### Card Header
 ```tsx
-<div className="p-l bg-surface rounded-m">
+<div className="p-l bg-surface rounded-md">
   <div className="flex items-center gap-s mb-m">
     <LogoMark size="sm" />
     <h3 className="text-heading-sm font-bold">Bitcoin Wallet</h3>

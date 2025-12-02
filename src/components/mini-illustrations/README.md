@@ -60,7 +60,7 @@ The `MiniIllustration` component supports predefined sizes:
 ```tsx
 function SuccessCard() {
   return (
-    <div className="rounded-s border border-border bg-surface p-l space-y-m">
+    <div className="rounded-sm border border-border bg-surface p-l space-y-m">
       <div className="flex justify-center">
         <MiniIllustration illustration={SuccessCoinIllustration} size="lg" />
       </div>

@@ -209,7 +209,7 @@ export const WithContent: Story = {
 
     return (
       <div className="flex flex-col gap-l">
-        <div className="bg-shades-off-white border border-shades-light rounded-s p-l min-w-[400px]">
+        <div className="bg-shades-off-white border border-shades-light rounded-sm p-l min-w-[400px]">
           <h3 className="text-heading-md mb-m">Page {currentPage}</h3>
           <p className="text-label text-shades-dark">
             This is the content for page {currentPage} of {totalPages}.
@@ -235,7 +235,7 @@ export const DarkMode: Story = {
     const [currentPage, setCurrentPage] = useState(3);
 
     return (
-      <div className="dark bg-shades-black p-l rounded-m" data-theme="dark">
+      <div className="dark bg-shades-black p-l rounded-md" data-theme="dark">
         <Pagination
           currentPage={currentPage}
           totalPages={6}
@@ -254,7 +254,7 @@ export const SmallDarkMode: Story = {
     const [currentPage, setCurrentPage] = useState(3);
 
     return (
-      <div className="dark bg-shades-black p-l rounded-m" data-theme="dark">
+      <div className="dark bg-shades-black p-l rounded-md" data-theme="dark">
         <Pagination
           currentPage={currentPage}
           totalPages={6}

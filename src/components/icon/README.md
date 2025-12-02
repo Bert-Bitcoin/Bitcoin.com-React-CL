@@ -108,7 +108,7 @@ Icons automatically adapt to the current theme by using `currentColor`:
 
 ### Button with Icon
 ```tsx
-<button className="flex items-center gap-s px-m py-s bg-primary-100 text-white rounded-m">
+<button className="flex items-center gap-s px-m py-s bg-primary-100 text-white rounded-md">
   <Icon type="icon-add-circle" size="sm" />
   <span>Add New</span>
 </button>

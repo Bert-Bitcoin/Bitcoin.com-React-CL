@@ -168,7 +168,7 @@ const columns: TableColumn<Employee>[] = [
     id: 'actions',
     label: '',
     accessor: () => (
-      <button className="px-m py-s rounded-xxl text-primary-100">
+      <button className="px-m py-s rounded-2xl text-primary-100">
         Edit
       </button>
     ),

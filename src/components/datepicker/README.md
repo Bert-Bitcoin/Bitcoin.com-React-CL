@@ -199,7 +199,7 @@ The component uses the following design tokens from the Bitcoin.com design syste
 - `font-['Elza_Narrow']` - Month/year header font (uppercase)
 
 ### Border Radius
-- `rounded-s` - Small border radius (8px)
+- `rounded-sm` - Small border radius (8px)
 - `rounded-xs` - Extra small border radius (4px)
 
 ## Component Architecture

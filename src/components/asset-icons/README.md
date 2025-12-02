@@ -179,7 +179,7 @@ import { AssetIcon, BitcoinAssetIcon } from '@/components/asset-icons';
 
 function AssetCard() {
   return (
-    <div className="rounded-s border border-border bg-surface p-l">
+    <div className="rounded-sm border border-border bg-surface p-l">
       <div className="flex items-center gap-m mb-m">
         <AssetIcon asset={BitcoinAssetIcon} size="lg" />
         <div>

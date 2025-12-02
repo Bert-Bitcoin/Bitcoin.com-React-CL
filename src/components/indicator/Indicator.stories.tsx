@@ -173,7 +173,7 @@ export const ContentStatuses: Story = {
  */
 export const DarkMode: Story = {
   render: () => (
-    <div className="dark bg-shades-black p-l rounded-m" data-theme="dark">
+    <div className="dark bg-shades-black p-l rounded-md" data-theme="dark">
       <div className="flex flex-col gap-m">
         <Indicator variant="approved" />
         <Indicator variant="pending" />

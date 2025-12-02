@@ -109,7 +109,7 @@ export const ThemeSupport: Story = {
       {/* Light Theme */}
       <div className="flex flex-col gap-6">
         <h3 className="text-heading-sm font-bold text-text-primary">Light Theme</h3>
-        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-m">
+        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-md">
           <Icon type="icon-sun-1" size="xl" className="text-text-primary" />
           <Icon type="icon-search" size="xl" className="text-text-secondary" />
           <Icon type="icon-user" size="xl" className="text-icon" />
@@ -117,9 +117,9 @@ export const ThemeSupport: Story = {
       </div>
 
       {/* Dark Theme */}
-      <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-m">
+      <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-md">
         <h3 className="text-heading-sm font-bold text-text-primary">Dark Theme</h3>
-        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-m">
+        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-md">
           <Icon type="icon-moon" size="xl" className="text-text-primary" />
           <Icon type="icon-search" size="xl" className="text-text-secondary" />
           <Icon type="icon-user" size="xl" className="text-icon" />
@@ -194,12 +194,12 @@ export const IconGallery: Story = {
             placeholder="Search icons..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="flex-1 px-s py-s border border-field-border rounded-s bg-field-background text-text-primary placeholder:text-field-placeholder focus:outline-none focus:border-field-border-active"
+            className="flex-1 px-s py-s border border-field-border rounded-sm bg-field-background text-text-primary placeholder:text-field-placeholder focus:outline-none focus:border-field-border-active"
           />
           <div className="flex gap-xs">
             <button
               onClick={() => setSelectedSize('sm')}
-              className={`px-s py-s rounded-s border transition-colors ${
+              className={`px-s py-s rounded-sm border transition-colors ${
                 selectedSize === 'sm'
                   ? 'bg-primary-100 text-white border-primary-100'
                   : 'bg-field-background text-text-primary border-field-border hover:border-field-border-active'
@@ -209,7 +209,7 @@ export const IconGallery: Story = {
             </button>
             <button
               onClick={() => setSelectedSize('md')}
-              className={`px-s py-s rounded-s border transition-colors ${
+              className={`px-s py-s rounded-sm border transition-colors ${
                 selectedSize === 'md'
                   ? 'bg-primary-100 text-white border-primary-100'
                   : 'bg-field-background text-text-primary border-field-border hover:border-field-border-active'
@@ -219,7 +219,7 @@ export const IconGallery: Story = {
             </button>
             <button
               onClick={() => setSelectedSize('lg')}
-              className={`px-s py-s rounded-s border transition-colors ${
+              className={`px-s py-s rounded-sm border transition-colors ${
                 selectedSize === 'lg'
                   ? 'bg-primary-100 text-white border-primary-100'
                   : 'bg-field-background text-text-primary border-field-border hover:border-field-border-active'
@@ -236,7 +236,7 @@ export const IconGallery: Story = {
             {filteredIcons.map(icon => (
               <div
                 key={icon}
-                className="flex flex-col items-center gap-xs p-s rounded-s border border-border bg-surface hover:border-field-border-active transition-colors cursor-pointer"
+                className="flex flex-col items-center gap-xs p-s rounded-sm border border-border bg-surface hover:border-field-border-active transition-colors cursor-pointer"
                 title={icon}
               >
                 <Icon type={icon} size={selectedSize} className="text-text-primary" />

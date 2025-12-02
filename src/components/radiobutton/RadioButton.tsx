@@ -58,7 +58,7 @@ export const RadioButton = forwardRef<HTMLInputElement, RadioButtonProps>(
     return (
       <div
         className={twMerge(
-          'flex items-center gap-s py-s rounded-s',
+          'flex items-center gap-s py-s rounded-sm',
           disabled && 'cursor-not-allowed',
           className
         )}

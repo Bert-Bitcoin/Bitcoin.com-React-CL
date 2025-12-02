@@ -145,7 +145,7 @@ export const TwoXL: Story = {
 export const AutoTheme: Story = {
   render: () => (
     <div className="flex flex-col gap-l w-full">
-      <div className="p-l bg-surface border border-border rounded-m">
+      <div className="p-l bg-surface border border-border rounded-md">
         <Logo size="lg" theme="auto" />
         <p className="text-body-sm text-text-secondary mt-m">
           This logo automatically switches between light and dark variants based on the current
@@ -186,21 +186,21 @@ export const ThemeComparison: Story = {
   render: () => (
     <div className="grid grid-cols-1 gap-8 w-full">
       {/* Auto Theme - Light Background */}
-      <div className="flex flex-col gap-m p-l bg-surface border border-border rounded-m">
+      <div className="flex flex-col gap-m p-l bg-surface border border-border rounded-md">
         <h3 className="text-heading-sm font-bold text-text-primary">Auto Theme (Light Mode)</h3>
         <Logo size="lg" theme="auto" />
         <p className="text-body-sm text-text-secondary">Automatically adapts to light mode</p>
       </div>
 
       {/* Auto Theme - Dark Background */}
-      <div data-theme="dark" className="flex flex-col gap-m p-l bg-surface border border-border rounded-m">
+      <div data-theme="dark" className="flex flex-col gap-m p-l bg-surface border border-border rounded-md">
         <h3 className="text-heading-sm font-bold text-text-primary">Auto Theme (Dark Mode)</h3>
         <Logo size="lg" theme="auto" />
         <p className="text-body-sm text-text-secondary">Automatically adapts to dark mode</p>
       </div>
 
       {/* Forced Light Theme */}
-      <div className="flex flex-col gap-m p-l bg-surface border border-border rounded-m">
+      <div className="flex flex-col gap-m p-l bg-surface border border-border rounded-md">
         <h3 className="text-heading-sm font-bold text-text-primary">
           Forced Light (Black Text)
         </h3>
@@ -213,7 +213,7 @@ export const ThemeComparison: Story = {
       {/* Forced Dark Theme */}
       <div
         data-theme="dark"
-        className="flex flex-col gap-m p-l bg-shades-almost-black border border-shades-dark rounded-m"
+        className="flex flex-col gap-m p-l bg-shades-almost-black border border-shades-dark rounded-md"
       >
         <h3 className="text-heading-sm font-bold text-shades-off-white">
           Forced Dark (White Text)
@@ -234,7 +234,7 @@ export const InContext: Story = {
   render: () => (
     <div className="flex flex-col gap-l w-full max-w-3xl">
       {/* Navigation Header */}
-      <div className="flex items-center justify-between p-m bg-surface border border-border rounded-m">
+      <div className="flex items-center justify-between p-m bg-surface border border-border rounded-md">
         <Logo size="sm" />
         <nav className="flex gap-m">
           <button
@@ -259,7 +259,7 @@ export const InContext: Story = {
       </div>
 
       {/* Hero Section */}
-      <div className="flex flex-col items-center gap-m p-xl bg-surface border border-border rounded-m text-center">
+      <div className="flex flex-col items-center gap-m p-xl bg-surface border border-border rounded-md text-center">
         <Logo size="xl" />
         <div>
           <h1 className="text-heading-xl font-bold text-text-primary mb-xs">
@@ -271,14 +271,14 @@ export const InContext: Story = {
         </div>
         <button
           type="button"
-          className="px-l py-m bg-primary-100 text-white rounded-m hover:bg-primary-80 transition-colors"
+          className="px-l py-m bg-primary-100 text-white rounded-md hover:bg-primary-80 transition-colors"
         >
           Get Started
         </button>
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between p-m bg-surface border border-border rounded-m">
+      <div className="flex items-center justify-between p-m bg-surface border border-border rounded-md">
         <Logo size="xs" />
         <p className="text-label-sm text-text-secondary">
           © 2024 Bitcoin.com. All rights reserved.
@@ -294,19 +294,19 @@ export const InContext: Story = {
 export const CustomBackgrounds: Story = {
   render: () => (
     <div className="grid grid-cols-2 gap-m">
-      <div className="flex flex-col items-center gap-s p-l bg-primary-10 rounded-m">
+      <div className="flex flex-col items-center gap-s p-l bg-primary-10 rounded-md">
         <Logo size="md" theme="light" />
         <span className="text-label-xs text-text-secondary">Light on Primary BG</span>
       </div>
-      <div className="flex flex-col items-center gap-s p-l bg-secondary-10 rounded-m">
+      <div className="flex flex-col items-center gap-s p-l bg-secondary-10 rounded-md">
         <Logo size="md" theme="light" />
         <span className="text-label-xs text-text-secondary">Light on Secondary BG</span>
       </div>
-      <div className="flex flex-col items-center gap-s p-l bg-shades-almost-black rounded-m">
+      <div className="flex flex-col items-center gap-s p-l bg-shades-almost-black rounded-md">
         <Logo size="md" theme="dark" />
         <span className="text-label-xs text-shades-mid">Dark on Black BG</span>
       </div>
-      <div className="flex flex-col items-center gap-s p-l bg-shades-extra-dark rounded-m">
+      <div className="flex flex-col items-center gap-s p-l bg-shades-extra-dark rounded-md">
         <Logo size="md" theme="dark" />
         <span className="text-label-xs text-shades-mid">Dark on Dark BG</span>
       </div>
@@ -320,7 +320,7 @@ export const CustomBackgrounds: Story = {
 export const Responsive: Story = {
   render: () => (
     <div className="w-full max-w-2xl">
-      <div className="p-l bg-surface border border-border rounded-m">
+      <div className="p-l bg-surface border border-border rounded-md">
         <Logo size="sm" className="md:h-10 lg:h-12" />
         <p className="text-body-sm text-text-secondary mt-m">
           This logo uses responsive sizing: sm on mobile, md on tablet, lg on desktop
@@ -336,19 +336,19 @@ export const Responsive: Story = {
 export const Alignment: Story = {
   render: () => (
     <div className="flex flex-col gap-l w-full max-w-2xl">
-      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-m">
+      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-md">
         <div className="w-full">
           <Logo size="md" align="left" />
         </div>
         <span className="text-label-xs text-text-secondary">Left aligned (default)</span>
       </div>
-      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-m">
+      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-md">
         <div className="w-full">
           <Logo size="md" align="center" />
         </div>
         <span className="text-label-xs text-text-secondary">Center aligned</span>
       </div>
-      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-m">
+      <div className="flex flex-col gap-s p-l bg-surface border border-border rounded-md">
         <div className="w-full">
           <Logo size="md" align="right" />
         </div>

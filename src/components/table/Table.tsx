@@ -175,7 +175,7 @@ export const Table = <T extends Record<string, any>>({
     return (
       <div
         className={twMerge(
-          'border border-shades-off-white rounded-s w-full',
+          'border border-shades-off-white rounded-sm w-full',
           className
         )}
       >

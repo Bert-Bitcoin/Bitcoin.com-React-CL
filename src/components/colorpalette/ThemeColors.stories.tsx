@@ -31,7 +31,7 @@ const ThemeColorSwatch = ({
             Light Mode
           </div>
           <div
-            className="h-20 rounded-s border border-border flex items-end justify-start p-3"
+            className="h-20 rounded-sm border border-border flex items-end justify-start p-3"
             style={{ backgroundColor: lightValue }}
           >
             <span
@@ -49,7 +49,7 @@ const ThemeColorSwatch = ({
             Dark Mode
           </div>
           <div
-            className="h-20 rounded-s border border-border-strong flex items-end justify-start p-3"
+            className="h-20 rounded-sm border border-border-strong flex items-end justify-start p-3"
             style={{ backgroundColor: darkValue }}
           >
             <span
@@ -164,7 +164,7 @@ const ThemeColorsShowcase = () => {
           variables that change based on the <code className="px-2 py-1 bg-surface-muted rounded text-xs">data-theme</code> attribute.
         </p>
         
-        <div className="flex items-start gap-3 p-4 bg-primary-10 rounded-s">
+        <div className="flex items-start gap-3 p-4 bg-primary-10 rounded-sm">
           <svg className="w-5 h-5 text-primary-100 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"
@@ -202,7 +202,7 @@ const ThemeColorsShowcase = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <div className="space-y-3">
             <h3 className="text-label-lg font-medium text-text-primary">CSS/Tailwind</h3>
-            <div className="bg-surface-muted rounded-s p-4 font-mono text-sm">
+            <div className="bg-surface-muted rounded-sm p-4 font-mono text-sm">
               <div className="text-text-secondary">/* Using Tailwind */</div>
               <div className="text-text-primary">
                 className=<span className="text-success-100">"bg-surface text-text-primary"</span>
@@ -216,7 +216,7 @@ const ThemeColorsShowcase = () => {
           
           <div className="space-y-3">
             <h3 className="text-label-lg font-medium text-text-primary">JavaScript/TypeScript</h3>
-            <div className="bg-surface-muted rounded-s p-4 font-mono text-sm">
+            <div className="bg-surface-muted rounded-sm p-4 font-mono text-sm">
               <div className="text-text-secondary">// Import tokens</div>
               <div className="text-text-primary">
                 <span className="text-extra-violet-100">import</span> {`{ designTokens }`}{' '}

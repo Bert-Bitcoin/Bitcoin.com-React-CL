@@ -71,11 +71,11 @@ export const defaultTokens: DesignTokens = {
   radii: {
     none: '0px',
     xs: rem(4),
-    s: rem(8),
-    m: rem(16),
-    l: rem(24),
+    sm: rem(8),
+    md: rem(16),
+    lg: rem(24),
     xl: rem(32),
-    xxl: rem(40),
+    '2xl': rem(40),
     pill: '9999px'
   },
   borderWidth: {

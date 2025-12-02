@@ -38,7 +38,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     const [isFocused, setIsFocused] = useState(false);
 
     const containerClasses = twMerge(
-      'w-full rounded-s border transition-colors duration-150',
+      'w-full rounded-sm border transition-colors duration-150',
       sizeConfig.minHeight,
       isFocused && !error && !disabled
         ? 'border-field-border-active'

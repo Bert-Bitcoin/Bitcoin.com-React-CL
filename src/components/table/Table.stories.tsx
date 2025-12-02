@@ -188,7 +188,7 @@ const employeeColumns: TableColumn<Employee>[] = [
     label: '',
     accessor: () => (
       <button
-        className="px-m py-s rounded-xxl font-['Satoshi_Variable'] font-medium text-[14px] leading-none text-primary-100 hover:bg-primary-10 transition-colors"
+        className="px-m py-s rounded-2xl font-['Satoshi_Variable'] font-medium text-[14px] leading-none text-primary-100 hover:bg-primary-10 transition-colors"
         onClick={(e) => {
           e.stopPropagation();
           alert('Edit clicked');

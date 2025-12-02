@@ -136,7 +136,7 @@ export const MenuDropdown: React.FC<MenuDropdownProps> = ({
             'absolute z-50',
             'min-w-[200px]',
             'bg-shades-off-white border border-shades-extra-light',
-            'rounded-s',
+            'rounded-sm',
             'py-xs',
             'transition-all duration-200 ease-out',
             isPositioned

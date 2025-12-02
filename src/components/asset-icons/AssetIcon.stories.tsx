@@ -117,7 +117,7 @@ export const MultipleAssets: Story = {
 
 export const InCard: Story = {
   render: (args: AssetIconProps) => (
-    <div className="max-w-sm rounded-s border border-border bg-surface p-l space-y-m">
+    <div className="max-w-sm rounded-sm border border-border bg-surface p-l space-y-m">
       <div className="flex items-center gap-m">
         <AssetIcon asset={BitcoinAssetIcon} size="lg" />
         <div className="space-y-xs">

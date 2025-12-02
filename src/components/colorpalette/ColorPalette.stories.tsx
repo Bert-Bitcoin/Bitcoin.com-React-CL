@@ -25,7 +25,7 @@ const ColorSwatch = ({ name, lightColor, darkColor, showBoth = true }: ColorSwat
         {/* Light Mode */}
         <div className="flex flex-col gap-2">
           <div
-            className="h-24 rounded-s border border-border flex items-center justify-center"
+            className="h-24 rounded-sm border border-border flex items-center justify-center"
             style={{ backgroundColor: lightColor }}
           >
             <span
@@ -47,7 +47,7 @@ const ColorSwatch = ({ name, lightColor, darkColor, showBoth = true }: ColorSwat
         {showBoth && darkColor && (
           <div className="flex flex-col gap-2">
             <div
-              className="h-24 rounded-s border border-border flex items-center justify-center"
+              className="h-24 rounded-sm border border-border flex items-center justify-center"
               style={{ backgroundColor: darkColor }}
             >
               <span

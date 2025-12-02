@@ -42,12 +42,12 @@ const MiniIllustrationGallery = () => {
           placeholder="Search illustrations..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className="flex-1 px-s py-s border border-field-border rounded-s bg-field-background text-text-primary placeholder:text-field-placeholder focus:outline-none focus:border-field-border-active"
+          className="flex-1 px-s py-s border border-field-border rounded-sm bg-field-background text-text-primary placeholder:text-field-placeholder focus:outline-none focus:border-field-border-active"
         />
         <div className="flex gap-xs">
           <button
             onClick={() => setSelectedSize('sm')}
-            className={`px-s py-s rounded-s border transition-colors ${
+            className={`px-s py-s rounded-sm border transition-colors ${
               selectedSize === 'sm'
                 ? 'bg-primary-100 text-white border-primary-100'
                 : 'bg-field-background text-text-primary border-field-border hover:border-field-border-active'
@@ -57,7 +57,7 @@ const MiniIllustrationGallery = () => {
           </button>
           <button
             onClick={() => setSelectedSize('md')}
-            className={`px-s py-s rounded-s border transition-colors ${
+            className={`px-s py-s rounded-sm border transition-colors ${
               selectedSize === 'md'
                 ? 'bg-primary-100 text-white border-primary-100'
                 : 'bg-field-background text-text-primary border-field-border hover:border-field-border-active'
@@ -67,7 +67,7 @@ const MiniIllustrationGallery = () => {
           </button>
           <button
             onClick={() => setSelectedSize('lg')}
-            className={`px-s py-s rounded-s border transition-colors ${
+            className={`px-s py-s rounded-sm border transition-colors ${
               selectedSize === 'lg'
                 ? 'bg-primary-100 text-white border-primary-100'
                 : 'bg-field-background text-text-primary border-field-border hover:border-field-border-active'
@@ -84,7 +84,7 @@ const MiniIllustrationGallery = () => {
           {filteredIllustrations.map(([name, Illustration]) => (
             <div
               key={name}
-              className="flex flex-col items-center gap-s p-m rounded-s border border-border bg-surface"
+              className="flex flex-col items-center gap-s p-m rounded-sm border border-border bg-surface"
             >
               <div className="flex items-center justify-center">
                 <Illustration className={sizeClasses[selectedSize]} aria-hidden />

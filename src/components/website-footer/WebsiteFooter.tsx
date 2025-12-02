@@ -131,7 +131,7 @@ const createLinkKey = (group: WebsiteFooterLinkGroup, link: WebsiteFooterLink, i
   `${group.heading}-${link.label}-${index}`;
 
 const badgeFocusRing =
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary-100 focus-visible:ring-offset-shades-almost-black rounded-s';
+  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-secondary-100 focus-visible:ring-offset-shades-almost-black rounded-sm';
 
 export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
   (

@@ -90,7 +90,7 @@ export const MultipleIllustrations: Story = {
 
 export const InCard: Story = {
   render: (args: MiniIllustrationProps) => (
-    <div className="max-w-sm rounded-s border border-border bg-surface p-l space-y-m">
+    <div className="max-w-sm rounded-sm border border-border bg-surface p-l space-y-m">
       <div className="flex justify-center">
         <MiniIllustration illustration={SuccessCoinIllustration} size="lg" />
       </div>

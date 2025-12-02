@@ -39,7 +39,7 @@ export const AllAssetIcons: Story = {
             return (
               <div
                 key={name}
-                className="flex flex-col items-center gap-s p-m rounded-s border border-border bg-surface hover:border-border-hover transition-colors"
+                className="flex flex-col items-center gap-s p-m rounded-sm border border-border bg-surface hover:border-border-hover transition-colors"
               >
                 <AssetIcon
                   asset={Component as React.ComponentType<React.SVGProps<SVGSVGElement>>}
@@ -104,7 +104,7 @@ export const AssetIconsBySize: Story = {
               {sampleAssets.map(([assetName, Component]) => (
                 <div
                   key={assetName}
-                  className="flex flex-col items-center gap-xs p-s rounded-s border border-border bg-surface"
+                  className="flex flex-col items-center gap-xs p-s rounded-sm border border-border bg-surface"
                 >
                   <AssetIcon
                     asset={Component as React.ComponentType<React.SVGProps<SVGSVGElement>>}
@@ -151,7 +151,7 @@ export const DarkMode: Story = {
             return (
               <div
                 key={name}
-                className="flex flex-col items-center gap-s p-m rounded-s border border-border bg-surface hover:border-border-hover transition-colors"
+                className="flex flex-col items-center gap-s p-m rounded-sm border border-border bg-surface hover:border-border-hover transition-colors"
               >
                 <AssetIcon
                   asset={Component as React.ComponentType<React.SVGProps<SVGSVGElement>>}

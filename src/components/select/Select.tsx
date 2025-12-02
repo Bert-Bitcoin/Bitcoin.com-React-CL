@@ -40,7 +40,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
     const [isFocused, setIsFocused] = useState(false);
 
     const containerClasses = twMerge(
-      'relative w-full rounded-s border transition-colors duration-150',
+      'relative w-full rounded-sm border transition-colors duration-150',
       sizeConfig.height,
       isFocused && !error && !disabled
         ? 'border-field-border-active'

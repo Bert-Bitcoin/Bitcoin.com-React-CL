@@ -173,7 +173,7 @@ export const WithContent: Story = {
     return (
       <div className="w-full max-w-2xl flex flex-col gap-4">
         <PillTabs {...args} tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
-        <div className="p-6 bg-surface border border-border rounded-m">
+        <div className="p-6 bg-surface border border-border rounded-md">
           <p className="text-text-primary">{content[activeTab]}</p>
         </div>
       </div>
@@ -206,7 +206,7 @@ export const ThemeComparison: Story = {
         </div>
 
         {/* Dark Theme */}
-        <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-m">
+        <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-md">
           <h3 className="text-heading-sm font-bold text-text-primary">Dark Theme</h3>
           <PillTabs tabs={tabs} activeTab={activeTab2} onChange={setActiveTab2} />
         </div>

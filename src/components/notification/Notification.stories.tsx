@@ -64,7 +64,7 @@ const NotificationWrapper = (args: NotificationProps) => {
       <div className="mb-l">
         <button
           onClick={() => setVisible(true)}
-          className="px-m py-s bg-primary-100 text-white rounded-s font-medium hover:bg-primary-50 transition-colors"
+          className="px-m py-s bg-primary-100 text-white rounded-sm font-medium hover:bg-primary-50 transition-colors"
         >
           Show Notification
         </button>

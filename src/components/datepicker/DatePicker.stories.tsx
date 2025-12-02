@@ -238,7 +238,7 @@ export const ThemeComparison: Story = {
         </div>
 
         {/* Dark Theme */}
-        <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-m">
+        <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-md">
           <h3 className="text-heading-sm font-bold text-text-primary">Dark Theme</h3>
           <DatePicker
             mode="single"

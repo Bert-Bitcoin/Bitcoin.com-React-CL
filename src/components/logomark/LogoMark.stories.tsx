@@ -149,13 +149,13 @@ export const InContext: Story = {
   render: () => (
     <div className="flex flex-col gap-l w-full max-w-2xl">
       {/* Header context */}
-      <div className="flex items-center gap-m p-m bg-surface border border-border rounded-m">
+      <div className="flex items-center gap-m p-m bg-surface border border-border rounded-md">
         <LogoMark size="md" />
         <span className="text-heading-sm font-bold text-text-primary">Bitcoin.com</span>
       </div>
 
       {/* Card context */}
-      <div className="p-l bg-surface border border-border rounded-m flex flex-col items-center gap-m">
+      <div className="p-l bg-surface border border-border rounded-md flex flex-col items-center gap-m">
         <LogoMark size="xl" />
         <div className="text-center">
           <h3 className="text-heading-md font-bold text-text-primary mb-xs">
@@ -170,7 +170,7 @@ export const InContext: Story = {
       {/* Button context */}
       <button
         type="button"
-        className="flex items-center gap-s px-m py-s bg-primary-100 text-white rounded-m hover:bg-primary-80 transition-colors"
+        className="flex items-center gap-s px-m py-s bg-primary-100 text-white rounded-md hover:bg-primary-80 transition-colors"
       >
         <LogoMark size="sm" />
         <span className="text-label-md font-medium">Connect Wallet</span>
@@ -188,7 +188,7 @@ export const ThemeComparison: Story = {
       {/* Light Theme */}
       <div className="flex flex-col gap-6">
         <h3 className="text-heading-sm font-bold text-text-primary">Light Theme</h3>
-        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-m">
+        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-md">
           <LogoMark size="lg" />
           <div>
             <h4 className="text-heading-md font-bold text-text-primary">Bitcoin.com</h4>
@@ -198,9 +198,9 @@ export const ThemeComparison: Story = {
       </div>
 
       {/* Dark Theme */}
-      <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-m">
+      <div data-theme="dark" className="flex flex-col gap-6 bg-background p-6 rounded-md">
         <h3 className="text-heading-sm font-bold text-text-primary">Dark Theme</h3>
-        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-m">
+        <div className="flex items-center gap-m p-l bg-surface border border-border rounded-md">
           <LogoMark size="lg" />
           <div>
             <h4 className="text-heading-md font-bold text-text-primary">Bitcoin.com</h4>
