@@ -27,6 +27,7 @@ export * from './components/typography';
 export * from './components/sidebar';
 export * from './components/slider';
 export * from './components/website-footer';
+export * from './components/window';
 export * from './layouts/webapplayout';
 export * from './layouts/weblayout';
 export { designTokens } from './tokens';

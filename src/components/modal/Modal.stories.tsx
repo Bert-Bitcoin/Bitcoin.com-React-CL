@@ -7,7 +7,7 @@ import { Modal } from './Modal';
 import type { ModalProps } from './Modal.types';
 
 const meta: Meta<typeof Modal> = {
-  title: 'Components/Modal',
+  title: 'Components/Overlays/Modal',
   component: Modal,
   parameters: {
     layout: 'centered',
