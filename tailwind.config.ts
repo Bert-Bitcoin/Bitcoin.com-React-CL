@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss';
 import plugin from 'tailwindcss/plugin';
+import containerQueries from '@tailwindcss/container-queries';
 
 import { designTokens, tailwindTheme } from './src/tokens';
 
@@ -113,6 +114,7 @@ const config: Config = {
     }
   },
   plugins: [
+    containerQueries,
     plugin(({ addBase }) => {
       addBase({
         ':root': {

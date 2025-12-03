@@ -9,11 +9,11 @@ const meta = {
   title: 'Components/Content/Table',
   component: Table,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
     docs: {
       description: {
         component:
-          'A flexible data table component for displaying tabular data with customizable columns and styling. Based on the Bitcoin.com design system.'
+          'A flexible data table component for displaying tabular data with customizable columns and styling. Features intelligent responsive breakpoints that automatically adjust based on column count, using container queries for optimal layout in any context. Based on the Bitcoin.com design system.'
       }
     }
   },
@@ -35,6 +35,14 @@ const meta = {
     enableSorting: {
       description: 'Enable sorting functionality',
       control: { type: 'boolean' }
+    },
+    responsive: {
+      description: 'Enable responsive stacked layout based on container width',
+      control: { type: 'boolean' }
+    },
+    responsiveBreakpoint: {
+      description: 'Breakpoint for stacking. Use "auto" to calculate based on column count, or a number in pixels',
+      control: { type: 'text' }
     },
     getRowKey: {
       description: 'Optional function to get unique key for each row'
@@ -303,7 +311,7 @@ export const Default: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '966px' }}>
+      <div style={{ width: '966px', minWidth: '966px' }}>
         <Story />
       </div>
     )
@@ -321,7 +329,7 @@ export const Transactions: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', maxWidth: '900px' }}>
+      <div style={{ width: '900px', minWidth: 0 }}>
         <Story />
       </div>
     )
@@ -339,7 +347,7 @@ export const CryptoPortfolio: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', maxWidth: '700px' }}>
+      <div style={{ width: '700px', minWidth: 0 }}>
         <Story />
       </div>
     )
@@ -363,7 +371,7 @@ export const SimpleTable: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '400px' }}>
+      <div style={{ width: '400px', minWidth: '400px' }}>
         <Story />
       </div>
     )
@@ -480,7 +488,7 @@ export const BorderedTransactions: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', maxWidth: '900px' }}>
+      <div style={{ width: '900px', minWidth: 0 }}>
         <Story />
       </div>
     )
@@ -499,7 +507,7 @@ export const BorderedCrypto: Story = {
   },
   decorators: [
     (Story) => (
-      <div style={{ width: '100%', maxWidth: '700px' }}>
+      <div style={{ width: '700px', minWidth: 0 }}>
         <Story />
       </div>
     )
@@ -724,5 +732,222 @@ export const WithPaginationAndSorting: Story = {
       </div>
     );
   }
+};
+
+/**
+ * Responsive table with auto breakpoint - automatically calculates breakpoint based on column count
+ * 2 columns = ~380px, 3 columns = ~520px, 4 columns = ~660px, etc.
+ */
+export const ResponsiveAuto: Story = {
+  args: {
+    columns: cryptoColumns, // 4 columns, so breakpoint ~660px
+    data: cryptoData,
+    variant: 'bordered',
+    getRowKey: (row) => row.id,
+    responsive: true,
+    responsiveBreakpoint: 'auto' // Default - calculates based on column count
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This table automatically calculates its breakpoint based on the number of columns. With 4 columns, the breakpoint is ~660px. Tables with more columns get higher breakpoints, and tables with fewer columns get lower breakpoints. This ensures optimal layout for any number of columns.'
+      }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '900px', minWidth: '300px', resize: 'horizontal', overflow: 'auto', border: '2px dashed #ccc', padding: '8px' }}>
+        <Story />
+      </div>
+    )
+  ]
+};
+
+/**
+ * Responsive table - automatically switches to stacked layout when container is narrow
+ * Uses container queries, so it responds to the container size, not the screen size
+ */
+export const ResponsiveLayout: Story = {
+  args: {
+    columns: cryptoColumns,
+    data: cryptoData,
+    variant: 'bordered',
+    getRowKey: (row) => row.id,
+    responsive: true
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This table uses container queries to automatically adapt based on its container width. The breakpoint is calculated automatically based on column count. Try resizing the story container to see the responsive behavior.'
+      }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '700px', minWidth: 0 }}>
+        <Story />
+      </div>
+    )
+  ]
+};
+
+/**
+ * Few columns with auto breakpoint - shows how a 2-column table gets a lower breakpoint (~380px)
+ */
+export const FewColumnsAuto: Story = {
+  args: {
+    columns: [
+      { id: 'name', label: 'Name', accessor: 'name' },
+      { id: 'value', label: 'Value', accessor: 'value', type: 'numeric', align: 'right' }
+    ],
+    data: [
+      { name: 'Bitcoin', value: '$42,150' },
+      { name: 'Ethereum', value: '$2,250' },
+      { name: 'USD Coin', value: '$1.00' }
+    ],
+    variant: 'bordered',
+    responsive: true,
+    responsiveBreakpoint: 'auto'
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'With only 2 columns, the auto breakpoint is ~380px. This table stays in traditional layout down to narrower widths than tables with more columns.'
+      }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '600px', minWidth: '300px', resize: 'horizontal', overflow: 'auto', border: '2px dashed #ccc', padding: '8px' }}>
+        <Story />
+      </div>
+    )
+  ]
+};
+
+/**
+ * Many columns with auto breakpoint - shows how a 6-column table gets a higher breakpoint (~940px)
+ */
+export const ManyColumnsAuto: Story = {
+  args: {
+    columns: [
+      { id: 'id', label: 'ID', accessor: 'id', width: '60px' },
+      { id: 'name', label: 'Name', accessor: 'name' },
+      { id: 'email', label: 'Email', accessor: 'email' },
+      { id: 'title', label: 'Title', accessor: 'title' },
+      { id: 'department', label: 'Department', accessor: 'title' },
+      { id: 'salary', label: 'Salary', accessor: 'salary', type: 'numeric', align: 'right' }
+    ],
+    data: employeeData.map(emp => ({ ...emp, department: 'Engineering' })),
+    variant: 'bordered',
+    responsive: true,
+    responsiveBreakpoint: 'auto',
+    getRowKey: (row) => row.id
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'With 6 columns, the auto breakpoint is ~940px. This table switches to stacked layout earlier than tables with fewer columns, ensuring readability.'
+      }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '1000px', minWidth: '300px', resize: 'horizontal', overflow: 'auto', border: '2px dashed #ccc', padding: '8px' }}>
+        <Story />
+      </div>
+    )
+  ]
+};
+
+/**
+ * Fixed breakpoint - override auto calculation with a specific pixel value
+ */
+export const FixedBreakpoint: Story = {
+  args: {
+    columns: cryptoColumns,
+    data: cryptoData,
+    variant: 'bordered',
+    getRowKey: (row) => row.id,
+    responsive: true,
+    responsiveBreakpoint: 500 // Fixed at 500px
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'You can override the auto calculation by setting a specific breakpoint in pixels. This table will stack when the container is less than 500px wide, regardless of column count.'
+      }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '700px', minWidth: '300px', resize: 'horizontal', overflow: 'auto', border: '2px dashed #ccc', padding: '8px' }}>
+        <Story />
+      </div>
+    )
+  ]
+};
+
+/**
+ * Narrow container - Shows the stacked layout that appears in narrow containers
+ * This demonstrates what users will see when the table is in a narrow container
+ */
+export const NarrowContainer: Story = {
+  args: {
+    columns: transactionColumns,
+    data: transactionData,
+    variant: 'bordered',
+    getRowKey: (row) => row.id,
+    responsive: true
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'This story shows the table in a narrow container (400px) to demonstrate the stacked layout. Each row displays column labels next to their values for better readability in narrow spaces.'
+      }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '400px' }}>
+        <Story />
+      </div>
+    )
+  ]
+};
+
+/**
+ * Non-responsive table - Maintains traditional layout regardless of container size
+ * Set responsive={false} to disable the automatic stacking behavior
+ */
+export const NonResponsive: Story = {
+  args: {
+    columns: cryptoColumns,
+    data: cryptoData,
+    variant: 'bordered',
+    getRowKey: (row) => row.id,
+    responsive: false
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'When responsive is set to false, the table maintains its traditional columnar layout regardless of container width. This may require horizontal scrolling in narrow containers.'
+      }
+    }
+  },
+  decorators: [
+    (Story) => (
+      <div style={{ width: '700px', minWidth: 0 }}>
+        <Story />
+      </div>
+    )
+  ]
 };
 

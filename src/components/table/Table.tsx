@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { useMemo } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 import { Icon } from '../icon/Icon';
@@ -10,6 +11,14 @@ import type { TableProps } from './Table.types';
  * 
  * Displays tabular data with customizable columns and styling.
  * Based on the Bitcoin.com design system.
+ * 
+ * Responsive: Automatically calculates optimal breakpoint based on column count.
+ * - 2 columns: ~380px breakpoint
+ * - 3 columns: ~520px breakpoint
+ * - 4 columns: ~660px breakpoint
+ * - 5+ columns: scales up to 1024px max
+ * 
+ * Uses container queries to respond to container width, not screen size.
  */
 export const Table = <T extends Record<string, any>>({
   columns,
@@ -21,8 +30,32 @@ export const Table = <T extends Record<string, any>>({
   enableSorting = true,
   sortState,
   onSort,
-  pagination
+  pagination,
+  responsive = true,
+  responsiveBreakpoint = 'auto'
 }: TableProps<T>) => {
+  // Calculate breakpoint based on column count
+  const calculateBreakpoint = (): number => {
+    if (responsiveBreakpoint !== 'auto') {
+      return responsiveBreakpoint;
+    }
+    
+    // Dynamic calculation based on column count
+    // Formula: Each column needs ~140px minimum + 100px base padding/margins
+    // 2 cols: 380px, 3 cols: 520px, 4 cols: 660px, 5 cols: 800px, etc.
+    const baseWidth = 32; // Base padding and spacing
+    const columnWidth = 80; // Approximate minimum width per column
+    const calculatedWidth = baseWidth + (columns.length * columnWidth);
+    
+    // Ensure minimum breakpoint of 400px and maximum of 1024px
+    return Math.max(400, Math.min(1024, calculatedWidth));
+  };
+
+  const breakpoint = calculateBreakpoint();
+
+  // Generate unique ID for this table instance
+  const tableId = useMemo(() => `table-${Math.random().toString(36).substr(2, 9)}`, []);
+
   const getCellValue = (row: T, column: typeof columns[0]): ReactNode => {
     if (typeof column.accessor === 'function') {
       return column.accessor(row);
@@ -84,26 +117,32 @@ export const Table = <T extends Record<string, any>>({
     return `Showing ${start} to ${end} of ${pagination.totalResults} results`;
   };
 
-  const tableContent = (
+  // Desktop table layout
+  const desktopTableContent = (
     <>
       {/* Header Row */}
       <div className="flex gap-l items-center px-m py-s w-full min-h-[35px]">
-        {columns.map((column) => (
-          <div
-            key={column.id}
-            className={twMerge(
-              "flex items-center gap-1 leading-none whitespace-nowrap group",
-              "font-['Satoshi_Variable'] font-bold text-[12px] uppercase text-shades-dark",
-              column.width ? '' : 'flex-1 min-w-0',
-              enableSorting && column.sortable && onSort ? 'cursor-pointer select-none hover:text-shades-black' : ''
-            )}
-            style={{ width: column.width }}
-            onClick={() => handleSort(column)}
-          >
-            <span>{column.label}</span>
-            {getSortIcon(column)}
-          </div>
-        ))}
+        {columns.map((column) => {
+          const headerAlignClass = column.align === 'right' ? 'justify-end' : column.align === 'center' ? 'justify-center' : 'justify-start';
+          
+          return (
+            <div
+              key={column.id}
+              className={twMerge(
+                "flex items-center gap-1 leading-none whitespace-nowrap group",
+                "font-['Satoshi_Variable'] font-bold text-[12px] uppercase text-shades-dark",
+                headerAlignClass,
+                column.width ? '' : 'flex-1 min-w-0',
+                enableSorting && column.sortable && onSort ? 'cursor-pointer select-none hover:text-shades-black' : ''
+              )}
+              style={{ width: column.width }}
+              onClick={() => handleSort(column)}
+            >
+              <span>{column.label}</span>
+              {getSortIcon(column)}
+            </div>
+          );
+        })}
       </div>
 
       {/* Divider after header */}
@@ -145,13 +184,121 @@ export const Table = <T extends Record<string, any>>({
           )}
         </div>
       ))}
+    </>
+  );
 
+  // Mobile stacked layout
+  const mobileTableContent = (
+    <>
+      {/* Data Rows - Stacked Cards */}
+      {data.map((row, rowIndex) => (
+        <div key={getRowKey(row, rowIndex)}>
+          <div
+            className={twMerge(
+              'flex flex-col gap-xs px-m py-s w-full',
+              onRowClick && 'cursor-pointer hover:bg-shades-extra-light transition-colors'
+            )}
+            onClick={() => onRowClick?.(row, rowIndex)}
+          >
+            {columns.map((column) => (
+              <div
+                key={column.id}
+                className="flex items-center justify-between gap-m min-h-[24px]"
+              >
+                {/* Label */}
+                <div className="font-['Satoshi_Variable'] font-bold text-[12px] uppercase text-shades-dark whitespace-nowrap text-right">
+                  {column.label}
+                </div>
+                
+                {/* Value */}
+                <div
+                  className={twMerge(
+                    getCellClassName(column),
+                    'text-shades-black flex-1 text-right items-end'
+                  )}
+                >
+                  {getCellValue(row, column)}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Divider between rows - don't show after last row */}
+          {rowIndex < data.length - 1 && (
+            <div className="px-m">
+              <div className="h-px w-full bg-shades-extra-light dark:bg-border" />
+            </div>
+          )}
+        </div>
+      ))}
+    </>
+  );
+
+  const tableContent = responsive ? (
+    <>
+      {/* Inject dynamic container query CSS */}
+      <style>
+        {`
+          .${tableId}-desktop {
+            display: none;
+          }
+          .${tableId}-mobile {
+            display: block;
+          }
+          @container (min-width: ${breakpoint}px) {
+            .${tableId}-desktop {
+              display: block;
+            }
+            .${tableId}-mobile {
+              display: none;
+            }
+          }
+        `}
+      </style>
+
+      {/* Desktop view - hidden on narrow containers */}
+      <div className={`${tableId}-desktop`}>
+        {desktopTableContent}
+      </div>
+      
+      {/* Mobile view - hidden on wide containers */}
+      <div className={`${tableId}-mobile`}>
+        {mobileTableContent}
+      </div>
+
+      {/* Pagination Footer - shared between layouts */}
+      {pagination && (
+        <>
+          {/* Divider before pagination */}
+          <div className={variant === 'bordered' ? '' : 'px-m'}>
+            <div className="h-px w-full bg-shades-extra-light dark:bg-border" />
+          </div>
+
+          {/* Pagination Row */}
+          <div className="flex items-center justify-between px-m pt-s pb-m w-full">
+            <div className="font-['Satoshi_Variable'] font-medium text-[12px] text-shades-semi-dark leading-none">
+              {getPaginationText()}
+            </div>
+            <Pagination
+              currentPage={pagination.currentPage}
+              totalPages={pagination.totalPages}
+              onPageChange={pagination.onPageChange}
+              size="small"
+            />
+          </div>
+        </>
+      )}
+    </>
+  ) : (
+    <>
+      {desktopTableContent}
+      
       {/* Pagination Footer */}
       {pagination && (
         <>
           {/* Divider before pagination */}
           <div className={variant === 'bordered' ? '' : 'px-m'}>
-            <div className="h-px w-full bg-shades-extra-light darkbg-border" />
+            <div className="h-px w-full bg-shades-extra-light dark:bg-border" />
           </div>
 
           {/* Pagination Row */}
@@ -175,7 +322,8 @@ export const Table = <T extends Record<string, any>>({
     return (
       <div
         className={twMerge(
-          'bg-surface border bg-shades-extra-light dark:border-border rounded-sm w-full',
+          ' bg-shades-white @dark:bg-surface border dark:border-border rounded-sm w-full',
+          responsive && '@container',
           className
         )}
       >
@@ -187,7 +335,7 @@ export const Table = <T extends Record<string, any>>({
   }
 
   return (
-    <div className={twMerge('flex flex-col w-full', className)}>
+    <div className={twMerge('flex flex-col w-full', responsive && '@container', className)}>
       {tableContent}
     </div>
   );

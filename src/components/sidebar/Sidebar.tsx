@@ -47,7 +47,7 @@ const SidebarMenuItemComponent = ({
         {badgeCount !== undefined && badgeCount > 0 && (
           <span
             className={twMerge(
-              'flex items-center justify-center h-5 px-1 rounded-lg bg-shades-semi-light dark:bg-shades-semi-light',
+              'flex items-center justify-center h-[18px] px-1 rounded-lg bg-shades-semi-light dark:bg-shades-semi-light min-w-[26px]',
               'font-semibold text-xs leading-none text-white',
               "font-['IBMPlexSans']"
             )}

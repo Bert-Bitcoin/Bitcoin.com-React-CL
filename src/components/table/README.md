@@ -14,6 +14,7 @@ A flexible data table component for displaying tabular data, based on the Bitcoi
 - ✅ Bordered variant with rounded corners
 - ✅ **Sortable columns** with visual indicators
 - ✅ **Built-in pagination** with results display
+- ✅ **Responsive stacked layout** based on container width (uses container queries)
 - ✅ TypeScript support
 - ✅ Design system aligned
 
@@ -79,6 +80,8 @@ function MyComponent() {
 | `sortState` | `SortState \| null` | - | Current sort state (columnId and direction) |
 | `onSort` | `(columnId: string, direction: 'asc' \| 'desc') => void` | - | Callback when sort is requested |
 | `pagination` | `TablePaginationConfig` | - | Optional pagination configuration |
+| `responsive` | `boolean` | `true` | Enable responsive stacked layout based on container width |
+| `responsiveBreakpoint` | `'auto' \| number` | `'auto'` | Breakpoint for stacking. `'auto'` calculates based on column count, or provide pixels |
 
 ## TableColumn
 
@@ -485,6 +488,218 @@ The pagination footer follows the Figma design:
 - **Layout**: Results text on left, pagination controls on right
 - **Size**: Small pagination size (24px buttons) for compact display
 - **Divider**: Light divider (#f0f0f5) separates pagination from table rows
+
+## Responsive Layout
+
+The Table component automatically adapts to narrow containers using **CSS Container Queries**, providing an optimal viewing experience regardless of screen size.
+
+### Features
+
+- ✅ **Container-based**: Uses container queries instead of media queries
+- ✅ **Smart breakpoints**: Automatically calculates breakpoint based on column count
+- ✅ **Stacked cards**: Each row becomes a vertical card with label-value pairs
+- ✅ **Label visibility**: Column labels appear next to each value for context
+- ✅ **Better readability**: Optimized layout for narrow containers
+- ✅ **Configurable**: Can be disabled with `responsive={false}` or set custom breakpoints
+- ✅ **Works with all features**: Compatible with sorting, pagination, and all variants
+- ✅ **Works in sidebars**: Perfect for tables in narrow sidebars or panels
+
+### Auto Breakpoint Calculation
+
+By default (`responsiveBreakpoint="auto"`), the table automatically calculates the optimal breakpoint based on the number of columns:
+
+**Formula**: `100px (base) + (columnCount × 140px)`
+
+**Examples**:
+- **2 columns**: ~380px breakpoint
+- **3 columns**: ~520px breakpoint
+- **4 columns**: ~660px breakpoint
+- **5 columns**: ~800px breakpoint
+- **6 columns**: ~940px breakpoint
+- **7+ columns**: Capped at 1024px
+
+This ensures that tables with more columns switch to stacked layout earlier, while tables with fewer columns can remain in traditional layout at narrower widths.
+
+### How It Works
+
+**Container queries** respond to the table's container width, not the viewport width. This means:
+- A table in a narrow sidebar will stack even on a wide screen
+- A full-width table on a mobile device will stack when narrow
+- Multiple tables on the same page can have different layouts based on their container
+- Each table instance calculates its own optimal breakpoint
+
+When container is **narrower than breakpoint**:
+- Traditional table header is hidden
+- Each row displays as a stacked card
+- Column labels appear next to their values
+- All values are right-aligned for consistency
+
+When container is **wider than breakpoint**:
+- Traditional table layout is displayed
+- Normal column headers and rows
+- Standard horizontal layout
+
+### Usage
+
+```tsx
+// Default - auto breakpoint based on column count (recommended)
+<Table
+  columns={columns}  // e.g., 4 columns
+  data={data}
+  responsive={true}
+  responsiveBreakpoint="auto"  // ✅ Calculates ~660px for 4 columns
+/>
+
+// Fixed breakpoint - override auto calculation
+<Table
+  columns={columns}
+  data={data}
+  responsive={true}
+  responsiveBreakpoint={500}  // ✅ Always stacks below 500px
+/>
+
+// Disable responsive layout
+<Table
+  columns={columns}
+  data={data}
+  responsive={false}  // ✅ Always shows traditional layout
+/>
+```
+
+### When to Use Auto vs Fixed Breakpoint
+
+**Use `responsiveBreakpoint="auto"` (default)** when:
+- ✅ You want optimal breakpoints for any column count
+- ✅ The number of columns might change dynamically
+- ✅ You're building reusable components
+- ✅ You want consistent behavior across different tables
+
+**Use a fixed number (e.g., `responsiveBreakpoint={600}`)** when:
+- ✅ You have specific design requirements
+- ✅ You want all tables to stack at the same width
+- ✅ You're matching a specific container size
+- ✅ You need precise control over the breakpoint
+
+### Example: Crypto Portfolio with Auto Breakpoint
+
+```tsx
+const cryptoColumns: TableColumn<CryptoAsset>[] = [
+  { id: 'name', label: 'Asset', accessor: 'name' },
+  { id: 'symbol', label: 'Symbol', accessor: 'symbol' },
+  { 
+    id: 'balance', 
+    label: 'Balance', 
+    accessor: 'balance',
+    type: 'numeric',
+    align: 'right'
+  },
+  { 
+    id: 'value', 
+    label: 'USD Value', 
+    accessor: 'value',
+    type: 'numeric',
+    align: 'right'
+  }
+];
+
+// With 4 columns, auto breakpoint = ~660px
+// Container > 660px: Shows as traditional table
+// Container < 660px: Each row shows:
+//   ASSET          Bitcoin
+//   SYMBOL         BTC
+//   BALANCE        0.125
+//   USD VALUE      $5,234.50
+
+<Table
+  columns={cryptoColumns}
+  data={cryptoData}
+  variant="bordered"
+  responsive={true}
+  responsiveBreakpoint="auto"  // Calculates ~660px for 4 columns
+/>
+```
+
+### Example: Simple 2-Column Table
+
+```tsx
+// With only 2 columns, auto breakpoint = ~380px
+// This table can remain in traditional layout at much narrower widths!
+
+const columns: TableColumn<Data>[] = [
+  { id: 'label', label: 'Item', accessor: 'label' },
+  { id: 'value', label: 'Value', accessor: 'value', type: 'numeric', align: 'right' }
+];
+
+<Table
+  columns={columns}
+  data={data}
+  responsive={true}
+  responsiveBreakpoint="auto"  // Only ~380px - stays traditional longer
+/>
+```
+
+### Example: Wide Table with Many Columns
+
+```tsx
+// With 6 columns, auto breakpoint = ~940px
+// This table switches to stacked layout earlier to ensure readability
+
+const columns: TableColumn<Employee>[] = [
+  { id: 'id', label: 'ID', accessor: 'id' },
+  { id: 'name', label: 'Name', accessor: 'name' },
+  { id: 'email', label: 'Email', accessor: 'email' },
+  { id: 'title', label: 'Title', accessor: 'title' },
+  { id: 'department', label: 'Department', accessor: 'department' },
+  { id: 'salary', label: 'Salary', accessor: 'salary', type: 'numeric' }
+];
+
+<Table
+  columns={columns}
+  data={employees}
+  responsive={true}
+  responsiveBreakpoint="auto"  // Calculates ~940px for 6 columns
+/>
+```
+
+### Design Specifications
+
+**Stacked Layout (Container < 768px)**:
+- **Row gap**: Extra small (xs) spacing between label-value pairs
+- **Row padding**: Standard 16px (m) horizontal, 8px (s) vertical
+- **Label styling**: Satoshi Variable Bold 12px uppercase, Dark color
+- **Value styling**: Matches column type (text/numeric), Black color
+- **Layout**: Labels on left, values on right, space-between
+- **Dividers**: Light dividers (#f0f0f5) between row cards
+
+**Table Layout (Container ≥ 768px)**:
+- Standard table layout as described in other sections
+- Visible column headers
+- Horizontal row layout
+
+### When to Disable Responsive
+
+Consider disabling the responsive layout (`responsive={false}`) when:
+- You have very few columns (2-3) that fit well in narrow containers
+- Your table has horizontal scrolling implemented separately
+- You're embedding the table in a container that will always be wide
+- You need consistent layout for screenshots or exports
+
+### Testing Responsive Behavior
+
+To test the responsive layout:
+1. **Resize the container**: Change the width of the table's parent container
+2. **Use Storybook**: View the `NarrowContainer` story to see stacked layout
+3. **Test in sidebars**: Place table in a narrow sidebar to verify automatic stacking
+4. **Set container width**: Use a container < 768px wide to see stacked layout
+
+### Browser Support
+
+Container queries are supported in:
+- Chrome/Edge 105+
+- Safari 16+
+- Firefox 110+
+
+For older browsers, the table will display in traditional layout mode.
 
 ## Storybook
 

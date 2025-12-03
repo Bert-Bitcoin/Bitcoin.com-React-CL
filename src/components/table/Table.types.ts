@@ -119,5 +119,18 @@ export interface TableProps<T = any> {
    * Optional pagination configuration
    */
   pagination?: TablePaginationConfig;
+  /**
+   * Enable responsive stacked layout based on container width
+   * Uses container queries to switch to stacked layout when container is narrow
+   * @default true
+   */
+  responsive?: boolean;
+  /**
+   * Breakpoint width (in pixels) for switching to stacked layout
+   * Set to 'auto' to calculate based on column count (recommended)
+   * Set to a number to use a fixed breakpoint
+   * @default 'auto'
+   */
+  responsiveBreakpoint?: 'auto' | number;
 }
 

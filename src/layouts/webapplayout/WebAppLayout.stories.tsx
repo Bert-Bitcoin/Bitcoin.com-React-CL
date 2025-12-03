@@ -649,7 +649,7 @@ function CryptoWalletDashboardContent() {
             </button>
           </div>
         </Card.Header>
-        <Card.Content className="gap-0 mt-m">
+        <Card.Content className="gap-0 mt-s -ml-4 -mr-4 -mb-0">
           <Table
             columns={[
               {
@@ -690,7 +690,7 @@ function CryptoWalletDashboardContent() {
                 id: 'status',
                 label: 'Status',
                 accessor: (row) => <Indicator variant={row.status} />,
-                align: 'center'
+                align: 'left'
               }
             ]}
             data={transactionData}
