@@ -35,7 +35,7 @@ export const ModeToggle = forwardRef<HTMLButtonElement, ModeToggleProps>(
 
     const trackClasses = twMerge(
       'relative w-16 h-8 rounded-pill transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-field-border-active focus-visible:ring-offset-2',
-      checked ? 'bg-shades-extra-dark' : 'bg-shades-light',
+      checked ? 'bg-shades-light dark:bg-shades-white' : 'bg-shades-light dark:bg-shades-white',
       disabled && 'opacity-50 cursor-not-allowed'
     );
 
@@ -50,12 +50,12 @@ export const ModeToggle = forwardRef<HTMLButtonElement, ModeToggleProps>(
 
     const sunIconClasses = twMerge(
       'w-4 h-4 transition-all duration-300',
-      !checked ? 'text-extra-yellow-100 opacity-100' : 'text-shades-mid opacity-40'
+      !checked ? 'text-extra-yellow-100 opacity-100' : 'text-shades-extra-dark opacity-40'
     );
 
     const moonIconClasses = twMerge(
       'w-4 h-4 transition-all duration-300',
-      checked ? 'text-white opacity-100' : 'text-shades-mid opacity-40'
+      checked ? 'text-white opacity-100' : 'text-shades-extra-dark opacity-40'
     );
 
     return (

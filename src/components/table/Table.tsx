@@ -87,7 +87,7 @@ export const Table = <T extends Record<string, any>>({
   const tableContent = (
     <>
       {/* Header Row */}
-      <div className="bg-shades-white flex gap-l items-center px-m py-s w-full min-h-[35px]">
+      <div className="flex gap-l items-center px-m py-s w-full min-h-[35px]">
         {columns.map((column) => (
           <div
             key={column.id}
@@ -108,7 +108,7 @@ export const Table = <T extends Record<string, any>>({
 
       {/* Divider after header */}
       <div className={variant === 'bordered' ? '' : 'px-m'}>
-        <div className="h-px w-full bg-shades-extra-light" />
+        <div className="h-px w-full bg-shades-extra-light dark:bg-border" />
       </div>
 
       {/* Data Rows */}
@@ -116,7 +116,7 @@ export const Table = <T extends Record<string, any>>({
         <div key={getRowKey(row, rowIndex)}>
           <div
             className={twMerge(
-              'bg-shades-white flex gap-l items-center px-m py-s w-full min-h-[35px]',
+              'flex gap-l items-center px-m py-s w-full min-h-[35px]',
               onRowClick && 'cursor-pointer hover:bg-shades-extra-light transition-colors'
             )}
             onClick={() => onRowClick?.(row, rowIndex)}
@@ -140,7 +140,7 @@ export const Table = <T extends Record<string, any>>({
           {/* Divider between rows - don't show after last row */}
           {rowIndex < data.length - 1 && (
             <div className="px-m">
-              <div className="h-px w-full bg-shades-extra-light" />
+              <div className="h-px w-full bg-shades-extra-light dark:bg-border" />
             </div>
           )}
         </div>
@@ -151,11 +151,11 @@ export const Table = <T extends Record<string, any>>({
         <>
           {/* Divider before pagination */}
           <div className={variant === 'bordered' ? '' : 'px-m'}>
-            <div className="h-px w-full bg-shades-extra-light" />
+            <div className="h-px w-full bg-shades-extra-light darkbg-border" />
           </div>
 
           {/* Pagination Row */}
-          <div className="bg-shades-white flex items-center justify-between px-m pt-s pb-m w-full">
+          <div className="flex items-center justify-between px-m pt-s pb-m w-full">
             <div className="font-['Satoshi_Variable'] font-medium text-[12px] text-shades-semi-dark leading-none">
               {getPaginationText()}
             </div>
@@ -175,11 +175,11 @@ export const Table = <T extends Record<string, any>>({
     return (
       <div
         className={twMerge(
-          'border border-shades-off-white rounded-sm w-full',
+          'bg-surface border bg-shades-extra-light dark:border-border rounded-sm w-full',
           className
         )}
       >
-        <div className="flex flex-col w-full bg-shades-white overflow-clip rounded-[inherit]">
+        <div className="flex flex-col w-full overflow-clip rounded-[inherit]">
           {tableContent}
         </div>
       </div>
@@ -187,7 +187,7 @@ export const Table = <T extends Record<string, any>>({
   }
 
   return (
-    <div className={twMerge('flex flex-col w-full bg-shades-white', className)}>
+    <div className={twMerge('flex flex-col w-full', className)}>
       {tableContent}
     </div>
   );

@@ -1,8 +1,15 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState, useEffect } from 'react';
 
 import { WebAppLayout } from './WebAppLayout';
 import type { SidebarMenuItem } from '../../components/sidebar/Sidebar.types';
 import { CardWithSubComponents as Card } from '../../components/card/Card';
+import { LineChart } from '../../components/linechart/LineChart';
+import { Tabs } from '../../components/tabs/Tabs';
+import { Table } from '../../components/table/Table';
+import { Indicator } from '../../components/indicator/Indicator';
+import { Icon } from '../../components/icon/Icon';
+import { ModeToggle } from '../../components/toggle/ModeToggle';
 
 const meta = {
   title: 'Layouts/Web Apps',
@@ -324,4 +331,404 @@ export const DarkMode: Story = {
     )
   ]
 };
+
+/**
+ * Comprehensive crypto wallet home dashboard example
+ * Showcases real-world use of multiple components: charts, tabs, tables, cards, indicators
+ */
+export const CryptoWalletDashboard: Story = {
+  args: {
+    menuItems: [
+      {
+        id: 'home',
+        label: 'Home',
+        icon: 'icon-home',
+        isActive: true
+      },
+      {
+        id: 'portfolio',
+        label: 'Portfolio',
+        icon: 'icon-chart',
+        isActive: false
+      },
+      {
+        id: 'wallets',
+        label: 'Wallets',
+        icon: 'icon-wallet',
+        isActive: false
+      },
+      {
+        id: 'exchange',
+        label: 'Exchange',
+        icon: 'icon-trade',
+        isActive: false
+      },
+      {
+        id: 'rewards',
+        label: 'Rewards',
+        icon: 'icon-reward',
+        isActive: false,
+        badgeCount: 3
+      },
+      {
+        id: 'settings',
+        label: 'Settings',
+        icon: 'icon-setting-2',
+        isActive: false
+      }
+    ],
+    children: <CryptoWalletDashboardContent />
+  }
+};
+
+// Crypto Wallet Dashboard Content Component
+function CryptoWalletDashboardContent() {
+  const [selectedTimeframe, setSelectedTimeframe] = useState('7d');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Apply dark mode class when state changes
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
+  // Toggle dark mode
+  const toggleDarkMode = (checked: boolean) => {
+    setIsDarkMode(checked);
+  };
+
+  // Chart data for different timeframes
+  const chartData = {
+    '24h': [
+      { date: '00:00', value: 42150 },
+      { date: '04:00', value: 42300 },
+      { date: '08:00', value: 42050 },
+      { date: '12:00', value: 42500 },
+      { date: '16:00', value: 42800 },
+      { date: '20:00', value: 42650 },
+      { date: '23:59', value: 42890 }
+    ],
+    '7d': [
+      { date: 'Mon', value: 40500 },
+      { date: 'Tue', value: 41200 },
+      { date: 'Wed', value: 40800 },
+      { date: 'Thu', value: 42100 },
+      { date: 'Fri', value: 41800 },
+      { date: 'Sat', value: 42500 },
+      { date: 'Sun', value: 42890 }
+    ],
+    '30d': [
+      { date: 'Week 1', value: 38500 },
+      { date: 'Week 2', value: 40200 },
+      { date: 'Week 3', value: 41500 },
+      { date: 'Week 4', value: 42890 }
+    ],
+    '1y': [
+      { date: 'Jan', value: 35000 },
+      { date: 'Feb', value: 38000 },
+      { date: 'Mar', value: 42000 },
+      { date: 'Apr', value: 40000 },
+      { date: 'May', value: 43000 },
+      { date: 'Jun', value: 41500 },
+      { date: 'Jul', value: 44000 },
+      { date: 'Aug', value: 42500 },
+      { date: 'Sep', value: 41000 },
+      { date: 'Oct', value: 42500 },
+      { date: 'Nov', value: 42000 },
+      { date: 'Dec', value: 42890 }
+    ]
+  };
+
+  const timeframeTabs = [
+    { id: '24h', label: '24H' },
+    { id: '7d', label: '7D' },
+    { id: '30d', label: '30D' },
+    { id: '1y', label: '1Y' }
+  ];
+
+  // Transaction data
+  const transactionData = [
+    {
+      type: 'Received',
+      asset: 'Bitcoin',
+      amount: '+0.0245 BTC',
+      usd: '+$1,050.65',
+      date: 'Dec 3, 2025',
+      status: 'approved' as const,
+      icon: 'icon-receive'
+    },
+    {
+      type: 'Sent',
+      asset: 'Ethereum',
+      amount: '-1.5 ETH',
+      usd: '-$3,250.00',
+      date: 'Dec 2, 2025',
+      status: 'approved' as const,
+      icon: 'icon-send'
+    },
+    {
+      type: 'Exchange',
+      asset: 'BTC → ETH',
+      amount: '0.015 BTC',
+      usd: '$642.50',
+      date: 'Dec 2, 2025',
+      status: 'approved' as const,
+      icon: 'icon-trade'
+    },
+    {
+      type: 'Received',
+      asset: 'USDT',
+      amount: '+500 USDT',
+      usd: '+$500.00',
+      date: 'Dec 1, 2025',
+      status: 'approved' as const,
+      icon: 'icon-receive'
+    },
+    {
+      type: 'Pending',
+      asset: 'Bitcoin',
+      amount: '+0.005 BTC',
+      usd: '+$214.45',
+      date: 'Dec 1, 2025',
+      status: 'pending' as const,
+      icon: 'icon-pending'
+    }
+  ];
+
+  // News items
+  const newsItems = [
+    {
+      title: 'Bitcoin Rewards Program Extended',
+      description: 'Earn up to 5% back on all Bitcoin purchases through December.',
+      date: '2 hours ago',
+      tag: 'New'
+    },
+    {
+      title: 'Security Update Available',
+      description: 'Enhanced two-factor authentication now supports biometric login.',
+      date: '1 day ago',
+      tag: 'Featured'
+    },
+    {
+      title: 'New Trading Pairs Added',
+      description: 'Trade BTC/EUR and ETH/GBP with zero fees for the first 30 days.',
+      date: '2 days ago',
+      tag: 'New'
+    }
+  ];
+
+  return (
+    <div className="p-l space-y-l">
+      {/* Header Section with Dark Mode Toggle */}
+      <div className="flex items-start justify-between gap-m">
+        <div>
+          <h1 className="font-['Elza_Narrow'] text-heading-xl text-text-primary uppercase font-bold mb-xs">
+            Welcome Back
+          </h1>
+          <p className="text-body-lg text-text-secondary">
+            Here's your portfolio overview and recent activity
+          </p>
+        </div>
+        
+        {/* Dark Mode Toggle */}
+        <ModeToggle
+          checked={isDarkMode}
+          onCheckedChange={toggleDarkMode}
+        />
+      </div>
+
+      {/* Portfolio Balance Card */}
+      <Card>
+        <Card.Header>
+          <div className="flex items-start justify-between w-full">
+            <div className="space-y-xs">
+              <p className="text-label text-text-secondary">Total Portfolio Value</p>
+              <div className="flex items-baseline gap-s">
+                <span className="font-['IBMPlexSans'] font-bold text-[40px] leading-none text-text-primary">
+                  $42,890.45
+                </span>
+                <div className="flex items-center gap-xs">
+                  <Icon type="icon-arrow-up-1" size="sm" className="text-success-100" />
+                  <span className="font-['IBMPlexSans'] font-semibold text-body text-success-100">
+                    +5.8%
+                  </span>
+                </div>
+              </div>
+              <p className="text-label-sm text-text-secondary">
+                Last updated: {new Date().toLocaleTimeString()}
+              </p>
+            </div>
+            <Indicator variant="approved" label="Verified" />
+          </div>
+        </Card.Header>
+        
+        {/* Chart Section with Tabs */}
+        <Card.Content className="gap-m mt-m">
+          <Tabs
+            tabs={timeframeTabs}
+            activeTab={selectedTimeframe}
+            onChange={setSelectedTimeframe}
+            align="left"
+          />
+          <LineChart
+            data={chartData[selectedTimeframe as keyof typeof chartData]}
+            variant="positive"
+            height={240}
+            showTooltip
+            showXAxis
+            showArea
+            dataLabel="Value"
+            tooltipFormatter={(value) => `$${value.toLocaleString()}`}
+          />
+        </Card.Content>
+      </Card>
+
+      {/* Quick Stats Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-m">
+        <Card>
+          <Card.Content className="gap-xs">
+            <div className="flex items-center gap-s text-text-secondary">
+              <Icon type="icon-wallet-3" size="md" />
+              <span className="text-label">Total Assets</span>
+            </div>
+            <p className="font-['IBMPlexSans'] font-bold text-heading-lg text-text-primary uppercase">
+              12
+            </p>
+            <p className="text-label-sm text-text-secondary">
+              Across 5 blockchains
+            </p>
+          </Card.Content>
+        </Card>
+
+        <Card>
+          <Card.Content className="gap-xs">
+            <div className="flex items-center gap-s text-text-secondary">
+              <Icon type="icon-transaction-minus" size="md" />
+              <span className="text-label">Transactions (30d)</span>
+            </div>
+            <p className="font-['IBMPlexSans'] font-bold text-heading-lg text-text-primary uppercase">
+              127
+            </p>
+            <div className="flex items-center gap-xs">
+              <Icon type="icon-arrow-up-1" size="xs" className="text-success-100" />
+              <p className="text-label-sm text-success-100 font-['IBMPlexSans']">
+                +12% from last month
+              </p>
+            </div>
+          </Card.Content>
+        </Card>
+
+        <Card>
+          <Card.Content className="gap-xs">
+            <div className="flex items-center gap-s text-text-secondary">
+              <Icon type="icon-reward" size="md" />
+              <span className="text-label">Rewards Earned</span>
+            </div>
+            <p className="font-['IBMPlexSans'] font-bold text-heading-lg text-text-primary uppercase">
+              $284.50
+            </p>
+            <p className="text-label-sm text-text-secondary">
+              This month
+            </p>
+          </Card.Content>
+        </Card>
+      </div>
+
+      {/* Recent Transactions Table */}
+      <Card>
+        <Card.Header>
+          <div className="flex items-center justify-between w-full gap-m">
+            <h3 className="font-['Elza_Narrow'] text-heading-md text-text-primary uppercase font-bold">
+              Recent Transactions
+            </h3>
+            <button className="text-primary-100 font-satoshi font-medium text-body hover:underline whitespace-nowrap flex-shrink-0">
+              View All
+            </button>
+          </div>
+        </Card.Header>
+        <Card.Content className="gap-0 mt-m">
+          <Table
+            columns={[
+              {
+                id: 'type',
+                label: 'Type',
+                accessor: (row) => (
+                  <div className="flex items-center gap-s">
+                    <Icon type={row.icon} size="md" className="text-primary-100" />
+                    <span>{row.type}</span>
+                  </div>
+                )
+              },
+              {
+                id: 'asset',
+                label: 'Asset',
+                accessor: 'asset'
+              },
+              {
+                id: 'amount',
+                label: 'Amount',
+                accessor: 'amount',
+                type: 'numeric',
+                align: 'right'
+              },
+              {
+                id: 'usd',
+                label: 'USD Value',
+                accessor: 'usd',
+                type: 'numeric',
+                align: 'right'
+              },
+              {
+                id: 'date',
+                label: 'Date',
+                accessor: 'date'
+              },
+              {
+                id: 'status',
+                label: 'Status',
+                accessor: (row) => <Indicator variant={row.status} />,
+                align: 'center'
+              }
+            ]}
+            data={transactionData}
+          />
+        </Card.Content>
+      </Card>
+
+      {/* News & Updates */}
+      <div>
+        <h2 className="font-['Elza_Narrow'] text-heading-lg text-text-primary uppercase font-bold mb-m">
+          News & Updates
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-m">
+          {newsItems.map((item, index) => (
+            <Card key={index}>
+              <Card.Header>
+                <div className="flex items-start justify-between gap-s mb-xs">
+                  <Card.Title className="flex-1">{item.title}</Card.Title>
+                  <Indicator 
+                    variant={item.tag === 'New' ? 'new' : 'featured'}
+                    label={item.tag}
+                  />
+                </div>
+                <Card.Description className="text-sm">
+                  {item.description}
+                </Card.Description>
+              </Card.Header>
+              <Card.Content className="gap-0 mt-s">
+                <div className="flex items-center gap-xs text-text-secondary">
+                  <Icon type="icon-clock" size="xs" />
+                  <span className="text-label-sm">{item.date}</span>
+                </div>
+              </Card.Content>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 

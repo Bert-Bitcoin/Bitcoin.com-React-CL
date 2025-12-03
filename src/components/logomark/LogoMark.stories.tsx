@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { LogoMark } from './LogoMark';
 
 const meta: Meta<typeof LogoMark> = {
-  title: 'Assets/Logos/LogoMark',
+  title: 'Assets/Logos/Logo Mark',
   component: LogoMark,
   parameters: {
     layout: 'centered',

@@ -5,7 +5,7 @@ import { Icon } from '../icon';
 import { MenuDropdown } from './MenuDropdown';
 
 const meta = {
-  title: 'Components/Navigation/MenuDropdown',
+  title: 'Components/Navigation/Menu Dropdown',
   component: MenuDropdown,
   parameters: {
     layout: 'centered',

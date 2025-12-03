@@ -21,10 +21,10 @@ import type {
 // ========================================
 
 const variantClasses: Record<CardVariant, string> = {
-  default: 'bg-surface border border-shades-light',
-  outlined: 'bg-surface border-2 border-primary-100',
+  default: 'bg-surface  dark:bg-surface-muted border border-border',
+  outlined: 'bg-surface  dark:bg-surface-muted border-2 border-primary-100',
   interactive:
-    'bg-surface border border-shades-light hover:border-border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-100/30 focus-visible:ring-offset-2'
+    'bg-surface  dark:bg-surface-muted border border-border hover:border-border transition-all duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-100/30 focus-visible:ring-offset-2'
 };
 
 const paddingClasses: Record<CardPadding, string> = {
