@@ -107,7 +107,7 @@ const config: Config = {
         slideOut: 'slideOut 0.2s ease-in',
         fadeIn: 'fadeIn 0.15s ease-out',
         fadeOut: 'fadeOut 0.15s ease-in',
-        bounceIn: 'bounceIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)',
+        bounceIn: 'bounceIn 0.5s ease-out',
         bounceOut: 'bounceOut 0.2s ease-in'
       }
     }

@@ -5,7 +5,7 @@ import { PillTabs } from './PillTabs';
 import type { PillTab } from './PillTabs.types';
 
 const meta: Meta<typeof PillTabs> = {
-  title: 'Components/Tabs/PillTabs',
+  title: 'Components/Tabs/Pill Tabs',
   component: PillTabs,
   parameters: {
     layout: 'centered',

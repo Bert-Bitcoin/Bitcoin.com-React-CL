@@ -1,349 +1,200 @@
-# Pill Tabs Component
+# Tabs Component
 
-A pill-style tabs component for navigation and content switching. Built with React, TypeScript, and Tailwind CSS, following the Bitcoin.com design system.
+A versatile tabs component based on the Bitcoin.com design system, supporting icons, badges, multiple alignment options, and responsive horizontal scrolling.
 
 ## Features
 
-- ✅ **Pill Style Design** - Rounded pill-shaped tabs matching Figma design
-- ✅ **Active/Inactive States** - Clear visual distinction between states
-- ✅ **Disabled Tabs** - Support for disabled tab items
-- ✅ **Full Width Option** - Tabs can stretch to fill container
-- ✅ **Icon Support** - Optional icons before tab labels
-- ✅ **Dark Mode** - Full theme support for light and dark modes
-- ✅ **Keyboard Accessible** - Full ARIA support and keyboard navigation
-- ✅ **TypeScript** - Fully typed with comprehensive type definitions
-- ✅ **Responsive** - Works on all screen sizes
+- ✅ **Multiple Alignment Options**: Left, center, or stretched tabs
+- ✅ **Icon Support**: Display icons alongside tab labels
+- ✅ **Badge Support**: Show notification counts or status badges
+- ✅ **Responsive**: Automatic horizontal scrolling on small screens
+- ✅ **Accessible**: Full keyboard navigation and ARIA support
+- ✅ **Themeable**: Light and dark mode support
+- ✅ **Customizable**: Custom className support for container and tabs
+- ✅ **Disabled State**: Support for disabled tabs
+
+## Design Reference
+
+Based on the Figma design: [Web Component Library - Tabs](https://www.figma.com/design/whUdbUxyPxMpIMbTapDqdn/Web-component-library--AI-?node-id=18063-664)
 
 ## Usage
 
-### Basic Pill Tabs
-
 ```tsx
-import { PillTabs } from '@/components/tabs';
-import { useState } from 'react';
+import { Tabs } from '@bitcoin-portal/bdc-components';
+import type { Tab } from '@bitcoin-portal/bdc-components';
 
 function MyComponent() {
-  const [activeTab, setActiveTab] = useState('tab1');
+  const [activeTab, setActiveTab] = useState('home');
 
-  const tabs = [
-    { id: 'tab1', label: 'Home' },
-    { id: 'tab2', label: 'Profile' },
-    { id: 'tab3', label: 'Settings' }
+  const tabs: Tab[] = [
+    { id: 'home', label: 'Home', icon: 'icon-home' },
+    { id: 'wallets', label: 'Wallets', icon: 'icon-wallet' },
+    { id: 'rewards', label: 'Rewards', icon: 'icon-reward', badge: 5 },
+    { id: 'earn', label: 'Earn', icon: 'icon-earn' }
   ];
 
   return (
-    <PillTabs
+    <Tabs
       tabs={tabs}
       activeTab={activeTab}
       onChange={setActiveTab}
+      align="left"
+      ariaLabel="Main navigation"
     />
   );
 }
 ```
 
-### With Content Panels
-
-```tsx
-import { PillTabs } from '@/components/tabs';
-import { useState } from 'react';
-
-function MyComponent() {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  const tabs = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'details', label: 'Details' },
-    { id: 'settings', label: 'Settings' }
-  ];
-
-  return (
-    <div>
-      <PillTabs
-        tabs={tabs}
-        activeTab={activeTab}
-        onChange={setActiveTab}
-      />
-      
-      {/* Content panels */}
-      {activeTab === 'overview' && <div>Overview content</div>}
-      {activeTab === 'details' && <div>Details content</div>}
-      {activeTab === 'settings' && <div>Settings content</div>}
-    </div>
-  );
-}
-```
-
-### With Disabled Tabs
-
-```tsx
-const tabs = [
-  { id: 'tab1', label: 'Available' },
-  { id: 'tab2', label: 'Disabled', disabled: true },
-  { id: 'tab3', label: 'Available' }
-];
-
-<PillTabs
-  tabs={tabs}
-  activeTab={activeTab}
-  onChange={setActiveTab}
-/>
-```
-
-### Full Width Tabs
-
-```tsx
-<PillTabs
-  tabs={tabs}
-  activeTab={activeTab}
-  onChange={setActiveTab}
-  fullWidth
-/>
-```
-
 ## Props
 
-### PillTabsProps
+### TabsProps
 
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| `tabs` | `PillTab[]` | **required** | Array of tab items |
-| `activeTab` | `string` | **required** | ID of the currently active tab |
-| `onChange` | `(tabId: string) => void` | **required** | Callback fired when a tab is clicked |
-| `className` | `string` | - | Additional CSS classes for the container |
-| `tabClassName` | `string` | - | Additional CSS classes for individual tabs |
-| `fullWidth` | `boolean` | `false` | Whether tabs should take full width |
+| `tabs` | `Tab[]` | *required* | Array of tab items |
+| `activeTab` | `string` | *required* | ID of the currently active tab |
+| `onChange` | `(tabId: string) => void` | *required* | Callback when a tab is clicked |
+| `align` | `'left' \| 'center' \| 'stretch'` | `'left'` | Alignment of tabs within the container |
+| `className` | `string` | `undefined` | Custom className for the container |
+| `tabClassName` | `string` | `undefined` | Custom className for individual tabs |
+| `ariaLabel` | `string` | `undefined` | Aria label for the tablist |
 
-### PillTab Interface
+### Tab Interface
 
-| Property | Type | Default | Description |
-|----------|------|---------|-------------|
-| `id` | `string` | **required** | Unique identifier for the tab |
-| `label` | `string` | **required** | Label text to display |
-| `icon` | `React.ReactNode` | - | Optional icon before label |
-| `disabled` | `boolean` | `false` | Whether the tab is disabled |
+| Property | Type | Required | Description |
+|----------|------|----------|-------------|
+| `id` | `string` | ✅ | Unique identifier for the tab |
+| `label` | `string` | ✅ | Label text for the tab |
+| `icon` | `IconName` | ❌ | Optional icon name from the icon library |
+| `badge` | `number \| string` | ❌ | Optional badge count or label |
+| `disabled` | `boolean` | ❌ | Whether the tab is disabled |
 
-## Styling
+## Alignment Options
 
-The component uses the following design tokens:
+### Left (default)
+Tabs align to the left side of the container.
 
-### Colors
+```tsx
+<Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} align="left" />
+```
 
-**Active Tab:**
-- Background: `bg-primary-100` (#4169e1)
-- Text: `text-white`
+### Center
+Tabs are centered within the container.
 
-**Inactive Tab (Light Mode):**
-- Background: `bg-surface` (#f9f9fb)
-- Border: `border-shades-light` (#e7e7ef)
-- Text: `text-shades-extra-dark` (#323135)
+```tsx
+<Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} align="center" />
+```
 
-**Inactive Tab (Dark Mode):**
-- Background: `dark:bg-shades-almost-black`
-- Border: `dark:border-shades-dark`
-- Text: `dark:text-shades-off-white`
+### Stretch
+Tabs expand to fill the full width evenly.
 
-### Typography
-- Font: Satoshi Variable Medium
-- Size: `text-label-sm` (12px)
-- Weight: 500
-- Line height: 100%
-
-### Spacing
-- Horizontal padding: `px-s` (8px)
-- Vertical padding: `py-xs` (4px)
-- Gap between tabs: `gap-s` (8px)
-
-### Border Radius
-- Shape: `rounded-pill` (9999px / 40px)
+```tsx
+<Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} align="stretch" />
+```
 
 ## Examples
 
-### Two Tabs (Common Pattern)
+### Basic Tabs
 
 ```tsx
 const tabs = [
-  { id: 'buy', label: 'Buy' },
-  { id: 'sell', label: 'Sell' }
+  { id: '1', label: 'Active Tab' },
+  { id: '2', label: 'Tab' },
+  { id: '3', label: 'Tab' },
+  { id: '4', label: 'Tab' }
 ];
+
+<Tabs tabs={tabs} activeTab="1" onChange={handleChange} />
 ```
 
-### Many Tabs (Scrollable)
+### Tabs with Icons
 
 ```tsx
 const tabs = [
-  { id: 'tab1', label: 'All' },
-  { id: 'tab2', label: 'Active' },
-  { id: 'tab3', label: 'Pending' },
-  { id: 'tab4', label: 'Completed' },
-  { id: 'tab5', label: 'Cancelled' },
-  // ... more tabs
+  { id: 'home', label: 'Home', icon: 'icon-home' },
+  { id: 'wallets', label: 'Wallets', icon: 'icon-wallet' },
+  { id: 'rewards', label: 'Rewards', icon: 'icon-reward' },
+  { id: 'earn', label: 'Earn', icon: 'icon-earn' }
 ];
+
+<Tabs tabs={tabs} activeTab="home" onChange={handleChange} />
 ```
 
-### Custom Styling
+### Tabs with Badges
 
 ```tsx
-<PillTabs
-  tabs={tabs}
-  activeTab={activeTab}
-  onChange={setActiveTab}
-  className="justify-center"
-  tabClassName="min-w-[100px]"
-/>
+const tabs = [
+  { id: 'incoming', label: 'Incoming', badge: 10 },
+  { id: 'scheduled', label: 'Scheduled', badge: 10 },
+  { id: 'progress', label: 'In Progress' },
+  { id: 'done', label: 'Done', badge: 10 }
+];
+
+<Tabs tabs={tabs} activeTab="incoming" onChange={handleChange} />
 ```
 
-## Dark Mode
-
-The component automatically adapts to dark mode when wrapped in a dark theme container:
+### Combined Features
 
 ```tsx
-<div data-theme="dark">
-  <PillTabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
-</div>
+const tabs = [
+  { id: 'home', label: 'Home', icon: 'icon-home', badge: 2 },
+  { id: 'wallets', label: 'Wallets', icon: 'icon-wallet' },
+  { id: 'rewards', label: 'Rewards', icon: 'icon-reward', badge: 15 },
+  { id: 'earn', label: 'Earn', icon: 'icon-earn', disabled: true }
+];
+
+<Tabs tabs={tabs} activeTab="home" onChange={handleChange} align="stretch" />
 ```
+
+## Responsive Behavior
+
+The Tabs component automatically detects when tab content exceeds the container width and enables horizontal scrolling. This ensures usability on small screens and mobile devices without breaking the layout.
+
+### Mobile-First Design
+
+- Horizontal scrolling activates automatically when needed
+- Scrollbar is hidden for a clean appearance
+- Smooth scroll behavior for better UX
+- Touch-friendly tap targets
 
 ## Accessibility
 
-- **Role**: `tablist` on container, `tab` on each tab button
-- **ARIA**: `aria-selected` for active state, `aria-disabled` for disabled state
-- **Keyboard**: Tab navigation, Space/Enter to activate
-- **Focus**: Visible focus ring with proper contrast
-- **Screen Readers**: Proper semantic structure and labels
+The component follows WAI-ARIA best practices:
 
-## Component Architecture
+- **Keyboard Navigation**: Full keyboard support
+- **ARIA Attributes**: Proper `role="tablist"`, `role="tab"`, `aria-selected`, and `aria-disabled`
+- **Focus Management**: Visible focus indicators
+- **Screen Reader Support**: Descriptive labels and states
 
-```
-tabs/
-├── PillTabs.tsx           # Main component
-├── PillTabs.types.ts      # TypeScript type definitions
-├── PillTabs.stories.tsx   # Storybook stories (9 examples)
-├── index.ts               # Barrel export
-└── README.md              # This file
-```
+## Design Tokens
 
-## Design Reference
+The component uses semantic design tokens from the Bitcoin.com design system:
 
-[Figma Design File](https://www.figma.com/design/whUdbUxyPxMpIMbTapDqdn/Web-component-library--AI-?node-id=18011-1743)
+### Colors
+- **Active Tab**: `primary-100` (#4169e1)
+- **Inactive Tab**: `shades-dark` (#504e55)
+- **Border**: `shades-semi-light` (#cac7d1)
+- **Active Badge**: `primary-50` (#9db6fb)
+- **Inactive Badge**: `shades-semi-light` (#cac7d1)
 
-## Storybook
+### Typography
+- **Font**: Satoshi Variable (Medium weight)
+- **Size**: 16px
+- **Badge Font**: IBM Plex Sans (SemiBold weight)
+- **Badge Size**: 10px
 
-View the component in Storybook:
+### Spacing
+- **Padding**: 16px horizontal, 12px vertical
+- **Gap**: 8px between icon/text/badge
 
-```bash
-npm run storybook
-```
+## Dark Mode
 
-Navigate to: **Components > Tabs > PillTabs**
-
-### Available Stories
-
-1. **Default** - Basic tabs with multiple options
-2. **ManyTabs** - Tabs with 10+ options (scrollable)
-3. **CustomLabels** - Tabs with meaningful labels
-4. **WithDisabledTabs** - Tabs with disabled states
-5. **FullWidth** - Tabs that stretch to fill container
-6. **WithContent** - Tabs with content panels
-7. **ThemeComparison** - Light vs Dark mode side-by-side
-8. **TwoTabs** - Common two-tab pattern
-9. **ThreeTabs** - Common three-tab pattern
-
-## Best Practices
-
-### 1. Keep Tab Labels Concise
+The component fully supports dark mode through the `data-theme="dark"` attribute or `dark:` class modifier:
 
 ```tsx
-// ✅ Good - Short and clear
-{ id: 'overview', label: 'Overview' }
-
-// ❌ Bad - Too long
-{ id: 'overview', label: 'Overview of All Your Transactions' }
-```
-
-### 2. Use Meaningful IDs
-
-```tsx
-// ✅ Good - Descriptive IDs
-{ id: 'user-profile', label: 'Profile' }
-
-// ❌ Bad - Generic IDs
-{ id: 'tab1', label: 'Profile' }
-```
-
-### 3. Provide Feedback
-
-```tsx
-// ✅ Good - Shows content changes
-const [activeTab, setActiveTab] = useState('home');
-
-<PillTabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
-{activeTab === 'home' && <HomeContent />}
-{activeTab === 'profile' && <ProfileContent />}
-
-// ❌ Bad - No visual feedback
-<PillTabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
-```
-
-### 4. Consider Mobile
-
-For many tabs on mobile, ensure horizontal scrolling is available:
-
-```tsx
-<div className="overflow-x-auto">
-  <PillTabs tabs={manyTabs} activeTab={activeTab} onChange={setActiveTab} />
+<div data-theme="dark">
+  <Tabs tabs={tabs} activeTab={activeTab} onChange={setActiveTab} />
 </div>
-```
-
-## Common Patterns
-
-### Navigation Tabs
-
-```tsx
-const navigationTabs = [
-  { id: 'dashboard', label: 'Dashboard' },
-  { id: 'transactions', label: 'Transactions' },
-  { id: 'analytics', label: 'Analytics' },
-  { id: 'settings', label: 'Settings' }
-];
-```
-
-### Filter Tabs
-
-```tsx
-const filterTabs = [
-  { id: 'all', label: 'All' },
-  { id: 'active', label: 'Active' },
-  { id: 'completed', label: 'Completed' },
-  { id: 'cancelled', label: 'Cancelled' }
-];
-```
-
-### Buy/Sell Toggle
-
-```tsx
-const tradeTabs = [
-  { id: 'buy', label: 'Buy' },
-  { id: 'sell', label: 'Sell' }
-];
-```
-
-## TypeScript Types
-
-```typescript
-interface PillTab {
-  id: string;
-  label: string;
-  icon?: React.ReactNode;
-  disabled?: boolean;
-}
-
-interface PillTabsProps {
-  tabs: PillTab[];
-  activeTab: string;
-  onChange: (tabId: string) => void;
-  className?: string;
-  tabClassName?: string;
-  fullWidth?: boolean;
-}
 ```
 
 ## Browser Support
@@ -355,17 +206,15 @@ interface PillTabsProps {
 
 ## Related Components
 
-- [Button](../button) - For button styling inspiration
-- [Toggle](../toggle) - For binary on/off states
-- [Dropdown](../dropdown) - For more complex navigation
+- **PillTabs**: Alternative pill-style tabs for different UI contexts
+- **Icon**: Icon component used for tab icons
+- **Button**: For similar interactive elements
 
-## Contributing
+## Changelog
 
-When making changes to this component:
-
-1. Update types in `PillTabs.types.ts`
-2. Add stories in `PillTabs.stories.tsx`
-3. Test in both light and dark modes
-4. Test accessibility with keyboard navigation
-5. Update this README with new features
-
+### v1.0.0
+- Initial release
+- Support for icons, badges, and multiple alignment options
+- Responsive horizontal scrolling
+- Full accessibility support
+- Dark mode support
