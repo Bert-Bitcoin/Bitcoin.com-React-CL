@@ -20,7 +20,7 @@ const SidebarMenuItemComponent = ({
       <button
         onClick={onClick}
         className={twMerge(
-          'flex items-center gap-2 w-full rounded-lg p-2 overflow-clip',
+          'flex items-center gap-2 w-full rounded-sm p-2 overflow-clip',
           'transition-colors duration-200',
           isActive
             ? 'bg-warning-10 dark:bg-warning-100/10'
@@ -65,7 +65,7 @@ const SidebarMenuItemComponent = ({
       <button
         onClick={onClick}
         className={twMerge(
-          'relative flex items-center justify-center w-full rounded-lg p-2 overflow-clip',
+          'relative flex items-center justify-center w-full rounded-sm p-2 overflow-clip',
           'transition-colors duration-200',
           isActive
             ? 'bg-warning-10 dark:bg-warning-100/10'
@@ -98,7 +98,7 @@ const SidebarMenuItemComponent = ({
     <button
       onClick={onClick}
       className={twMerge(
-        'relative flex flex-col items-center justify-center flex-1 min-w-0 rounded-lg p-1 overflow-clip',
+        'relative flex flex-col items-center justify-center flex-1 min-w-0 rounded-sm p-1 overflow-clip',
         'transition-colors duration-200',
         isActive
           ? 'bg-warning-10 dark:bg-warning-100/10'

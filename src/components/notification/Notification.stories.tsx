@@ -60,7 +60,7 @@ const NotificationWrapper = (args: NotificationProps) => {
   const [visible, setVisible] = useState(true);
 
   return (
-    <div className="min-h-screen p-l bg-background">
+    <div className="min-h-[300px] p-l bg-background">
       <div className="mb-l">
         <button
           onClick={() => setVisible(true)}
@@ -298,7 +298,7 @@ export const InfoNotification: Story = {
 
 export const DarkMode: Story = {
   render: (args) => (
-    <div data-theme="dark" className="min-h-screen bg-background">
+    <div data-theme="dark" className="min-h-[320px] bg-background">
       <NotificationWrapper {...args} />
     </div>
   ),

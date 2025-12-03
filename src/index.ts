@@ -1,4 +1,5 @@
 export * from './components/accordion';
+export * from './components/barchart';
 export * from './components/button';
 export * from './components/card';
 export * from './components/checkbox';
@@ -8,6 +9,8 @@ export * from './components/datepicker';
 export * from './components/icon';
 export * from './components/indicator';
 export * from './components/input';
+export * from './components/compact-linechart';
+export * from './components/linechart';
 export * from './components/menu-dropdown';
 export * from './components/mini-illustrations';
 export * from './components/modal';
