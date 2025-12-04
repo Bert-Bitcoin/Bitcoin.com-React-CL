@@ -47,14 +47,14 @@ export const DescriptionList = ({
     <div
       ref={containerRef}
       className={twMerge(
-        'flex flex-col w-full bg-shades-white',
+        'flex flex-col w-full',
         className
       )}
     >
       {items.map((item, index) => (
         <div key={item.id}>
           {/* Description List Item */}
-          <div className="bg-shades-white flex items-start justify-center p-m w-full">
+          <div className="flex items-start justify-center p-m w-full">
             <div
               className={twMerge(
                 'flex gap-xs w-full',
@@ -89,7 +89,7 @@ export const DescriptionList = ({
           {/* Divider - don't show after last item */}
           {index < items.length - 1 && (
             <div className="px-m">
-              <div className="h-px w-full bg-shades-extra-light" />
+              <div className="h-px w-full bg-shades-extra-light dark:bg-shades-light" />
             </div>
           )}
         </div>

@@ -9,11 +9,10 @@ import type { AccordionItemProps, AccordionProps } from './Accordion.types';
  */
 const AccordionItem = ({ item, isExpanded, onToggle }: AccordionItemProps) => {
   return (
-    <div className="w-full max-w-full  min-w-full bg-shades-white">
+    <div className="w-full max-w-full  min-w-full ">
       {/* Accordion Item */}
       <div
         className={twMerge(
-          'bg-shades-white',
           'flex items-start justify-between w-full',
           'px-m py-m',
           isExpanded ? 'pb-xs' : ''
@@ -99,7 +98,7 @@ export const Accordion = ({
   return (
     <div
       className={twMerge(
-        'flex flex-col w-full max-w-full min-w-full bg-shades-white',
+        'flex flex-col w-full max-w-full min-w-full',
         className
       )}
     >
@@ -114,7 +113,7 @@ export const Accordion = ({
           {/* Divider - don't show after last item */}
           {index < items.length - 1 && (
             <div className="px-m">
-              <div className="h-px w-full bg-shades-extra-light" />
+              <div className="h-px w-full bg-shades-extra-light dark:bg-shades-light" />
             </div>
           )}
         </div>

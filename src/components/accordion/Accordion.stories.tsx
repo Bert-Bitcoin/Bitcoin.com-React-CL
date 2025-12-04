@@ -7,7 +7,7 @@ const meta = {
   title: 'Components/Content/Accordion',
   component: Accordion,
   parameters: {
-    layout: 'centered',
+    layout: 'padded',
     docs: {
       description: {
         component:
