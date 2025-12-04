@@ -20,28 +20,28 @@ const variantConfig: Record<
   approved: {
     bgColor: 'bg-success-10 dark:bg-success-100/40',
     textColor: 'text-shades-almost-black',
-    iconName: 'icon-Circular Checkmark',
+    iconName: 'icon-circular-checkmark',
     iconColor: 'text-success-100',
     defaultLabel: 'Approved'
   },
   pending: {
     bgColor: 'bg-warning-10 dark:bg-warning-100/40',
     textColor: 'text-shades-almost-black',
-    iconName: 'icon-Pending',
+    iconName: 'icon-pending',
     iconColor: 'text-warning-100',
     defaultLabel: 'Pending'
   },
   rejected: {
     bgColor: 'bg-alerts-10 dark:bg-alerts-100/40',
     textColor: 'text-shades-almost-black',
-    iconName: 'icon-Circular Close',
+    iconName: 'icon-circular-close',
     iconColor: 'text-alerts-100',
     defaultLabel: 'Rejected'
   },
   viewed: {
     bgColor: 'bg-extra-gray-10 dark:bg-extra-gray-100/40',
     textColor: 'text-shades-almost-black',
-    iconName: 'icon-Show',
+    iconName: 'icon-show',
     iconColor: 'text-shades-extra-dark',
     defaultLabel: 'Viewed'
   },
@@ -61,9 +61,9 @@ const variantConfig: Record<
   },
   featured: {
     bgColor: 'bg-secondary-100',
-    textColor: '#000',
+    textColor: 'text-shades-white dark:text-shades-black',
     iconName: 'icon-flash',
-    iconColor: '#000',
+    iconColor: 'text-shades-white dark:text-shades-black',
     defaultLabel: 'Featured'
   }
 };
@@ -76,13 +76,13 @@ export const Indicator: React.FC<IndicatorProps> = ({
 }) => {
   const config = variantConfig[variant];
   const displayLabel = label || config.defaultLabel;
-  const displayIcon = icon || config.iconName;
+  const displayIcon = icon || config.iconName || 'icon-circle';
 
   return (
     <div
       className={`
-        flex items-center gap-xs
-        px-s py-xs
+        flex items-center gap-[4px]
+        px-s py-xs pl-[4px]
         rounded-xs
         ${config.bgColor}
         ${className}

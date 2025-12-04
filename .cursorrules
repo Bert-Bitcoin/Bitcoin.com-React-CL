@@ -171,6 +171,34 @@ Expose all component props using `argTypes` and Storybook Controls for interacti
 ### Rule: storybook-dark-mode (REQUIRED)
 Use Storybook theming addon or wrapper to preview light/dark styles consistently.
 
+### Rule: storybook-component-reuse (STRICT)
+When creating Storybook stories, **always reuse existing components from the component library** for any supporting UI elements in examples. Never create custom markup or one-off UI elements when an existing component can be used. This includes but is not limited to: Cards, Tables, Buttons, Inputs, Icons, Tabs, Modals, Typography, Layouts, etc. This ensures consistency across stories, reduces code duplication, and demonstrates real-world component composition patterns.
+
+Example:
+```tsx
+// Correct - reusing existing Card and Button components
+export const ExampleStory: Story = {
+  render: (args) => (
+    <Card variant="outlined">
+      <YourComponent {...args} />
+      <Button variant="primary">Action</Button>
+    </Card>
+  ),
+};
+
+// Incorrect - creating custom markup instead of using existing components
+export const ExampleStory: Story = {
+  render: (args) => (
+    <div className="border rounded p-4">
+      <YourComponent {...args} />
+      <div className="bg-primary-500 px-4 py-2">Action</div>
+    </div>
+  ),
+};
+```
+
+Before creating any supporting UI in a story, check `src/components/` to see if a suitable component already exists.
+
 ---
 
 ## 🔁 Change Sync Behavior
@@ -226,3 +254,20 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
 2. Run `scripts/generate-icons.ts`
 3. Import from `src/components/icons/index.ts`
 4. Use consistent naming conventions
+
+### When Creating Storybook Stories:
+1. Review existing components in `src/components/` before creating any supporting UI
+2. **Always reuse existing components** for wrapper elements, containers, and interactive elements
+3. Use existing components to demonstrate real-world composition patterns
+4. Common components to reuse in stories:
+   - `Card` - for wrapping examples or showing component context
+   - `Button` - for interactive actions in examples
+   - `Table` - for displaying tabular data in examples
+   - `Tabs` - for organizing multiple example variants
+   - `Modal` or `Window` - for overlay/dialog examples
+   - `Typography` components - for text content in examples
+   - `Icon` - for visual elements
+   - Layout components (`WebLayout`, `WebAppLayout`) - for full-page examples
+5. Import and compose existing components rather than creating custom markup
+6. Document component composition patterns that users can learn from
+7. Ensure all supporting components use the same theming and token system

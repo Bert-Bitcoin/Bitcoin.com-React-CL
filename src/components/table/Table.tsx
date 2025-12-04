@@ -322,7 +322,7 @@ export const Table = <T extends Record<string, any>>({
     return (
       <div
         className={twMerge(
-          ' bg-shades-white @dark:bg-surface border dark:border-border rounded-sm w-full',
+          ' bg-surface dark:bg-surface-muted border border-border rounded-sm w-full',
           responsive && '@container',
           className
         )}

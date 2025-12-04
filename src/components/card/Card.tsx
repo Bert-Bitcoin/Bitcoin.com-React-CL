@@ -296,7 +296,7 @@ CardIcon.displayName = 'Card.Icon';
 // ========================================
 
 const CardDivider = ({ className }: CardDividerProps) => {
-  return <hr className={twMerge('border-t border-border my-xs -mx-m border-shades-light', className)} />;
+  return <hr className={twMerge('border-t border-border my-xs -mx-m', className)} />;
 };
 
 CardDivider.displayName = 'Card.Divider';
