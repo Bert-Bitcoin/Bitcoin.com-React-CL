@@ -71,8 +71,20 @@ Only use colors that are defined in the design system color palette (found in `s
 
 ## 🌗 Theming
 
+### Rule: no-dark-variants (STRICT)
+**NEVER use `dark:` Tailwind utility classes** when generating new components or Storybook UI. Dark mode is handled automatically through CSS variables defined in the token system. The design tokens already contain both light and dark mode values that switch based on the theme class applied to the root element. Using `dark:` classes is redundant and not needed.
+
+Example:
+```tsx
+// Correct - semantic tokens handle dark mode automatically
+<div className="bg-surface text-on-surface">Content</div>
+
+// Incorrect - do NOT use dark: variants
+<div className="bg-white dark:bg-gray-900 text-black dark:text-white">Content</div>
+```
+
 ### Rule: theme-support (STRICT)
-Ensure all components support both light and dark themes using `dark:` variants in Tailwind or CSS variables.
+Ensure all components support both light and dark themes using CSS variables from the token system. Dark mode is automatically handled by semantic tokens - no `dark:` utility classes needed.
 
 ### Rule: validate-tailwind-themes (RECOMMENDED)
 Ensure both themes render correctly using `tailwind.config.ts` theme extensions and CSS vars from tokens.
@@ -238,7 +250,7 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
 2. Use Tailwind utilities backed by tokens
 3. Avoid arbitrary values like `text-[#123456]`
 4. **Only use colors from the approved color palette** - no custom hex values or arbitrary colors
-5. Always include `dark:` variants for theming
+5. **NEVER use `dark:` variants** - dark mode is handled automatically by semantic tokens
 6. **For display/heading text** - use typography tokens (text-display, text-heading-xl, etc.) which have Elza font and uppercase built-in
 7. **When manually using Elza font** - always add `uppercase` class for capitalization
 8. Test in both light and dark modes

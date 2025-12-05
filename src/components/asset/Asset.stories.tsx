@@ -132,25 +132,25 @@ export const AllSizes: Story = {
   render: () => (
     <div className="flex flex-col gap-l">
       <div className="flex flex-col gap-s">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black">
           Large (40px icon)
         </h3>
         <Asset icon={BitcoinAssetIcon} name="Bitcoin" ticker="BTC" size="lg" />
       </div>
       <div className="flex flex-col gap-s">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black ">
           Medium (32px icon)
         </h3>
         <Asset icon={EthereumAssetIcon} name="Ethereum" ticker="ETH" size="md" />
       </div>
       <div className="flex flex-col gap-s">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black ">
           Small (24px icon)
         </h3>
         <Asset icon={BitcoinCashAssetIcon} name="Bitcoin Cash" ticker="BCH" size="sm" />
       </div>
       <div className="flex flex-col gap-s">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black">
           Extra Small (20px icon)
         </h3>
         <Asset icon={StellarAssetIcon} name="Stellar" ticker="XLM" size="xs" />
@@ -166,7 +166,7 @@ export const AssetsGallery: Story = {
     <div className="flex flex-col gap-xl">
       {/* Large size row */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black">
           Large Size
         </h3>
         <div className="flex flex-wrap gap-l">
@@ -179,7 +179,7 @@ export const AssetsGallery: Story = {
 
       {/* Medium size row */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black">
           Medium Size
         </h3>
         <div className="flex flex-wrap gap-l">
@@ -192,7 +192,7 @@ export const AssetsGallery: Story = {
 
       {/* Small size row */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black ">
           Small Size
         </h3>
         <div className="flex flex-wrap gap-l">
@@ -206,7 +206,7 @@ export const AssetsGallery: Story = {
 
       {/* Extra small size row */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black">
           Extra Small Size
         </h3>
         <div className="flex flex-wrap gap-m">
@@ -253,20 +253,20 @@ export const InListContext: Story = {
       <Card.Content>
         <div className="flex flex-col gap-s">
           <div className="flex items-center justify-between p-s rounded hover:bg-shades-extra-light dark:hover:bg-shades-extra-dark transition-colors">
-            <Asset icon={BitcoinAssetIcon} name="Bitcoin" ticker="BTC" size="sm" />
-            <span className="font-['IBMPlexSans'] font-medium text-shades-black dark:text-shades-white">
+            <Asset icon={BitcoinAssetIcon} name="Bitcoin" ticker="" size="sm" />
+            <span className="font-['IBMPlexSans'] font-medium text-shades-black ">
               0.0234 BTC
             </span>
           </div>
           <div className="flex items-center justify-between p-s rounded hover:bg-shades-extra-light dark:hover:bg-shades-extra-dark transition-colors">
-            <Asset icon={EthereumAssetIcon} name="Ethereum" ticker="ETH" size="sm" />
-            <span className="font-['IBMPlexSans'] font-medium text-shades-black dark:text-shades-white">
+            <Asset icon={EthereumAssetIcon} name="Ethereum" ticker="" size="sm" />
+            <span className="font-['IBMPlexSans'] font-medium text-shades-black ">
               1.5 ETH
             </span>
           </div>
           <div className="flex items-center justify-between p-s rounded hover:bg-shades-extra-light dark:hover:bg-shades-extra-dark transition-colors">
-            <Asset icon={USDcAssetIcon} name="USD Coin" ticker="USDC" size="sm" />
-            <span className="font-['IBMPlexSans'] font-medium text-shades-black dark:text-shades-white">
+            <Asset icon={USDcAssetIcon} name="USD Coin" ticker="" size="sm" />
+            <span className="font-['IBMPlexSans'] font-medium text-shades-black d">
               1,250.00 USDC
             </span>
           </div>
@@ -282,17 +282,17 @@ export const NetworkIconShowcase: Story = {
   render: () => (
     <div className="flex flex-col gap-xl">
       <div className="flex flex-col gap-m">
-        <h3 className="text-heading-sm font-display uppercase text-shades-black dark:text-shades-white">
+        <h3 className="text-heading-sm font-display uppercase text-shades-black">
           Cross-Chain Assets with Network Icons
         </h3>
-        <p className="text-body-sm text-shades-semi-dark dark:text-shades-semi-light">
+        <p className="text-body-sm text-shades-semi-dark ">
           Network icons appear in the bottom-right corner of the main asset icon to indicate the blockchain network.
         </p>
       </div>
 
       {/* Large with network */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-label font-sans font-medium text-shades-semi-dark dark:text-shades-semi-light uppercase">
+        <h3 className="text-label font-sans font-medium text-shades-semi-dark  uppercase">
           Large Size
         </h3>
         <div className="flex flex-wrap gap-l">
@@ -303,7 +303,7 @@ export const NetworkIconShowcase: Story = {
 
       {/* Medium with network */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-label font-sans font-medium text-shades-semi-dark dark:text-shades-semi-light uppercase">
+        <h3 className="text-label font-sans font-medium text-shades-semi-dark  uppercase">
           Medium Size
         </h3>
         <div className="flex flex-wrap gap-l">
@@ -314,7 +314,7 @@ export const NetworkIconShowcase: Story = {
 
       {/* Small with network */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-label font-sans font-medium text-shades-semi-dark dark:text-shades-semi-light uppercase">
+        <h3 className="text-label font-sans font-medium text-shades-semi-dark d uppercase">
           Small Size
         </h3>
         <div className="flex flex-wrap gap-l">
@@ -326,7 +326,7 @@ export const NetworkIconShowcase: Story = {
 
       {/* Extra small with network */}
       <div className="flex flex-col gap-m">
-        <h3 className="text-label font-sans font-medium text-shades-semi-dark dark:text-shades-semi-light uppercase">
+        <h3 className="text-label font-sans font-medium text-shades-semi-dark uppercase">
           Extra Small Size
         </h3>
         <div className="flex flex-wrap gap-m">
@@ -416,7 +416,7 @@ export const InTableContext: Story = {
         id: 'change',
         label: '24h Change',
         accessor: (row) => (
-          <span className={row.changePositive && row.change !== '0.0%' ? 'text-success-100' : row.change === '0.0%' ? 'text-shades-semi-dark dark:text-shades-semi-light' : 'text-alerts-100'}>
+          <span className={row.changePositive && row.change !== '0.0%' ? 'text-success-100' : row.change === '0.0%' ? 'text-shades-semi-dark' : 'text-alerts-100'}>
             {row.change}
           </span>
         ),
