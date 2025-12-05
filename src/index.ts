@@ -28,6 +28,7 @@ export * from './components/logo';
 export * from './components/logomark';
 export * from './components/textarea';
 export * from './components/toggle';
+export * from './components/treemap';
 export * from './components/typography';
 export * from './components/sidebar';
 export * from './components/slider';
