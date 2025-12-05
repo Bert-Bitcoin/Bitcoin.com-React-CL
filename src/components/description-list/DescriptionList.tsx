@@ -54,7 +54,7 @@ export const DescriptionList = ({
       {items.map((item, index) => (
         <div key={item.id}>
           {/* Description List Item */}
-          <div className="flex items-start justify-center p-m w-full">
+          <div className="flex items-start justify-center py-m w-full">
             <div
               className={twMerge(
                 'flex gap-xs w-full',
@@ -64,7 +64,7 @@ export const DescriptionList = ({
               {/* Label */}
               <div
                 className={twMerge(
-                  "font-['Satoshi_Variable'] font-medium text-[14px] leading-none text-shades-black",
+                  "font-['Satoshi_Variable'] font-medium text-[14px] leading-none text-shades-black pt-[2px]",
                   isCompactLayout ? 'w-full' : 'w-[220px] flex-shrink-0'
                 )}
               >
@@ -88,7 +88,7 @@ export const DescriptionList = ({
 
           {/* Divider - don't show after last item */}
           {index < items.length - 1 && (
-            <div className="px-m">
+            <div className="">
               <div className="h-px w-full bg-shades-extra-light dark:bg-shades-light" />
             </div>
           )}

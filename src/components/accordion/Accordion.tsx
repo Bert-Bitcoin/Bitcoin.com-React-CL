@@ -14,7 +14,7 @@ const AccordionItem = ({ item, isExpanded, onToggle }: AccordionItemProps) => {
       <div
         className={twMerge(
           'flex items-start justify-between w-full',
-          'px-m py-m',
+          'py-m',
           isExpanded ? 'pb-xs' : ''
         )}
       >
@@ -112,7 +112,7 @@ export const Accordion = ({
 
           {/* Divider - don't show after last item */}
           {index < items.length - 1 && (
-            <div className="px-m">
+            <div className="">
               <div className="h-px w-full bg-shades-extra-light dark:bg-shades-light" />
             </div>
           )}
