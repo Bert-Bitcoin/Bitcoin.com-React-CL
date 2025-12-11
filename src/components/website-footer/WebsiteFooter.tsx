@@ -202,7 +202,7 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
         <div className='h-[27px] w-full bg-shades-white rounded-b-3xl'></div>
         <div
           className={twMerge(
-            'mx-auto flex w-full max-w-[1400px] flex-col gap-xl px-m py-xl md:px-xl md:py-xxl',
+            'mx-auto flex w-full max-w-[1304px] flex-col gap-xl px-m py-xl md:px-xl md:py-xxl',
             contentClassName
           )}
         >
