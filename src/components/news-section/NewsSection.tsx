@@ -138,7 +138,7 @@ export const NewsSection = ({
             onScroll={checkScrollButtons}
             className="overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-5 md:px-0 whitespace-nowrap md:whitespace-normal md:flex md:gap-l"
           >
-            <div className="w-5 min-w-5 md:w-0 md:min-w-0 inline-block md:display-none snap-start whitespace-normal align-top">&nbsp;</div>
+            <div className="w-5 min-w-5 md:w-0 md:min-w-0 inline-block md:-ml-l  snap-start whitespace-normal align-top"></div>
             {displayedArticles.map((article, index) => (
               <ArticleCard
                 key={article.id}
