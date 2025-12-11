@@ -153,3 +153,4 @@ These are meant to be used in code, not interactively adjusted:
 
 The error is now **completely resolved**. You can freely change any property in Storybook's controls panel without encountering the readonly property error. The fix is clean, follows Storybook best practices, and maintains full documentation of the component props.
 
+

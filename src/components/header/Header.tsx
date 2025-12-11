@@ -65,7 +65,7 @@ export const Header = ({
     <header className={twMerge('relative w-full bg-background transition-all duration-300', className)}>
       {/* Desktop Layout (lg breakpoint) */}
       <div className="hidden md:flex items-center justify-center px-xl py-l w-full">
-        <div className="flex items-center justify-between w-full max-w-[1344px] relative">
+        <div className="flex items-center justify-between w-full max-w-[1400px] relative">
           {/* Left: Logo */}
           <div className="w-[167px] h-[35px]">
             <Logo theme="auto" size="md" className="w-full h-full" />

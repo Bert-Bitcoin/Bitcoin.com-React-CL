@@ -172,6 +172,58 @@ Use semantic HTML and ARIA roles where applicable. Buttons must be real `<button
 
 ---
 
+## 🌐 Website Sections Components
+
+### Rule: website-sections-responsive-padding (STRICT)
+All "website sections" components must implement responsive vertical padding following these exact breakpoint rules:
+- **Mobile** (default): `py-[32px]`
+- **Small**: `sm:py-[40px]`
+- **Medium**: `md:py-[60px]`
+- **Large**: `lg:py-[80px]`
+
+Use the following responsive Tailwind classes:
+```tsx
+<section className="py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]">
+  {/* content */}
+</section>
+```
+
+### Rule: website-sections-h2-styling (STRICT)
+All H2 headings within "website sections" components must use the following exact styling:
+```tsx
+<h2 className="font-['Elza_Narrow'] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none">
+  Heading Text
+</h2>
+```
+
+This ensures consistent typography across all website sections with:
+- **Font**: Elza Narrow
+- **Mobile size**: 32px
+- **Tablet size**: 44px (md breakpoint)
+- **Desktop size**: 70px (lg breakpoint)
+- **Transform**: Uppercase
+- **Line height**: None (leading-none)
+
+### Rule: website-sections-content-width (STRICT)
+Content within "website sections" components must follow these width constraints:
+- **Maximum width**: `1400px` (use `max-w-[1400px]`)
+- **Minimum width**: Full width (use `w-full`)
+- **Centering**: Content should be horizontally centered using `mx-auto`
+
+Implementation pattern:
+```tsx
+<section className="py-m md:py-l">
+  <div className="w-full max-w-[1400px] mx-auto">
+    {/* section content */}
+  </div>
+</section>
+```
+
+### Rule: website-sections-naming (RECOMMENDED)
+Website section components should be named descriptively and stored in `src/components/` with a clear indication they are section components (e.g., `HeroSection`, `FeaturesSection`, `TestimonialsSection`, etc.).
+
+---
+
 ## 📚 Storybook Integration
 
 ### Rule: storybook-sync (REQUIRED)
@@ -283,3 +335,38 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
 5. Import and compose existing components rather than creating custom markup
 6. Document component composition patterns that users can learn from
 7. Ensure all supporting components use the same theming and token system
+
+### When Creating Website Sections:
+1. Create folder in `src/components/SectionName/` (e.g., `HeroSection`, `FeaturesSection`)
+2. Implement the required props structure:
+   ```tsx
+   interface SectionNameProps {
+     themeMode?: 'auto' | 'light' | 'dark';
+     // ... component-specific props
+   }
+   ```
+3. Apply the standard wrapper structure with correct padding:
+   ```tsx
+   <section 
+     className={cn(
+       'py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]', // Responsive vertical padding
+       themeMode === 'light' && 'light',
+       themeMode === 'dark' && 'dark'
+     )}
+   >
+     <div className="w-full max-w-[1400px] mx-auto">
+       {/* Section content goes here */}
+     </div>
+   </section>
+   ```
+4. Style all H2 headings with the standard section heading format:
+   ```tsx
+   <h2 className="font-['Elza_Narrow'] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none">
+     Section Heading
+   </h2>
+   ```
+5. Use semantic tokens for all colors and spacing within the content
+6. Create Storybook stories showing all three theme modes (auto, light, dark)
+7. Reuse existing components from the component library for section content
+8. Test responsive behavior at mobile, tablet, and desktop breakpoints
+9. Ensure accessibility with proper semantic HTML5 section elements

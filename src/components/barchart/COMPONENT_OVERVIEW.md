@@ -308,3 +308,4 @@ The BarChart component was built using the same architecture and patterns as Lin
 
 This ensures consistency across all chart components in the library!
 
+

@@ -142,3 +142,4 @@ If you were using the old variant system:
 
 The BarChart component now has a **cleaner, simpler API** with solid-color bars that are **highly visible** and easy to customize! 🎉
 
+

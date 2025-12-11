@@ -445,3 +445,4 @@ interface LineChartDataPoint {
 
 10. **Consider mobile**: Use responsive width for mobile layouts
 
+
