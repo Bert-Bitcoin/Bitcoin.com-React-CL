@@ -349,12 +349,12 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
    ```tsx
    <section 
      className={cn(
-       'py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]', // Responsive vertical padding
+       'px-m md:px-xl py-[32px] md:py-[60px] sm:py-[40px]', // Responsive vertical padding
        themeMode === 'light' && 'light',
        themeMode === 'dark' && 'dark'
      )}
    >
-     <div className="w-full max-w-[1400px] mx-auto">
+     <div className="w-full max-w-[1280px] mx-auto">
        {/* Section content goes here */}
      </div>
    </section>

@@ -88,7 +88,7 @@ export const NewsSection = ({
   return (
     <section
       className={twMerge(
-        'py-[32px] lg:py-[80px] md:py-[60px] sm:py-[40px]',
+        'px-m md:px-xl  py-[32px] md:py-[60px] sm:py-[40px]',
         styles.bg,
         themeMode === 'light' && 'light',
         themeMode === 'dark' && 'dark',
@@ -96,7 +96,7 @@ export const NewsSection = ({
       )}
     >
       {/* Header */}
-      <div className="w-full max-w-[1400px] mx-auto px-5 md:px-11 lg:px-20">
+      <div className="w-full max-w-[1240px] mx-auto ">
         <div className="flex flex-col gap-m">
           <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
             {heading}
@@ -131,14 +131,13 @@ export const NewsSection = ({
       </div>
 
       {/* Articles carousel - full width on mobile */}
-      <div className="relative py-l">
-        <div className="w-full max-w-[1400px] mx-auto md:px-11 lg:px-20">
+      <div className="relative py-l -ml-m -mr-m md:ml-0 md:mr-0">
+        <div className="w-full max-w-[1240px] mx-auto ">
           <div
             ref={scrollContainerRef}
             onScroll={checkScrollButtons}
-            className="overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-5 md:px-0 whitespace-nowrap md:whitespace-normal md:flex md:gap-l"
+            className="overflow-x-auto snap-x snap-mandatory scroll-pl-m  md:scroll-pl-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-5 md:px-0 whitespace-nowrap md:whitespace-normal md:flex md:gap-l"
           >
-            <div className="w-5 min-w-5 md:w-0 md:min-w-0 inline-block md:-ml-l  snap-start whitespace-normal align-top"></div>
             {displayedArticles.map((article, index) => (
               <ArticleCard
                 key={article.id}
@@ -154,7 +153,7 @@ export const NewsSection = ({
       </div>
 
       {/* Read More button */}
-      <div className="w-full max-w-[1400px] mx-auto px-5 md:px-11 lg:px-20">
+      <div className="w-full max-w-[1240px] mx-auto">
         {onReadMoreClick && (
           <Button
             variant={style === 'dark' ? 'default' : 'strong'}
