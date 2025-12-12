@@ -186,7 +186,7 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
           <img
             src={article.imageUrl}
             alt={article.imageAlt || article.title}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover rounded-[16px]"
           />
         ) : (
           <div className="absolute inset-0 w-full h-full bg-primary-50" />

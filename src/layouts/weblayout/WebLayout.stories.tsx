@@ -4,6 +4,18 @@ import { NewsSection } from '../../components/news-section/NewsSection';
 import type { NewsArticle } from '../../components/news-section/NewsSection.types';
 import { ArticlesSection } from '../../components/articles-section/ArticlesSection';
 import type { Article } from '../../components/articles-section/ArticlesSection.types';
+import { CardsSection } from '../../components/cards-section/CardsSection';
+import type { CardItem } from '../../components/cards-section/CardsSection.types';
+import { LinksSection } from '../../components/links-section/LinksSection';
+import type { LinkItem } from '../../components/links-section/LinksSection.types';
+import { 
+  BitcoinCreditCardsIllustration,
+  BitcoinGambleIllustration,
+  BitcoinHandsWalletIllustration,
+  BitcoinWalletNoteIllustration,
+  SwapFuelCoinsIllustration,
+  PoolBitcoinIllustration
+} from '../../components/mini-illustrations';
 
 const meta = {
   title: 'Layouts/Websites',
@@ -215,6 +227,115 @@ const sampleSimpleArticles: Article[] = [
   }
 ];
 
+// Sample cards data for CardsSection examples
+const sampleCards: CardItem[] = [
+  {
+    id: '1',
+    icon: <BitcoinCreditCardsIllustration className="w-full h-full" />,
+    title: 'Free Crypto Credit Cards',
+    description: 'Discover our range of crypto-backed credit cards with no annual fees and instant rewards.',
+    action: {
+      label: 'Learn More',
+      onClick: () => alert('Card 1 clicked!')
+    }
+  },
+  {
+    id: '2',
+    icon: <BitcoinGambleIllustration className="w-full h-full" />,
+    title: 'The Games You Love The Most',
+    description: 'Play your favorite games and earn crypto rewards while having fun.',
+    action: {
+      label: 'Start Playing',
+      onClick: () => alert('Card 2 clicked!')
+    }
+  },
+  {
+    id: '3',
+    icon: <BitcoinHandsWalletIllustration className="w-full h-full" />,
+    title: 'Sharing Is Caring',
+    description: 'Refer friends and family to earn rewards when they join our platform.',
+    action: {
+      label: 'Refer Now',
+      onClick: () => alert('Card 3 clicked!')
+    }
+  },
+  {
+    id: '4',
+    icon: <BitcoinWalletNoteIllustration className="w-full h-full" />,
+    title: 'Secure Your Assets',
+    description: 'Advanced security features to keep your crypto safe and protected.',
+    action: {
+      label: 'Learn More',
+      onClick: () => alert('Card 4 clicked!')
+    }
+  },
+  {
+    id: '5',
+    icon: <SwapFuelCoinsIllustration className="w-full h-full" />,
+    title: 'Instant Swaps',
+    description: 'Exchange cryptocurrencies instantly with the best rates and lowest fees.',
+    action: {
+      label: 'Swap Now',
+      onClick: () => alert('Card 5 clicked!')
+    }
+  },
+  {
+    id: '6',
+    icon: <PoolBitcoinIllustration className="w-full h-full" />,
+    title: 'Earn Passive Income',
+    description: 'Stake your crypto and earn rewards with competitive APY rates.',
+    action: {
+      label: 'Start Earning',
+      onClick: () => alert('Card 6 clicked!')
+    }
+  }
+];
+
+// Sample links data for LinksSection examples
+const sampleLinks: LinkItem[] = [
+  {
+    id: '1',
+    icon: <BitcoinCreditCardsIllustration className="w-full h-full" />,
+    title: 'Bitcoin Credit Cards',
+    description: 'A short article summary of an article and why you should read more about this exciting development.',
+    href: '#'
+  },
+  {
+    id: '2',
+    icon: <BitcoinGambleIllustration className="w-full h-full" />,
+    title: 'Gaming & Rewards',
+    description: 'Discover how to earn rewards while playing your favorite games with cryptocurrency.',
+    href: '#'
+  },
+  {
+    id: '3',
+    icon: <BitcoinHandsWalletIllustration className="w-full h-full" />,
+    title: 'Secure Wallets',
+    description: 'Learn about the best practices for keeping your cryptocurrency safe and secure.',
+    href: '#'
+  },
+  {
+    id: '4',
+    icon: <BitcoinWalletNoteIllustration className="w-full h-full" />,
+    title: 'Trading Guides',
+    description: 'Expert guides and tips for successful cryptocurrency trading strategies.',
+    href: '#'
+  },
+  {
+    id: '5',
+    icon: <SwapFuelCoinsIllustration className="w-full h-full" />,
+    title: 'Token Swaps',
+    description: 'Quick and easy token swapping with competitive rates and low fees.',
+    href: '#'
+  },
+  {
+    id: '6',
+    icon: <PoolBitcoinIllustration className="w-full h-full" />,
+    title: 'Liquidity Pools',
+    description: 'Earn passive income by providing liquidity to decentralized exchanges.',
+    href: '#'
+  }
+];
 
 /**
  * WebLayout with multiple sections components 
@@ -232,12 +353,23 @@ export const WithSections: Story = {
           onReadMoreClick={() => alert('Read more clicked!')}
         />
         <ArticlesSection
-          style="gray"
+          style="dark"
           heading="Featured Articles"
           description="Stay informed with the latest insights and analysis."
           articles={sampleSimpleArticles}
           maxArticles={6}
           onReadMoreClick={() => alert('View all articles!')}
+        />
+        <CardsSection
+          style="gray"
+          heading="Our Services"
+          cards={sampleCards}
+          layout={6}
+        />
+        <LinksSection
+          style="light"
+          heading="Useful Links"
+          links={sampleLinks}
         />
       </>
     )
