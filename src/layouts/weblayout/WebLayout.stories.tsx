@@ -2,6 +2,8 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { WebLayout } from './WebLayout';
 import { NewsSection } from '../../components/news-section/NewsSection';
 import type { NewsArticle } from '../../components/news-section/NewsSection.types';
+import { ArticlesSection } from '../../components/articles-section/ArticlesSection';
+import type { Article } from '../../components/articles-section/ArticlesSection.types';
 
 const meta = {
   title: 'Layouts/Websites',
@@ -161,20 +163,83 @@ export const Default: Story = {
   }
 };
 
+// Sample articles data for ArticlesSection examples
+const sampleSimpleArticles: Article[] = [
+  {
+    id: '1',
+    imageUrl: 'https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=420&fit=crop',
+    imageAlt: 'Bitcoin cryptocurrency',
+    title: 'A large Article title',
+    summary: 'A short article summary of an article and why you should read more',
+    href: '#'
+  },
+  {
+    id: '2',
+    imageUrl: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=420&fit=crop',
+    imageAlt: 'Ethereum blockchain',
+    title: 'A large Article title',
+    summary: 'A short article summary of an article and why you should read more',
+    href: '#'
+  },
+  {
+    id: '3',
+    imageUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=420&fit=crop',
+    imageAlt: 'Cryptocurrency trading',
+    title: 'A large Article title',
+    summary: 'A short article summary of an article and why you should read more',
+    href: '#'
+  },
+  {
+    id: '4',
+    imageUrl: 'https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&h=420&fit=crop',
+    imageAlt: 'DeFi concept',
+    title: 'A large Article title',
+    summary: 'A short article summary of an article and why you should read more',
+    href: '#'
+  },
+  {
+    id: '5',
+    imageUrl: 'https://images.unsplash.com/photo-1622630998477-20aa696ecb05?w=800&h=420&fit=crop',
+    imageAlt: 'NFT artwork',
+    title: 'A large Article title',
+    summary: 'A short article summary of an article and why you should read more',
+    href: '#'
+  },
+  {
+    id: '6',
+    imageUrl: 'https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&h=420&fit=crop',
+    imageAlt: 'Blockchain technology',
+    title: 'A large Article title',
+    summary: 'A short article summary of an article and why you should read more',
+    href: '#'
+  }
+];
+
+
 /**
- * WebLayout with Section components 
+ * WebLayout with multiple sections components 
  */
-export const WithNewsSection: Story = {
+export const WithSections: Story = {
   args: {
     children: (
-      <NewsSection
-        style="light"
-        heading="Trending News"
-        description="Never miss an update—keep up with daily crypto headlines and analysis."
-        articles={sampleArticles}
-        maxArticles={8}
-        onReadMoreClick={() => alert('Read more clicked!')}
-      />
+      <>
+        <NewsSection
+          style="light"
+          heading="Trending News"
+          description="Never miss an update—keep up with daily crypto headlines and analysis."
+          articles={sampleArticles}
+          maxArticles={8}
+          onReadMoreClick={() => alert('Read more clicked!')}
+        />
+        <ArticlesSection
+          style="gray"
+          heading="Featured Articles"
+          description="Stay informed with the latest insights and analysis."
+          articles={sampleSimpleArticles}
+          maxArticles={6}
+          onReadMoreClick={() => alert('View all articles!')}
+        />
+      </>
     )
   }
 };

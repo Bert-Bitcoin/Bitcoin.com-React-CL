@@ -206,14 +206,14 @@ This ensures consistent typography across all website sections with:
 
 ### Rule: website-sections-content-width (STRICT)
 Content within "website sections" components must follow these width constraints:
-- **Maximum width**: `1400px` (use `max-w-[1400px]`)
+- **Maximum width**: `1240px` (use `max-w-[1240px]`)
 - **Minimum width**: Full width (use `w-full`)
 - **Centering**: Content should be horizontally centered using `mx-auto`
 
 Implementation pattern:
 ```tsx
 <section className="py-m md:py-l">
-  <div className="w-full max-w-[1400px] mx-auto">
+  <div className="w-full max-w-[1240px] mx-auto">
     {/* section content */}
   </div>
 </section>

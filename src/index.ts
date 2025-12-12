@@ -35,6 +35,7 @@ export * from './components/sidebar';
 export * from './components/slider';
 export * from './components/header';
 export * from './components/news-section';
+export * from './components/articles-section';
 export * from './components/website-footer';
 export * from './components/window';
 export * from './layouts/webapplayout';

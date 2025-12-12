@@ -4,10 +4,9 @@ import { useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Button } from '../button';
 import { Icon } from '../icon';
-import { Pill } from '../pill';
-import type { NewsArticle, NewsSectionProps, NewsSectionStyle } from './NewsSection.types';
+import type { Article, ArticlesSectionProps, ArticlesSectionStyle } from './ArticlesSection.types';
 
-const styleClasses: Record<NewsSectionStyle, { bg: string; heading: string; description: string }> = {
+const styleClasses: Record<ArticlesSectionStyle, { bg: string; heading: string; description: string }> = {
   light: {
     bg: 'bg-shades-white',
     heading: 'text-shades-black',
@@ -25,7 +24,7 @@ const styleClasses: Record<NewsSectionStyle, { bg: string; heading: string; desc
   }
 };
 
-const articleTextClasses: Record<NewsSectionStyle, { title: string; summary: string }> = {
+const articleTextClasses: Record<ArticlesSectionStyle, { title: string; summary: string }> = {
   light: {
     title: 'text-shades-black',
     summary: 'text-shades-semi-dark'
@@ -40,17 +39,17 @@ const articleTextClasses: Record<NewsSectionStyle, { title: string; summary: str
   }
 };
 
-export const NewsSection = ({
+export const ArticlesSection = ({
   themeMode = 'auto',
   style = 'light',
-  heading = 'Trending News',
-  description = 'Never miss an update—keep up with daily crypto headlines and analysis.',
+  heading = 'Articles',
+  description = 'Never miss an update—keep up with daily headlines and analysis.',
   articles = [],
-  maxArticles = 8,
+  maxArticles = 6,
   readMoreText = 'Read More',
   onReadMoreClick,
   className
-}: NewsSectionProps) => {
+}: ArticlesSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
@@ -72,7 +71,7 @@ export const NewsSection = ({
     const container = scrollContainerRef.current;
     if (!container) return;
 
-    const scrollAmount = container.clientWidth / 4; // Approximate width of one article on desktop
+    const scrollAmount = container.clientWidth / 3; // Approximate width of one article on desktop (3 articles)
     const newScrollLeft = direction === 'left' 
       ? container.scrollLeft - scrollAmount 
       : container.scrollLeft + scrollAmount;
@@ -88,7 +87,7 @@ export const NewsSection = ({
   return (
     <section
       className={twMerge(
-        'px-m md:px-xl  py-[32px] md:py-[60px] sm:py-[40px]',
+        'px-m md:px-xl py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
         styles.bg,
         themeMode === 'light' && 'light',
         themeMode === 'dark' && 'dark',
@@ -96,14 +95,14 @@ export const NewsSection = ({
       )}
     >
       {/* Header */}
-      <div className="w-full max-w-[1240px] mx-auto ">
+      <div className="w-full max-w-[1240px] mx-auto">
         <div className="flex flex-col gap-m">
           <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
             {heading}
           </h2>
 
           <div className="flex items-end justify-between gap-m">
-            <p className={twMerge('font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[24px] leading-tight max-w-[800px]', styles.description)}>
+            <p className={twMerge('font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[26px] leading-tight max-w-[800px]', styles.description)}>
               {description}
             </p>
 
@@ -132,11 +131,11 @@ export const NewsSection = ({
 
       {/* Articles carousel - full width on mobile */}
       <div className="relative py-l -ml-m -mr-m md:ml-0 md:mr-0">
-        <div className="w-full max-w-[1240px] mx-auto ">
+        <div className="w-full max-w-[1240px] mx-auto">
           <div
             ref={scrollContainerRef}
             onScroll={checkScrollButtons}
-            className="overflow-x-auto snap-x snap-mandatory scroll-pl-m  md:scroll-pl-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-5 md:px-0 whitespace-nowrap md:whitespace-normal md:flex md:gap-l"
+            className="overflow-x-auto snap-x snap-mandatory scroll-pl-m md:scroll-pl-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden px-5 md:px-0 whitespace-nowrap md:whitespace-normal md:flex md:gap-l"
           >
             {displayedArticles.map((article, index) => (
               <ArticleCard
@@ -168,11 +167,11 @@ export const NewsSection = ({
   );
 };
 
-NewsSection.displayName = 'NewsSection';
+ArticlesSection.displayName = 'ArticlesSection';
 
 interface ArticleCardProps {
-  article: NewsArticle;
-  style: NewsSectionStyle;
+  article: Article;
+  style: ArticlesSectionStyle;
   textStyles: { title: string; summary: string };
   isFirst?: boolean;
   isLast?: boolean;
@@ -181,36 +180,22 @@ interface ArticleCardProps {
 const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCardProps) => {
   const cardContent = (
     <>
-      {/* Article image with badges */}
-      <div className="bg-shades-almost-black rounded-[16px] p-m flex flex-col gap-m overflow-hidden mb-l md:mb-0">
-        <div className="relative w-full aspect-[1200/630] rounded-xs overflow-hidden">
+      {/* Article image placeholder */}
+      <div className="relative w-full aspect-[450.667/280] rounded-s overflow-hidden mb-m">
+        {article.imageUrl ? (
           <img
             src={article.imageUrl}
             alt={article.imageAlt || article.title}
-            className="absolute inset-0 w-full h-full object-cover rounded-[8px]"
+            className="absolute inset-0 w-full h-full object-cover"
           />
-        </div>
-
-        {/* Badges */}
-        {(article.badge || article.timestamp) && (
-          <div className="flex flex-wrap gap-s">
-            {article.badge && (
-              <Pill type="green" style="fill">
-                {article.badge}
-              </Pill>
-            )}
-            {article.timestamp && (
-              <Pill type="default" style="outline" className="border-shades-mid text-shades-semi-light">
-                {article.timestamp}
-              </Pill>
-            )}
-          </div>
+        ) : (
+          <div className="absolute inset-0 w-full h-full bg-primary-50" />
         )}
       </div>
 
       {/* Article text */}
       <div className="flex flex-col gap-xs">
-        <h3 className={twMerge('font-["Satoshi_Variable"] font-bold text-xl leading-tight', textStyles.title)}>
+        <h3 className={twMerge('font-["Satoshi_Variable"] font-bold text-xl leading-normal', textStyles.title)}>
           {article.title}
         </h3>
         <p className={twMerge('font-["Satoshi_Variable"] font-medium text-sm leading-normal', textStyles.summary)}>
@@ -221,7 +206,7 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
   );
 
   const cardClasses = twMerge(
-    'inline-block md:flex-none w-[280px] md:w-[calc((100%-48px)/3)] lg:w-[calc((100%-72px)/4)] align-top md:flex md:flex-col gap-m snap-start whitespace-normal',
+    'inline-block md:flex-none w-[280px] md:w-[calc((100%-48px)/3)] align-top md:flex md:flex-col gap-m snap-start whitespace-normal',
     !isFirst && 'ml-l md:ml-0',
     isLast && 'mr-0'
   );
