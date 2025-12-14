@@ -8,6 +8,8 @@ import { CardsSection } from '../../components/cards-section/CardsSection';
 import type { CardItem } from '../../components/cards-section/CardsSection.types';
 import { LinksSection } from '../../components/links-section/LinksSection';
 import type { LinkItem } from '../../components/links-section/LinksSection.types';
+import { FAQSection } from '../../components/faq-section/FAQSection';
+import type { AccordionItemData } from '../../components/accordion';
 import { 
   BitcoinCreditCardsIllustration,
   BitcoinGambleIllustration,
@@ -337,6 +339,34 @@ const sampleLinks: LinkItem[] = [
   }
 ];
 
+// Sample FAQ data
+const sampleFAQItems: AccordionItemData[] = [
+  {
+    id: '1',
+    title: 'Buy Bitcoin',
+    content:
+      'Bitcoin tends to crash when BOTH unemployment spikes AND yields jump, creating a "risk-off" environment. Historical examples include the COVID shock (March 2020: UNRATE hit 14.8%) and Fed tightening cycle (Oct 2022: DGS10 peaked at 4.2%). The data is updated monthly for UNRATE and daily for DGS10, sourced from Federal Reserve Economic Data (FRED).'
+  },
+  {
+    id: '2',
+    title: 'Self-Custody',
+    content:
+      'Self-custody means you control your own Bitcoin private keys. This gives you complete control over your funds without relying on third-party custodians. We provide secure wallet solutions that make self-custody easy and safe.'
+  },
+  {
+    id: '3',
+    title: 'Earn Rewards',
+    content:
+      'Earn rewards by staking your cryptocurrency, participating in liquidity pools, or using our Bitcoin credit card. Rewards are automatically credited to your account and can be withdrawn at any time.'
+  },
+  {
+    id: '4',
+    title: 'Swap Crypto',
+    content:
+      'Our crypto swap feature allows you to instantly exchange between different cryptocurrencies at competitive rates. Swaps are processed on-chain with transparent fees and no hidden charges.'
+  }
+];
+
 /**
  * WebLayout with multiple sections components 
  */
@@ -367,9 +397,15 @@ export const WithSections: Story = {
           layout={6}
         />
         <LinksSection
-          style="light"
+          style="dark"
           heading="Useful Links"
           links={sampleLinks}
+        />
+        <FAQSection
+          style="light"
+          heading="FAQ"
+          items={sampleFAQItems}
+          defaultExpanded={['1']}
         />
       </>
     )

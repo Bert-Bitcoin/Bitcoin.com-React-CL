@@ -12,6 +12,11 @@ export interface AccordionProps {
    */
   items: AccordionItemData[];
   /**
+   * Visual style variant
+   * @default 'default'
+   */
+  variant?: 'default' | 'gray' | 'dark';
+  /**
    * Optional array of initially expanded item IDs
    */
   defaultExpanded?: string[];
@@ -39,5 +44,6 @@ export interface AccordionItemProps {
   item: AccordionItemData;
   isExpanded: boolean;
   onToggle: () => void;
+  variant?: 'default' | 'gray' | 'dark';
 }
 

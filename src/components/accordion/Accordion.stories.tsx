@@ -21,6 +21,11 @@ const meta = {
       description: 'Array of accordion items to display',
       control: { type: 'object' }
     },
+    variant: {
+      description: 'Visual style variant',
+      control: { type: 'select' },
+      options: ['default', 'gray', 'dark']
+    },
     defaultExpanded: {
       description: 'Array of initially expanded item IDs',
       control: { type: 'object' }
@@ -186,5 +191,71 @@ export const WithOnChange: Story = {
       console.log('Expanded items:', expandedIds);
     }
   }
+};
+
+/**
+ * Gray variant with light gray background
+ */
+export const GrayVariant: Story = {
+  args: {
+    items: sampleItems,
+    variant: 'gray',
+    defaultExpanded: ['1'],
+    allowMultiple: true,
+    allowToggle: true
+  }
+};
+
+/**
+ * Dark variant with black background
+ */
+export const DarkVariant: Story = {
+  args: {
+    items: sampleItems,
+    variant: 'dark',
+    defaultExpanded: ['1'],
+    allowMultiple: true,
+    allowToggle: true
+  }
+};
+
+/**
+ * All three variants side by side for comparison
+ */
+export const VariantComparison: Story = {
+  render: () => (
+    <div className="flex flex-col gap-8">
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Default Variant</h3>
+        <Accordion
+          items={sampleItems}
+          variant="default"
+          defaultExpanded={['1']}
+          allowMultiple={true}
+          allowToggle={true}
+        />
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Gray Variant</h3>
+        <Accordion
+          items={sampleItems}
+          variant="gray"
+          defaultExpanded={['1']}
+          allowMultiple={true}
+          allowToggle={true}
+        />
+      </div>
+      <div>
+        <h3 className="text-lg font-semibold mb-4">Dark Variant</h3>
+        <Accordion
+          items={sampleItems}
+          variant="dark"
+          defaultExpanded={['1']}
+          allowMultiple={true}
+          allowToggle={true}
+        />
+      </div>
+    </div>
+  )
 };
 

@@ -101,22 +101,22 @@ const FeatureItem = ({ feature, imagePosition, styles, isLast }: FeatureItemProp
   return (
     <div 
       className={twMerge(
-        'flex flex-col gap-m md:flex-row md:gap-xxl md:items-center w-full md:w-[980px] max-w-[980px] mx-auto',
+        'flex flex-col gap-m md:flex-row md:gap-xxl md:items-center w-full max-w-[980px] mx-auto',
         !isImageLeft && 'md:flex-row-reverse',
         !isLast && 'mb-xxl md:mb-[80px]'
       )}
     >
       {/* Image Holder Container */}
-      <div className="flex-1 min-w-0">
+      <div className="flex-1 min-w-0 pt-[24px] md:py-[44px]">
         <div 
           className={twMerge(
-            'relative w-full h-[200px] md:h-[300px] rounded-[24px] overflow-hidden',
+            'relative w-full h-[200px] md:h-[300px] rounded-[24px]',
             styles.imageBg
           )}
         >
           {/* Image Content Slot */}
           {feature.imageElement && (
-            <div className="absolute inset-0 flex items-center justify-center p-xl md:p-xxl">
+            <div className="absolute h-[256px] md:h-[384px] -top-[56px] md:-top-[84px] inset-0 flex items-center justify-center p-xl md:p-xxl">
               {feature.imageElement}
             </div>
           )}
@@ -138,7 +138,7 @@ const FeatureItem = ({ feature, imagePosition, styles, isLast }: FeatureItemProp
         </h3>
         
         <p className={twMerge(
-          'font-["Satoshi_Variable"] font-medium text-base md:text-lg leading-snug',
+          'font-["Satoshi_Variable"] font-medium text-base md:text-[18px]',
           styles.featureDescription
         )}>
           {feature.description}

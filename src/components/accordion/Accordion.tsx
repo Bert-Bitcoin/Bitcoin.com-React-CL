@@ -7,7 +7,11 @@ import type { AccordionItemProps, AccordionProps } from './Accordion.types';
 /**
  * AccordionItem - Individual accordion item component
  */
-const AccordionItem = ({ item, isExpanded, onToggle }: AccordionItemProps) => {
+const AccordionItem = ({ item, isExpanded, onToggle, variant = 'default' }: AccordionItemProps) => {
+  // Variant-specific text colors
+  const titleColorClass = variant === 'dark' ? 'text-shades-white' : 'text-shades-black';
+  const contentColorClass = variant === 'dark' ? 'text-shades-mid' : 'text-shades-dark';
+
   return (
     <div className="w-full max-w-full  min-w-full ">
       {/* Accordion Item */}
@@ -21,7 +25,10 @@ const AccordionItem = ({ item, isExpanded, onToggle }: AccordionItemProps) => {
         <div className="flex-1 flex flex-col gap-xs min-w-0">
           {/* Title */}
           <div
-            className="font-['Satoshi_Variable'] font-medium text-[16px] leading-normal text-shades-black cursor-pointer select-none"
+            className={twMerge(
+              "font-['Satoshi_Variable'] font-medium text-[16px] leading-normal cursor-pointer select-none",
+              titleColorClass
+            )}
             onClick={onToggle}
             role="button"
             tabIndex={0}
@@ -37,7 +44,10 @@ const AccordionItem = ({ item, isExpanded, onToggle }: AccordionItemProps) => {
 
           {/* Content - only show when expanded */}
           {isExpanded && (
-            <div className="font-['Satoshi_Variable'] font-medium text-[12px] mb-3 leading-normal text-shades-dark">
+            <div className={twMerge(
+              "font-['Satoshi_Variable'] font-medium text-[12px] mb-3 leading-normal max-w-[600px]",
+              contentColorClass
+            )}>
               {item.content}
             </div>
           )}
@@ -66,6 +76,7 @@ const AccordionItem = ({ item, isExpanded, onToggle }: AccordionItemProps) => {
  */
 export const Accordion = ({
   items,
+  variant = 'default',
   defaultExpanded = [],
   allowMultiple = true,
   allowToggle = true,
@@ -95,10 +106,22 @@ export const Accordion = ({
     onChange?.(newExpandedIds);
   };
 
+  // Variant-specific background and divider colors
+  const backgroundClass = 
+    variant === 'gray' ? 'bg-shades-extra-light' :
+    variant === 'dark' ? 'bg-shades-black' :
+    '';
+
+  const dividerColorClass = 
+    variant === 'gray' ? 'bg-shades-semi-light' :
+    variant === 'dark' ? 'bg-shades-semi-dark' :
+    'bg-shades-extra-light';
+
   return (
     <div
       className={twMerge(
         'flex flex-col w-full max-w-full min-w-full',
+        backgroundClass,
         className
       )}
     >
@@ -108,12 +131,13 @@ export const Accordion = ({
             item={item}
             isExpanded={expandedIds.includes(item.id)}
             onToggle={() => handleToggle(item.id)}
+            variant={variant}
           />
 
           {/* Divider - don't show after last item */}
           {index < items.length - 1 && (
             <div className="">
-              <div className="h-px w-full bg-shades-extra-light dark:bg-shades-light" />
+              <div className={twMerge('h-px w-full', dividerColorClass)} />
             </div>
           )}
         </div>
