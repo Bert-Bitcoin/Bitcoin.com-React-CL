@@ -5,6 +5,7 @@ import type { LinkItem, LinksSectionProps, LinksSectionStyle } from './LinksSect
 const styleClasses: Record<LinksSectionStyle, { 
   bg: string; 
   heading: string; 
+  description: string;
   linkCard: string; 
   iconHolder: string;
   linkTitle: string; 
@@ -14,6 +15,7 @@ const styleClasses: Record<LinksSectionStyle, {
   light: {
     bg: 'bg-shades-white',
     heading: 'text-shades-black',
+    description: 'text-shades-semi-dark',
     linkCard: 'bg-shades-extra-light',
     iconHolder: 'bg-shades-white',
     linkTitle: 'text-shades-black',
@@ -23,6 +25,7 @@ const styleClasses: Record<LinksSectionStyle, {
   gray: {
     bg: 'bg-shades-extra-light',
     heading: 'text-shades-black',
+    description: 'text-shades-semi-dark',
     linkCard: 'bg-shades-white',
     iconHolder: 'bg-shades-extra-light',
     linkTitle: 'text-shades-black',
@@ -32,6 +35,7 @@ const styleClasses: Record<LinksSectionStyle, {
   dark: {
     bg: 'bg-shades-black dark:bg-shades-white',
     heading: 'text-shades-white dark:text-shades-black',
+    description: 'text-shades-semi-light dark:text-shades-semi-dark',
     linkCard: 'bg-shades-dark dark:bg-shades-light',
     iconHolder: 'bg-shades-semi-dark dark:bg-shades-semi-light',
     linkTitle: 'text-shades-white dark:text-shades-black',
@@ -44,6 +48,7 @@ export const LinksSection = ({
   themeMode = 'auto',
   style = 'light',
   heading = 'Links',
+  description,
   links = [],
   className
 }: LinksSectionProps) => {
@@ -77,13 +82,22 @@ export const LinksSection = ({
     >
       <div className="w-full max-w-[1240px] mx-auto">
         {/* Section Heading */}
-        <div className="flex flex-col mb-l">
+        <div className="flex flex-col gap-m mb-l">
           <h2 className={twMerge(
             'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none',
             styles.heading
           )}>
             {heading}
           </h2>
+          
+          {description && (
+            <p className={twMerge(
+              'font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[24px] leading-tight max-w-[800px]',
+              styles.description
+            )}>
+              {description}
+            </p>
+          )}
         </div>
 
         {/* Links Grid */}
@@ -123,15 +137,17 @@ const LinkCard = ({ link, styles }: LinkCardProps) => {
   const cardContent = (
     <>
       <div className="flex flex-row gap-m md:gap-l items-start rounded-[24px]">
-        {/* Icon Holder */}
-        <div className={twMerge(
-          'flex-shrink-0 flex items-center justify-center rounded-[8px] md:rounded-[16px] w-[80px] h-[80px] md:w-[100px] md:h-[100px] ',
-          styles.iconHolder
-        )}>
-          <div className="w-[50px] h-[50px] md:w-[65px] md:h-[65px] ">
-            {link.icon}
+        {/* Icon Holder (optional) */}
+        {link.icon && (
+          <div className={twMerge(
+            'flex-shrink-0 flex items-center justify-center rounded-[8px] md:rounded-[16px] w-[80px] h-[80px] md:w-[100px] md:h-[100px] ',
+            styles.iconHolder
+          )}>
+            <div className="w-[50px] h-[50px] md:w-[65px] md:h-[65px] ">
+              {link.icon}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Content */}
         <div className="flex flex-col gap-s flex-1">

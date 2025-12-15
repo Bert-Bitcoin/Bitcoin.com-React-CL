@@ -33,7 +33,9 @@ export const HighlightSection = ({
   themeMode = 'auto',
   style = 'light',
   heading = 'Your all-in-one Bitcoin platform',
-  description = 'Browse and compare businesses and services that accept cryptocurrency, featuring expert reviews and real user feedback to help you make informed choices.',
+  description,
+  headerElement,
+  footerElement,
   buttonText = 'Learn More',
   buttonHref,
   onButtonClick,
@@ -97,6 +99,13 @@ export const HighlightSection = ({
               'flex-1 min-w-0 flex flex-col gap-m'
             )}
           >
+            {/* Header Element (custom HTML above title) */}
+            {headerElement && (
+              <div>
+                {headerElement}
+              </div>
+            )}
+
             <h2 className={twMerge(
               'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] lg:leading-[0.94] uppercase leading-none',
               styles.heading
@@ -104,12 +113,15 @@ export const HighlightSection = ({
               {heading}
             </h2>
             
-            <p className={twMerge(
-              'font-["Satoshi_Variable"] font-medium text-base md:text-[18px] lg:text-[24px] lg:leading-[1.2]',
-              styles.description
-            )}>
-              {description}
-            </p>
+            {/* Description (optional) */}
+            {description && (
+              <p className={twMerge(
+                'font-["Satoshi_Variable"] font-medium text-base md:text-[18px] lg:text-[24px] lg:leading-[1.2]',
+                styles.description
+              )}>
+                {description}
+              </p>
+            )}
 
             {/* CTA Section */}
             <div className="mt-xs">
@@ -133,6 +145,13 @@ export const HighlightSection = ({
                 </Button>
               )}
             </div>
+
+            {/* Footer Element (custom HTML under buttons) */}
+            {footerElement && (
+              <div>
+                {footerElement}
+              </div>
+            )}
           </div>
         </div>
       </div>

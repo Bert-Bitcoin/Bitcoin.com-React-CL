@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import { Header } from './Header';
+import { Button } from '../button';
 
 const meta: Meta<typeof Header> = {
   title: 'Sections/Website/Header',
@@ -201,3 +202,125 @@ export const EightItems: Story = {
   }
 };
 
+export const CustomActionButton: Story = {
+  name: 'Custom Action Button',
+  args: {
+    style: 'light',
+    menuItems: [
+      { label: 'Home', href: '/', active: true },
+      { label: 'Products', href: '/products' },
+      { label: 'Pricing', href: '/pricing' },
+      { label: 'Learn', href: '/learn' }
+    ],
+    customActionButton: (
+      <div className="flex items-center gap-xs">
+        <Button variant="primary" size="md">
+          Sign In
+        </Button>
+        <Button variant="secondary" size="md">
+          Sign Up
+        </Button>
+      </div>
+    )
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop'
+    },
+    docs: {
+      description: {
+        story: 'Replace the default action button with custom HTML/React components for more flexibility. This custom button will be used on desktop, tablet, and mobile menu.'
+      }
+    }
+  }
+};
+
+export const CustomLogo: Story = {
+  name: 'Custom Logo (SVG Data URI)',
+  args: {
+    style: 'light',
+    menuItems: [
+      { label: 'Home', href: '/', active: true },
+      { label: 'Products', href: '/products' },
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' }
+    ],
+    actionLabel: 'Get Started',
+    customLogo: {
+      light: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="167" height="35" viewBox="0 0 167 35"%3E%3Crect width="167" height="35" rx="4" fill="%234A90E2"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold"%3ECustom Logo Light%3C/text%3E%3C/svg%3E',
+      dark: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="167" height="35" viewBox="0 0 167 35"%3E%3Crect width="167" height="35" rx="4" fill="%232C3E50"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold"%3ECustom Logo Dark%3C/text%3E%3C/svg%3E'
+    }
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop'
+    },
+    docs: {
+      description: {
+        story: 'Replace the default logo with custom logo images using SVG data URIs. This example shows inline SVG logos that will always work.'
+      }
+    }
+  }
+};
+
+export const CustomLogoWithFiles: Story = {
+  name: 'Custom Logo (Image Files)',
+  args: {
+    style: 'light',
+    menuItems: [
+      { label: 'Home', href: '/', active: true },
+      { label: 'Products', href: '/products' },
+      { label: 'About', href: '/about' },
+      { label: 'Contact', href: '/contact' }
+    ],
+    actionLabel: 'Get Started',
+    customLogo: {
+      light: '/src/images/Logo-Light.svg',
+      dark: '/src/images/Logo-Dark.svg'
+    }
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop'
+    },
+    docs: {
+      description: {
+        story: 'Example using actual logo image files from the project. In production, you would import these or use public URLs.'
+      }
+    }
+  }
+};
+
+export const FullyCustomized: Story = {
+  name: 'Fully Customized',
+  args: {
+    style: 'light',
+    menuItems: [
+      { label: 'Dashboard', href: '/dashboard', active: true },
+      { label: 'Wallet', href: '/wallet' },
+      { label: 'Exchange', href: '/exchange' },
+      { label: 'Settings', href: '/settings' }
+    ],
+    customActionButton: (
+      <div className="flex items-center gap-xs">
+        <div className="w-[35px] h-[35px] rounded-full bg-primary-20 flex items-center justify-center">
+          <span className="text-primary-100 font-bold text-[14px]">JD</span>
+        </div>
+      </div>
+    ),
+    customLogo: {
+      light: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="167" height="35" viewBox="0 0 167 35"%3E%3Crect width="167" height="35" rx="4" fill="%2300B8D4"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold"%3EMyApp Light%3C/text%3E%3C/svg%3E',
+      dark: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="167" height="35" viewBox="0 0 167 35"%3E%3Crect width="167" height="35" rx="4" fill="%231A1A1A"/%3E%3Ctext x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial" font-size="14" font-weight="bold"%3EMyApp Dark%3C/text%3E%3C/svg%3E'
+    }
+  },
+  parameters: {
+    viewport: {
+      defaultViewport: 'desktop'
+    },
+    docs: {
+      description: {
+        story: 'Example combining both custom logo and custom action button for maximum flexibility.'
+      }
+    }
+  }
+};

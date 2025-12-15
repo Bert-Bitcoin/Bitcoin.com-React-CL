@@ -23,14 +23,20 @@ export interface HeroSectionProps {
   layout?: HeroSectionLayout;
   
   /**
+   * Custom HTML/React content to display above the main heading
+   * Use this for badges, labels, or any content that should appear before the title
+   */
+  aboveTitle?: ReactNode;
+  
+  /**
    * Main heading text (will be displayed in uppercase with Elza Narrow font)
    */
   heading: string;
   
   /**
-   * Subheading or description text
+   * Subheading or description text (optional)
    */
-  description: string;
+  description?: string;
   
   /**
    * Text for the primary CTA button
@@ -75,6 +81,12 @@ export interface HeroSectionProps {
    * When provided, primaryButtonText, secondaryButtonText, and click handlers are ignored
    */
   customActions?: ReactNode;
+  
+  /**
+   * Custom HTML/React content to display below the action buttons
+   * Use this for additional information, disclaimers, trust signals, or supplementary content
+   */
+  belowActions?: ReactNode;
   
   /**
    * Additional CSS classes

@@ -65,7 +65,7 @@ function MyPage() {
 | `themeMode` | `'auto' \| 'light' \| 'dark'` | `'auto'` | Theme mode for the section |
 | `style` | `'light' \| 'gray' \| 'dark'` | `'light'` | Visual style variant |
 | `heading` | `string` | `'Articles'` | Section heading text |
-| `description` | `string` | `'Never miss an update...'` | Section description/subtitle |
+| `description` | `string` | `undefined` | Optional section description/subtitle |
 | `articles` | `Article[]` | `[]` | Array of articles to display |
 | `maxArticles` | `number` | `6` | Maximum number of articles to show |
 | `readMoreText` | `string` | `'Read More'` | Text for the read more button |
@@ -109,18 +109,26 @@ Black background with white text. High contrast for dramatic effect.
 
 ## Responsive Behavior
 
-### Desktop (≥1024px)
+### Header Layout
+- **With description**: Heading appears above, description and navigation buttons side-by-side below
+- **Without description**: 
+  - **Desktop/Tablet (≥768px)**: Heading on the left, navigation buttons on the right (same row)
+  - **Mobile (<768px)**: Heading stacked above (buttons hidden on mobile)
+
+### Article Carousel
+
+#### Desktop (≥1024px)
 - Shows 3 articles at a time
 - Navigation arrows visible
 - Articles width: `calc((100% - 48px) / 3)`
 - Horizontal scroll with smooth navigation
 
-### Tablet (768px - 1023px)
+#### Tablet (768px - 1023px)
 - Shows 3 articles at a time
 - Navigation arrows visible
 - Adjusted spacing and typography
 
-### Mobile (<768px)
+#### Mobile (<768px)
 - Horizontal scroll with snap points
 - Full-width scroll container with padding
 - Navigation arrows hidden
@@ -154,6 +162,15 @@ Black background with white text. High contrast for dramatic effect.
   style="light"
   articles={articles}
   maxArticles={6}
+/>
+```
+
+### Without Description
+```tsx
+<ArticlesSection
+  heading="Featured Articles"
+  articles={articles}
+  onReadMoreClick={() => navigate('/articles')}
 />
 ```
 
@@ -192,3 +209,4 @@ The component uses semantic design tokens from the project's design system:
 - Missing images display blue placeholder (`bg-primary-50`)
 - Component is fully responsive and mobile-friendly
 - Maximum width constraint: `1400px` (centered with `mx-auto`)
+

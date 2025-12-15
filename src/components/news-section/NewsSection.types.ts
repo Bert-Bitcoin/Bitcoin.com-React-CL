@@ -56,8 +56,7 @@ export interface NewsSectionProps {
    */
   heading?: string;
   /**
-   * Section description/subtitle
-   * @default 'Never miss an update—keep up with daily crypto headlines and analysis.'
+   * Section description/subtitle (optional)
    */
   description?: string;
   /**
@@ -80,7 +79,12 @@ export interface NewsSectionProps {
    */
   onReadMoreClick?: () => void;
   /**
+   * Custom content to render below the Read More button
+   */
+  customContent?: React.ReactNode;
+  /**
    * Custom className for additional styling
    */
   className?: string;
 }
+

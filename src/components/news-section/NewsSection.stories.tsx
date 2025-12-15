@@ -317,3 +317,76 @@ export const AllStyles: Story = {
     </div>
   )
 };
+
+/**
+ * Section without description text
+ */
+export const WithoutDescription: Story = {
+  args: {
+    style: 'light',
+    heading: 'Trending News',
+    articles: sampleArticles,
+    maxArticles: 8,
+    onReadMoreClick: () => alert('Read more clicked!')
+  }
+};
+
+/**
+ * Section with custom content below the button
+ */
+export const WithCustomContent: Story = {
+  args: {
+    style: 'gray',
+    heading: 'Latest Updates',
+    description: 'Stay informed with the latest developments in the cryptocurrency world.',
+    articles: sampleArticles,
+    maxArticles: 8,
+    onReadMoreClick: () => alert('Read more clicked!'),
+    customContent: (
+      <div className="mt-m text-center">
+        <p className="font-['Satoshi_Variable'] text-sm text-shades-semi-dark">
+          Want to receive daily news updates?{' '}
+          <a href="#" className="text-primary-100 hover:underline font-bold">
+            Subscribe to our newsletter
+          </a>
+        </p>
+      </div>
+    )
+  }
+};
+
+/**
+ * Section without button but with custom content
+ */
+export const CustomContentOnly: Story = {
+  args: {
+    style: 'light',
+    heading: 'Featured Articles',
+    description: 'Hand-picked articles from our editorial team.',
+    articles: sampleArticles.slice(0, 4),
+    maxArticles: 4,
+    customContent: (
+      <div className="flex flex-col gap-s items-center justify-center text-center">
+        <p className="font-['Satoshi_Variable'] text-base text-shades-semi-dark">
+          Looking for more crypto insights?
+        </p>
+        <div className="flex gap-m">
+          <a 
+            href="#" 
+            className="font-['Satoshi_Variable'] font-bold text-primary-100 hover:underline"
+          >
+            View Archive
+          </a>
+          <span className="text-shades-mid">•</span>
+          <a 
+            href="#" 
+            className="font-['Satoshi_Variable'] font-bold text-primary-100 hover:underline"
+          >
+            Follow Us
+          </a>
+        </div>
+      </div>
+    )
+  }
+};
+

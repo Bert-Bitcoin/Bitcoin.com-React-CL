@@ -45,11 +45,12 @@ export const NewsSection = ({
   themeMode = 'auto',
   style = 'light',
   heading = 'Trending News',
-  description = 'Never miss an update—keep up with daily crypto headlines and analysis.',
+  description,
   articles = [],
   maxArticles = 8,
   readMoreText = 'Read More',
   onReadMoreClick,
+  customContent,
   className
 }: NewsSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -98,15 +99,45 @@ export const NewsSection = ({
     >
       {/* Header */}
       <div className="w-full max-w-[1240px] mx-auto ">
-        <div className="flex flex-col gap-m">
-          <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
-            {heading}
-          </h2>
+        {description ? (
+          // Layout with description: heading above, description + buttons below
+          <div className="flex flex-col gap-m">
+            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
+              {heading}
+            </h2>
 
-          <div className="flex items-end justify-between gap-m">
-            <p className={twMerge('font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[24px] leading-tight max-w-[800px]', styles.description)}>
-              {description}
-            </p>
+            <div className="flex items-end justify-between gap-m">
+              <p className={twMerge('font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[24px] leading-tight max-w-[800px]', styles.description)}>
+                {description}
+              </p>
+
+              {/* Navigation buttons - hidden on mobile */}
+              <div className="hidden md:flex items-center gap-3">
+                <button
+                  onClick={() => scrollByOneArticle('left')}
+                  disabled={!canScrollLeft}
+                  className="w-[38px] h-[38px] rounded-full bg-primary-100 flex items-center justify-center hover:bg-primary-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  aria-label="Scroll left"
+                >
+                  <Icon type="icon-left-arrow" size="md" className="text-white" ariaHidden />
+                </button>
+                <button
+                  onClick={() => scrollByOneArticle('right')}
+                  disabled={!canScrollRight}
+                  className="w-[38px] h-[38px] rounded-full bg-primary-100 flex items-center justify-center hover:bg-primary-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  aria-label="Scroll right"
+                >
+                  <Icon type="icon-right-arrow" size="md" className="text-white" ariaHidden />
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          // Layout without description: heading + buttons on same row for desktop/tablet
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-m">
+            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
+              {heading}
+            </h2>
 
             {/* Navigation buttons - hidden on mobile */}
             <div className="hidden md:flex items-center gap-3">
@@ -128,7 +159,7 @@ export const NewsSection = ({
               </button>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Articles carousel - full width on mobile */}
@@ -153,7 +184,7 @@ export const NewsSection = ({
         </div>
       </div>
 
-      {/* Read More button */}
+      {/* Read More button and custom content */}
       <div className="w-full max-w-[1240px] mx-auto">
         {onReadMoreClick && (
           <Button
@@ -163,6 +194,11 @@ export const NewsSection = ({
           >
             {readMoreText}
           </Button>
+        )}
+        {customContent && (
+          <div className="mt-m">
+            {customContent}
+          </div>
         )}
       </div>
     </section>

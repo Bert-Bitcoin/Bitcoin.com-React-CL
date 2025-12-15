@@ -3,6 +3,7 @@ import { HighlightSection } from './HighlightSection';
 import { Illustration } from '../illustration';
 import { Button } from '../button';
 import { Icon } from '../icon';
+import { Pill } from '../pill';
 
 const meta: Meta<typeof HighlightSection> = {
   title: 'Sections/Website/Highlight',
@@ -370,6 +371,124 @@ export const WithCustomCTALink: Story = {
     docs: {
       description: {
         story: 'Custom CTA with button and text link'
+      }
+    }
+  }
+};
+
+export const WithoutDescription: Story = {
+  args: {
+    themeMode: 'auto',
+    style: 'light',
+    heading: 'Simple and powerful',
+    buttonText: 'Get Started',
+    imagePosition: 'left',
+    imageUrl: illustrations.wallet,
+    imageAlt: 'Wallet Illustration',
+    onButtonClick: () => console.log('Get Started clicked')
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A highlight section without a description - description prop is optional'
+      }
+    }
+  }
+};
+
+export const WithHeaderElement: Story = {
+  args: {
+    themeMode: 'auto',
+    style: 'light',
+    heading: 'Bitcoin Rewards Program',
+    description: 'Earn rewards on every transaction and redeem them for exclusive benefits.',
+    buttonText: 'Join Now',
+    imagePosition: 'right',
+    imageUrl: illustrations.rewards,
+    imageAlt: 'Rewards Illustration',
+    headerElement: (
+      <div className="inline-flex items-center gap-xs">
+        <Pill type="secondary" style="fill">
+          New Feature
+        </Pill>
+      </div>
+    ),
+    onButtonClick: () => console.log('Join Now clicked')
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A highlight section with a custom header element above the title (badge in this example)'
+      }
+    }
+  }
+};
+
+export const WithFooterElement: Story = {
+  args: {
+    themeMode: 'auto',
+    style: 'gray',
+    heading: 'Swap Bitcoin & Ethereum',
+    description: 'Exchange cryptocurrencies instantly with the best rates and lowest fees.',
+    buttonText: 'Start Swapping',
+    imagePosition: 'left',
+    imageUrl: illustrations.swap,
+    imageAlt: 'Swap Illustration',
+    footerElement: (
+      <div className="flex items-center gap-s pt-xs">
+        <Icon type="icon-check-circled" size="md" ariaHidden />
+        <p className="font-['Satoshi_Variable'] text-sm text-shades-semi-dark">
+          No registration required • Instant swaps
+        </p>
+      </div>
+    ),
+    onButtonClick: () => console.log('Start Swapping clicked')
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A highlight section with a custom footer element below the CTA buttons'
+      }
+    }
+  }
+};
+
+export const WithHeaderAndFooter: Story = {
+  args: {
+    themeMode: 'auto',
+    style: 'dark',
+    heading: 'Complete Bitcoin Solution',
+    buttonText: 'Explore Features',
+    imagePosition: 'right',
+    imageUrl: illustrations.wallet,
+    imageAlt: 'Wallet Illustration',
+    headerElement: (
+      <Pill type="primary" style="fill">
+        Featured
+      </Pill>
+    ),
+    footerElement: (
+      <div className="flex flex-col gap-xs pt-s">
+        <div className="flex items-center gap-xs">
+          <Icon type="icon-check-circled" size="sm" ariaHidden />
+          <span className="font-['Satoshi_Variable'] text-sm text-shades-semi-light">Secure & Encrypted</span>
+        </div>
+        <div className="flex items-center gap-xs">
+          <Icon type="icon-check-circled" size="sm" ariaHidden />
+          <span className="font-['Satoshi_Variable'] text-sm text-shades-semi-light">24/7 Support</span>
+        </div>
+        <div className="flex items-center gap-xs">
+          <Icon type="icon-check-circled" size="sm" ariaHidden />
+          <span className="font-['Satoshi_Variable'] text-sm text-shades-semi-light">Free to Use</span>
+        </div>
+      </div>
+    ),
+    onButtonClick: () => console.log('Explore Features clicked')
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'A highlight section with both header element (badge) and footer element (feature list), no description'
       }
     }
   }

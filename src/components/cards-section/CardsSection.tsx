@@ -2,10 +2,11 @@ import { twMerge } from 'tailwind-merge';
 import { Button } from '../button';
 import type { CardItem, CardsSectionProps, CardsSectionStyle } from './CardsSection.types';
 
-const styleClasses: Record<CardsSectionStyle, { bg: string; heading: string; card: string; cardTitle: string; cardDescription: string }> = {
+const styleClasses: Record<CardsSectionStyle, { bg: string; heading: string; description: string; card: string; cardTitle: string; cardDescription: string }> = {
   light: {
     bg: 'bg-shades-white',
     heading: 'text-shades-black',
+    description: 'text-shades-semi-dark',
     card: 'bg-shades-extra-light',
     cardTitle: 'text-shades-black',
     cardDescription: 'text-shades-semi-dark'
@@ -13,6 +14,7 @@ const styleClasses: Record<CardsSectionStyle, { bg: string; heading: string; car
   gray: {
     bg: 'bg-shades-extra-light',
     heading: 'text-shades-black',
+    description: 'text-shades-semi-dark',
     card: 'bg-shades-white',
     cardTitle: 'text-shades-black',
     cardDescription: 'text-shades-semi-dark'
@@ -20,6 +22,7 @@ const styleClasses: Record<CardsSectionStyle, { bg: string; heading: string; car
   black: {
     bg: 'bg-shades-black dark:bg-shades-white',
     heading: 'text-shades-white dark:text-shades-black',
+    description: 'text-shades-semi-light dark:text-shades-semi-dark',
     card: 'bg-shades-white dark:bg-shades-light',
     cardTitle: 'text-shades-black',
     cardDescription: 'text-shades-semi-dark'
@@ -30,6 +33,7 @@ export const CardsSection = ({
   themeMode = 'auto',
   style = 'light',
   heading = 'Cards',
+  description,
   cards = [],
   layout = 3,
   className
@@ -48,13 +52,22 @@ export const CardsSection = ({
     >
       <div className="w-full max-w-[1240px] mx-auto">
         {/* Section Heading */}
-        <div className="flex flex-col mb-l">
+        <div className="flex flex-col gap-m mb-l">
           <h2 className={twMerge(
             'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none',
             styles.heading
           )}>
             {heading}
           </h2>
+          
+          {description && (
+            <p className={twMerge(
+              'font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[24px] leading-tight max-w-[800px]',
+              styles.description
+            )}>
+              {description}
+            </p>
+          )}
         </div>
 
         {/* Cards Grid */}
@@ -101,10 +114,12 @@ const Card = ({ card, styles }: CardProps) => {
     >
       {/* Mobile & Desktop: Icon above, Tablet: Icon to the left */}
       <div className="flex flex-col md:flex-row lg:flex-col gap-s md:gap-m lg:gap-s items-start flex-1">
-        {/* Icon */}
-        <div className="flex-shrink-0 w-[50px] h-[50px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] flex items-center justify-center mb-0 lg:mb-[8px]">
-          {card.icon}
-        </div>
+        {/* Icon (optional) */}
+        {card.icon && (
+          <div className="flex-shrink-0 w-[50px] h-[50px] md:w-[60px] md:h-[60px] lg:w-[80px] lg:h-[80px] flex items-center justify-center mb-0 lg:mb-[8px]">
+            {card.icon}
+          </div>
+        )}
 
         {/* Title and Description Container - aligned together */}
         <div className="flex flex-col gap-s flex-1 w-full">

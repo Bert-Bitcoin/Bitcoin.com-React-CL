@@ -186,6 +186,19 @@ export const WithoutReadMore: Story = {
 };
 
 /**
+ * Section without description text - shows title and buttons on same row (desktop/tablet)
+ */
+export const WithoutDescription: Story = {
+  args: {
+    style: 'light',
+    heading: 'Featured Articles',
+    articles: sampleArticles,
+    maxArticles: 6,
+    onReadMoreClick: () => alert('Read more clicked!')
+  }
+};
+
+/**
  * Custom heading and description
  */
 export const CustomContent: Story = {
@@ -288,3 +301,4 @@ export const AllStyles: Story = {
     </div>
   )
 };
+

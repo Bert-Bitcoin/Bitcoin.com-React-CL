@@ -38,6 +38,8 @@ function MyPage() {
   return (
     <NewsSection
       style="light"
+      heading="Trending News"
+      description="Never miss an update—keep up with daily crypto headlines."
       articles={articles}
       maxArticles={8}
       onReadMoreClick={() => console.log('Read more clicked')}
@@ -55,11 +57,12 @@ function MyPage() {
 | `themeMode` | `'auto' \| 'light' \| 'dark'` | `'auto'` | Theme mode for the section |
 | `style` | `'light' \| 'gray' \| 'dark'` | `'light'` | Visual style variant |
 | `heading` | `string` | `'Trending News'` | Section heading text |
-| `description` | `string` | `'Never miss an update—keep up with daily crypto headlines and analysis.'` | Section description/subtitle |
+| `description` | `string` | `undefined` | Optional section description/subtitle |
 | `articles` | `NewsArticle[]` | `[]` | Array of news articles to display |
 | `maxArticles` | `number` | `8` | Maximum number of articles to display |
 | `readMoreText` | `string` | `'Read More'` | Text for the "Read More" button |
 | `onReadMoreClick` | `() => void` | `undefined` | Click handler for the "Read More" button. If not provided, button is hidden. |
+| `customContent` | `React.ReactNode` | `undefined` | Custom content to render below the Read More button |
 | `className` | `string` | `undefined` | Custom className for additional styling |
 
 ### NewsArticle
@@ -89,19 +92,27 @@ Black background with white text. Perfect for dark-themed pages or high-contrast
 
 ## Responsive Behavior
 
-### Desktop (1024px+)
+### Header Layout
+- **With description**: Heading appears above, description and navigation buttons side-by-side below
+- **Without description**: 
+  - **Desktop/Tablet**: Heading on the left, navigation buttons on the right (same row)
+  - **Mobile**: Heading stacked above (buttons hidden on mobile)
+
+### Article Carousel
+
+#### Desktop (1024px+)
 - Displays 4 articles in the viewport
 - Navigation arrows visible
 - Click arrows to scroll one article at a time
 - Manual horizontal scroll also supported
 
-### Tablet (768px - 1023px)
+#### Tablet (768px - 1023px)
 - Displays 3 articles in the viewport
 - Navigation arrows visible
 - Click arrows to scroll one article at a time
 - Manual horizontal scroll supported
 
-### Mobile (< 768px)
+#### Mobile (< 768px)
 - Displays 1-2 articles in the viewport
 - No navigation arrows (hidden)
 - Manual horizontal scroll only
@@ -150,6 +161,59 @@ Black background with white text. Perfect for dark-themed pages or high-contrast
 />
 ```
 
+### Without Description
+
+```tsx
+<NewsSection
+  heading="Latest News"
+  articles={myArticles}
+  onReadMoreClick={() => navigate('/news')}
+/>
+```
+
+### With Custom Content Below Button
+
+```tsx
+<NewsSection
+  heading="Trending News"
+  description="Stay informed with the latest developments."
+  articles={myArticles}
+  onReadMoreClick={() => navigate('/news')}
+  customContent={
+    <div className="mt-m text-center">
+      <p className="font-['Satoshi_Variable'] text-sm text-shades-semi-dark">
+        Want daily updates?{' '}
+        <a href="/newsletter" className="text-primary-100 hover:underline font-bold">
+          Subscribe to our newsletter
+        </a>
+      </p>
+    </div>
+  }
+/>
+```
+
+### With Custom Content Only (No Button)
+
+```tsx
+<NewsSection
+  heading="Featured Articles"
+  description="Hand-picked articles from our editorial team."
+  articles={myArticles}
+  maxArticles={4}
+  customContent={
+    <div className="flex gap-m justify-center">
+      <a href="/archive" className="font-['Satoshi_Variable'] font-bold text-primary-100">
+        View Archive
+      </a>
+      <span>•</span>
+      <a href="/follow" className="font-['Satoshi_Variable'] font-bold text-primary-100">
+        Follow Us
+      </a>
+    </div>
+  }
+/>
+```
+
 ### With Theme Mode
 
 ```tsx
@@ -167,3 +231,4 @@ Black background with white text. Perfect for dark-themed pages or high-contrast
 - The carousel uses CSS scroll-snap for smooth scrolling behavior
 - Navigation buttons automatically disable when reaching the start/end of the carousel
 - All colors use semantic tokens from the design system for automatic dark mode support
+

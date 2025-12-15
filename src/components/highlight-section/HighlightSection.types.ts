@@ -22,9 +22,19 @@ export interface HighlightSectionProps {
   heading?: string;
   
   /**
-   * Description text
+   * Description text (optional)
    */
   description?: string;
+  
+  /**
+   * Custom HTML element to place above the main title
+   */
+  headerElement?: ReactNode;
+  
+  /**
+   * Custom HTML element to place under the buttons
+   */
+  footerElement?: ReactNode;
   
   /**
    * CTA button text

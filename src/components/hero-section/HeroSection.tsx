@@ -29,6 +29,7 @@ export const HeroSection = ({
   themeMode = 'auto',
   style = 'light',
   layout = 'left',
+  aboveTitle,
   heading,
   description,
   primaryButtonText = 'Get Started',
@@ -38,6 +39,7 @@ export const HeroSection = ({
   illustrationName = 'Illustration-Platform-Alt.svg',
   reducedTopPadding = false,
   customActions,
+  belowActions,
   className
 }: HeroSectionProps) => {
   const hasIllustration = layout === 'left-illustration' || layout === 'right-illustration';
@@ -54,6 +56,7 @@ export const HeroSection = ({
     <section
       className={twMerge(
         'px-m md:px-xl pb-[0px] md:pb-[60px] lg:pb-[80px]',
+        hasIllustration ? '' : 'pb-[40px]',
         topPaddingClasses,
         'lg:min-h-[70vh] flex items-center',
         styles.bg,
@@ -65,6 +68,7 @@ export const HeroSection = ({
       <div className="w-full max-w-[1240px] mx-auto">
         {hasIllustration ? (
           <HeroWithIllustration
+            aboveTitle={aboveTitle}
             heading={heading}
             description={description}
             primaryButtonText={primaryButtonText}
@@ -74,10 +78,12 @@ export const HeroSection = ({
             illustrationName={illustrationName}
             isRightIllustration={isRightIllustration}
             customActions={customActions}
+            belowActions={belowActions}
             styles={styles}
           />
         ) : (
           <HeroTextOnly
+            aboveTitle={aboveTitle}
             heading={heading}
             description={description}
             primaryButtonText={primaryButtonText}
@@ -86,6 +92,7 @@ export const HeroSection = ({
             onSecondaryClick={onSecondaryClick}
             isCentered={isCentered}
             customActions={customActions}
+            belowActions={belowActions}
             styles={styles}
           />
         )}
@@ -97,18 +104,21 @@ export const HeroSection = ({
 HeroSection.displayName = 'HeroSection';
 
 interface HeroTextOnlyProps {
+  aboveTitle?: React.ReactNode;
   heading: string;
-  description: string;
+  description?: string;
   primaryButtonText: string;
   onPrimaryClick?: () => void;
   secondaryButtonText: string;
   onSecondaryClick?: () => void;
   isCentered: boolean;
   customActions?: React.ReactNode;
+  belowActions?: React.ReactNode;
   styles: typeof styleClasses[HeroSectionStyle];
 }
 
 const HeroTextOnly = ({
+  aboveTitle,
   heading,
   description,
   primaryButtonText,
@@ -117,6 +127,7 @@ const HeroTextOnly = ({
   onSecondaryClick,
   isCentered,
   customActions,
+  belowActions,
   styles
 }: HeroTextOnlyProps) => {
   return (
@@ -124,6 +135,12 @@ const HeroTextOnly = ({
       'flex flex-col gap-l',
       isCentered ? 'items-center text-center' : 'items-start text-left'
     )}>
+      {aboveTitle && (
+        <div className="w-full">
+          {aboveTitle}
+        </div>
+      )}
+      
       <h1 className={twMerge(
         'font-["Elza_Narrow"]',
         'text-[44px] sm:text-[54px] md:text-[70px] lg:text-[94px]',
@@ -139,15 +156,17 @@ const HeroTextOnly = ({
         isCentered ? 'items-center' : 'items-start',
         isCentered ? 'max-w-[800px]' : 'max-w-[800px]'
       )}>
-        <p className={twMerge(
-          'font-["Satoshi_Variable"] font-medium',
-          'text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px]',
-          'leading-[1.23]',
-          'max-w-[600px]',
-          styles.description
-        )}>
-          {description}
-        </p>
+        {description && (
+          <p className={twMerge(
+            'font-["Satoshi_Variable"] font-medium',
+            'text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px]',
+            'leading-[1.23]',
+            'max-w-[600px]',
+            styles.description
+          )}>
+            {description}
+          </p>
+        )}
 
         {customActions ? (
           // Custom actions provided - render them
@@ -191,14 +210,21 @@ const HeroTextOnly = ({
             </div>
           </>
         )}
+        
+        {belowActions && (
+          <div className="w-full">
+            {belowActions}
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 interface HeroWithIllustrationProps {
+  aboveTitle?: React.ReactNode;
   heading: string;
-  description: string;
+  description?: string;
   primaryButtonText: string;
   onPrimaryClick?: () => void;
   secondaryButtonText: string;
@@ -206,10 +232,12 @@ interface HeroWithIllustrationProps {
   illustrationName: string;
   isRightIllustration: boolean;
   customActions?: React.ReactNode;
+  belowActions?: React.ReactNode;
   styles: typeof styleClasses[HeroSectionStyle];
 }
 
 const HeroWithIllustration = ({
+  aboveTitle,
   heading,
   description,
   primaryButtonText,
@@ -219,6 +247,7 @@ const HeroWithIllustration = ({
   illustrationName,
   isRightIllustration,
   customActions,
+  belowActions,
   styles
 }: HeroWithIllustrationProps) => {
   const illustrationSrc = `/src/illustrations/${illustrationName}`;
@@ -230,6 +259,12 @@ const HeroWithIllustration = ({
     )}>
       {/* Text Content */}
       <div className="flex-1 min-w-0 flex flex-col gap-s md:gap-l w-full md:w-auto">
+        {aboveTitle && (
+          <div className="w-full">
+            {aboveTitle}
+          </div>
+        )}
+        
         <h1 className={twMerge(
           'font-["Elza_Narrow"]',
           'text-[44px] sm:text-[54px] md:text-[70px] lg:text-[94px]',
@@ -240,15 +275,17 @@ const HeroWithIllustration = ({
         </h1>
 
         <div className="flex flex-col gap-l max-w-[800px]">
-          <p className={twMerge(
-            'font-["Satoshi_Variable"] font-medium',
-            'text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px]',
-            'leading-[1.23]',
-            'max-w-[600px]',
-            styles.description
-          )}>
-            {description}
-          </p>
+          {description && (
+            <p className={twMerge(
+              'font-["Satoshi_Variable"] font-medium',
+              'text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px]',
+              'leading-[1.23]',
+              'max-w-[600px]',
+              styles.description
+            )}>
+              {description}
+            </p>
+          )}
 
           {customActions ? (
             // Custom actions provided - render them
@@ -291,6 +328,12 @@ const HeroWithIllustration = ({
                 </Button>
               </div>
             </>
+          )}
+          
+          {belowActions && (
+            <div className="w-full">
+              {belowActions}
+            </div>
           )}
         </div>
       </div>

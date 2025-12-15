@@ -12,6 +12,9 @@ A versatile hero section component designed for website landing pages with multi
 - Integrates with existing Button and Illustration components
 - Uppercase Elza Narrow typography for headings
 - Flexible content with primary and secondary CTAs
+- Optional content above title (badges, pills, labels)
+- Optional description text
+- Optional content below actions (trust signals, disclaimers)
 
 ## Usage
 
@@ -76,8 +79,9 @@ Illustration on the left with text content on the right. Alternative balanced la
 | `themeMode` | `'auto' \| 'light' \| 'dark'` | `'auto'` | Theme mode for the section |
 | `style` | `'light' \| 'gray' \| 'dark'` | `'light'` | Style variant (background and text colors) |
 | `layout` | `'left' \| 'centered' \| 'left-illustration' \| 'right-illustration'` | `'left'` | Layout variant |
+| `aboveTitle` | `ReactNode` | - | Custom content to display above the main heading (badges, pills, labels) |
 | `heading` | `string` | Required | Main heading (displayed in uppercase) |
-| `description` | `string` | Required | Subheading or description text |
+| `description` | `string` | - | Subheading or description text (optional) |
 | `primaryButtonText` | `string` | `'Get Started'` | Text for primary CTA button |
 | `onPrimaryClick` | `() => void` | - | Click handler for primary button |
 | `secondaryButtonText` | `string` | `'Learn more'` | Text for secondary CTA button |
@@ -85,6 +89,7 @@ Illustration on the left with text content on the right. Alternative balanced la
 | `illustrationName` | `string` | `'Illustration-Platform-Alt.svg'` | Illustration filename from src/illustrations/ |
 | `reducedTopPadding` | `boolean` | `false` | Reduce top padding by half (useful below header) |
 | `customActions` | `ReactNode` | - | Custom HTML/React content to replace default buttons |
+| `belowActions` | `ReactNode` | - | Custom content to display below the action buttons (trust signals, disclaimers) |
 | `className` | `string` | - | Additional CSS classes |
 
 ## Responsive Behavior
@@ -177,6 +182,106 @@ The `customActions` prop allows you to replace the default button group with any
 ```
 
 When `customActions` is provided, the `primaryButtonText`, `secondaryButtonText`, `onPrimaryClick`, and `onSecondaryClick` props are ignored.
+
+## Above Title Content
+
+The `aboveTitle` prop allows you to display content above the main heading, such as badges, pills, or labels:
+
+```tsx
+import { Pill } from '@bitcoin-portal/design-system';
+
+<HeroSection
+  heading="Your Gateway to Finance"
+  description="Browse and compare businesses..."
+  aboveTitle={
+    <Pill type="primary" style="fill">
+      New Platform Launch
+    </Pill>
+  }
+/>
+```
+
+This is useful for:
+- Promotional badges ("New", "Beta", "Limited Time")
+- Category labels
+- Status indicators
+- Announcement banners
+
+## Optional Description
+
+The `description` prop is now optional. You can omit it for simpler, more focused hero sections:
+
+```tsx
+<HeroSection
+  heading="The Future of Digital Finance"
+  primaryButtonText="Get Started"
+  secondaryButtonText="Learn more"
+/>
+```
+
+This works well when:
+- The heading is self-explanatory
+- You want maximum visual impact
+- The message needs to be brief and punchy
+
+## Below Actions Content
+
+The `belowActions` prop allows you to display content below the action buttons, perfect for trust signals, disclaimers, or additional information:
+
+```tsx
+<HeroSection
+  heading="Join Millions of Crypto Users"
+  description="Start your cryptocurrency journey..."
+  primaryButtonText="Create Free Account"
+  secondaryButtonText="View Demo"
+  belowActions={
+    <div className="flex flex-col gap-s items-center text-center">
+      <p className="text-sm text-shades-semi-dark">
+        ✓ No credit card required • ✓ 2-minute setup • ✓ Bank-level security
+      </p>
+      <p className="text-xs text-shades-semi-dark">
+        Trusted by over 10 million users worldwide
+      </p>
+    </div>
+  }
+/>
+```
+
+Common use cases:
+- Trust signals and security badges
+- Terms and conditions links
+- Social proof (user counts, ratings)
+- Feature highlights
+- Disclaimers and legal text
+
+## Combining New Features
+
+You can combine all new features for maximum flexibility:
+
+```tsx
+<HeroSection
+  layout="right-illustration"
+  heading="Bitcoin Rewards Platform"
+  illustrationName="Illustration-Platform-Alt.svg"
+  aboveTitle={
+    <Pill type="secondary" style="fill">
+      Earn Bitcoin on Every Purchase
+    </Pill>
+  }
+  belowActions={
+    <div className="flex flex-col gap-s">
+      <p className="text-sm text-shades-semi-dark font-medium">
+        Join 500,000+ users earning crypto rewards daily
+      </p>
+      <div className="flex gap-m items-center text-xs text-shades-semi-dark">
+        <span>✓ No fees</span>
+        <span>✓ Instant rewards</span>
+        <span>✓ 100+ merchants</span>
+      </div>
+    </div>
+  }
+/>
+```
 
 ## Notes
 

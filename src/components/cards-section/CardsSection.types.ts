@@ -16,8 +16,8 @@ export type CardsSectionLayout = 3 | 6;
 export interface CardItem {
   /** Unique identifier for the card */
   id: string;
-  /** Icon/illustration component to display */
-  icon: ReactNode;
+  /** Optional icon/illustration component to display */
+  icon?: ReactNode;
   /** Card title (will be displayed in uppercase using Elza Narrow) */
   title: string;
   /** Optional card description */
@@ -41,6 +41,8 @@ export interface CardsSectionProps {
   style?: CardsSectionStyle;
   /** Section heading (displayed in uppercase) */
   heading?: string;
+  /** Optional description text displayed under the heading */
+  description?: string;
   /** Array of cards to display */
   cards: CardItem[];
   /** Layout configuration - number of cards per row on desktop */
@@ -48,3 +50,4 @@ export interface CardsSectionProps {
   /** Additional CSS classes */
   className?: string;
 }
+

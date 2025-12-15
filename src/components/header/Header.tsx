@@ -34,6 +34,25 @@ export interface HeaderProps {
    */
   actionLabel?: string;
   /**
+   * Custom React node to replace the action button (desktop, tablet, and mobile menu)
+   * When provided, this will override actionLabel and onActionClick
+   */
+  customActionButton?: React.ReactNode;
+  /**
+   * Custom logo URLs for light and dark modes
+   * When provided, this will replace the default Logo/LogoMark components
+   */
+  customLogo?: {
+    light: string;
+    dark: string;
+  };
+  /**
+   * Current theme mode for logo switching (when using customLogo)
+   * If not provided, uses the style prop to determine which logo to show
+   * @default undefined (uses style prop)
+   */
+  themeMode?: 'light' | 'dark';
+  /**
    * Callback when the mobile menu toggle is clicked
    */
   onMenuToggle?: () => void;
@@ -58,7 +77,7 @@ const styleClasses: Record<HeaderStyle, {
     navActiveText: 'text-shades-almost-black dark:text-shades-white',
     navInactiveText: 'text-white dark:text-shades-almost-black',
     navHoverBg: 'hover:bg-shades-dark dark:hover:bg-shades-mid',
-    mobileMenuText: 'text-shades-almost-black dark:text-shades-white',
+    mobileMenuText: 'text-shades-almost-black',
     mobileMenuActiveText: 'text-primary-100'
   },
   gray: {
@@ -67,7 +86,7 @@ const styleClasses: Record<HeaderStyle, {
     navActiveText: 'text-shades-almost-black dark:text-shades-white',
     navInactiveText: 'text-white dark:text-shades-almost-black',
     navHoverBg: 'hover:bg-shades-dark dark:hover:bg-shades-mid',
-    mobileMenuText: 'text-shades-almost-black dark:text-shades-white',
+    mobileMenuText: 'text-shades-almost-black',
     mobileMenuActiveText: 'text-primary-100'
   },
   dark: {
@@ -76,7 +95,7 @@ const styleClasses: Record<HeaderStyle, {
     navActiveText: 'text-shades-black dark:text-shades-white',
     navInactiveText: 'text-shades-light dark:text-shades-black',
     navHoverBg: 'hover:bg-shades-mid dark:hover:bg-shades-dark',
-    mobileMenuText: 'text-white dark:text-shades-almost-black',
+    mobileMenuText: 'text-shades-almost-black',
     mobileMenuActiveText: 'text-primary-100'
   }
 };
@@ -93,6 +112,9 @@ export const Header = ({
   ],
   onActionClick,
   actionLabel = 'Action',
+  customActionButton,
+  customLogo,
+  themeMode,
   onMenuToggle,
   className
 }: HeaderProps) => {
@@ -134,6 +156,38 @@ export const Header = ({
 
   const breakpoints = getBreakpointClasses();
 
+  // Render custom logo with automatic dark mode switching
+  const renderCustomLogo = (className?: string) => {
+    if (!customLogo) return null;
+    
+    // If themeMode is explicitly set, use it to determine which logo to show
+    if (themeMode) {
+      return (
+        <img 
+          src={themeMode === 'dark' ? customLogo.dark : customLogo.light}
+          alt="Logo"
+          className={className}
+        />
+      );
+    }
+    
+    // Otherwise, render both logos and use CSS to show/hide based on dark mode
+    return (
+      <>
+        <img 
+          src={customLogo.light}
+          alt="Logo"
+          className={twMerge(className, 'dark:hidden')}
+        />
+        <img 
+          src={customLogo.dark}
+          alt="Logo"
+          className={twMerge(className, 'hidden dark:block')}
+        />
+      </>
+    );
+  };
+
   const handleMenuToggle = () => {
     setIsMobileMenuOpen((prev) => !prev);
     onMenuToggle?.();
@@ -150,7 +204,11 @@ export const Header = ({
         <div className="flex items-center justify-between w-full max-w-[1240px] relative">
           {/* Left: Logo */}
           <div className="w-[167px] h-[35px]">
-            <Logo theme={(style === 'dark') ? 'dark' : 'auto'} size="md" className="w-full h-full" />
+            {customLogo ? (
+              renderCustomLogo("w-full h-full object-contain")
+            ) : (
+              <Logo theme={(style === 'dark') ? 'dark' : 'auto'} size="md" className="w-full h-full" />
+            )}
           </div>
 
           {/* Center: Navigation Pill */}
@@ -179,9 +237,11 @@ export const Header = ({
 
           {/* Right: Actions */}
           <div className="flex items-center gap-s">
-            <Button variant="secondary" size="md" onClick={onActionClick}>
-              {actionLabel}
-            </Button>
+            {customActionButton || (
+              <Button variant="secondary" size="md" onClick={onActionClick}>
+                {actionLabel}
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -189,8 +249,14 @@ export const Header = ({
       {/* Tablet Layout */}
       <div className={twMerge('hidden flex-col items-center py-l w-full', breakpoints.tablet)}>
         <div className="flex items-start justify-between w-full px-m">
-          {/* Left: Logo Mark */}
-          <LogoMark size="md" className="w-[35px] h-[35px]" />
+          {/* Left: Logo / Logo Mark */}
+          {customLogo ? (
+            <div className="w-[167px] h-[35px]">
+              {renderCustomLogo("w-full h-full object-contain")}
+            </div>
+          ) : (
+            <LogoMark size="md" className="w-[35px] h-[35px]" />
+          )}
 
           {/* Center: Navigation Pill */}
           <nav className={twMerge('rounded-[40px] flex items-center justify-center gap-xs flex-wrap h-[35px] px-xs ml-[24px]', styles.navBg)}>
@@ -218,9 +284,11 @@ export const Header = ({
 
           {/* Right: Actions */}
           <div className="flex items-center gap-s">
-            <Button variant="secondary" size="md" onClick={onActionClick}>
-              {actionLabel}
-            </Button>
+            {customActionButton || (
+              <Button variant="secondary" size="md" onClick={onActionClick}>
+                {actionLabel}
+              </Button>
+            )}
           </div>
         </div>
       </div>
@@ -229,7 +297,11 @@ export const Header = ({
       <div className={twMerge('flex items-center justify-between px-m py-m w-full', breakpoints.mobile)}>
         {/* Left: Logo */}
         <div className="w-[167px] h-[35px]">
-        <Logo theme="auto" size="md" className="w-full h-full" />
+          {customLogo ? (
+            renderCustomLogo("w-full h-full object-contain")
+          ) : (
+            <Logo theme="auto" size="md" className="w-full h-full" />
+          )}
         </div>
 
         {/* Right: Actions */}
@@ -252,7 +324,11 @@ export const Header = ({
           {/* Header */}
           <div className="flex items-center justify-between shrink-0 mb-m">
             <div className="w-[167px] h-[35px]">
-              <Logo theme="auto" size="md" className="w-full h-full" />
+              {customLogo ? (
+                renderCustomLogo("w-full h-full object-contain")
+              ) : (
+                <Logo theme="auto" size="md" className="w-full h-full" />
+              )}
             </div>
             <div className="w-[35px] h-[35px] rounded-full bg-secondary-100 flex items-center justify-center">
               <IconButton
@@ -295,9 +371,11 @@ export const Header = ({
 
             {/* Action Button */}
             <div className="shrink-0 w-full mt-m">
-              <Button variant="secondary" size="md" fullWidth onClick={() => { onActionClick?.(); handleCloseMenu(); }}>
-                {actionLabel}
-              </Button>
+              {customActionButton || (
+                <Button variant="secondary" size="md" fullWidth onClick={() => { onActionClick?.(); handleCloseMenu(); }}>
+                  {actionLabel}
+                </Button>
+              )}
             </div>
           </div>
         </div>

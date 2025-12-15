@@ -17,7 +17,7 @@ const meta = {
     layout: 'fullscreen',
     docs: {
       description: {
-        component: 'A responsive website section component that displays cards with icons, titles, optional descriptions, and optional action buttons. Supports 3-card and 6-card layouts with three visual styles (light, gray, black).'
+        component: 'A responsive website section component that displays cards with optional icons, titles, optional descriptions, and optional action buttons. Supports 3-card and 6-card layouts with three visual styles (light, gray, black). The section can include an optional description under the heading.'
       }
     }
   },
@@ -40,6 +40,10 @@ const meta = {
     heading: {
       control: 'text',
       description: 'Section heading (displayed in uppercase)'
+    },
+    description: {
+      control: 'text',
+      description: 'Optional description text displayed under the heading'
     },
     cards: {
       control: 'object',
@@ -132,6 +136,37 @@ const cardsWithoutActions: CardsSectionProps['cards'] = threeCards.map(card => (
   ...card,
   action: undefined
 }));
+
+// Cards without icons
+const cardsWithoutIcons: CardsSectionProps['cards'] = [
+  {
+    id: '1',
+    title: 'Free Crypto Credit Cards',
+    description: 'A short article summary of an article and why you should read more',
+    action: {
+      label: 'Action',
+      onClick: () => console.log('Card 1 clicked')
+    }
+  },
+  {
+    id: '2',
+    title: 'The Games You Love The Most',
+    description: 'Add powerful photo editing to your app. Allow users to add objects, remove backgrounds, or change a photo\'s style just by typing.',
+    action: {
+      label: 'Action',
+      onClick: () => console.log('Card 2 clicked')
+    }
+  },
+  {
+    id: '3',
+    title: 'Sharing Is Caring',
+    description: 'Bring images to life with Veo 3. Let users upload a product photo and turn it into a dynamic video ad, or animate a character\'s portrait.',
+    action: {
+      label: 'Action',
+      onClick: () => console.log('Card 3 clicked')
+    }
+  }
+];
 
 
 /**
@@ -279,3 +314,84 @@ export const ThemeModeDark: Story = {
     layout: 3
   }
 };
+
+/**
+ * With section description
+ */
+export const WithDescription: Story = {
+  args: {
+    style: 'light',
+    heading: 'Cards',
+    description: 'This is a descriptive text that appears under the heading to provide more context about the section content.',
+    cards: threeCards,
+    layout: 3
+  }
+};
+
+/**
+ * With longer section description
+ */
+export const WithLongDescription: Story = {
+  args: {
+    style: 'gray',
+    heading: 'Explore Our Services',
+    description: 'Discover the full range of Bitcoin.com services designed to help you buy, sell, trade, and earn cryptocurrency rewards with ease and security.',
+    cards: threeCards,
+    layout: 3
+  }
+};
+
+/**
+ * Cards without icons
+ */
+export const WithoutIcons: Story = {
+  args: {
+    style: 'light',
+    heading: 'Simple Cards',
+    description: 'These cards display content without icons, perfect for text-focused information.',
+    cards: cardsWithoutIcons,
+    layout: 3
+  }
+};
+
+/**
+ * Cards without icons (6-card layout)
+ */
+export const WithoutIcons6Cards: Story = {
+  args: {
+    style: 'gray',
+    heading: 'Features',
+    cards: [
+      ...cardsWithoutIcons,
+      {
+        id: '4',
+        title: 'The Safer You Like The Most',
+        description: 'Secure your assets with the most advanced security features available in the market.',
+        action: {
+          label: 'Learn More',
+          onClick: () => console.log('Card 4 clicked')
+        }
+      },
+      {
+        id: '5',
+        title: 'Swapping Is Easier',
+        description: 'Exchange cryptocurrencies instantly with the best rates and lowest fees.',
+        action: {
+          label: 'Get Started',
+          onClick: () => console.log('Card 5 clicked')
+        }
+      },
+      {
+        id: '6',
+        title: 'Staking & Gains',
+        description: 'Earn passive income by staking your crypto assets with competitive APY rates.',
+        action: {
+          label: 'Stake Now',
+          onClick: () => console.log('Card 6 clicked')
+        }
+      }
+    ],
+    layout: 6
+  }
+};
+

@@ -41,7 +41,7 @@ export const ArticlesSection = ({
   themeMode = 'auto',
   style = 'light',
   heading = 'Articles',
-  description = 'Never miss an update—keep up with daily headlines and analysis.',
+  description,
   articles = [],
   maxArticles = 6,
   readMoreText = 'Read More',
@@ -94,15 +94,45 @@ export const ArticlesSection = ({
     >
       {/* Header */}
       <div className="w-full max-w-[1240px] mx-auto">
-        <div className="flex flex-col gap-m">
-          <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
-            {heading}
-          </h2>
+        {description ? (
+          // Layout with description: heading above, description + buttons below
+          <div className="flex flex-col gap-m">
+            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
+              {heading}
+            </h2>
 
-          <div className="flex items-end justify-between gap-m">
-            <p className={twMerge('font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[26px] leading-tight max-w-[800px]', styles.description)}>
-              {description}
-            </p>
+            <div className="flex items-end justify-between gap-m">
+              <p className={twMerge('font-["Satoshi_Variable"] font-medium text-base md:text-xl lg:text-[26px] leading-tight max-w-[800px]', styles.description)}>
+                {description}
+              </p>
+
+              {/* Navigation buttons - hidden on mobile */}
+              <div className="hidden md:flex items-center gap-3">
+                <button
+                  onClick={() => scrollByOneArticle('left')}
+                  disabled={!canScrollLeft}
+                  className="w-[38px] h-[38px] rounded-full bg-primary-100 flex items-center justify-center hover:bg-primary-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  aria-label="Scroll left"
+                >
+                  <Icon type="icon-left-arrow" size="md" className="text-white" ariaHidden />
+                </button>
+                <button
+                  onClick={() => scrollByOneArticle('right')}
+                  disabled={!canScrollRight}
+                  className="w-[38px] h-[38px] rounded-full bg-primary-100 flex items-center justify-center hover:bg-primary-50 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+                  aria-label="Scroll right"
+                >
+                  <Icon type="icon-right-arrow" size="md" className="text-white" ariaHidden />
+                </button>
+              </div>
+            </div>
+          </div>
+        ) : (
+          // Layout without description: heading + buttons on same row for desktop/tablet
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-m">
+            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
+              {heading}
+            </h2>
 
             {/* Navigation buttons - hidden on mobile */}
             <div className="hidden md:flex items-center gap-3">
@@ -124,7 +154,7 @@ export const ArticlesSection = ({
               </button>
             </div>
           </div>
-        </div>
+        )}
       </div>
 
       {/* Articles carousel - full width on mobile */}
@@ -179,17 +209,15 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
   const cardContent = (
     <>
       {/* Article image placeholder */}
-      <div className="relative w-full aspect-[450.667/280] rounded-s overflow-hidden mb-m">
-        {article.imageUrl ? (
+      {article.imageUrl ? (<div className="relative w-full aspect-[450.667/280] rounded-s overflow-hidden mb-m">
+        
           <img
             src={article.imageUrl}
             alt={article.imageAlt || article.title}
             className="absolute inset-0 w-full h-full object-cover rounded-[16px]"
           />
-        ) : (
-          <div className="absolute inset-0 w-full h-full bg-primary-50" />
-        )}
-      </div>
+       
+      </div> ) : ('')}
 
       {/* Article text */}
       <div className="flex flex-col gap-xs">

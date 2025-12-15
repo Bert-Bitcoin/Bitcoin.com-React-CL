@@ -48,8 +48,7 @@ export interface ArticlesSectionProps {
    */
   heading?: string;
   /**
-   * Section description/subtitle
-   * @default 'Never miss an update—keep up with daily headlines and analysis.'
+   * Section description/subtitle (optional)
    */
   description?: string;
   /**
@@ -76,3 +75,4 @@ export interface ArticlesSectionProps {
    */
   className?: string;
 }
+
