@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { FeaturesSection } from './FeaturesSection';
 import type { FeaturesSectionProps } from './FeaturesSection.types';
+import { Illustration } from '../illustration';
 
 const meta: Meta<typeof FeaturesSection> = {
   title: 'Sections/Website/Features Section',
@@ -74,17 +75,60 @@ const mockFeatures: FeaturesSectionProps['features'] = [
   }
 ];
 
-const mockFeaturesWithImages: FeaturesSectionProps['features'] = mockFeatures.map((feature) => ({
-  ...feature,
-  imageElement: (
-    <div className="w-full h-full flex items-center justify-center text-[#FFF] text-sm font-medium bg-alerts-100">
-      <div className="text-center">
-        <div className="text-4xl mb-2">🎮</div>
-        <p>Your illustration here</p>
-      </div>
-    </div>
-  )
-}));
+// Illustration paths
+const illustrations = {
+  gaming: '/src/illustrations/Illustration-Gaming.svg',
+  wallet: '/src/illustrations/Illustration-Wallet.svg',
+  rewards: '/src/illustrations/Illustration-Rewards.svg',
+  swap: '/src/illustrations/Illustration-Bitcoin-Ethereum.svg'
+};
+
+const mockFeaturesWithImages: FeaturesSectionProps['features'] = [
+  {
+    ...mockFeatures[0],
+    imageElement: (
+      <Illustration
+        src={illustrations.gaming}
+        alt="Gaming Illustration"
+        size="full"
+        objectFit="contain"
+      />
+    )
+  },
+  {
+    ...mockFeatures[1],
+    imageElement: (
+      <Illustration
+        src={illustrations.wallet}
+        alt="Wallet Illustration"
+        size="full"
+        objectFit="contain"
+      />
+    )
+  },
+  {
+    ...mockFeatures[2],
+    imageElement: (
+      <Illustration
+        src={illustrations.rewards}
+        alt="Rewards Illustration"
+        size="full"
+        objectFit="contain"
+      />
+    )
+  },
+  {
+    ...mockFeatures[3],
+    imageElement: (
+      <Illustration
+        src={illustrations.swap}
+        alt="Swap Illustration"
+        size="full"
+        objectFit="contain"
+      />
+    )
+  }
+];
 
 export const LightStyle: Story = {
   args: {

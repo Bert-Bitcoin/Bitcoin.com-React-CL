@@ -10,6 +10,9 @@ import { LinksSection } from '../../components/links-section/LinksSection';
 import type { LinkItem } from '../../components/links-section/LinksSection.types';
 import { FAQSection } from '../../components/faq-section/FAQSection';
 import type { AccordionItemData } from '../../components/accordion';
+import { FeaturesSection } from '../../components/features-section/FeaturesSection';
+import type { Feature } from '../../components/features-section/FeaturesSection.types';
+import { Illustration } from '../../components/illustration';
 import { 
   BitcoinCreditCardsIllustration,
   BitcoinGambleIllustration,
@@ -367,6 +370,66 @@ const sampleFAQItems: AccordionItemData[] = [
   }
 ];
 
+// Illustration paths for features
+const illustrations = {
+  gaming: '/src/illustrations/Illustration-Gaming.svg',
+  wallet: '/src/illustrations/Illustration-Wallet.svg',
+  rewards: '/src/illustrations/Illustration-Rewards.svg',
+  swap: '/src/illustrations/Illustration-Swap.svg'
+};
+
+// Sample features data
+const sampleFeatures: Feature[] = [
+  {
+    id: '1',
+    title: 'The Games You Love The Most',
+    description: 'Play your favorite games and earn crypto rewards while having fun. Access a wide selection of blockchain-based games with instant payouts and secure transactions.',
+    buttonText: 'Start Playing',
+    onButtonClick: () => alert('Gaming feature clicked!'),
+    imagePosition: 'left',
+    imageElement: (
+      <Illustration
+        src={illustrations.gaming}
+        alt="Gaming Illustration"
+        size="full"
+        objectFit="contain"
+      />
+    )
+  },
+  {
+    id: '2',
+    title: 'Secure Self-Custody Wallet',
+    description: 'Take full control of your cryptocurrency with our secure self-custody wallet. Your keys, your crypto - no third parties, complete ownership and security.',
+    buttonText: 'Get Wallet',
+    onButtonClick: () => alert('Wallet feature clicked!'),
+    imagePosition: 'right',
+    imageElement: (
+      <Illustration
+        src={illustrations.wallet}
+        alt="Wallet Illustration"
+        size="full"
+        objectFit="contain"
+      />
+    )
+  },
+  {
+    id: '3',
+    title: 'Earn Passive Rewards',
+    description: 'Maximize your crypto earnings through staking, liquidity pools, and our Bitcoin credit card. Get rewarded for holding and using your cryptocurrency.',
+    buttonText: 'Start Earning',
+    onButtonClick: () => alert('Rewards feature clicked!'),
+    imagePosition: 'left',
+    imageElement: (
+      <Illustration
+        src={illustrations.rewards}
+        alt="Rewards Illustration"
+        size="full"
+        objectFit="contain"
+      />
+    )
+  }
+];
+
 /**
  * WebLayout with multiple sections components 
  */
@@ -395,6 +458,11 @@ export const WithSections: Story = {
           heading="Our Services"
           cards={sampleCards}
           layout={6}
+        />
+        <FeaturesSection
+          style="light"
+          heading="Key Features"
+          features={sampleFeatures}
         />
         <LinksSection
           style="dark"
