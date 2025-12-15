@@ -13,6 +13,7 @@ import { FAQSection } from '../../components/faq-section/FAQSection';
 import type { AccordionItemData } from '../../components/accordion';
 import { FeaturesSection } from '../../components/features-section/FeaturesSection';
 import type { Feature } from '../../components/features-section/FeaturesSection.types';
+import { HighlightSection } from '../../components/highlight-section/HighlightSection';
 import { Illustration } from '../../components/illustration';
 import { 
   BitcoinCreditCardsIllustration,
@@ -373,6 +374,7 @@ const sampleFAQItems: AccordionItemData[] = [
 
 // Illustration paths for features
 const illustrations = {
+  learn: '/src/illustrations/Illustration-Learn.svg',
   gaming: '/src/illustrations/Illustration-Gaming.svg',
   wallet: '/src/illustrations/Illustration-Wallet.svg',
   rewards: '/src/illustrations/Illustration-Rewards.svg',
@@ -451,8 +453,18 @@ export const WithSections: Story = {
           onPrimaryClick={() => alert('Get Started clicked!')}
           onSecondaryClick={() => alert('Learn more clicked!')}
         />
-        <NewsSection
+        <HighlightSection
           style="gray"
+          heading="Your all-in-one Bitcoin platform"
+          description="Browse and compare businesses and services that accept cryptocurrency, featuring expert reviews and real user feedback to help you make informed choices."
+          buttonText="Learn More"
+          imagePosition="left"
+          imageUrl={illustrations.learn}
+          imageAlt="Bitcoin Platform Illustration"
+          onButtonClick={() => alert('Learn More clicked!')}
+        />
+        <NewsSection
+          style="light"
           heading="Trending News"
           description="Never miss an update—keep up with daily crypto headlines and analysis."
           articles={sampleArticles}

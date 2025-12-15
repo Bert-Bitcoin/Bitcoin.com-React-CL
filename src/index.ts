@@ -42,6 +42,7 @@ export * from './components/cards-section';
 export * from './components/links-section';
 export * from './components/features-section';
 export * from './components/faq-section';
+export * from './components/highlight-section';
 export * from './components/website-footer';
 export * from './components/window';
 export * from './layouts/webapplayout';
