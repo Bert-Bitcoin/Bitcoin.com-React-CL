@@ -1,5 +1,3 @@
-'use client';
-
 import { twMerge } from 'tailwind-merge';
 import { Icon } from '../icon';
 import type { LinkItem, LinksSectionProps, LinksSectionStyle } from './LinksSection.types';
@@ -210,3 +208,4 @@ const LinkCard = ({ link, styles }: LinkCardProps) => {
 };
 
 LinkCard.displayName = 'LinkCard';
+

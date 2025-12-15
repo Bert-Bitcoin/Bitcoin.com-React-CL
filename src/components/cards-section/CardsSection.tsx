@@ -1,5 +1,3 @@
-'use client';
-
 import { twMerge } from 'tailwind-merge';
 import { Button } from '../button';
 import type { CardItem, CardsSectionProps, CardsSectionStyle } from './CardsSection.types';
@@ -148,3 +146,4 @@ const Card = ({ card, styles }: CardProps) => {
 };
 
 Card.displayName = 'Card';
+

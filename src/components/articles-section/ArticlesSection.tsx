@@ -1,5 +1,3 @@
-'use client';
-
 import { useRef, useState } from 'react';
 import { twMerge } from 'tailwind-merge';
 import { Button } from '../button';
@@ -240,3 +238,4 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
     </div>
   );
 };
+

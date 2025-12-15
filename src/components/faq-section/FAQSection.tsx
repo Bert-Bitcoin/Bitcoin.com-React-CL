@@ -1,5 +1,3 @@
-'use client';
-
 import { twMerge } from 'tailwind-merge';
 import { Accordion } from '../accordion';
 import type { FAQSectionProps, FAQSectionStyle } from './FAQSection.types';
@@ -72,3 +70,4 @@ export const FAQSection = ({
 };
 
 FAQSection.displayName = 'FAQSection';
+

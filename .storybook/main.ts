@@ -14,10 +14,14 @@ const config: StorybookConfig = {
   docs: {
     autodocs: 'tag'
   },
-  previewSort: {
-    order: ['design system', 'components', 'sections', 'layouts', 'assets' ]
-  },
-  staticDirs: []
+  staticDirs: [
+    { from: '../src/illustrations', to: 'src/illustrations' },
+    { from: '../src/images', to: 'src/images' },
+    { from: '../src/fonts', to: 'src/fonts' },
+    { from: '../src/icons', to: 'src/icons' },
+    { from: '../src/mini-illustrations', to: 'src/mini-illustrations' },
+    { from: '../src/assets-icons', to: 'src/assets-icons' }
+  ]
 };
 
 export default config;
