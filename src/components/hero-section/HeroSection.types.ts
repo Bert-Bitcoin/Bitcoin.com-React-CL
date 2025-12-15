@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 
 export type HeroSectionLayout = 'left' | 'centered' | 'left-illustration' | 'right-illustration';
+export type HeroSectionStyle = 'light' | 'gray' | 'dark';
 
 export interface HeroSectionProps {
   /**
@@ -8,6 +9,12 @@ export interface HeroSectionProps {
    * @default 'auto'
    */
   themeMode?: 'auto' | 'light' | 'dark';
+  
+  /**
+   * Style variant of the section
+   * @default 'light'
+   */
+  style?: HeroSectionStyle;
   
   /**
    * Layout variant of the hero section

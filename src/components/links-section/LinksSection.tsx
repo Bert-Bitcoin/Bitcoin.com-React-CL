@@ -32,13 +32,13 @@ const styleClasses: Record<LinksSectionStyle, {
     readMoreText: 'text-primary-100'
   },
   dark: {
-    bg: 'bg-shades-black',
-    heading: 'text-shades-white',
-    linkCard: 'bg-shades-dark',
-    iconHolder: 'bg-shades-semi-dark',
-    linkTitle: 'text-shades-white',
-    linkDescription: 'text-shades-semi-light',
-    readMoreText: 'text-secondary-100'
+    bg: 'bg-shades-black dark:bg-shades-white',
+    heading: 'text-shades-white dark:text-shades-black',
+    linkCard: 'bg-shades-dark dark:bg-shades-light',
+    iconHolder: 'bg-shades-semi-dark dark:bg-shades-semi-light',
+    linkTitle: 'text-shades-white dark:text-shades-black',
+    linkDescription: 'text-shades-semi-light dark:text-shades-semi-dark',
+    readMoreText: 'text-secondary-100 dark:text-secondary-100'
   }
 };
 

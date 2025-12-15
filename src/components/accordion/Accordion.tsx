@@ -9,7 +9,7 @@ import type { AccordionItemProps, AccordionProps } from './Accordion.types';
  */
 const AccordionItem = ({ item, isExpanded, onToggle, variant = 'default' }: AccordionItemProps) => {
   // Variant-specific text colors
-  const titleColorClass = variant === 'dark' ? 'text-shades-white' : 'text-shades-black';
+  const titleColorClass = variant === 'dark' ? 'text-shades-white dark:text-shades-black' : 'text-shades-black';
   const contentColorClass = variant === 'dark' ? 'text-shades-mid' : 'text-shades-dark';
 
   return (
@@ -109,12 +109,12 @@ export const Accordion = ({
   // Variant-specific background and divider colors
   const backgroundClass = 
     variant === 'gray' ? 'bg-shades-extra-light' :
-    variant === 'dark' ? 'bg-shades-black' :
+    variant === 'dark' ? 'bg-shades-black dark:bg-shades-white' :
     '';
 
   const dividerColorClass = 
     variant === 'gray' ? 'bg-shades-semi-light' :
-    variant === 'dark' ? 'bg-shades-semi-dark' :
+    variant === 'dark' ? 'bg-shades-semi-dark dark:bg-shades-semi-light' :
     'bg-shades-extra-light';
 
   return (

@@ -35,6 +35,26 @@ function MyLandingPage() {
 }
 ```
 
+## Style Variants
+
+### Light (default)
+- White background
+- Black heading text
+- Semi-dark description text
+- Best for standard sections
+
+### Gray
+- Extra light gray background
+- Black heading text
+- Semi-dark description text  
+- Ideal for alternate sections and visual separation
+
+### Dark
+- Black background
+- White heading text
+- Semi-light description text
+- Perfect for high-impact hero sections
+
 ## Layout Variants
 
 ### Left
@@ -54,6 +74,7 @@ Illustration on the left with text content on the right. Alternative balanced la
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `themeMode` | `'auto' \| 'light' \| 'dark'` | `'auto'` | Theme mode for the section |
+| `style` | `'light' \| 'gray' \| 'dark'` | `'light'` | Style variant (background and text colors) |
 | `layout` | `'left' \| 'centered' \| 'left-illustration' \| 'right-illustration'` | `'left'` | Layout variant |
 | `heading` | `string` | Required | Main heading (displayed in uppercase) |
 | `description` | `string` | Required | Subheading or description text |

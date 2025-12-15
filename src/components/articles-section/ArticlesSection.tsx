@@ -18,9 +18,9 @@ const styleClasses: Record<ArticlesSectionStyle, { bg: string; heading: string; 
     description: 'text-shades-semi-dark'
   },
   dark: {
-    bg: 'bg-shades-black',
-    heading: 'text-shades-white',
-    description: 'text-shades-semi-light'
+    bg: 'bg-shades-black dark:bg-shades-white',
+    heading: 'text-shades-white dark:text-shades-black',
+    description: 'text-shades-semi-light dark:text-shades-semi-dark'
   }
 };
 
@@ -34,8 +34,8 @@ const articleTextClasses: Record<ArticlesSectionStyle, { title: string; summary:
     summary: 'text-shades-semi-dark'
   },
   dark: {
-    title: 'text-shades-white',
-    summary: 'text-shades-semi-light'
+    title: 'text-shades-white dark:text-shades-black',
+    summary: 'text-shades-semi-light dark:text-shades-semi-dark'
   }
 };
 

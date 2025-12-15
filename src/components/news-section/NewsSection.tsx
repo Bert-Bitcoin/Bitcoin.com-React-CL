@@ -19,24 +19,27 @@ const styleClasses: Record<NewsSectionStyle, { bg: string; heading: string; desc
     description: 'text-shades-semi-dark'
   },
   dark: {
-    bg: 'bg-shades-black',
-    heading: 'text-shades-white',
-    description: 'text-shades-semi-light'
+    bg: 'bg-shades-black dark:bg-shades-white',
+    heading: 'text-shades-white dark:text-shades-black',
+    description: 'text-shades-semi-light dark:text-shades-semi-dark'
   }
 };
 
-const articleTextClasses: Record<NewsSectionStyle, { title: string; summary: string }> = {
+const articleTextClasses: Record<NewsSectionStyle, { title: string; summary: string; cardBg: string }> = {
   light: {
     title: 'text-shades-black',
-    summary: 'text-shades-semi-dark'
+    summary: 'text-shades-semi-dark',
+    cardBg: 'bg-shades-almost-black dark:bg-shades-extra-light'
   },
   gray: {
     title: 'text-shades-black',
-    summary: 'text-shades-semi-dark'
+    summary: 'text-shades-semi-dark',
+    cardBg: 'bg-shades-almost-black dark:bg-shades-white'
   },
   dark: {
-    title: 'text-shades-white',
-    summary: 'text-shades-semi-light'
+    title: 'text-shades-white dark:text-shades-black',
+    summary: 'text-shades-semi-light dark:text-shades-semi-dark',
+    cardBg: 'bg-shades-almost-black dark:bg-shades-extra-light'
   }
 };
 
@@ -173,7 +176,7 @@ NewsSection.displayName = 'NewsSection';
 interface ArticleCardProps {
   article: NewsArticle;
   style: NewsSectionStyle;
-  textStyles: { title: string; summary: string };
+  textStyles: { title: string; summary: string; cardBg: string };
   isFirst?: boolean;
   isLast?: boolean;
 }
@@ -182,7 +185,7 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
   const cardContent = (
     <>
       {/* Article image with badges */}
-      <div className="bg-shades-almost-black rounded-[16px] p-m flex flex-col gap-m overflow-hidden mb-l md:mb-0">
+      <div className={twMerge('rounded-[16px] p-m flex flex-col gap-m overflow-hidden mb-l md:mb-0', textStyles.cardBg)}>
         <div className="relative w-full aspect-[1200/630] rounded-xs overflow-hidden">
           <img
             src={article.imageUrl}
@@ -255,3 +258,4 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
     </div>
   );
 };
+

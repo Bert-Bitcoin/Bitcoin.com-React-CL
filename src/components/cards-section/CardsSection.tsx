@@ -20,9 +20,9 @@ const styleClasses: Record<CardsSectionStyle, { bg: string; heading: string; car
     cardDescription: 'text-shades-semi-dark'
   },
   black: {
-    bg: 'bg-shades-black',
-    heading: 'text-shades-white',
-    card: 'bg-shades-white',
+    bg: 'bg-shades-black dark:bg-shades-white',
+    heading: 'text-shades-white dark:text-shades-black',
+    card: 'bg-shades-white dark:bg-shades-light',
     cardTitle: 'text-shades-black',
     cardDescription: 'text-shades-semi-dark'
   }

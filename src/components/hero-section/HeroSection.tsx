@@ -3,10 +3,33 @@
 import { twMerge } from 'tailwind-merge';
 import { Button } from '../button';
 import { Illustration } from '../illustration';
-import type { HeroSectionLayout, HeroSectionProps } from './HeroSection.types';
+import type { HeroSectionLayout, HeroSectionProps, HeroSectionStyle } from './HeroSection.types';
+
+const styleClasses: Record<HeroSectionStyle, {
+  bg: string;
+  heading: string;
+  description: string;
+}> = {
+  light: {
+    bg: 'bg-shades-white',
+    heading: 'text-shades-black',
+    description: 'text-shades-semi-dark'
+  },
+  gray: {
+    bg: 'bg-shades-extra-light',
+    heading: 'text-shades-black',
+    description: 'text-shades-semi-dark'
+  },
+  dark: {
+    bg: 'bg-shades-black',
+    heading: 'text-shades-white',
+    description: 'text-shades-semi-light'
+  }
+};
 
 export const HeroSection = ({
   themeMode = 'auto',
+  style = 'light',
   layout = 'left',
   heading,
   description,
@@ -22,6 +45,7 @@ export const HeroSection = ({
   const hasIllustration = layout === 'left-illustration' || layout === 'right-illustration';
   const isCentered = layout === 'centered';
   const isRightIllustration = layout === 'right-illustration';
+  const styles = styleClasses[style];
 
   // Top padding values - full or reduced by half
   const topPaddingClasses = reducedTopPadding
@@ -34,6 +58,7 @@ export const HeroSection = ({
         'px-m md:px-xl pb-[0px] md:pb-[60px] lg:pb-[80px]',
         topPaddingClasses,
         'lg:min-h-[70vh] flex items-center',
+        styles.bg,
         themeMode === 'light' && 'light',
         themeMode === 'dark' && 'dark',
         className
@@ -51,6 +76,7 @@ export const HeroSection = ({
             illustrationName={illustrationName}
             isRightIllustration={isRightIllustration}
             customActions={customActions}
+            styles={styles}
           />
         ) : (
           <HeroTextOnly
@@ -62,6 +88,7 @@ export const HeroSection = ({
             onSecondaryClick={onSecondaryClick}
             isCentered={isCentered}
             customActions={customActions}
+            styles={styles}
           />
         )}
       </div>
@@ -80,6 +107,7 @@ interface HeroTextOnlyProps {
   onSecondaryClick?: () => void;
   isCentered: boolean;
   customActions?: React.ReactNode;
+  styles: typeof styleClasses[HeroSectionStyle];
 }
 
 const HeroTextOnly = ({
@@ -90,7 +118,8 @@ const HeroTextOnly = ({
   secondaryButtonText,
   onSecondaryClick,
   isCentered,
-  customActions
+  customActions,
+  styles
 }: HeroTextOnlyProps) => {
   return (
     <div className={twMerge(
@@ -100,7 +129,8 @@ const HeroTextOnly = ({
       <h1 className={twMerge(
         'font-["Elza_Narrow"]',
         'text-[44px] sm:text-[54px] md:text-[70px] lg:text-[94px]',
-        'text-shades-black uppercase leading-[0.90]',
+        'uppercase leading-[0.90]',
+        styles.heading,
         isCentered ? 'max-w-[1000px]' : 'max-w-[900px]'
       )}>
         {heading}
@@ -115,7 +145,8 @@ const HeroTextOnly = ({
           'font-["Satoshi_Variable"] font-medium',
           'text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px]',
           'leading-[1.23]',
-          'text-shades-semi-dark max-w-[600px]'
+          'max-w-[600px]',
+          styles.description
         )}>
           {description}
         </p>
@@ -177,6 +208,7 @@ interface HeroWithIllustrationProps {
   illustrationName: string;
   isRightIllustration: boolean;
   customActions?: React.ReactNode;
+  styles: typeof styleClasses[HeroSectionStyle];
 }
 
 const HeroWithIllustration = ({
@@ -188,7 +220,8 @@ const HeroWithIllustration = ({
   onSecondaryClick,
   illustrationName,
   isRightIllustration,
-  customActions
+  customActions,
+  styles
 }: HeroWithIllustrationProps) => {
   const illustrationSrc = `/src/illustrations/${illustrationName}`;
 
@@ -202,7 +235,8 @@ const HeroWithIllustration = ({
         <h1 className={twMerge(
           'font-["Elza_Narrow"]',
           'text-[44px] sm:text-[54px] md:text-[70px] lg:text-[94px]',
-          'text-shades-black uppercase leading-[0.90]'
+          'uppercase leading-[0.90]',
+          styles.heading
         )}>
           {heading}
         </h1>
@@ -212,7 +246,8 @@ const HeroWithIllustration = ({
             'font-["Satoshi_Variable"] font-medium',
             'text-[18px] sm:text-[22px] md:text-[26px] lg:text-[28px]',
             'leading-[1.23]',
-            'text-shades-semi-dark max-w-[600px]'
+            'max-w-[600px]',
+            styles.description
           )}>
             {description}
           </p>

@@ -27,11 +27,11 @@ const styleClasses: Record<FeaturesSectionStyle, {
     imageBg: 'bg-shades-off-white'
   },
   dark: {
-    bg: 'bg-shades-black',
-    heading: 'text-shades-white',
-    featureTitle: 'text-shades-white',
-    featureDescription: 'text-shades-semi-light',
-    imageBg: 'bg-shades-extra-dark'
+    bg: 'bg-shades-black dark:bg-shades-white',
+    heading: 'text-shades-white dark:text-shades-black',
+    featureTitle: 'text-shades-white dark:text-shades-black',
+    featureDescription: 'text-shades-semi-light dark:text-shades-semi-dark',
+    imageBg: 'bg-shades-extra-dark dark:bg-shades-extra-light'
   }
 };
 

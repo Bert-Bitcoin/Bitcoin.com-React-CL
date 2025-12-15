@@ -6,6 +6,8 @@ import { LogoMark } from '../logomark';
 import { Icon } from '../icon';
 import { IconButton } from '../button';
 
+export type HeaderStyle = 'light' | 'gray' | 'dark';
+
 export interface HeaderMenuItem {
   label: string;
   href: string;
@@ -14,6 +16,11 @@ export interface HeaderMenuItem {
 }
 
 export interface HeaderProps {
+  /**
+   * Style variant of the header
+   * @default 'light'
+   */
+  style?: HeaderStyle;
   /**
    * Menu items to display in the navigation pill
    */
@@ -36,7 +43,46 @@ export interface HeaderProps {
   className?: string;
 }
 
+const styleClasses: Record<HeaderStyle, {
+  bg: string;
+  navBg: string;
+  navActiveText: string;
+  navInactiveText: string;
+  navHoverBg: string;
+  mobileMenuText: string;
+  mobileMenuActiveText: string;
+}> = {
+  light: {
+    bg: 'bg-shades-white',
+    navBg: 'bg-shades-almost-black dark:bg-shades-light',
+    navActiveText: 'text-shades-almost-black dark:text-shades-white',
+    navInactiveText: 'text-white dark:text-shades-almost-black',
+    navHoverBg: 'hover:bg-shades-dark dark:hover:bg-shades-mid',
+    mobileMenuText: 'text-shades-almost-black dark:text-shades-white',
+    mobileMenuActiveText: 'text-primary-100'
+  },
+  gray: {
+    bg: 'bg-shades-extra-light',
+    navBg: 'bg-shades-almost-black dark:bg-shades-white',
+    navActiveText: 'text-shades-almost-black dark:text-shades-white',
+    navInactiveText: 'text-white dark:text-shades-almost-black',
+    navHoverBg: 'hover:bg-shades-dark dark:hover:bg-shades-mid',
+    mobileMenuText: 'text-shades-almost-black dark:text-shades-white',
+    mobileMenuActiveText: 'text-primary-100'
+  },
+  dark: {
+    bg: 'bg-shades-black dark:bg-shades-white',
+    navBg: 'bg-shades-extra-dark dark:bg-shades-light',
+    navActiveText: 'text-shades-black dark:text-shades-white',
+    navInactiveText: 'text-shades-light dark:text-shades-black',
+    navHoverBg: 'hover:bg-shades-mid dark:hover:bg-shades-dark',
+    mobileMenuText: 'text-white dark:text-shades-almost-black',
+    mobileMenuActiveText: 'text-primary-100'
+  }
+};
+
 export const Header = ({
+  style = 'light',
   menuItems = [
     { label: 'Label', href: '#', active: true },
     { label: 'Label', href: '#' },
@@ -51,6 +97,42 @@ export const Header = ({
   className
 }: HeaderProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const styles = styleClasses[style];
+
+  // Determine breakpoint based on number of menu items
+  // 1-4 items: md breakpoint (768px)
+  // 5-6 items: lg breakpoint (1024px)
+  // 7+ items: xl breakpoint (1280px)
+  const getBreakpointClasses = () => {
+    const itemCount = menuItems.length;
+    if (itemCount <= 4) {
+      return {
+        desktop: 'md:flex',
+        hideOnDesktop: 'md:hidden',
+        tablet: 'sm:flex md:hidden',
+        hideOnTablet: 'sm:hidden',
+        mobile: 'sm:hidden'
+      };
+    } else if (itemCount <= 6) {
+      return {
+        desktop: 'lg:flex',
+        hideOnDesktop: 'lg:hidden',
+        tablet: 'md:flex lg:hidden',
+        hideOnTablet: 'md:hidden',
+        mobile: 'md:hidden'
+      };
+    } else {
+      return {
+        desktop: 'xl:flex',
+        hideOnDesktop: 'xl:hidden',
+        tablet: 'lg:flex xl:hidden',
+        hideOnTablet: 'lg:hidden',
+        mobile: 'lg:hidden'
+      };
+    }
+  };
+
+  const breakpoints = getBreakpointClasses();
 
   const handleMenuToggle = () => {
     setIsMobileMenuOpen((prev) => !prev);
@@ -62,17 +144,17 @@ export const Header = ({
   };
 
   return (
-    <header className={twMerge('relative w-full bg-background transition-all duration-300', className)}>
-      {/* Desktop Layout (lg breakpoint) */}
-      <div className="hidden md:flex items-center justify-center px-xl py-l w-full">
+    <header className={twMerge('relative w-full transition-all duration-300', styles.bg, className)}>
+      {/* Desktop Layout */}
+      <div className={twMerge('hidden items-center justify-center px-xl py-l w-full', breakpoints.desktop)}>
         <div className="flex items-center justify-between w-full max-w-[1240px] relative">
           {/* Left: Logo */}
           <div className="w-[167px] h-[35px]">
-            <Logo theme="auto" size="md" className="w-full h-full" />
+            <Logo theme={(style === 'dark') ? 'dark' : 'auto'} size="md" className="w-full h-full" />
           </div>
 
           {/* Center: Navigation Pill */}
-          <nav className="absolute left-1/2 -translate-x-1/2 bg-shades-almost-black rounded-[40px] flex items-center gap-xs h-[35px] px-xs">
+          <nav className={twMerge('absolute left-1/2 -translate-x-1/2 rounded-[40px] flex items-center gap-xs h-[35px] px-xs', styles.navBg)}>
             {menuItems.map((item, index) => (
               <a
                 key={index}
@@ -86,8 +168,8 @@ export const Header = ({
                 className={twMerge(
                   'px-s h-[27px] flex items-center rounded-[16px] font-medium text-[13px] leading-tight transition-colors duration-200',
                   item.active
-                    ? 'bg-white text-shades-almost-black dark:bg-shades-light dark:text-white'
-                    : 'text-white hover:bg-shades-dark dark:text-black dark:hover:bg-shades-mid'
+                    ? `bg-white ${styles.navActiveText}`
+                    : `${styles.navInactiveText} ${styles.navHoverBg}`
                 )}
               >
                 {item.label}
@@ -104,15 +186,15 @@ export const Header = ({
         </div>
       </div>
 
-      {/* Tablet Layout (md breakpoint) */}
-      <div className="hidden sm:flex md:hidden flex-col items-center py-l w-full">
+      {/* Tablet Layout */}
+      <div className={twMerge('hidden flex-col items-center py-l w-full', breakpoints.tablet)}>
         <div className="flex items-start justify-between w-full px-m">
           {/* Left: Logo Mark */}
           <LogoMark size="md" className="w-[35px] h-[35px]" />
 
           {/* Center: Navigation Pill */}
-          <nav className="bg-shades-almost-black rounded-[40px] flex items-center justify-center gap-xs flex-wrap max-w-[400px] h-[35px] px-xs ml-[24px]">
-            {menuItems.slice(0, 6).map((item, index) => (
+          <nav className={twMerge('rounded-[40px] flex items-center justify-center gap-xs flex-wrap h-[35px] px-xs ml-[24px]', styles.navBg)}>
+            {menuItems.map((item, index) => (
               <a
                 key={index}
                 href={item.href}
@@ -125,8 +207,8 @@ export const Header = ({
                 className={twMerge(
                   'px-s h-[27px] flex items-center rounded-[16px] font-medium text-[13px] leading-tight transition-colors duration-200',
                   item.active
-                    ? 'bg-white text-shades-almost-black dark:bg-shades-light dark:text-white'
-                    : 'text-white hover:bg-shades-dark dark:text-black dark:hover:bg-shades-extra-dark'
+                    ? `bg-white ${styles.navActiveText}`
+                    : `${styles.navInactiveText} ${styles.navHoverBg}`
                 )}
               >
                 {item.label}
@@ -143,8 +225,8 @@ export const Header = ({
         </div>
       </div>
 
-      {/* Mobile Layout (default) */}
-      <div className="flex items-center justify-between px-m py-m w-full sm:hidden">
+      {/* Mobile Layout */}
+      <div className={twMerge('flex items-center justify-between px-m py-m w-full', breakpoints.mobile)}>
         {/* Left: Logo */}
         <div className="w-[167px] h-[35px]">
         <Logo theme="auto" size="md" className="w-full h-full" />
@@ -166,7 +248,7 @@ export const Header = ({
       </div>
 
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-background px-m py-m flex flex-col sm:hidden">
+        <div className={twMerge('fixed inset-0 z-50 px-m py-m flex flex-col', breakpoints.mobile, styles.bg)}>
           {/* Header */}
           <div className="flex items-center justify-between shrink-0 mb-m">
             <div className="w-[167px] h-[35px]">
@@ -202,8 +284,8 @@ export const Header = ({
                   className={twMerge(
                     'font-medium text-heading-sm text-center transition-colors duration-200 text-[20px]',
                     item.active
-                      ? 'text-primary-100 dark:text-primary-100'
-                      : 'text-shades-almost-black hover:text-primary-100 dark:text-white dark:hover:text-primary-100'
+                      ? styles.mobileMenuActiveText
+                      : `${styles.mobileMenuText} hover:${styles.mobileMenuActiveText}`
                   )}
                 >
                   {item.label}

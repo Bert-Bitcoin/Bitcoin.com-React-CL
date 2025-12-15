@@ -440,6 +440,7 @@ export const WithSections: Story = {
       <>
         <HeroSection
           themeMode="auto"
+          style="light"
           layout="left-illustration"
           heading="Your Gateway to Finance"
           description="Browse and compare businesses and services that accept cryptocurrency, featuring expert reviews and real user feedback to help you make informed choices."

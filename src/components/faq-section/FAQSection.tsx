@@ -14,8 +14,8 @@ const styleClasses: Record<FAQSectionStyle, { bg: string; heading: string }> = {
     heading: 'text-shades-black'
   },
   dark: {
-    bg: 'bg-shades-black',
-    heading: 'text-shades-white'
+    bg: 'bg-shades-black dark:bg-shades-white',
+    heading: 'text-shades-white dark:text-shades-black'
   }
 };
 
