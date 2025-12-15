@@ -3,7 +3,7 @@ import { ArticlesSection } from './ArticlesSection';
 import type { Article } from './ArticlesSection.types';
 
 const meta: Meta<typeof ArticlesSection> = {
-  title: 'Sections/Website/Articles Section',
+  title: 'Sections/Website/Articles',
   component: ArticlesSection,
   parameters: {
     layout: 'fullscreen',

@@ -11,7 +11,7 @@ import {
 } from '../mini-illustrations';
 
 const meta = {
-  title: 'Sections/Website/Cards Section',
+  title: 'Sections/Website/Cards',
   component: CardsSection,
   parameters: {
     layout: 'fullscreen',

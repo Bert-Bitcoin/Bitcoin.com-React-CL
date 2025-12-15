@@ -99,7 +99,7 @@ src/components/features-section/
 ### Props Interface
 
 ```typescript
-interface FeatureSectionProps {
+interface FeaturesSectionProps {
   themeMode?: 'auto' | 'light' | 'dark';
   style?: 'light' | 'gray' | 'dark';
   heading?: string;
@@ -147,7 +147,7 @@ http://localhost:6006/?path=/story/sections-website-features-section
 ### Basic Implementation
 
 ```tsx
-import { FeatureSection } from '@/components/feature-section';
+import { FeaturesSection } from '@/components/features-section';
 
 const features = [
   {
@@ -159,7 +159,7 @@ const features = [
   }
 ];
 
-<FeatureSection heading="Features" features={features} />
+<FeaturesSection heading="Features" features={features} />
 ```
 
 ### With Custom Images
@@ -181,7 +181,7 @@ const featuresWithImages = [
   }
 ];
 
-<FeatureSection 
+<FeaturesSection 
   heading="Why Choose Us"
   features={featuresWithImages}
   style="light"
@@ -259,7 +259,7 @@ export type { FeaturesSectionProps, Feature, FeaturesSectionStyle } from './feat
 
 ## 🎉 Ready to Use
 
-The FeatureSection component is **production-ready** and can be used immediately in your project:
+The FeaturesSection component is **production-ready** and can be used immediately in your project:
 
 1. ✅ Import the component
 2. ✅ Pass your features array
@@ -279,7 +279,7 @@ As requested, the Image Holder container does **not include the blue background*
 Features automatically alternate between left and right image positioning. You can override this behavior by setting the `imagePosition` prop on individual features.
 
 ### Style Consistency
-For best results, use consistent style variants within the same page section. If using multiple FeatureSection components on one page, alternate between style variants for visual interest.
+For best results, use consistent style variants within the same page section. If using multiple FeaturesSection components on one page, alternate between style variants for visual interest.
 
 ---
 

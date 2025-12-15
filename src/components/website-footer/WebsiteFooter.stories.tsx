@@ -51,7 +51,7 @@ const sampleLinkGroups: WebsiteFooterLinkGroup[] = [
 ];
 
 const meta: Meta<typeof WebsiteFooter> = {
-  title: 'Components/Navigation/Website Footer',
+  title: 'Sections/Website/Footer',
   component: WebsiteFooter,
   tags: ['autodocs'],
   parameters: {

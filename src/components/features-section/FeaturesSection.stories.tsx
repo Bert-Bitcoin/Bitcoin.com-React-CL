@@ -4,7 +4,7 @@ import type { FeaturesSectionProps } from './FeaturesSection.types';
 import { Illustration } from '../illustration';
 
 const meta: Meta<typeof FeaturesSection> = {
-  title: 'Sections/Website/Features Section',
+  title: 'Sections/Website/Features',
   component: FeaturesSection,
   parameters: {
     layout: 'fullscreen',

@@ -4,7 +4,7 @@ import { Input } from '../input';
 import { Button } from '../button';
 
 const meta = {
-  title: 'Sections/Website/Hero Section',
+  title: 'Sections/Website/Hero',
   component: HeroSection,
   parameters: {
     layout: 'fullscreen',

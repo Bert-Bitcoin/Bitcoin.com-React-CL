@@ -16,7 +16,7 @@ A responsive website section component for showcasing features with an alternati
 ### Basic Example
 
 ```tsx
-import { FeatureSection } from '@/components/feature-section';
+import { FeaturesSection } from '@/components/features-section';
 
 const features = [
   {

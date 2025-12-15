@@ -13,7 +13,7 @@
 ### Simple Feature List
 
 ```tsx
-import { FeatureSection } from '@/components/feature-section';
+import { FeaturesSection } from '@/components/features-section';
 
 function MyPage() {
   const features = [
@@ -216,7 +216,7 @@ const features = [
   }
 ];
 
-<FeatureSection features={features} />
+<FeaturesSection features={features} />
 ```
 
 ### With Button Links
@@ -236,7 +236,7 @@ const features = [
   }
 ];
 
-<FeatureSection features={features} />
+<FeaturesSection features={features} />
 ```
 
 ### With Custom Styling

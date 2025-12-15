@@ -3,7 +3,7 @@ import { FAQSection } from './FAQSection';
 import type { AccordionItemData } from '../accordion';
 
 const meta = {
-  title: 'Sections/Website/FAQ Section',
+  title: 'Sections/Website/FAQ',
   component: FAQSection,
   parameters: {
     layout: 'fullscreen',
