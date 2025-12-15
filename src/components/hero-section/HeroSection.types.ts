@@ -1,0 +1,68 @@
+export type HeroSectionLayout = 'left' | 'centered' | 'left-illustration' | 'right-illustration';
+
+export interface HeroSectionProps {
+  /**
+   * Theme mode for the section
+   * @default 'auto'
+   */
+  themeMode?: 'auto' | 'light' | 'dark';
+  
+  /**
+   * Layout variant of the hero section
+   * @default 'left'
+   */
+  layout?: HeroSectionLayout;
+  
+  /**
+   * Main heading text (will be displayed in uppercase with Elza Narrow font)
+   */
+  heading: string;
+  
+  /**
+   * Subheading or description text
+   */
+  description: string;
+  
+  /**
+   * Text for the primary CTA button
+   * @default 'Get Started'
+   */
+  primaryButtonText?: string;
+  
+  /**
+   * Click handler for the primary button
+   */
+  onPrimaryClick?: () => void;
+  
+  /**
+   * Text for the secondary CTA button
+   * @default 'Learn more'
+   */
+  secondaryButtonText?: string;
+  
+  /**
+   * Click handler for the secondary button
+   */
+  onSecondaryClick?: () => void;
+  
+  /**
+   * Name of the illustration to display (for layout variants with illustrations)
+   * References files from src/illustrations/
+   * @default 'Illustration-Platform-Alt.svg'
+   */
+  illustrationName?: string;
+  
+  /**
+   * Reduce top padding by half (useful when placed directly below header navigation)
+   * When true: 16px → 20px → 30px → 40px
+   * When false: 32px → 40px → 60px → 80px
+   * @default false
+   */
+  reducedTopPadding?: boolean;
+  
+  /**
+   * Additional CSS classes
+   */
+  className?: string;
+}
+

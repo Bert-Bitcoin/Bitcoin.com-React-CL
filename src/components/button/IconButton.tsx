@@ -24,23 +24,28 @@ const variantClasses: Record<IconButtonVariant, string> = {
 
 const sizeClasses: Record<IconButtonSize, { button: string; icon: string }> = {
   sm: {
-    button: 'w-[32px] h-[32px]',
-    icon: 'w-4 h-4'
+    button: 'w-[24px] h-[24px]',
+    icon: 'w-3 h-3'
   },
   md: {
     button: 'w-[35px] h-[35px]',
-    icon: 'w-4 h-4'
+    icon: 'w-[18px] h-[18px]'
   },
   lg: {
     button: 'w-[38px] h-[38px]',
+    icon: 'w-5 h-5'
+  },
+  xl: {
+    button: 'w-[43px] h-[43px]',
     icon: 'w-5 h-5'
   }
 };
 
 const spinnerSizes: Record<IconButtonSize, string> = {
-  sm: 'h-4 w-4 border-[2px]',
-  md: 'h-4 w-4 border-[2.5px]',
-  lg: 'h-5 w-5 border-[3px]'
+  sm: 'h-3 w-3 border-[2px]',
+  md: 'h-[18px] w-[18px] border-[2.5px]',
+  lg: 'h-5 w-5 border-[3px]',
+  xl: 'h-5 w-5 border-[3px]'
 };
 
 const loadingColorByVariant: Record<IconButtonVariant, string> = {

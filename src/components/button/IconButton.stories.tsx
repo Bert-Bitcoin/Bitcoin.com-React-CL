@@ -29,7 +29,7 @@ const meta: Meta<typeof IconButton> = {
     },
     size: {
       control: 'inline-radio',
-      options: ['sm', 'md', 'lg']
+      options: ['sm', 'md', 'lg', 'xl']
     },
     icon: {
       control: false
@@ -96,6 +96,12 @@ export const Large: Story = {
   }
 };
 
+export const ExtraLarge: Story = {
+  args: {
+    size: 'xl'
+  }
+};
+
 export const Loading: Story = {
   args: {
     loading: true
@@ -155,6 +161,7 @@ export const AllSizes: Story = {
       <IconButton icon={<Icon type="icon-about" />} aria-label="About" size="sm" />
       <IconButton icon={<Icon type="icon-about" />} aria-label="About" size="md" />
       <IconButton icon={<Icon type="icon-about" />} aria-label="About" size="lg" />
+      <IconButton icon={<Icon type="icon-about" />} aria-label="About" size="xl" />
     </div>
   )
 };

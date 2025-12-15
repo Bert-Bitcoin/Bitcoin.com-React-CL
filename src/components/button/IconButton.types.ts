@@ -8,7 +8,7 @@ export type IconButtonVariant =
   | 'link'
   | 'strong';
 
-export type IconButtonSize = 'sm' | 'md' | 'lg';
+export type IconButtonSize = 'sm' | 'md' | 'lg' | 'xl';
 
 export interface IconButtonProps
   extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'color'> {

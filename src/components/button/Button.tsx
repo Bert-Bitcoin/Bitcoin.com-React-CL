@@ -25,25 +25,29 @@ const variantClasses: Record<ButtonVariant, string> = {
 const sizeLayout: Record<ButtonSize, string> = {
   sm: 'gap-xs px-s py-xs min-h-[1.5rem]',
   md: 'gap-s px-m py-s min-h-[2.1875rem]',
-  lg: 'gap-s px-m py-s min-h-[2.375rem]'
+  lg: 'gap-s px-m py-s min-h-[2.375rem]',
+  xl: 'gap-s px-m py-s min-h-[2.6875rem]'
 };
 
 const textClasses: Record<ButtonSize, string> = {
   sm: 'text-label-sm',
   md: 'text-label',
-  lg: 'text-label-lg'
+  lg: 'text-label-lg',
+  xl: 'text-[20px] font-medium'
 };
 
 const iconSizes: Record<ButtonSize, string> = {
   sm: 'h-3 w-3',
   md: 'h-4 w-4',
-  lg: 'h-5 w-5'
+  lg: 'h-5 w-5',
+  xl: 'h-[2.6875rem] w-[2.6875rem]'
 };
 
 const spinnerSizes: Record<ButtonSize, string> = {
   sm: 'h-3 w-3 border-[2px]',
   md: 'h-4 w-4 border-[2.5px]',
-  lg: 'h-5 w-5 border-[3px]'
+  lg: 'h-5 w-5 border-[3px]',
+  xl: 'h-[2.6875rem] w-[2.6875rem] border-[3px]'
 };
 
 const loadingColorByVariant: Record<ButtonVariant, string> = {

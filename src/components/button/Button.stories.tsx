@@ -34,7 +34,7 @@ const meta: Meta<typeof Button> = {
     },
     size: {
       control: 'inline-radio',
-      options: ['sm', 'md', 'lg']
+      options: ['sm', 'md', 'lg', 'xl']
     },
     leadingIcon: {
       options: Object.keys(iconOptions),
@@ -85,6 +85,12 @@ export const Strong: Story = {
   }
 };
 
+export const ExtraLarge: Story = {
+  args: {
+    size: 'xl'
+  }
+};
+
 export const WithIcons: Story = {
   args: {
     variant: 'primary',
@@ -114,6 +120,9 @@ export const FullWidth: Story = {
 export const Sizes: Story = {
   render: (args: ButtonProps) => (
     <div className="flex flex-col gap-s">
+      <Button {...args} size="xl">
+        Extra Large
+      </Button>
       <Button {...args} size="lg">
         Large
       </Button>

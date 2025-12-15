@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { WebLayout } from './WebLayout';
+import { HeroSection } from '../../components/hero-section/HeroSection';
 import { NewsSection } from '../../components/news-section/NewsSection';
 import type { NewsArticle } from '../../components/news-section/NewsSection.types';
 import { ArticlesSection } from '../../components/articles-section/ArticlesSection';
@@ -437,8 +438,20 @@ export const WithSections: Story = {
   args: {
     children: (
       <>
+        <HeroSection
+          themeMode="auto"
+          layout="left-illustration"
+          heading="Your Gateway to Finance"
+          description="Browse and compare businesses and services that accept cryptocurrency, featuring expert reviews and real user feedback to help you make informed choices."
+          primaryButtonText="Get Started"
+          secondaryButtonText="Learn more"
+          illustrationName="Illustration-Platform-Alt.svg"
+          reducedTopPadding={true}
+          onPrimaryClick={() => alert('Get Started clicked!')}
+          onSecondaryClick={() => alert('Learn more clicked!')}
+        />
         <NewsSection
-          style="light"
+          style="gray"
           heading="Trending News"
           description="Never miss an update—keep up with daily crypto headlines and analysis."
           articles={sampleArticles}
