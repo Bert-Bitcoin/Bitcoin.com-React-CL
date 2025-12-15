@@ -16,6 +16,7 @@ export const HeroSection = ({
   onSecondaryClick,
   illustrationName = 'Illustration-Platform-Alt.svg',
   reducedTopPadding = false,
+  customActions,
   className
 }: HeroSectionProps) => {
   const hasIllustration = layout === 'left-illustration' || layout === 'right-illustration';
@@ -49,6 +50,7 @@ export const HeroSection = ({
             onSecondaryClick={onSecondaryClick}
             illustrationName={illustrationName}
             isRightIllustration={isRightIllustration}
+            customActions={customActions}
           />
         ) : (
           <HeroTextOnly
@@ -59,6 +61,7 @@ export const HeroSection = ({
             secondaryButtonText={secondaryButtonText}
             onSecondaryClick={onSecondaryClick}
             isCentered={isCentered}
+            customActions={customActions}
           />
         )}
       </div>
@@ -76,6 +79,7 @@ interface HeroTextOnlyProps {
   secondaryButtonText: string;
   onSecondaryClick?: () => void;
   isCentered: boolean;
+  customActions?: React.ReactNode;
 }
 
 const HeroTextOnly = ({
@@ -85,7 +89,8 @@ const HeroTextOnly = ({
   onPrimaryClick,
   secondaryButtonText,
   onSecondaryClick,
-  isCentered
+  isCentered,
+  customActions
 }: HeroTextOnlyProps) => {
   return (
     <div className={twMerge(
@@ -115,41 +120,48 @@ const HeroTextOnly = ({
           {description}
         </p>
 
-        {/* Mobile buttons (md size) */}
-        <div className="flex gap-m flex-wrap md:hidden">
-          <Button 
-            variant="secondary" 
-            size="md"
-            onClick={onPrimaryClick}
-          >
-            {primaryButtonText}
-          </Button>
-          <Button 
-            variant="default" 
-            size="md"
-            onClick={onSecondaryClick}
-          >
-            {secondaryButtonText}
-          </Button>
-        </div>
+        {customActions ? (
+          // Custom actions provided - render them
+          <div className="w-full">{customActions}</div>
+        ) : (
+          <>
+            {/* Mobile buttons (md size) */}
+            <div className="flex gap-m flex-wrap md:hidden">
+              <Button 
+                variant="secondary" 
+                size="md"
+                onClick={onPrimaryClick}
+              >
+                {primaryButtonText}
+              </Button>
+              <Button 
+                variant="default" 
+                size="md"
+                onClick={onSecondaryClick}
+              >
+                {secondaryButtonText}
+              </Button>
+            </div>
 
-        {/* Tablet and above buttons (lg size) */}
-        <div className="hidden md:flex gap-m flex-wrap">
-          <Button 
-            variant="secondary" 
-            size="lg"
-            onClick={onPrimaryClick}
-          >
-            {primaryButtonText}
-          </Button>
-          <Button 
-            variant="default" 
-            size="lg"
-            onClick={onSecondaryClick}
-          >
-            {secondaryButtonText}
-          </Button>
-        </div>
+            {/* Tablet and above buttons (lg size) */}
+            <div className="hidden md:flex gap-m flex-wrap">
+              <Button 
+                variant="secondary" 
+                size="lg"
+                onClick={onPrimaryClick}
+              >
+                {primaryButtonText}
+              </Button>
+              <Button 
+                variant="default" 
+                size="lg"
+                onClick={onSecondaryClick}
+              >
+                {secondaryButtonText}
+              </Button>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
@@ -164,6 +176,7 @@ interface HeroWithIllustrationProps {
   onSecondaryClick?: () => void;
   illustrationName: string;
   isRightIllustration: boolean;
+  customActions?: React.ReactNode;
 }
 
 const HeroWithIllustration = ({
@@ -174,7 +187,8 @@ const HeroWithIllustration = ({
   secondaryButtonText,
   onSecondaryClick,
   illustrationName,
-  isRightIllustration
+  isRightIllustration,
+  customActions
 }: HeroWithIllustrationProps) => {
   const illustrationSrc = `/src/illustrations/${illustrationName}`;
 
@@ -203,41 +217,48 @@ const HeroWithIllustration = ({
             {description}
           </p>
 
-          {/* Mobile buttons (md size) */}
-          <div className="flex gap-m flex-wrap md:hidden">
-            <Button 
-              variant="secondary" 
-              size="md"
-              onClick={onPrimaryClick}
-            >
-              {primaryButtonText}
-            </Button>
-            <Button 
-              variant="default" 
-              size="md"
-              onClick={onSecondaryClick}
-            >
-              {secondaryButtonText}
-            </Button>
-          </div>
+          {customActions ? (
+            // Custom actions provided - render them
+            <div className="w-full">{customActions}</div>
+          ) : (
+            <>
+              {/* Mobile buttons (md size) */}
+              <div className="flex gap-m flex-wrap md:hidden">
+                <Button 
+                  variant="secondary" 
+                  size="md"
+                  onClick={onPrimaryClick}
+                >
+                  {primaryButtonText}
+                </Button>
+                <Button 
+                  variant="default" 
+                  size="md"
+                  onClick={onSecondaryClick}
+                >
+                  {secondaryButtonText}
+                </Button>
+              </div>
 
-          {/* Tablet and above buttons (lg size) */}
-          <div className="hidden md:flex gap-m flex-wrap">
-            <Button 
-              variant="secondary" 
-              size="lg"
-              onClick={onPrimaryClick}
-            >
-              {primaryButtonText}
-            </Button>
-            <Button 
-              variant="default" 
-              size="lg"
-              onClick={onSecondaryClick}
-            >
-              {secondaryButtonText}
-            </Button>
-          </div>
+              {/* Tablet and above buttons (lg size) */}
+              <div className="hidden md:flex gap-m flex-wrap">
+                <Button 
+                  variant="secondary" 
+                  size="lg"
+                  onClick={onPrimaryClick}
+                >
+                  {primaryButtonText}
+                </Button>
+                <Button 
+                  variant="default" 
+                  size="lg"
+                  onClick={onSecondaryClick}
+                >
+                  {secondaryButtonText}
+                </Button>
+              </div>
+            </>
+          )}
         </div>
       </div>
 

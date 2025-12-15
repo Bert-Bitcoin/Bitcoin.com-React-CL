@@ -80,7 +80,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       borderByStatus[status],
       ringByStatus[status],
       disabled && 'pointer-events-none border-border bg-surface-muted text-field-placeholder',
-      fullWidth ? 'w-full' : 'w-fit'
+      fullWidth && 'w-full'
     );
 
     const startIconClass = twMerge(
@@ -111,7 +111,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     );
 
     return (
-      <div className={twMerge('flex flex-col gap-[6px]', fullWidth && 'w-full', className)}>
+      <div className={twMerge('inline-flex flex-col gap-[6px]', fullWidth && 'w-full flex', className)}>
         {label ? (
           <label
             htmlFor={inputId}

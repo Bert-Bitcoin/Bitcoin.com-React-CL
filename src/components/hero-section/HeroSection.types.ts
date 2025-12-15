@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export type HeroSectionLayout = 'left' | 'centered' | 'left-illustration' | 'right-illustration';
 
 export interface HeroSectionProps {
@@ -59,6 +61,13 @@ export interface HeroSectionProps {
    * @default false
    */
   reducedTopPadding?: boolean;
+  
+  /**
+   * Custom HTML/React content to replace the default button group
+   * Use this for custom CTAs like email inputs, app store badges, or other actions
+   * When provided, primaryButtonText, secondaryButtonText, and click handlers are ignored
+   */
+  customActions?: ReactNode;
   
   /**
    * Additional CSS classes

@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { HeroSection } from './HeroSection';
+import { Input } from '../input';
+import { Button } from '../button';
 
 const meta = {
   title: 'Sections/Website/Hero Section',
@@ -41,6 +43,10 @@ const meta = {
     reducedTopPadding: {
       control: 'boolean',
       description: 'Reduce top padding by half (useful below header navigation)'
+    },
+    customActions: {
+      control: false,
+      description: 'Custom HTML/React content to replace the default buttons'
     }
   },
   tags: ['autodocs'],
@@ -157,5 +163,61 @@ export const BelowHeader: Story = {
     illustrationName: 'Illustration-Platform-Alt.svg',
     reducedTopPadding: true,
   },
+};
+
+// With custom email input action
+export const WithEmailInput: Story = {
+  args: {
+    themeMode: 'auto',
+    layout: 'centered',
+    heading: 'Get Early Access',
+    description: 'Join the waitlist to be the first to know when we launch our new cryptocurrency platform.',
+  },
+  render: (args) => (
+    <HeroSection
+      {...args}
+      customActions={
+        <div className="flex flex-col sm:flex-row gap-s items-stretch">
+          <Input
+            placeholder="Enter your email"
+            type="email"
+            className="flex-1"
+          />
+          <Button variant="secondary" size="md" className="w-full sm:w-auto">
+            Join Waitlist
+          </Button>
+        </div>
+      }
+    />
+  ),
+};
+// With custom CTA combination
+export const WithCustomCTA: Story = {
+  args: {
+    themeMode: 'auto',
+    layout: 'left',
+    heading: 'Start Trading Today',
+    description: 'Trade Bitcoin, Ethereum, and 100+ cryptocurrencies with low fees and instant execution.',
+  },
+  render: (args) => (
+    <HeroSection
+      {...args}
+      customActions={
+        <div className="flex flex-col gap-m">
+          <div className="flex gap-m flex-wrap">
+            <Button variant="secondary" size="lg">
+              Create Free Account
+            </Button>
+            <Button variant="default" size="lg">
+              View Demo
+            </Button>
+          </div>
+          <p className="text-sm text-shades-semi-dark">
+            No credit card required • 2-minute setup • Bank-level security
+          </p>
+        </div>
+      }
+    />
+  ),
 };
 

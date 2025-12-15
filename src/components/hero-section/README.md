@@ -63,6 +63,7 @@ Illustration on the left with text content on the right. Alternative balanced la
 | `onSecondaryClick` | `() => void` | - | Click handler for secondary button |
 | `illustrationName` | `string` | `'Illustration-Platform-Alt.svg'` | Illustration filename from src/illustrations/ |
 | `reducedTopPadding` | `boolean` | `false` | Reduce top padding by half (useful below header) |
+| `customActions` | `ReactNode` | - | Custom HTML/React content to replace default buttons |
 | `className` | `string` | - | Additional CSS classes |
 
 ## Responsive Behavior
@@ -105,10 +106,62 @@ This component follows all website section rules:
 
 See Storybook for interactive examples of all layout variants and theme modes.
 
+## Custom Actions
+
+The `customActions` prop allows you to replace the default button group with any custom HTML or React content. This is useful for various use cases:
+
+### Email Capture Form
+```tsx
+<HeroSection
+  heading="Get Early Access"
+  description="Join the waitlist..."
+  customActions={
+    <div className="flex gap-s">
+      <Input placeholder="Enter your email" type="email" />
+      <Button variant="secondary">Join Waitlist</Button>
+    </div>
+  }
+/>
+```
+
+### App Store Badges
+```tsx
+<HeroSection
+  heading="Download Our App"
+  description="Get the app on your device..."
+  customActions={
+    <div className="flex gap-m">
+      <img src="/app-store-badge.svg" alt="App Store" />
+      <img src="/google-play-badge.svg" alt="Google Play" />
+    </div>
+  }
+/>
+```
+
+### Custom CTA with Additional Text
+```tsx
+<HeroSection
+  heading="Start Trading"
+  description="Trade crypto with low fees..."
+  customActions={
+    <div className="flex flex-col gap-m">
+      <div className="flex gap-m">
+        <Button variant="secondary">Create Account</Button>
+        <Button variant="default">View Demo</Button>
+      </div>
+      <p className="text-sm">No credit card required • 2-min setup</p>
+    </div>
+  }
+/>
+```
+
+When `customActions` is provided, the `primaryButtonText`, `secondaryButtonText`, `onPrimaryClick`, and `onSecondaryClick` props are ignored.
+
 ## Notes
 
 - The heading will always be displayed in uppercase (via Elza Narrow font rules)
 - Illustrations are loaded from `src/illustrations/` directory
 - Dark mode is handled automatically through semantic tokens (no need for `dark:` classes)
 - Minimum height is set to 70vh to ensure impactful hero presence
+- Custom actions receive full width to allow flexible layouts
 
