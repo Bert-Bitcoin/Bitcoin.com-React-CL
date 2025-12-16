@@ -22,5 +22,7 @@ export interface LinksSectionProps {
   links?: LinkItem[];
   /** Additional CSS classes */
   className?: string;
+  /** Optional ID for the section element (useful for anchor links and SEO) */
+  id?: string;
 }
 

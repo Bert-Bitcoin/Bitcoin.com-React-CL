@@ -230,6 +230,316 @@ Website section components should be named descriptively and stored in `src/comp
 
 ---
 
+## 🔍 SEO & Semantic HTML (CRITICAL)
+
+### Rule: website-sections-seo-requirements (STRICT)
+All website section components MUST implement the following SEO best practices to ensure maximum search engine visibility and optimal SEO scores. These requirements are MANDATORY for all new website section components and should be verified before considering a component complete.
+
+#### **1. Section ID Prop (REQUIRED)**
+Every website section component MUST include an optional `id` prop for anchor linking and deep navigation:
+
+```typescript
+interface SectionProps {
+  // ... other props
+  
+  /**
+   * Optional ID for the section element (useful for anchor links and SEO)
+   * Enables deep linking like: yoursite.com/page#section-id
+   */
+  id?: string;
+}
+```
+
+Apply to section element:
+```tsx
+<section id={id} className="...">
+  {/* content */}
+</section>
+```
+
+#### **2. Structured Data / Schema Markup (REQUIRED for content sections)**
+Content-heavy sections (articles, news, FAQs, reviews, products) MUST implement Schema.org structured data using JSON-LD:
+
+**Required Props:**
+```typescript
+interface ContentSectionProps {
+  // ... other props
+  
+  /**
+   * Enable structured data (Schema.org) for SEO
+   * @default true
+   */
+  enableStructuredData?: boolean;
+}
+```
+
+**Implementation Pattern:**
+```tsx
+const structuredData = enableStructuredData ? {
+  "@context": "https://schema.org",
+  "@type": "AppropriateSchemaType",
+  // ... schema properties
+} : null;
+
+return (
+  <section id={id}>
+    {structuredData && (
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+    )}
+    {/* section content */}
+  </section>
+);
+```
+
+**Schema Types by Section:**
+- **FAQSection**: Use `FAQPage` schema with `Question`/`Answer` entities
+- **ArticlesSection**: Use `ItemList` with `Article` entities
+- **NewsSection**: Use `ItemList` with `NewsArticle` entities
+- **ReviewsSection**: Use `Review` or `AggregateRating` schema
+- **ProductSection**: Use `Product` schema with offers
+- **EventSection**: Use `Event` schema
+
+**Reference**: [SEO_IMPROVEMENTS_PRIORITY_1.md](./SEO_IMPROVEMENTS_PRIORITY_1.md) for implementation examples.
+
+#### **3. Semantic HTML Elements (REQUIRED)**
+Use proper HTML5 semantic elements for content structure:
+
+**Article/News Content:**
+```tsx
+// ✅ CORRECT - Use <article> for article/news cards
+<article className="card">
+  <a href={article.href}>
+    <img ... />
+    <h3>{article.title}</h3>
+    <p>{article.summary}</p>
+    <time dateTime={article.datePublished}>...</time>
+  </a>
+</article>
+
+// ❌ INCORRECT - Don't use generic divs
+<div className="card">
+  <a href={article.href}>...</a>
+</div>
+```
+
+**Always use:**
+- `<article>` for article/news/blog cards
+- `<time datetime="...">` for dates and timestamps
+- `<section>` for page sections (already standard)
+- `<header>` for section headers when appropriate
+- `<nav>` for navigation elements
+- `<aside>` for sidebars or supplementary content
+
+#### **4. Image Optimization (STRICT)**
+All images in website sections MUST include SEO and performance attributes:
+
+**Required Image Attributes:**
+```tsx
+<img
+  src={imageUrl}
+  alt={imageAlt || `${title} - Descriptive context`}  // REQUIRED: Descriptive alt text
+  width={imageWidth || defaultWidth}                   // REQUIRED: Explicit width
+  height={imageHeight || defaultHeight}                // REQUIRED: Explicit height
+  loading="lazy"                                       // REQUIRED: For non-hero images
+  className="..."
+/>
+```
+
+**Hero/Above-Fold Images:**
+```tsx
+<img
+  src={heroImage}
+  alt="Descriptive alt text"
+  width={1200}
+  height={630}
+  loading="eager"  // Use "eager" for hero images
+  fetchPriority="high"  // Optional: prioritize hero images
+  className="..."
+/>
+```
+
+**Image Prop Requirements:**
+```typescript
+interface ImageContent {
+  imageUrl: string;
+  imageAlt?: string;         // Optional: falls back to descriptive default
+  imageWidth?: number;       // Optional: falls back to sensible default
+  imageHeight?: number;      // Optional: falls back to sensible default
+}
+```
+
+**Alt Text Best Practices:**
+- NEVER leave alt text empty (except for purely decorative images)
+- Provide context: `${title} - Article image` not just `title`
+- Describe the image content when custom alt is not provided
+- For decorative images only: use `alt=""` (empty string)
+
+#### **5. Time Elements for Dates (REQUIRED)**
+All dates and timestamps MUST use HTML5 `<time>` element with `datetime` attribute:
+
+**Implementation:**
+```tsx
+// ✅ CORRECT
+<time dateTime={article.datePublished}>
+  {formatDate(article.datePublished)}
+</time>
+
+// ✅ CORRECT - With relative time
+{article.datePublished ? (
+  <time dateTime={article.datePublished}>
+    {article.timestamp || formatDate(article.datePublished)}
+  </time>
+) : article.timestamp ? (
+  <span>{article.timestamp}</span>
+) : null}
+
+// ❌ INCORRECT - Missing time element
+<span>{article.timestamp}</span>
+<div>{formatDate(article.date)}</div>
+```
+
+**Required Type Enhancement:**
+```typescript
+interface Article {
+  // ... other props
+  
+  /**
+   * Publication date in ISO 8601 format (e.g., "2024-01-16T10:00:00Z")
+   * Used for structured data and time element
+   */
+  datePublished?: string;
+  
+  /**
+   * Human-readable timestamp (e.g., "2 hours ago")
+   * Falls back to formatted datePublished if not provided
+   */
+  timestamp?: string;
+}
+```
+
+#### **6. Accessibility & ARIA (REQUIRED)**
+Ensure all interactive elements have proper ARIA labels and semantic meaning:
+
+```tsx
+// Navigation buttons
+<button
+  onClick={handleScroll}
+  aria-label="Scroll to next article"  // REQUIRED: Descriptive label
+  disabled={!canScroll}
+>
+  <Icon type="icon-right-arrow" ariaHidden />  // Mark icon as decorative
+</button>
+
+// Section relationships
+<section id="articles" aria-labelledby="articles-heading">
+  <h2 id="articles-heading">Latest Articles</h2>
+  {/* content */}
+</section>
+```
+
+#### **7. SEO Props Checklist**
+When creating a new website section component, ensure these props are included:
+
+**Base Props (All Sections):**
+```typescript
+interface WebsiteSectionProps {
+  /** Optional ID for anchor linking */
+  id?: string;
+  
+  /** Theme mode */
+  themeMode?: 'auto' | 'light' | 'dark';
+  
+  /** Additional CSS classes */
+  className?: string;
+}
+```
+
+**Content Section Props (Articles/News/FAQs/etc.):**
+```typescript
+interface ContentSectionProps extends WebsiteSectionProps {
+  /** Enable structured data for SEO */
+  enableStructuredData?: boolean; // Default: true
+}
+```
+
+**Article/News Item Props:**
+```typescript
+interface ArticleItem {
+  id: string;
+  title: string;
+  summary: string;
+  imageUrl?: string;
+  imageAlt?: string;
+  imageWidth?: number;     // NEW: For SEO
+  imageHeight?: number;    // NEW: For SEO
+  href?: string;
+  author?: string;         // NEW: For schema
+  datePublished?: string;  // NEW: For schema & time element (ISO 8601)
+  timestamp?: string;      // Optional: Human-readable time
+}
+```
+
+---
+
+### Rule: seo-validation-checklist (STRICT)
+Before marking a website section component as complete, verify ALL of the following:
+
+**✅ Required SEO Features:**
+- [ ] `id` prop defined in types and applied to `<section>` element
+- [ ] Structured data implemented (if content section) with `enableStructuredData` prop
+- [ ] All article/news items wrapped in `<article>` tags
+- [ ] All dates use `<time datetime="...">` elements
+- [ ] All images have `alt`, `width`, `height`, and `loading` attributes
+- [ ] Alt text is descriptive with contextual fallbacks
+- [ ] Hero images use `loading="eager"`, other images use `loading="lazy"`
+- [ ] Interactive elements have proper ARIA labels
+- [ ] TypeScript types include all SEO-related props
+- [ ] Component documentation mentions SEO features
+
+**✅ Testing Requirements:**
+- [ ] Validate structured data with [Google Rich Results Test](https://search.google.com/test/rich-results)
+- [ ] Check schema with [Schema.org Validator](https://validator.schema.org/)
+- [ ] Run Lighthouse audit (target: 90+ SEO score)
+- [ ] Verify Core Web Vitals (good CLS with image dimensions)
+- [ ] Test anchor links work correctly
+- [ ] Verify semantic HTML structure with accessibility tree
+
+**✅ Documentation:**
+- [ ] Update component README with SEO features
+- [ ] Add examples showing SEO props usage
+- [ ] Document structured data output in Storybook
+- [ ] Include anchor link examples
+
+---
+
+### Rule: seo-implementation-priority (STRICT)
+SEO requirements are CRITICAL and must be implemented in Priority 1 (not "later" or "optional"):
+
+**Priority 1 (MANDATORY - Must be implemented):**
+1. Section `id` prop
+2. Structured data for content sections
+3. Semantic HTML (`<article>`, `<time>`)
+4. Image optimization (width, height, loading, alt)
+5. Descriptive alt text with fallbacks
+6. Time elements for dates
+
+**Priority 2 (Recommended - Implement if applicable):**
+1. ARIA labels for complex interactions
+2. Section heading relationships (`aria-labelledby`)
+3. Focus management for interactive elements
+
+**Priority 3 (Nice to have):**
+1. Breadcrumb schema
+2. Site navigation schema
+3. Additional metadata
+
+**NEVER skip Priority 1 SEO requirements.** They directly impact search rankings, Core Web Vitals, and user experience.
+
+---
+
 ## 📚 Storybook Integration
 
 ### Rule: storybook-sync (REQUIRED)
@@ -344,23 +654,47 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
 
 ### When Creating Website Sections:
 1. Create folder in `src/components/SectionName/` (e.g., `HeroSection`, `FeaturesSection`)
-2. Implement the required props structure:
+2. Implement the required props structure with **SEO props** (CRITICAL):
    ```tsx
    interface SectionNameProps {
      themeMode?: 'auto' | 'light' | 'dark';
+     id?: string;  // REQUIRED: For anchor linking
+     enableStructuredData?: boolean;  // REQUIRED: For content sections (default: true)
      // ... component-specific props
    }
+   
+   // For article/news items, include SEO metadata:
+   interface ArticleItem {
+     id: string;
+     title: string;
+     imageUrl?: string;
+     imageAlt?: string;
+     imageWidth?: number;      // NEW: For performance
+     imageHeight?: number;     // NEW: For performance
+     author?: string;          // NEW: For schema
+     datePublished?: string;   // NEW: For schema (ISO 8601)
+     // ... other props
+   }
    ```
-3. Apply the standard wrapper structure with correct padding:
+3. Apply the standard wrapper structure with correct padding and **id prop**:
    ```tsx
    <section 
+     id={id}  // REQUIRED: Add id prop
      className={cn(
        'px-m md:px-xl py-[32px] md:py-[60px] sm:py-[40px]', // Responsive vertical padding
        themeMode === 'light' && 'light',
        themeMode === 'dark' && 'dark'
      )}
    >
-     <div className="w-full max-w-[1280px] mx-auto">
+     {/* REQUIRED: Add structured data for content sections */}
+     {structuredData && (
+       <script
+         type="application/ld+json"
+         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+       />
+     )}
+     
+     <div className="w-full max-w-[1240px] mx-auto">
        {/* Section content goes here */}
      </div>
    </section>
@@ -371,8 +705,38 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
      Section Heading
    </h2>
    ```
-5. Use semantic tokens for all colors and spacing within the content
-6. Create Storybook stories showing all three theme modes (auto, light, dark)
-7. Reuse existing components from the component library for section content
-8. Test responsive behavior at mobile, tablet, and desktop breakpoints
-9. Ensure accessibility with proper semantic HTML5 section elements
+5. **Wrap article/news items in semantic `<article>` tags** (REQUIRED):
+   ```tsx
+   <article className="card">
+     <a href={article.href}>
+       <img 
+         src={article.imageUrl}
+         alt={article.imageAlt || `${article.title} - Article image`}
+         width={article.imageWidth || 451}
+         height={article.imageHeight || 280}
+         loading="lazy"
+       />
+       <h3>{article.title}</h3>
+       <p>{article.summary}</p>
+       {article.datePublished && (
+         <time dateTime={article.datePublished}>
+           {formatDate(article.datePublished)}
+         </time>
+       )}
+     </a>
+   </article>
+   ```
+6. **Optimize all images** with width, height, loading, and descriptive alt text (REQUIRED)
+7. **Use `<time>` elements** for all dates with `datetime` attribute (REQUIRED)
+8. Use semantic tokens for all colors and spacing within the content
+9. Create Storybook stories showing all three theme modes (auto, light, dark)
+10. Reuse existing components from the component library for section content
+11. Test responsive behavior at mobile, tablet, and desktop breakpoints
+12. Ensure accessibility with proper semantic HTML5 section elements
+13. **Validate SEO implementation** (REQUIRED):
+    - Test structured data with [Google Rich Results Test](https://search.google.com/test/rich-results)
+    - Run Lighthouse audit (target: 90+ SEO score)
+    - Verify Core Web Vitals in PageSpeed Insights
+    - Check anchor links work correctly
+
+**Reference**: See [SEO_IMPROVEMENTS_PRIORITY_1.md](./SEO_IMPROVEMENTS_PRIORITY_1.md) for detailed implementation examples and best practices.

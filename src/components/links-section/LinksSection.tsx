@@ -50,7 +50,8 @@ export const LinksSection = ({
   heading = 'Links',
   description,
   links = [],
-  className
+  className,
+  id
 }: LinksSectionProps) => {
   const styles = styleClasses[style];
 
@@ -72,6 +73,7 @@ export const LinksSection = ({
 
   return (
     <section
+      id={id}
       className={twMerge(
         'px-m md:px-xl py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
         styles.bg,

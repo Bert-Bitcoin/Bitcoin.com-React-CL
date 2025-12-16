@@ -37,6 +37,22 @@ export interface NewsArticle {
    * URL for the article link
    */
   href?: string;
+  /**
+   * Author name for structured data
+   */
+  author?: string;
+  /**
+   * Publication date (ISO 8601 format) for structured data and time element
+   */
+  datePublished?: string;
+  /**
+   * Image width in pixels (for performance/SEO)
+   */
+  imageWidth?: number;
+  /**
+   * Image height in pixels (for performance/SEO)
+   */
+  imageHeight?: number;
 }
 
 export interface NewsSectionProps {
@@ -86,5 +102,14 @@ export interface NewsSectionProps {
    * Custom className for additional styling
    */
   className?: string;
+  /**
+   * Optional ID for the section element (useful for anchor links and SEO)
+   */
+  id?: string;
+  /**
+   * Enable NewsArticle structured data (Schema.org) for SEO
+   * @default true
+   */
+  enableStructuredData?: boolean;
 }
 

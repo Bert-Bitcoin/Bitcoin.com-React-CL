@@ -46,7 +46,9 @@ export const ArticlesSection = ({
   maxArticles = 6,
   readMoreText = 'Read More',
   onReadMoreClick,
-  className
+  className,
+  id,
+  enableStructuredData = true
 }: ArticlesSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -55,6 +57,27 @@ export const ArticlesSection = ({
   const displayedArticles = articles.slice(0, maxArticles);
   const styles = styleClasses[style];
   const textStyles = articleTextClasses[style];
+
+  // Generate Article structured data (Schema.org)
+  const structuredData = enableStructuredData && displayedArticles.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": displayedArticles
+      .filter(article => article.href)
+      .map((article, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Article",
+          "headline": article.title,
+          "description": article.summary,
+          ...(article.imageUrl && { "image": article.imageUrl }),
+          ...(article.href && { "url": article.href }),
+          ...(article.author && { "author": { "@type": "Person", "name": article.author } }),
+          ...(article.datePublished && { "datePublished": article.datePublished })
+        }
+      }))
+  } : null;
 
   const checkScrollButtons = () => {
     const container = scrollContainerRef.current;
@@ -84,6 +107,7 @@ export const ArticlesSection = ({
 
   return (
     <section
+      id={id}
       className={twMerge(
         'px-m md:px-xl py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
         styles.bg,
@@ -92,6 +116,14 @@ export const ArticlesSection = ({
         className
       )}
     >
+      {/* Structured Data for SEO */}
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      
       {/* Header */}
       <div className="w-full max-w-[1240px] mx-auto">
         {description ? (
@@ -208,16 +240,19 @@ interface ArticleCardProps {
 const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCardProps) => {
   const cardContent = (
     <>
-      {/* Article image placeholder */}
-      {article.imageUrl ? (<div className="relative w-full aspect-[450.667/280] rounded-s overflow-hidden mb-m">
-        
+      {/* Article image */}
+      {article.imageUrl && (
+        <div className="relative w-full aspect-[450.667/280] rounded-s overflow-hidden mb-m">
           <img
             src={article.imageUrl}
-            alt={article.imageAlt || article.title}
+            alt={article.imageAlt || `${article.title} - Article image`}
+            width={article.imageWidth || 451}
+            height={article.imageHeight || 280}
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover rounded-[16px]"
           />
-       
-      </div> ) : ('')}
+        </div>
+      )}
 
       {/* Article text */}
       <div className="flex flex-col gap-xs">
@@ -227,6 +262,15 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
         <p className={twMerge('font-["Satoshi_Variable"] font-medium text-sm leading-normal', textStyles.summary)}>
           {article.summary}
         </p>
+        {article.datePublished && (
+          <time dateTime={article.datePublished} className={twMerge('font-["Satoshi_Variable"] font-medium text-xs', textStyles.summary)}>
+            {new Date(article.datePublished).toLocaleDateString('en-US', { 
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric' 
+            })}
+          </time>
+        )}
       </div>
     </>
   );
@@ -239,31 +283,37 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
 
   if (article.href) {
     return (
-      <a
-        href={article.href}
-        className={cardClasses}
-        onClick={article.onClick}
-      >
-        {cardContent}
-      </a>
+      <article className={cardClasses}>
+        <a
+          href={article.href}
+          className="flex flex-col gap-m h-full"
+          onClick={article.onClick}
+        >
+          {cardContent}
+        </a>
+      </article>
     );
   }
 
   if (article.onClick) {
     return (
-      <button
-        onClick={article.onClick}
-        className={twMerge(cardClasses, 'text-left')}
-      >
-        {cardContent}
-      </button>
+      <article className={cardClasses}>
+        <button
+          onClick={article.onClick}
+          className="text-left flex flex-col gap-m h-full w-full"
+        >
+          {cardContent}
+        </button>
+      </article>
     );
   }
 
   return (
-    <div className={cardClasses}>
-      {cardContent}
-    </div>
+    <article className={cardClasses}>
+      <div className="flex flex-col gap-m">
+        {cardContent}
+      </div>
+    </article>
   );
 };
 

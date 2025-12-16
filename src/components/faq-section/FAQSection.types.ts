@@ -35,4 +35,14 @@ export interface FAQSectionProps {
    * Additional CSS classes for the section
    */
   className?: string;
+  /**
+   * Optional ID for the section element (useful for anchor links and SEO)
+   */
+  id?: string;
+  /**
+   * Enable FAQ structured data (Schema.org) for SEO
+   * @default true
+   */
+  enableStructuredData?: boolean;
 }
+

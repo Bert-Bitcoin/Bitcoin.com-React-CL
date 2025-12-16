@@ -40,7 +40,8 @@ export const HeroSection = ({
   reducedTopPadding = false,
   customActions,
   belowActions,
-  className
+  className,
+  id
 }: HeroSectionProps) => {
   const hasIllustration = layout === 'left-illustration' || layout === 'right-illustration';
   const isCentered = layout === 'centered';
@@ -54,6 +55,7 @@ export const HeroSection = ({
 
   return (
     <section
+      id={id}
       className={twMerge(
         'px-m md:px-xl pb-[0px] md:pb-[60px] lg:pb-[80px]',
         hasIllustration ? '' : 'pb-[40px]',
@@ -342,7 +344,7 @@ const HeroWithIllustration = ({
       <div className="flex-1 min-w-0 w-full max-w-[576px] max-h-[50vw] sm:max-h-[40vw] md:max-h-auto overflow-hidden md:overflow-visible">
         <Illustration
           src={illustrationSrc}
-          alt={heading}
+          alt={`${heading} - Hero illustration`}
           aspectRatio="1/1"
           objectFit="contain"
           className="w-full"

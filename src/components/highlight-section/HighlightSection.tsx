@@ -44,7 +44,8 @@ export const HighlightSection = ({
   imageUrl,
   imageAlt = 'Illustration',
   imagePosition = 'left',
-  className
+  className,
+  id
 }: HighlightSectionProps) => {
   const styles = styleClasses[style];
   const isImageLeft = imagePosition === 'left';
@@ -53,7 +54,7 @@ export const HighlightSection = ({
   const imageContent = imageElement || (imageUrl ? (
     <Illustration
       src={imageUrl}
-      alt={imageAlt}
+      alt={imageAlt || `${heading} - Section illustration`}
       size="full"
       objectFit="contain"
     />
@@ -61,6 +62,7 @@ export const HighlightSection = ({
 
   return (
     <section
+      id={id}
       className={twMerge(
         'px-m md:px-xl py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
         styles.bg,

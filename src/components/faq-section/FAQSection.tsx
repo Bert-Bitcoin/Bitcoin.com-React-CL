@@ -24,15 +24,32 @@ export const FAQSection = ({
   items = [],
   defaultExpanded = [],
   allowMultiple = true,
-  className
+  className,
+  id,
+  enableStructuredData = true
 }: FAQSectionProps) => {
   const styles = styleClasses[style];
   
   // Map section style to accordion variant
   const accordionVariant = style === 'light' ? 'default' : style;
 
+  // Generate FAQ structured data (Schema.org)
+  const structuredData = enableStructuredData && items.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": items.map(item => ({
+      "@type": "Question",
+      "name": item.title,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": typeof item.content === 'string' ? item.content : item.title
+      }
+    }))
+  } : null;
+
   return (
     <section
+      id={id}
       className={twMerge(
         'px-m md:px-xl py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
         styles.bg,
@@ -41,6 +58,14 @@ export const FAQSection = ({
         className
       )}
     >
+      {/* Structured Data for SEO */}
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      
       <div className="w-full max-w-[1240px] mx-auto">
         <div className="flex flex-col lg:flex-row items-start justify-between gap-m lg:gap-xl">
           {/* Heading */}

@@ -51,7 +51,9 @@ export const NewsSection = ({
   readMoreText = 'Read More',
   onReadMoreClick,
   customContent,
-  className
+  className,
+  id,
+  enableStructuredData = true
 }: NewsSectionProps) => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -60,6 +62,27 @@ export const NewsSection = ({
   const displayedArticles = articles.slice(0, maxArticles);
   const styles = styleClasses[style];
   const textStyles = articleTextClasses[style];
+
+  // Generate NewsArticle structured data (Schema.org)
+  const structuredData = enableStructuredData && displayedArticles.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": displayedArticles
+      .filter(article => article.href)
+      .map((article, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "NewsArticle",
+          "headline": article.title,
+          "description": article.summary,
+          "image": article.imageUrl,
+          ...(article.href && { "url": article.href }),
+          ...(article.author && { "author": { "@type": "Person", "name": article.author } }),
+          ...(article.datePublished && { "datePublished": article.datePublished })
+        }
+      }))
+  } : null;
 
   const checkScrollButtons = () => {
     const container = scrollContainerRef.current;
@@ -89,6 +112,7 @@ export const NewsSection = ({
 
   return (
     <section
+      id={id}
       className={twMerge(
         'px-m md:px-xl  py-[32px] md:py-[60px] sm:py-[40px]',
         styles.bg,
@@ -97,6 +121,14 @@ export const NewsSection = ({
         className
       )}
     >
+      {/* Structured Data for SEO */}
+      {structuredData && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+      )}
+      
       {/* Header */}
       <div className="w-full max-w-[1240px] mx-auto ">
         {description ? (
@@ -223,24 +255,37 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
         <div className="relative w-full aspect-[1200/630] rounded-xs overflow-hidden">
           <img
             src={article.imageUrl}
-            alt={article.imageAlt || article.title}
+            alt={article.imageAlt || `${article.title} - News article image`}
+            width={article.imageWidth || 1200}
+            height={article.imageHeight || 630}
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover rounded-[8px]"
           />
         </div>
 
         {/* Badges */}
-        {(article.badge || article.timestamp) && (
+        {(article.badge || article.timestamp || article.datePublished) && (
           <div className="flex flex-wrap gap-s">
             {article.badge && (
               <Pill type="green" style="fill">
                 {article.badge}
               </Pill>
             )}
-            {article.timestamp && (
+            {article.datePublished ? (
+              <time dateTime={article.datePublished}>
+                <Pill type="default" style="outline" className="border-shades-mid text-shades-semi-light">
+                  {article.timestamp || new Date(article.datePublished).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    year: 'numeric'
+                  })}
+                </Pill>
+              </time>
+            ) : article.timestamp ? (
               <Pill type="default" style="outline" className="border-shades-mid text-shades-semi-light">
                 {article.timestamp}
               </Pill>
-            )}
+            ) : null}
           </div>
         )}
       </div>
@@ -265,31 +310,37 @@ const ArticleCard = ({ article, style, textStyles, isFirst, isLast }: ArticleCar
 
   if (article.href) {
     return (
-      <a
-        href={article.href}
-        className={cardClasses}
-        onClick={article.onClick}
-      >
-        {cardContent}
-      </a>
+      <article className={cardClasses}>
+        <a
+          href={article.href}
+          className="flex flex-col gap-m h-full"
+          onClick={article.onClick}
+        >
+          {cardContent}
+        </a>
+      </article>
     );
   }
 
   if (article.onClick) {
     return (
-      <button
-        onClick={article.onClick}
-        className={twMerge(cardClasses, 'text-left')}
-      >
-        {cardContent}
-      </button>
+      <article className={cardClasses}>
+        <button
+          onClick={article.onClick}
+          className="text-left flex flex-col gap-m h-full w-full"
+        >
+          {cardContent}
+        </button>
+      </article>
     );
   }
 
   return (
-    <div className={cardClasses}>
-      {cardContent}
-    </div>
+    <article className={cardClasses}>
+      <div className="flex flex-col gap-m">
+        {cardContent}
+      </div>
+    </article>
   );
 };
 
