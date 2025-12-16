@@ -21,7 +21,26 @@ const config: StorybookConfig = {
     { from: '../src/icons', to: 'src/icons' },
     { from: '../src/mini-illustrations', to: 'src/mini-illustrations' },
     { from: '../src/assets-icons', to: 'src/assets-icons' }
-  ]
+  ],
+  viteFinal: async (config) => {
+    // Suppress eval warnings from Storybook's internal code
+    if (config.build) {
+      config.build.rollupOptions = {
+        ...config.build.rollupOptions,
+        onwarn(warning, warn) {
+          // Ignore eval warnings from Storybook's runtime
+          if (
+            warning.code === 'EVAL' &&
+            warning.id?.includes('@storybook/core')
+          ) {
+            return;
+          }
+          warn(warning);
+        }
+      };
+    }
+    return config;
+  }
 };
 
 export default config;
