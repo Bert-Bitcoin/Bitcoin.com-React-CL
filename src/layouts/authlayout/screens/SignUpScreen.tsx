@@ -23,6 +23,41 @@ export interface SignUpScreenProps {
    */
   error?: string;
   /**
+   * Custom heading text
+   * @default "Create your account"
+   */
+  heading?: string;
+  /**
+   * Custom description text
+   * Set to null to hide
+   */
+  description?: React.ReactNode | null;
+  /**
+   * Custom email label
+   * @default "Email"
+   */
+  emailLabel?: string;
+  /**
+   * Custom password label
+   * @default "Password"
+   */
+  passwordLabel?: string;
+  /**
+   * Custom confirm password label
+   * @default "Confirm Password"
+   */
+  confirmPasswordLabel?: string;
+  /**
+   * Custom terms checkbox label
+   * @default "I agree to the Terms & Conditions"
+   */
+  termsLabel?: string;
+  /**
+   * Custom button label
+   * @default "Create account"
+   */
+  buttonLabel?: string;
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -36,12 +71,30 @@ export const SignUpScreen = ({
   onSignInClick,
   loading,
   error,
+  heading = 'Create your account',
+  description,
+  emailLabel = 'Email',
+  passwordLabel = 'Password',
+  confirmPasswordLabel = 'Confirm Password',
+  termsLabel,
+  buttonLabel = 'Create account',
   className
 }: SignUpScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+
+  const defaultDescription = description === undefined ? (
+    <>
+      Already a member?{' '}
+      <button type="button" onClick={onSignInClick} className="font-bold text-primary-100 hover:text-primary-50">
+        Sign in here
+      </button>
+    </>
+  ) : description;
+
+  const defaultTermsLabel = termsLabel ?? 'I agree to the Terms & Conditions';
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -56,18 +109,11 @@ export const SignUpScreen = ({
       {/* Header */}
       <div className="flex flex-col gap-s pb-s">
         <h2 className="font-['Elza_Narrow'] text-[24px] font-black uppercase leading-[24px] text-text-primary">
-          Create your account
+          {heading}
         </h2>
-        <p className="text-label text-text-secondary">
-          Already a member?{' '}
-          <button
-            type="button"
-            onClick={onSignInClick}
-            className="font-bold text-primary-100 hover:text-primary-50"
-          >
-            Sign in here
-          </button>
-        </p>
+        {defaultDescription && (
+          <p className="text-label text-text-secondary">{defaultDescription}</p>
+        )}
       </div>
 
       {/* Error message */}
@@ -79,7 +125,7 @@ export const SignUpScreen = ({
 
       {/* Email field */}
       <Input
-        label="Email"
+        label={emailLabel}
         type="email"
         placeholder="your@email.com"
         value={email}
@@ -90,7 +136,7 @@ export const SignUpScreen = ({
 
       {/* Password field */}
       <Input
-        label="Password"
+        label={passwordLabel}
         type="password"
         placeholder="••••••••"
         value={password}
@@ -102,7 +148,7 @@ export const SignUpScreen = ({
       {/* Confirm Password field */}
       <div className="flex flex-col gap-s pb-s">
         <Input
-          label="Confirm Password"
+          label={confirmPasswordLabel}
           type="password"
           placeholder="••••••••"
           value={confirmPassword}
@@ -114,7 +160,7 @@ export const SignUpScreen = ({
 
       {/* Terms and conditions */}
       <Checkbox
-        label="I agree to the Terms and Conditions"
+        label={defaultTermsLabel}
         checked={agreedToTerms}
         onCheckedChange={setAgreedToTerms}
       />
@@ -128,7 +174,7 @@ export const SignUpScreen = ({
         loading={loading}
         disabled={!agreedToTerms}
       >
-        Sign up
+        {buttonLabel}
       </Button>
     </form>
   );

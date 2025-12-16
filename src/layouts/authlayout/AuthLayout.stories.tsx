@@ -27,7 +27,7 @@ import { Button } from '../../components/button';
 const illustrationAccountPath = '/src/illustrations/Illustration-Account.svg';
 
 const meta: Meta<typeof AuthLayout> = {
-  title: 'Layouts/AuthLayout',
+  title: 'Layouts/Authentication',
   component: AuthLayout,
   parameters: {
     layout: 'fullscreen',
@@ -80,12 +80,17 @@ export const Overview = {
             <h3 className="text-heading-sm mb-s">SignInScreen</h3>
             <p className="text-body-sm text-text-secondary mb-m">
               Email and password authentication with "Remember me" checkbox and links to sign up and forgot password flows.
+              <strong className="block mt-xs text-primary-100">✨ Fully customizable:</strong> heading, description, all labels, and button text.
             </p>
-            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto whitespace-pre">
               {`<SignInScreen
   onSignIn={(data) => {}}
   onSignUpClick={() => {}}
   onForgotPasswordClick={() => {}}
+  // Optional customization
+  heading="Welcome back"
+  emailLabel="Email address"
+  buttonLabel="Log in"
 />`}
             </code>
           </div>
@@ -95,11 +100,16 @@ export const Overview = {
             <h3 className="text-heading-sm mb-s">SignUpScreen</h3>
             <p className="text-body-sm text-text-secondary mb-m">
               User registration form with email, password, confirm password, and terms acceptance checkbox.
+              <strong className="block mt-xs text-primary-100">✨ Fully customizable:</strong> heading, description, all field labels, terms text, and button text.
             </p>
-            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto whitespace-pre">
               {`<SignUpScreen
   onSignUp={(data) => {}}
   onSignInClick={() => {}}
+  // Optional customization
+  heading="Join us today"
+  termsLabel="I agree to all terms"
+  buttonLabel="Sign up"
 />`}
             </code>
           </div>
@@ -109,12 +119,17 @@ export const Overview = {
             <h3 className="text-heading-sm mb-s">SignUpSuccessScreen</h3>
             <p className="text-body-sm text-text-secondary mb-m">
               Confirmation screen shown after successful sign up. Displays SuccessCoinIllustration and instructions to check email.
+              <strong className="block mt-xs text-primary-100">✨ Fully customizable:</strong> heading, descriptions, button text, resend text, and swap illustrations!
             </p>
-            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto whitespace-pre">
               {`<SignUpSuccessScreen
   email="user@example.com"
   onGoToSignIn={() => {}}
   onResendEmail={() => {}}
+  // Optional customization
+  heading="Welcome aboard!"
+  illustration={<CustomIllustration />}
+  buttonLabel="Continue"
 />`}
             </code>
           </div>
@@ -124,13 +139,16 @@ export const Overview = {
             <h3 className="text-heading-sm mb-s">ForgotPasswordScreen</h3>
             <p className="text-body-sm text-text-secondary mb-m">
               Password reset request form. User enters email to receive reset instructions.
+              <strong className="block mt-xs text-primary-100">✨ Fully customizable:</strong> heading, description, email label, button text, and back link.
             </p>
-            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto whitespace-pre">
               {`<ForgotPasswordScreen
   onResetPassword={(data) => {}}
   onBackToSignIn={() => {}}
-  loading={false}
-  error=""
+  // Optional customization
+  heading="Forgot password?"
+  description="No worries, we'll send you reset instructions"
+  buttonLabel="Send reset link"
 />`}
             </code>
           </div>
@@ -140,12 +158,17 @@ export const Overview = {
             <h3 className="text-heading-sm mb-s">CheckEmailScreen</h3>
             <p className="text-body-sm text-text-secondary mb-m">
               Confirmation screen after password reset request. Displays SuccessCoinIllustration and email sent message.
+              <strong className="block mt-xs text-primary-100">✨ Fully customizable:</strong> heading, descriptions, button text, resend text, and swap illustrations!
             </p>
-            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto whitespace-pre">
               {`<CheckEmailScreen
   email="user@example.com"
   onBackToSignIn={() => {}}
   onResendEmail={() => {}}
+  // Optional customization
+  heading="Check your inbox"
+  illustration={<CustomIllustration />}
+  buttonLabel="Back to login"
 />`}
             </code>
           </div>
@@ -155,13 +178,16 @@ export const Overview = {
             <h3 className="text-heading-sm mb-s">ResetPasswordScreen</h3>
             <p className="text-body-sm text-text-secondary mb-m">
               New password creation form with password confirmation validation.
+              <strong className="block mt-xs text-primary-100">✨ Fully customizable:</strong> heading, description, all field labels, button text, and helper text.
             </p>
-            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto whitespace-pre">
               {`<ResetPasswordScreen
   onResetPassword={(data) => {}}
   onBackToSignIn={() => {}}
-  loading={false}
-  error=""
+  // Optional customization
+  heading="Set new password"
+  passwordHelperText="At least 8 characters"
+  buttonLabel="Update password"
 />`}
             </code>
           </div>
@@ -232,9 +258,61 @@ function LoginPage() {
         </div>
       </div>
 
+      {/* Screen Customization */}
+      <div className="mb-2xl pb-xl">
+        <h2 className="text-heading-lg mb-l">🎨 Screen Customization</h2>
+        <div className="bg-surface border border-border rounded-l p-l">
+          <p className="text-body mb-l">
+            All screen components are fully customizable! Every text element, label, button, and even illustrations can be modified to match your brand and use case.
+          </p>
+          
+          <h3 className="text-heading-sm mb-m">Customizable Elements</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-m mb-l">
+            <div className="flex items-start gap-s">
+              <span className="text-primary-100">•</span>
+              <span className="text-body-sm"><strong>Headings:</strong> All screen titles</span>
+            </div>
+            <div className="flex items-start gap-s">
+              <span className="text-primary-100">•</span>
+              <span className="text-body-sm"><strong>Descriptions:</strong> Subtitle text and instructions</span>
+            </div>
+            <div className="flex items-start gap-s">
+              <span className="text-primary-100">•</span>
+              <span className="text-body-sm"><strong>Field Labels:</strong> Email, password, etc.</span>
+            </div>
+            <div className="flex items-start gap-s">
+              <span className="text-primary-100">•</span>
+              <span className="text-body-sm"><strong>Button Text:</strong> All CTA button labels</span>
+            </div>
+            <div className="flex items-start gap-s">
+              <span className="text-primary-100">•</span>
+              <span className="text-body-sm"><strong>Link Text:</strong> "Forgot password?", "Resend", etc.</span>
+            </div>
+            <div className="flex items-start gap-s">
+              <span className="text-primary-100">•</span>
+              <span className="text-body-sm"><strong>Illustrations:</strong> Swap mini-illustrations (CheckEmail, SignUpSuccess)</span>
+            </div>
+          </div>
+
+          <h3 className="text-heading-sm mb-m">Example: Fully Customized Screen</h3>
+          <code className="block bg-shades-extra-light dark:bg-shades-dark p-m rounded text-label-sm overflow-x-auto whitespace-pre">
+{`<SignUpSuccessScreen
+  heading="Welcome to Bitcoin.com!"
+  description="A confirmation link has been sent to your email"
+  secondaryDescription="Please check your inbox and click the link to get started"
+  buttonLabel="Go to Dashboard"
+  resendText="Need a new link? Click here"
+  illustration={<RewardsIllustration />}
+  onGoToSignIn={() => navigate('/dashboard')}
+  onResendEmail={() => resendConfirmation()}
+/>`}
+          </code>
+        </div>
+      </div>
+
       {/* Layout Variants */}
       <div className="mb-2xl pb-xl">
-        <h2 className="text-heading-lg mb-l">🎨 Layout Variants</h2>
+        <h2 className="text-heading-lg mb-l">🏗️ Layout Variants</h2>
         <div className="grid grid-cols-1 gap-l">
           <div className="border border-border rounded-l p-l bg-surface">
             <h3 className="text-heading-sm mb-s">default</h3>
@@ -263,6 +341,10 @@ function LoginPage() {
         <ul className="space-y-m text-body">
           <li className="flex items-start gap-s">
             <span className="text-success-100">✓</span>
+            <span><strong>Fully Customizable Screens:</strong> All text, labels, buttons, and illustrations can be customized</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
             <span><strong>Responsive Design:</strong> Adapts seamlessly across mobile, tablet, and desktop</span>
           </li>
           <li className="flex items-start gap-s">
@@ -279,7 +361,7 @@ function LoginPage() {
           </li>
           <li className="flex items-start gap-s">
             <span className="text-success-100">✓</span>
-            <span><strong>Flexible Illustrations:</strong> Swap illustrations or use custom images</span>
+            <span><strong>Swappable Illustrations:</strong> Replace mini-illustrations with your own designs</span>
           </li>
           <li className="flex items-start gap-s">
             <span className="text-success-100">✓</span>
@@ -288,6 +370,10 @@ function LoginPage() {
           <li className="flex items-start gap-s">
             <span className="text-success-100">✓</span>
             <span><strong>TypeScript:</strong> Full type safety with comprehensive prop interfaces</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>Smart Defaults:</strong> Works out of the box, customize only what you need</span>
           </li>
         </ul>
       </div>

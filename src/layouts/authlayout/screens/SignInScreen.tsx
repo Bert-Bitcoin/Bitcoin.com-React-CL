@@ -27,6 +27,41 @@ export interface SignInScreenProps {
    */
   error?: string;
   /**
+   * Custom heading text
+   * @default "Sign in to your account"
+   */
+  heading?: string;
+  /**
+   * Custom description text (e.g., "Not a member? Sign up here")
+   * Set to null to hide
+   */
+  description?: React.ReactNode | null;
+  /**
+   * Custom email label
+   * @default "Email"
+   */
+  emailLabel?: string;
+  /**
+   * Custom password label
+   * @default "Password"
+   */
+  passwordLabel?: string;
+  /**
+   * Custom remember me label
+   * @default "Remember me"
+   */
+  rememberMeLabel?: string;
+  /**
+   * Custom forgot password text
+   * @default "Forget Password?"
+   */
+  forgotPasswordText?: string;
+  /**
+   * Custom button label
+   * @default "Sign in"
+   */
+  buttonLabel?: string;
+  /**
    * Additional CSS classes
    */
   className?: string;
@@ -41,11 +76,24 @@ export const SignInScreen = ({
   onForgotPasswordClick,
   loading,
   error,
+  heading = 'Sign in to your account',
+  description,
+  emailLabel = 'Email',
+  passwordLabel = 'Password',
+  rememberMeLabel = 'Remember me',
+  forgotPasswordText = 'Forget Password?',
+  buttonLabel = 'Sign in',
   className
 }: SignInScreenProps) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+
+  const defaultDescription = description === undefined ? (
+    <>
+      Not a member? <button onClick={onSignUpClick} className="font-bold text-primary-100" type="button">Sign up here</button>
+    </>
+  ) : description;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -60,18 +108,11 @@ export const SignInScreen = ({
       {/* Header */}
       <div className="flex flex-col gap-s pb-s">
         <h2 className="font-['Elza_Narrow'] text-[24px] font-black uppercase leading-[24px] text-text-primary">
-          Sign in to your account
+          {heading}
         </h2>
-        <p className="text-label text-text-secondary">
-          Not a member?{' '}
-          <button
-            type="button"
-            onClick={onSignUpClick}
-            className="font-bold text-primary-100 hover:text-primary-50"
-          >
-            Sign up here
-          </button>
-        </p>
+        {defaultDescription && (
+          <p className="text-label text-text-secondary">{defaultDescription}</p>
+        )}
       </div>
 
       {/* Error message */}
@@ -83,7 +124,7 @@ export const SignInScreen = ({
 
       {/* Email field */}
       <Input
-        label="Email"
+        label={emailLabel}
         type="email"
         placeholder="your@email.com"
         value={email}
@@ -95,7 +136,7 @@ export const SignInScreen = ({
       {/* Password field */}
       <div className="flex flex-col gap-s pb-s">
         <Input
-          label="Password"
+          label={passwordLabel}
           type="password"
           placeholder="••••••••"
           value={password}
@@ -107,7 +148,7 @@ export const SignInScreen = ({
         {/* Remember me & Forgot password */}
         <div className="flex items-center justify-between">
           <Checkbox
-            label="Remember me"
+            label={rememberMeLabel}
             checked={rememberMe}
             onCheckedChange={setRememberMe}
           />
@@ -116,14 +157,14 @@ export const SignInScreen = ({
             onClick={onForgotPasswordClick}
             className="rounded-xxl px-xs py-xs text-label-sm font-bold text-primary-100 hover:text-primary-50"
           >
-            Forgot Password?
+            {forgotPasswordText}
           </button>
         </div>
       </div>
 
       {/* Sign in button */}
       <Button type="submit" variant="secondary" size="md" fullWidth loading={loading}>
-        Sign in
+        {buttonLabel}
       </Button>
     </form>
   );
