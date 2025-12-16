@@ -10,6 +10,7 @@ import { Table } from '../../components/table/Table';
 import { Indicator } from '../../components/indicator/Indicator';
 import { Icon } from '../../components/icon/Icon';
 import { ModeToggle } from '../../components/toggle/ModeToggle';
+import { ListItem } from '../../components/list-item/ListItem';
 
 const meta = {
   title: 'Layouts/Web Apps',
@@ -281,30 +282,129 @@ export const DashboardExample: Story = {
           <Card.Header>
             <Card.Title variant="heading-md">Recent Activity</Card.Title>
           </Card.Header>
-          <Card.Content className="gap-s mt-m">
-            {Array.from({ length: 5 }, (_, i) => (
-              <div
-                key={i}
-                className="flex items-center justify-between p-s bg-surface-muted rounded-lg"
-              >
-                <div className="flex items-center gap-s">
-                  <div className="w-10 h-10 bg-primary-10 rounded-full flex items-center justify-center">
-                    <span className="text-primary-100 font-bold">₿</span>
+          <Card.Content className="gap-0 mt-m -mx-m -mb-m">
+            <ListItem
+              illustration={{
+                iconName: 'icon-receive',
+                color: 'success-100'
+              }}
+              illustrationType="icon"
+              leftContent={{
+                title: 'Received Bitcoin',
+                description: 'Dec 3, 2025 - 14:23'
+              }}
+              rightContent={{
+                customContent: (
+                  <div className="text-right">
+                    <div className="font-['IBMPlexSans'] text-[16px] text-success-100 leading-snug">
+                      +0.0125 BTC
+                    </div>
+                    <div className="text-[14px] text-text-secondary leading-snug">
+                      $536.25
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-body font-medium text-text-primary">
-                      Bitcoin Transfer
-                    </p>
-                    <p className="text-label-sm text-text-secondary">
-                      {new Date().toLocaleDateString()}
-                    </p>
+                )
+              }}
+              showHover
+            />
+            <ListItem
+              illustration={{
+                iconName: 'icon-send',
+                color: 'secondary-100'
+              }}
+              illustrationType="icon"
+              leftContent={{
+                title: 'Sent Ethereum',
+                description: 'Dec 2, 2025 - 09:45'
+              }}
+              rightContent={{
+                customContent: (
+                  <div className="text-right">
+                    <div className="font-['IBMPlexSans'] text-[16px] text-alerts-100 leading-snug">
+                      -0.5 ETH
+                    </div>
+                    <div className="text-[14px] text-text-secondary leading-snug">
+                      -$1,083.50
+                    </div>
                   </div>
-                </div>
-                <p className="text-body font-bold text-text-primary font-['IBMPlexSans']">
-                  +0.0125 BTC
-                </p>
-              </div>
-            ))}
+                )
+              }}
+              showHover
+            />
+            <ListItem
+              illustration={{
+                iconName: 'icon-refresh',
+                color: 'primary-100'
+              }}
+              illustrationType="icon"
+              leftContent={{
+                title: 'Swapped BTC to ETH',
+                description: 'Dec 1, 2025 - 16:30'
+              }}
+              rightContent={{
+                customContent: (
+                  <div className="text-right">
+                    <div className="font-['IBMPlexSans'] text-[16px] text-text-primary leading-snug">
+                      0.008 BTC
+                    </div>
+                    <div className="text-[14px] text-text-secondary leading-snug">
+                      $342.80
+                    </div>
+                  </div>
+                )
+              }}
+              showHover
+            />
+            <ListItem
+              illustration={{
+                iconName: 'icon-receive',
+                color: 'success-100'
+              }}
+              illustrationType="icon"
+              leftContent={{
+                title: 'Received USDT',
+                description: 'Nov 30, 2025 - 11:12'
+              }}
+              rightContent={{
+                customContent: (
+                  <div className="text-right">
+                    <div className="font-['IBMPlexSans'] text-[16px] text-success-100 leading-snug">
+                      +250 USDT
+                    </div>
+                    <div className="text-[14px] text-text-secondary leading-snug">
+                      $250.00
+                    </div>
+                  </div>
+                )
+              }}
+              showHover
+            />
+            <ListItem
+              illustration={{
+                iconName: 'icon-pending',
+                color: 'secondary-100'
+              }}
+              illustrationType="icon"
+              leftContent={{
+                title: 'Pending Transfer',
+                description: 'Nov 29, 2025 - 18:45'
+              }}
+              rightContent={{
+                customContent: (
+                  <div className="text-right">
+                    <div className="font-['IBMPlexSans'] text-[16px] text-text-primary leading-snug">
+                      +0.003 BTC
+                    </div>
+                    <div className="text-[14px] text-text-secondary leading-snug">
+                      $128.70
+                    </div>
+                  </div>
+                )
+              }}
+              indicator={{ variant: 'pending' }}
+              showHover
+              showDivider={false}
+            />
           </Card.Content>
         </Card>
       </div>

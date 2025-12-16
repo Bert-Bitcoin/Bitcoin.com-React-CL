@@ -14,6 +14,7 @@ export * from './components/indicator';
 export * from './components/input';
 export * from './components/compact-linechart';
 export * from './components/linechart';
+export * from './components/list-item';
 export * from './components/menu-dropdown';
 export * from './components/mini-illustrations';
 export * from './components/modal';

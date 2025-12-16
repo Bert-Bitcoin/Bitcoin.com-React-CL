@@ -8,6 +8,7 @@ This guide is specifically designed for AI agents (Cursor, Copilot, ChatGPT, etc
 2.  **Theme-Agnostic**: All components must support Light and Dark modes automatically via semantic color tokens (e.g., `bg-surface`, `text-text-primary`).
 3.  **Strict Typography**: Font choices are semantic. Headings have specific fonts and casing rules; Numbers have their own font.
 4.  **Composition**: Build complex UIs by composing existing atoms (Buttons, Inputs, Icons) rather than rebuilding them.
+5.  **Lists Use ListItem**: For list-style UIs, prefer the existing `ListItem` component and tweak via its props/options instead of creating bespoke list row markup.
 
 ---
 
@@ -129,6 +130,39 @@ MyComponent.displayName = 'MyComponent';
 ```
 
 ---
+
+## 📋 Lists (STRICT)
+
+When generating list-style UI (menus, settings lists, asset lists, step-by-step lists, transaction rows, etc.), **always try to use** `ListItem` instead of custom `<ul>/<li>` row markup.
+
+- **Component**: `src/components/list-item/ListItem.tsx` (Storybook: `Components/Content/Lists`)
+- **How to tweak**: Prefer using `size`, `number`, `illustration` + `illustrationType`, `leftContent`, `rightContent`, `indicator`, `buttonArea`, `showDivider`, `onClick`.
+- **Reference**: `src/components/list-item/README.md` for examples and supported configurations.
+
+**Example (typical list wrapper pattern)**:
+
+```tsx
+import { ListItem } from '@/components/list-item';
+import { Icon } from '@/components/icon';
+
+export function SettingsList() {
+  return (
+    <div className="space-y-0">
+      <ListItem
+        leftContent={{ title: 'Security', description: 'Manage your account security' }}
+        buttonArea={<Icon type="icon-chevron-right" size="sm" className="text-shades-mid" />}
+        onClick={() => {}}
+      />
+      <ListItem
+        leftContent={{ title: 'Notifications', description: 'Email and push preferences' }}
+        buttonArea={<Icon type="icon-chevron-right" size="sm" className="text-shades-mid" />}
+        showDivider={false}
+        onClick={() => {}}
+      />
+    </div>
+  );
+}
+```
 
 ## 🔍 Checklist for AI Agents
 

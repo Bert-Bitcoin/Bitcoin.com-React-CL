@@ -28,6 +28,12 @@ AI Agents must NEVER generate code with raw hex values or standard Tailwind colo
 - **Numbers**: Always `IBM Plex Sans` (e.g., `text-numeric`).
 - **Body**: `Satoshi` (e.g., `text-body`).
 
+### Rule: listitem-for-lists (STRICT)
+When generating any list-style UI (menus, settings lists, asset lists, step-by-step lists, transaction lists, etc.), **always try to use** the existing `ListItem` component (`src/components/list-item/ListItem.tsx`) instead of custom list markup.
+
+- Prefer tweaking via `ListItem` options/props (`size`, `number`, `illustration` + `illustrationType`, `leftContent`, `rightContent`, `indicator`, `buttonArea`, `showDivider`, `onClick`) before creating new list row layouts.
+- Only use custom markup if `ListItem` cannot support the design; if so, document why and still reuse library components for sub-elements.
+
 ---
 
 ## 🔗 Figma Design System Integration
