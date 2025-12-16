@@ -81,7 +81,7 @@ export const Indicator: React.FC<IndicatorProps> = ({
   return (
     <div
       className={`
-        flex items-center gap-[4px]
+        flex items-center gap-[5px]
         px-s py-xs pl-[4px]
         rounded-xs
         ${config.bgColor}
@@ -96,7 +96,7 @@ export const Indicator: React.FC<IndicatorProps> = ({
       <span
         className={`
           font-['Satoshi_Variable'] font-medium
-          text-[14px] leading-none
+          text-[12px] leading-none
           whitespace-nowrap
           ${config.textColor}
         `.trim()}

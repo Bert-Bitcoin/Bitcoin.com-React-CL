@@ -5,9 +5,11 @@ import { Icon } from '../icon';
 import { Indicator } from '../indicator';
 import { MiniIllustration } from '../mini-illustrations';
 import { AssetIcon } from '../asset-icons';
+import { Avatar } from '../avatar';
 
 import type {
   ListItemAssetIconConfig,
+  ListItemAvatarConfig,
   ListItemColorOption,
   ListItemContent,
   ListItemIconConfig,
@@ -156,6 +158,12 @@ export const ListItem: React.FC<ListItemProps> = ({
               <AssetIcon
                 asset={(illustration as ListItemAssetIconConfig).asset}
                 size={size === 'default' ? 'lg' : 'md'}
+              />
+            )}
+            {illustrationType === 'avatar' && (
+              <Avatar
+                {...(illustration as ListItemAvatarConfig).avatarProps}
+                size={size === 'default' ? 'large' : 'small'}
               />
             )}
           </div>

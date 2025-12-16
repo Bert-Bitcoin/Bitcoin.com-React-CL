@@ -13,6 +13,7 @@ import { BitcoinAssetIcon } from '../asset-icons/BitcoinAssetIcon';
 import { EthereumAssetIcon } from '../asset-icons/EthereumAssetIcon';
 import { BitcoinCashAssetIcon } from '../asset-icons/BitcoinCashAssetIcon';
 import { USDcAssetIcon } from '../asset-icons/USDcAssetIcon';
+import { Avatar } from '../avatar';
 
 const meta: Meta<typeof ListItem> = {
   title: 'Components/Content/Lists',
@@ -43,7 +44,7 @@ const meta: Meta<typeof ListItem> = {
     },
     illustrationType: {
       control: 'select',
-      options: ['mini-illustration', 'icon', 'asset-icon'],
+      options: ['mini-illustration', 'icon', 'asset-icon', 'avatar'],
       description: 'The type of illustration being used'
     },
     leftContent: {
@@ -703,6 +704,247 @@ export const SizeComparison: Story = {
             showDivider={false}
           />
         </div>
+      </div>
+    </div>
+  )
+};
+
+// Story: With Avatar Images
+export const WithAvatarImages: Story = {
+  render: () => (
+    <div className="max-w-[600px]">
+      <div className="flex flex-col">
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'image',
+              src: 'https://i.pravatar.cc/150?img=12',
+              alt: 'John Smith'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'John Smith',
+            description: 'john.smith@example.com'
+          }}
+          rightContent={{
+            title: 'Admin',
+            description: 'Last login: 2h ago'
+          }}
+        />
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'image',
+              src: 'https://i.pravatar.cc/150?img=5',
+              alt: 'Alice Brown'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Alice Brown',
+            description: 'alice.brown@example.com'
+          }}
+          rightContent={{
+            title: 'Editor',
+            description: 'Last login: 1d ago'
+          }}
+        />
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'image',
+              src: 'https://i.pravatar.cc/150?img=8',
+              alt: 'Mike Johnson'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Mike Johnson',
+            description: 'mike.j@example.com'
+          }}
+          rightContent={{
+            title: 'Viewer',
+            description: 'Last login: 3d ago'
+          }}
+          showDivider={false}
+        />
+      </div>
+    </div>
+  )
+};
+
+// Story: With Avatar Initials
+export const WithAvatarInitials: Story = {
+  render: () => (
+    <div className="max-w-[600px]">
+      <div className="flex flex-col">
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'initials',
+              initials: 'JD',
+              backgroundColor: 'primary-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Jane Doe',
+            description: 'Product Manager'
+          }}
+          rightContent={{
+            title: '15 tasks',
+            description: '3 overdue'
+          }}
+        />
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'initials',
+              initials: 'BW',
+              backgroundColor: 'secondary-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Bob Wilson',
+            description: 'Lead Developer'
+          }}
+          rightContent={{
+            title: '8 tasks',
+            description: 'All on track'
+          }}
+        />
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'initials',
+              initials: 'SK',
+              backgroundColor: 'success-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Sarah Kim',
+            description: 'UI/UX Designer'
+          }}
+          rightContent={{
+            title: '12 tasks',
+            description: '2 completed today'
+          }}
+          showDivider={false}
+        />
+      </div>
+    </div>
+  )
+};
+
+// Story: With Avatar Placeholders
+export const WithAvatarPlaceholders: Story = {
+  render: () => (
+    <div className="max-w-[600px]">
+      <div className="flex flex-col">
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'placeholder',
+              backgroundColor: 'extra-cyan-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Guest User',
+            description: 'guest@example.com'
+          }}
+          buttonArea={<Button size="sm" variant="secondary">Invite</Button>}
+        />
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'placeholder',
+              backgroundColor: 'extra-violet-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Pending Invitation',
+            description: 'pending@example.com'
+          }}
+          indicator={{ variant: 'pending' }}
+        />
+        <ListItem
+          illustration={{
+            avatarProps: {
+              type: 'placeholder',
+              backgroundColor: 'extra-pink-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'New Contact',
+            description: 'newcontact@example.com'
+          }}
+          buttonArea={<Button size="sm">Add</Button>}
+          showDivider={false}
+        />
+      </div>
+    </div>
+  )
+};
+
+// Story: Mixed Avatar Types in Compact Size
+export const WithAvatarCompact: Story = {
+  render: () => (
+    <div className="max-w-[600px]">
+      <div className="flex flex-col">
+        <ListItem
+          size="compact"
+          illustration={{
+            avatarProps: {
+              type: 'image',
+              src: 'https://i.pravatar.cc/150?img=20',
+              alt: 'Emma Davis'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Emma Davis',
+            description: 'Online'
+          }}
+          indicator={{ variant: 'approved' }}
+        />
+        <ListItem
+          size="compact"
+          illustration={{
+            avatarProps: {
+              type: 'initials',
+              initials: 'TM',
+              backgroundColor: 'extra-gold-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Tom Martinez',
+            description: 'Away'
+          }}
+          indicator={{ variant: 'pending' }}
+        />
+        <ListItem
+          size="compact"
+          illustration={{
+            avatarProps: {
+              type: 'placeholder',
+              backgroundColor: 'extra-green-50'
+            }
+          }}
+          illustrationType="avatar"
+          leftContent={{
+            title: 'Unknown User',
+            description: 'Offline'
+          }}
+          indicator={{ variant: 'rejected' }}
+          showDivider={false}
+        />
       </div>
     </div>
   )

@@ -261,7 +261,7 @@ export const WithAboveTitle: Story = {
       {...args}
       aboveTitle={
         <div className="flex justify-center">
-          <Pill type="primary" style="fill">
+          <Pill type="primary" style="outline">
             New Platform Launch
           </Pill>
         </div>
@@ -326,7 +326,7 @@ export const AllNewFeatures: Story = {
     <HeroSection
       {...args}
       aboveTitle={
-        <Pill type="secondary" style="fill">
+        <Pill type="secondary" style="outline">
           Earn Bitcoin on Every Purchase
         </Pill>
       }
@@ -359,7 +359,7 @@ export const KitchenSink: Story = {
       {...args}
       aboveTitle={
         <div className="flex justify-center">
-          <Pill type="purple" style="fill">
+          <Pill type="purple" style="outline">
             Limited Time Offer
           </Pill>
         </div>

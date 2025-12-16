@@ -1,6 +1,7 @@
 export * from './components/accordion';
 export * from './components/asset';
 export * from './components/asset-icons';
+export * from './components/avatar';
 export * from './components/barchart';
 export * from './components/button';
 export * from './components/card';

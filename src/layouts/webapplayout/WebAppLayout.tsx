@@ -54,18 +54,18 @@ export const WebAppLayout = ({
           )}
         >
           {children}
+        </div>
 
-          {/* Divider - matches sidebar border color */}
-          <div className="w-full h-px bg-shades-light hidden md:block mt-l" />
+        {/* Divider - matches sidebar border color */}
+        <div className="w-full h-px bg-shades-light hidden md:block" />
 
-          {/* Footer - hidden on mobile, scrolls with content */}
-          <div className="hidden md:block bg-surface">
-            <Footer 
-              links={footerLinks} 
-              copyrightText={copyrightText}
-              className="bg-surface"
-            />
-          </div>
+        {/* Footer - hidden on mobile, sticky to bottom */}
+        <div className="hidden md:block bg-surface flex-shrink-0">
+          <Footer 
+            links={footerLinks} 
+            copyrightText={copyrightText}
+            className="bg-surface"
+          />
         </div>
       </main>
 

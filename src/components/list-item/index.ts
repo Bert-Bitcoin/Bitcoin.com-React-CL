@@ -8,6 +8,7 @@ export type {
   ListItemIconConfig,
   ListItemAssetIconConfig,
   ListItemMiniIllustrationConfig,
+  ListItemAvatarConfig,
   ListItemContent
 } from './ListItem.types';
 

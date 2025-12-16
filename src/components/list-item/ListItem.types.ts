@@ -2,6 +2,7 @@ import type { ComponentType, ReactNode, SVGProps } from 'react';
 
 import type { IconName } from '../icon/Icon.types';
 import type { IndicatorVariant } from '../indicator/Indicator.types';
+import type { AvatarProps } from '../avatar/Avatar.types';
 
 export type ListItemSize = 'default' | 'compact';
 
@@ -17,7 +18,7 @@ export type ListItemColorOption =
   | 'extra-green-100'
   | 'extra-purple-100';
 
-export type ListItemIllustrationType = 'mini-illustration' | 'icon' | 'asset-icon';
+export type ListItemIllustrationType = 'mini-illustration' | 'icon' | 'asset-icon' | 'avatar';
 
 export interface ListItemNumberConfig {
   value: string | number;
@@ -35,6 +36,10 @@ export interface ListItemAssetIconConfig {
 
 export interface ListItemMiniIllustrationConfig {
   illustration: ComponentType<SVGProps<SVGSVGElement>>;
+}
+
+export interface ListItemAvatarConfig {
+  avatarProps: Omit<AvatarProps, 'size'>;
 }
 
 export interface ListItemContent {
@@ -57,12 +62,13 @@ export interface ListItemProps {
 
   /**
    * Optional illustration/icon configuration
-   * Can be a mini illustration, basic icon, or asset icon
+   * Can be a mini illustration, basic icon, asset icon, or avatar
    */
   illustration?:
     | ListItemIconConfig
     | ListItemAssetIconConfig
-    | ListItemMiniIllustrationConfig;
+    | ListItemMiniIllustrationConfig
+    | ListItemAvatarConfig;
 
   /**
    * The type of illustration being used
