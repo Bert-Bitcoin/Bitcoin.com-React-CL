@@ -49,6 +49,7 @@ export * from './components/website-footer';
 export * from './components/window';
 export * from './layouts/webapplayout';
 export * from './layouts/weblayout';
+export * from './layouts/authlayout';
 export { designTokens } from './tokens';
 export type { DesignTokens, TextStyleToken } from './tokens';
 

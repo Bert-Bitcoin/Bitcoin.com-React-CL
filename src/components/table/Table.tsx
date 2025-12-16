@@ -156,7 +156,7 @@ export const Table = <T extends Record<string, any>>({
           <div
             className={twMerge(
               'flex gap-l items-center px-m py-s w-full min-h-[35px]',
-              onRowClick && 'cursor-pointer hover:bg-shades-extra-light transition-colors'
+              onRowClick && 'cursor-pointer hover:bg-secondary-100/10 dark:hover:bg-secondary-100/20 transition-colors'
             )}
             onClick={() => onRowClick?.(row, rowIndex)}
           >
@@ -196,7 +196,7 @@ export const Table = <T extends Record<string, any>>({
           <div
             className={twMerge(
               'flex flex-col gap-xs px-m py-s w-full',
-              onRowClick && 'cursor-pointer hover:bg-shades-extra-light transition-colors'
+              onRowClick && 'cursor-pointer hover:bg-secondary-100/10 dark:hover:bg-secondary-100/20 transition-colors'
             )}
             onClick={() => onRowClick?.(row, rowIndex)}
           >

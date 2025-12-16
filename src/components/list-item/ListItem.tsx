@@ -105,7 +105,7 @@ export const ListItem: React.FC<ListItemProps> = ({
           'flex items-center w-full overflow-clip',
           config.container,
           config.gap,
-          (showHover || onClick) && 'hover:bg-secondary-100/10 @dark:hover:bg-secondary-100/40 transition-colors',
+          (showHover || onClick) && 'hover:bg-secondary-100/10 dark:hover:bg-secondary-100/20 transition-colors',
           onClick && 'cursor-pointer'
         )}
         onClick={onClick}
