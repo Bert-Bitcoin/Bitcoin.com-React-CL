@@ -56,6 +56,266 @@ export default meta;
 type Story = StoryObj<typeof AuthLayout>;
 
 // =============================================================================
+// Overview & Getting Started
+// =============================================================================
+
+export const Overview = {
+  name: 'Docs',
+  render: () => (
+    <div className="p-xl max-w-[1200px] mx-auto ">
+      <div className="mb-xl">
+        <h1 className="text-display mb-m">AuthLayout Component</h1>
+        <p className="text-body text-text-secondary mb-l">
+          A comprehensive authentication layout system with pre-built screen components for all common authentication flows.
+          Fully responsive with automatic dark mode support.
+        </p>
+      </div>
+
+      {/* Available Screens */}
+      <div className="mb-2xl pb-xl">
+        <h2 className="text-heading-lg mb-l">📱 Available Screen Components</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-l">
+          {/* Sign In Screen */}
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">SignInScreen</h3>
+            <p className="text-body-sm text-text-secondary mb-m">
+              Email and password authentication with "Remember me" checkbox and links to sign up and forgot password flows.
+            </p>
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+              {`<SignInScreen
+  onSignIn={(data) => {}}
+  onSignUpClick={() => {}}
+  onForgotPasswordClick={() => {}}
+/>`}
+            </code>
+          </div>
+
+          {/* Sign Up Screen */}
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">SignUpScreen</h3>
+            <p className="text-body-sm text-text-secondary mb-m">
+              User registration form with email, password, confirm password, and terms acceptance checkbox.
+            </p>
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+              {`<SignUpScreen
+  onSignUp={(data) => {}}
+  onSignInClick={() => {}}
+/>`}
+            </code>
+          </div>
+
+          {/* Sign Up Success */}
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">SignUpSuccessScreen</h3>
+            <p className="text-body-sm text-text-secondary mb-m">
+              Confirmation screen shown after successful sign up. Displays SuccessCoinIllustration and instructions to check email.
+            </p>
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+              {`<SignUpSuccessScreen
+  email="user@example.com"
+  onGoToSignIn={() => {}}
+  onResendEmail={() => {}}
+/>`}
+            </code>
+          </div>
+
+          {/* Forgot Password */}
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">ForgotPasswordScreen</h3>
+            <p className="text-body-sm text-text-secondary mb-m">
+              Password reset request form. User enters email to receive reset instructions.
+            </p>
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+              {`<ForgotPasswordScreen
+  onResetPassword={(data) => {}}
+  onBackToSignIn={() => {}}
+  loading={false}
+  error=""
+/>`}
+            </code>
+          </div>
+
+          {/* Check Email */}
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">CheckEmailScreen</h3>
+            <p className="text-body-sm text-text-secondary mb-m">
+              Confirmation screen after password reset request. Displays SuccessCoinIllustration and email sent message.
+            </p>
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+              {`<CheckEmailScreen
+  email="user@example.com"
+  onBackToSignIn={() => {}}
+  onResendEmail={() => {}}
+/>`}
+            </code>
+          </div>
+
+          {/* Reset Password */}
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">ResetPasswordScreen</h3>
+            <p className="text-body-sm text-text-secondary mb-m">
+              New password creation form with password confirmation validation.
+            </p>
+            <code className="block bg-shades-extra-light dark:bg-shades-dark p-s rounded text-label-sm overflow-x-auto">
+              {`<ResetPasswordScreen
+  onResetPassword={(data) => {}}
+  onBackToSignIn={() => {}}
+  loading={false}
+  error=""
+/>`}
+            </code>
+          </div>
+        </div>
+      </div>
+
+      {/* Quick Start */}
+      <div className="mb-2xl pb-xl">
+        <h2 className="text-heading-lg mb-l">🚀 Quick Start</h2>
+        <div className="bg-surface border border-border rounded-l p-l">
+          <h3 className="text-heading-sm mb-m">Basic Usage</h3>
+          <code className="block bg-shades-extra-light dark:bg-shades-dark p-m rounded text-label-sm overflow-x-auto mb-l whitespace-pre">
+{`import { AuthLayout, SignInScreen } from '@/layouts/authlayout';
+
+function LoginPage() {
+  return (
+    <AuthLayout layout="default">
+      <SignInScreen
+        onSignIn={(data) => {
+          console.log('Email:', data.email);
+          console.log('Password:', data.password);
+          console.log('Remember:', data.rememberMe);
+        }}
+        onSignUpClick={() => navigate('/signup')}
+        onForgotPasswordClick={() => navigate('/forgot-password')}
+      />
+    </AuthLayout>
+  );
+}`}
+          </code>
+
+          <h3 className="text-heading-sm mb-m mt-l">With Illustration</h3>
+          <code className="block bg-shades-extra-light dark:bg-shades-dark p-m rounded text-label-sm overflow-x-auto mb-l whitespace-pre">
+{`import { AuthLayout, SignInScreen } from '@/layouts/authlayout';
+import { Illustration } from '@/components/illustration';
+
+function LoginPage() {
+  return (
+    <AuthLayout 
+      layout="with-illustration"
+      illustration={
+        <Illustration 
+          src="/src/illustrations/Illustration-Account.svg" 
+          alt="Account" 
+          size="full" 
+          objectFit="contain" 
+        />
+      }
+    >
+      <SignInScreen onSignIn={(data) => handleSignIn(data)} />
+    </AuthLayout>
+  );
+}`}
+          </code>
+
+          <h3 className="text-heading-sm mb-m mt-l">Custom Logo</h3>
+          <code className="block bg-shades-extra-light dark:bg-shades-dark p-m rounded text-label-sm overflow-x-auto whitespace-pre">
+{`<AuthLayout
+  layout="with-illustration"
+  customLogo={{
+    light: '/src/images/Logo-Light.svg',
+    dark: '/src/images/Logo-Dark.svg'
+  }}
+>
+  <SignInScreen onSignIn={(data) => handleSignIn(data)} />
+</AuthLayout>`}
+          </code>
+        </div>
+      </div>
+
+      {/* Layout Variants */}
+      <div className="mb-2xl pb-xl">
+        <h2 className="text-heading-lg mb-l">🎨 Layout Variants</h2>
+        <div className="grid grid-cols-1 gap-l">
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">default</h3>
+            <p className="text-body-sm text-text-secondary">
+              Simple centered card layout. Best for minimal, focused authentication.
+            </p>
+          </div>
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">with-illustration</h3>
+            <p className="text-body-sm text-text-secondary">
+              Card with illustration side panel on desktop. Illustration shows below form on tablet, hidden on mobile.
+            </p>
+          </div>
+          <div className="border border-border rounded-l p-l bg-surface">
+            <h3 className="text-heading-sm mb-s">fullscreen</h3>
+            <p className="text-body-sm text-text-secondary">
+              Full-height split screen layout with form on left and illustration on right (desktop only).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Features */}
+      <div className="mb-2xl pb-xl">
+        <h2 className="text-heading-lg mb-l">✨ Key Features</h2>
+        <ul className="space-y-m text-body">
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>Responsive Design:</strong> Adapts seamlessly across mobile, tablet, and desktop</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>Dark Mode:</strong> Automatic theme switching with semantic tokens</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>Pre-built Screens:</strong> Complete authentication flow components included</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>Custom Branding:</strong> Easy logo replacement with light/dark variants</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>Flexible Illustrations:</strong> Swap illustrations or use custom images</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>Sticky Buttons:</strong> Action buttons align to bottom in card mode</span>
+          </li>
+          <li className="flex items-start gap-s">
+            <span className="text-success-100">✓</span>
+            <span><strong>TypeScript:</strong> Full type safety with comprehensive prop interfaces</span>
+          </li>
+        </ul>
+      </div>
+
+      {/* Note */}
+      <div className="bg-primary-10 border border-primary-100 rounded-l p-l">
+        <p className="text-body-sm text-text-primary">
+          <strong>💡 Tip:</strong> Explore the stories below to see each screen in action and interactive demos of complete authentication flows.
+        </p>
+      </div>
+    </div>
+  ),
+  parameters: {
+    layout: 'fullscreen',
+    previewTabs: {
+      canvas: { hidden: true },
+    },
+    viewMode: 'docs',
+    docs: {
+      page: null,
+      source: {
+        code: null,
+      },
+    },
+  },
+};
+
+// =============================================================================
 // Sign In Flow
 // =============================================================================
 
