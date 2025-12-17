@@ -78,8 +78,8 @@ export const CardsSection = ({
             'grid gap-l',
             // Mobile: 1 column
             'grid-cols-1',
-            // Tablet: 2 columns for 6-card layout, 1 column for 3-card layout
-            layout === 6 ? 'md:grid-cols-2' : 'md:grid-cols-1',
+            // Tablet: 2 columns for both layouts (creates 2+1 pattern for 3-card, 2+2+2 for 6-card)
+            'md:grid-cols-2',
             // Desktop: 3 columns for both layouts
             'lg:grid-cols-3'
           )}
@@ -114,6 +114,13 @@ const Card = ({ card, styles }: CardProps) => {
         styles.card
       )}
     >
+      {/* Custom Content Start (optional) */}
+      {card.customContentStart && (
+        <div className="w-full">
+          {card.customContentStart}
+        </div>
+      )}
+
       {/* Mobile & Desktop: Icon above, Tablet: Icon to the left */}
       <div className="flex flex-col md:flex-row lg:flex-col gap-s md:gap-m lg:gap-s items-start flex-1">
         {/* Icon (optional) */}
@@ -149,13 +156,20 @@ const Card = ({ card, styles }: CardProps) => {
       {card.action && (
         <div className="w-full mt-auto">
           <Button
-            variant="secondary"
+            variant={card.action.variant || 'secondary'}
             size="md"
             fullWidth
             onClick={card.action.onClick}
           >
             {card.action.label}
           </Button>
+        </div>
+      )}
+
+      {/* Custom Content End (optional) */}
+      {card.customContentEnd && (
+        <div className="w-full">
+          {card.customContentEnd}
         </div>
       )}
     </div>

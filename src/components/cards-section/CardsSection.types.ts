@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import type { ButtonVariant } from '../button/Button.types';
 
 /**
  * Style variants for the Cards Section
@@ -22,12 +23,18 @@ export interface CardItem {
   title: string;
   /** Optional card description */
   description?: string;
+  /** Optional custom content to inject at the start of the card (before icon) */
+  customContentStart?: ReactNode;
+  /** Optional custom content to inject at the end of the card (after button) */
+  customContentEnd?: ReactNode;
   /** Optional action button configuration */
   action?: {
     /** Button text */
     label: string;
     /** Click handler */
     onClick: () => void;
+    /** Button variant (defaults to 'secondary') */
+    variant?: ButtonVariant;
   };
 }
 

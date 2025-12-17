@@ -619,6 +619,54 @@ export const ExampleStory: Story = {
 
 Before creating any supporting UI in a story, check `src/components/` to see if a suitable component already exists.
 
+### Rule: no-external-placeholder-images (STRICT)
+**NEVER use external placeholder image services** (e.g., `via.placeholder.com`, `placeholder.com`, `placekitten.com`, `lorempixel.com`) in Storybook stories or component examples. These services are unreliable, may be blocked by network policies, or fail to load, resulting in broken examples.
+
+**Instead, use one of these approved alternatives:**
+
+1. **Gradient Divs with Icons/Emojis** (Preferred for demos):
+```tsx
+<div className="w-full aspect-[360/200] bg-gradient-to-br from-[#0052FF] to-[#0041CC] rounded-[8px] flex items-center justify-center">
+  <div className="text-center text-white">
+    <div className="text-[48px] mb-2">₿</div>
+    <div className="font-['Satoshi_Variable'] font-semibold text-sm">Bitcoin</div>
+  </div>
+</div>
+```
+
+2. **Inline SVG Data URIs** (For actual image elements):
+```tsx
+<img
+  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='200'%3E%3Crect fill='%230052FF' width='360' height='200'/%3E%3Ctext fill='white' x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-size='24'%3EPlaceholder%3C/text%3E%3C/svg%3E"
+  alt="Placeholder"
+/>
+```
+
+3. **Solid Color Backgrounds** (Simple placeholders):
+```tsx
+<div className="w-full aspect-[360/200] bg-shades-extra-light rounded-[8px] flex items-center justify-center">
+  <span className="text-shades-semi-dark font-['Satoshi_Variable']">Image Placeholder</span>
+</div>
+```
+
+4. **Mini-Illustrations** (For feature/product cards):
+```tsx
+import { BitcoinCreditCardsIllustration } from '../mini-illustrations';
+
+<div className="w-full aspect-[360/200] bg-shades-extra-light rounded-[8px] p-l flex items-center justify-center">
+  <BitcoinCreditCardsIllustration className="w-[120px] h-[120px]" />
+</div>
+```
+
+**Why this matters:**
+- External services can be blocked by corporate firewalls or content policies
+- Network failures cause broken images in documentation
+- Adds external dependencies to the project
+- May have rate limiting or availability issues
+- Self-contained examples are more reliable and professional
+
+**Always prefer self-contained, locally-rendered placeholders** that work offline and don't depend on external services.
+
 ---
 
 ## 🔁 Change Sync Behavior
