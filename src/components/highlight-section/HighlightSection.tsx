@@ -109,7 +109,7 @@ export const HighlightSection = ({
             )}
 
             <h2 className={twMerge(
-              'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] lg:leading-[0.94] uppercase leading-none',
+              'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94]',
               styles.heading
             )}>
               {heading}

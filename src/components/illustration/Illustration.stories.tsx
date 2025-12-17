@@ -35,6 +35,7 @@ const illustrations = {
   rewards: '/src/illustrations/Illustration-Rewards.svg',
   rewardsMachine: '/src/illustrations/Illustration-Rewards-Machine.svg',
   rocket: '/src/illustrations/Illustration-Rocket.svg',
+  secureBitcoin: '/src/illustrations/Illustration-secure-bitcoin.svg',
   sendBitcoin: '/src/illustrations/Illustration-Send-Bitcoin.svg',
   sendEthereum: '/src/illustrations/Illustration-Send-Ethereum.svg',
   swap: '/src/illustrations/Illustration-Swap.svg',
@@ -56,7 +57,7 @@ A flexible component for displaying SVG illustrations with various sizing and fi
 
 ## 📚 Available Illustrations
 
-This library includes **36 illustrations** covering various Bitcoin and cryptocurrency concepts. Browse through the stories below to see all available illustrations.
+This library includes **37 illustrations** covering various Bitcoin and cryptocurrency concepts. Browse through the stories below to see all available illustrations.
 
 ## 🎨 Need More Illustrations?
 
@@ -692,3 +693,4 @@ export const FullWidthBanner: Story = {
     </div>
   )
 };
+

@@ -245,7 +245,7 @@ const Calendar = ({
         )}
 
         {/* Month Year */}
-        <div className="font-['Elza_Narrow'] font-black text-[14px] leading-[14px] text-text-primary text-center uppercase">
+        <div className="font-['Elza_Narrow'] font-black text-[14px] leading-[0.94] text-text-primary text-center uppercase">
           {getMonthYearString(currentDate)}
         </div>
 

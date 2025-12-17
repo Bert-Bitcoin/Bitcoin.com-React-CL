@@ -157,4 +157,48 @@ export const WithFewerLinkGroups: Story = {
   }
 };
 
+export const CustomAppStoreLinks: Story = {
+  args: {
+    linkGroups: sampleLinkGroups,
+    googlePlayHref: 'https://play.google.com/store/apps/details?id=com.example.customapp',
+    appStoreHref: 'https://apps.apple.com/us/app/custom-app/id123456789'
+  }
+};
+
+export const WithCustomTopBackground: Story = {
+  args: {
+    linkGroups: sampleLinkGroups,
+    topBackgroundColor: 'bg-surface'
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Canvas'
+    }
+  }
+};
+
+export const WithPrimaryBackground: Story = {
+  args: {
+    linkGroups: sampleLinkGroups,
+    topBackgroundColor: 'bg-primary-100'
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Canvas'
+    }
+  }
+};
+
+export const WithCanvasBackground: Story = {
+  args: {
+    linkGroups: sampleLinkGroups,
+    topBackgroundColor: 'bg-shades-canvas'
+  },
+  parameters: {
+    backgrounds: {
+      default: 'Canvas'
+    }
+  }
+};
+
 

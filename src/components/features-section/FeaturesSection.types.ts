@@ -11,6 +11,12 @@ export interface Feature {
   onButtonClick?: () => void;
   imageElement?: ReactNode;
   imagePosition?: 'left' | 'right';
+  /**
+   * Optional custom background color for the image container.
+   * When provided, overrides the default style-based background color.
+   * Use semantic tokens (e.g., 'bg-primary-100') or arbitrary values (e.g., 'bg-[#FF5733]')
+   */
+  imageBgColor?: string;
 }
 
 export interface FeaturesSectionProps {

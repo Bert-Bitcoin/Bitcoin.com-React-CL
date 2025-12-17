@@ -70,7 +70,7 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-l items-center">
           {/* Content */}
           <div className="flex flex-col gap-m">
-            <h1 className="font-['Elza_Narrow'] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none">
+            <h1 className="font-['Elza_Narrow'] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94]">
               Trade Bitcoin With Confidence
             </h1>
             <p className="text-body text-text-secondary">
@@ -411,3 +411,4 @@ All illustrations are located in `src/illustrations/`:
 - Wallet management
 
 Import them using the path: `/src/illustrations/Illustration-[Name].svg`
+

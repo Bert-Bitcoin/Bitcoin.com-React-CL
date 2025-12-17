@@ -1,4 +1,5 @@
 export * from './components/accordion';
+export * from './components/app-button';
 export * from './components/asset';
 export * from './components/asset-icons';
 export * from './components/avatar';
@@ -41,6 +42,7 @@ export * from './components/hero-section';
 export * from './components/news-section';
 export * from './components/articles-section';
 export * from './components/cards-section';
+export * from './components/cta-section';
 export * from './components/links-section';
 export * from './components/features-section';
 export * from './components/faq-section';

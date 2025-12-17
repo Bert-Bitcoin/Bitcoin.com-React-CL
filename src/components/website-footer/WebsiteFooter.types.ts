@@ -35,6 +35,16 @@ export interface WebsiteFooterProps extends HTMLAttributes<HTMLElement> {
    */
   badges?: WebsiteFooterBadge[];
   /**
+   * Custom URL for the Google Play Store button
+   * @default 'https://play.google.com/store/apps/details?id=com.bitcoin.mwallet&pli=1'
+   */
+  googlePlayHref?: string;
+  /**
+   * Custom URL for the App Store button
+   * @default 'https://apps.apple.com/us/app/bitcoin-com-wallet-buy-sell/id1252903728?ls=1'
+   */
+  appStoreHref?: string;
+  /**
    * Groups of links to display in the footer
    */
   linkGroups?: WebsiteFooterLinkGroup[];
@@ -47,6 +57,13 @@ export interface WebsiteFooterProps extends HTMLAttributes<HTMLElement> {
    * Additional CSS classes for the content wrapper
    */
   contentClassName?: string;
+  /**
+   * Background color for the top curved element that overlaps the footer.
+   * Use this to match the background color of the previous section.
+   * @default 'bg-shades-white'
+   * @example 'bg-surface' | 'bg-primary-100' | 'bg-shades-canvas'
+   */
+  topBackgroundColor?: string;
 }
 
 

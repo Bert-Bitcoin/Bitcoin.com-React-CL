@@ -75,7 +75,7 @@ export function HeroWithIllustration() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-l items-center">
           {/* Content */}
           <div className="flex flex-col gap-m">
-            <h1 className="font-['Elza_Narrow'] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none">
+            <h1 className="font-['Elza_Narrow'] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94]">
               The Future of Money
             </h1>
             <p className="text-body text-text-secondary text-lg">
@@ -270,3 +270,4 @@ export const IllustrationExamples = {
   ObjectFitComparison,
   IllustrationGallery
 };
+

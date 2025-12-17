@@ -129,7 +129,7 @@ export const ArticlesSection = ({
         {description ? (
           // Layout with description: heading above, description + buttons below
           <div className="flex flex-col gap-m">
-            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
+            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94]', styles.heading)}>
               {heading}
             </h2>
 
@@ -162,7 +162,7 @@ export const ArticlesSection = ({
         ) : (
           // Layout without description: heading + buttons on same row for desktop/tablet
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-m">
-            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none', styles.heading)}>
+            <h2 className={twMerge('font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94]', styles.heading)}>
               {heading}
             </h2>
 

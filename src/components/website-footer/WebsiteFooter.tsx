@@ -139,9 +139,12 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
       showDownloadSection = true,
       downloadTitle = 'Download the app',
       badges = defaultBadges,
+      googlePlayHref,
+      appStoreHref,
       linkGroups = defaultLinkGroups,
       legalText = defaultLegalText,
       contentClassName,
+      topBackgroundColor = 'bg-shades-white',
       className,
       ...rest
     },
@@ -163,9 +166,22 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
 
     const mobileAccordionBaseId = useId();
 
+    // Override badge URLs if custom ones are provided
+    const finalBadges = useMemo(() => {
+      return badges.map((badge) => {
+        if (badge.id === 'google-play' && googlePlayHref) {
+          return { ...badge, href: googlePlayHref };
+        }
+        if (badge.id === 'app-store' && appStoreHref) {
+          return { ...badge, href: appStoreHref };
+        }
+        return badge;
+      });
+    }, [badges, googlePlayHref, appStoreHref]);
+
     const renderedBadges = useMemo(
       () =>
-        badges.map((badge) => (
+        finalBadges.map((badge) => (
           <a
             key={badge.id}
             href={badge.href}
@@ -181,7 +197,7 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
             )}
           </a>
         )),
-      [badges]
+      [finalBadges]
     );
 
     const handleLinkClick =
@@ -199,7 +215,7 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
         className={twMerge('w-full bg-[#1C1C1C] text-shades-white', className)}
         {...rest}
       >
-        <div className='h-[27px] w-full bg-shades-white rounded-b-3xl'></div>
+        <div className={twMerge('h-[27px] w-full rounded-b-3xl', topBackgroundColor)}></div>
         <div
           className={twMerge(
             'mx-auto flex w-full max-w-[1304px] flex-col gap-xl px-m py-xl md:px-xl md:py-xxl',

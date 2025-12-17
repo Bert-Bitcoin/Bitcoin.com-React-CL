@@ -71,7 +71,7 @@ export const FAQSection = ({
           {/* Heading */}
           <h2
             className={twMerge(
-              'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] lg:min-w-[40%] uppercase leading-none',
+              'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] lg:min-w-[40%] uppercase leading-[0.94]',
               styles.heading
             )}
           >

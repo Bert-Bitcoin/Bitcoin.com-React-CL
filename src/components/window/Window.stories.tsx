@@ -93,7 +93,7 @@ export const LongContent: Story = {
       closeOnBackdropClick={true}
     >
       <div className="p-m">
-        <h3 className="font-['Elza_Narrow'] font-black text-[20px] text-shades-black uppercase mb-4">
+        <h3 className="font-['Elza_Narrow'] font-black text-[20px] leading-[0.94] text-shades-black uppercase mb-4">
           Long Content Example
         </h3>
         {Array.from({ length: 20 }, (_, i) => (
@@ -165,7 +165,7 @@ export const WithRichContent: Story = {
     >
       <div className="p-m space-y-6">
         <section>
-          <h3 className="font-['Elza_Narrow'] font-black text-[20px] text-shades-black uppercase mb-4">
+          <h3 className="font-['Elza_Narrow'] font-black text-[20px] leading-[0.94] text-shades-black uppercase mb-4">
             Introduction
           </h3>
           <p className="text-shades-dark mb-4">
@@ -175,7 +175,7 @@ export const WithRichContent: Story = {
         </section>
 
         <section>
-          <h3 className="font-['Elza_Narrow'] font-black text-[20px] text-shades-black  uppercase mb-4">
+          <h3 className="font-['Elza_Narrow'] font-black text-[20px] leading-[0.94] text-shades-black uppercase mb-4">
             User Agreement
           </h3>
           <ul className="list-disc list-inside text-shades-dark space-y-2">
@@ -187,7 +187,7 @@ export const WithRichContent: Story = {
         </section>
 
         <section>
-          <h3 className="font-['Elza_Narrow'] font-black text-[20px] text-shades-black  uppercase mb-4">
+          <h3 className="font-['Elza_Narrow'] font-black text-[20px] leading-[0.94] text-shades-black uppercase mb-4">
             Privacy Policy
           </h3>
           <p className="text-shades-dark mb-4">
@@ -197,7 +197,7 @@ export const WithRichContent: Story = {
         </section>
 
         <section>
-          <h3 className="font-['Elza_Narrow'] font-black text-[20px] text-shades-black  uppercase mb-4">
+          <h3 className="font-['Elza_Narrow'] font-black text-[20px] leading-[0.94] text-shades-black uppercase mb-4">
             Limitation of Liability
           </h3>
           <p className="text-shades-dark ">

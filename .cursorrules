@@ -142,6 +142,46 @@ Example:
 <h1 className="font-['Elza_Narrow']">Bitcoin Rewards</h1>
 ```
 
+### Rule: elza-font-line-height (STRICT)
+**All Elza font usage MUST use `leading-[0.94]` for line-height.** This applies to:
+- All heading elements (h1, h2, h3, etc.) using Elza Narrow font
+- All display text using Elza font
+- All typography tokens (display-xl, heading-xl, heading-lg, heading-md, heading-sm)
+- Any manual usage of `font-['Elza_Narrow']` or `font-['Elza']`
+
+The standard line-height of `0.94` ensures consistent tight leading across all Elza typography, creating the intended visual hierarchy and spacing.
+
+**Implementation:**
+```tsx
+// Correct - with leading-[0.94]
+<h1 className="font-['Elza_Narrow'] text-[70px] uppercase leading-[0.94]">
+  Bitcoin Rewards
+</h1>
+
+// Correct - using typography token (leading-[0.94] is built-in)
+<h1 className="text-display">Bitcoin Rewards</h1>
+
+// Incorrect - missing or wrong line-height
+<h1 className="font-['Elza_Narrow'] text-[70px] uppercase leading-none">
+  Bitcoin Rewards
+</h1>
+
+// Incorrect - using different line-height value
+<h1 className="font-['Elza_Narrow'] text-[70px] uppercase leading-tight">
+  Bitcoin Rewards
+</h1>
+```
+
+**Typography Token Line Heights:**
+All typography tokens that use Elza font have been updated to use `lineHeight: '0.94'`:
+- `display-xl` - lineHeight: '0.94'
+- `heading-xl` - lineHeight: '0.94'
+- `heading-lg` - lineHeight: '0.94'
+- `heading-md` - lineHeight: '0.94'
+- `heading-sm` - lineHeight: '0.94'
+
+When using these tokens (e.g., `text-display`, `text-heading-lg`), the correct line-height is automatically applied.
+
 ### Rule: ibm-plex-sans-numeric (STRICT)
 **Always use IBM Plex Sans font for displaying numeric values** (numbers, prices, amounts, quantities, percentages, etc.). IBM Plex Sans is designed for optimal readability of numbers and should be applied to any content that contains numeric data. Use the `font-['IBMPlexSans']` class or ensure your typography token uses IBM Plex Sans when rendering numeric content.
 
@@ -241,7 +281,7 @@ Every website section component MUST include an optional `id` prop for anchor li
 ```typescript
 interface SectionProps {
   // ... other props
-  
+
   /**
    * Optional ID for the section element (useful for anchor links and SEO)
    * Enables deep linking like: yoursite.com/page#section-id
@@ -264,7 +304,7 @@ Content-heavy sections (articles, news, FAQs, reviews, products) MUST implement 
 ```typescript
 interface ContentSectionProps {
   // ... other props
-  
+
   /**
    * Enable structured data (Schema.org) for SEO
    * @default true
@@ -405,13 +445,13 @@ All dates and timestamps MUST use HTML5 `<time>` element with `datetime` attribu
 ```typescript
 interface Article {
   // ... other props
-  
+
   /**
    * Publication date in ISO 8601 format (e.g., "2024-01-16T10:00:00Z")
    * Used for structured data and time element
    */
   datePublished?: string;
-  
+
   /**
    * Human-readable timestamp (e.g., "2 hours ago")
    * Falls back to formatted datePublished if not provided
@@ -448,10 +488,10 @@ When creating a new website section component, ensure these props are included:
 interface WebsiteSectionProps {
   /** Optional ID for anchor linking */
   id?: string;
-  
+
   /** Theme mode */
   themeMode?: 'auto' | 'light' | 'dark';
-  
+
   /** Additional CSS classes */
   className?: string;
 }
@@ -662,7 +702,7 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
      enableStructuredData?: boolean;  // REQUIRED: For content sections (default: true)
      // ... component-specific props
    }
-   
+
    // For article/news items, include SEO metadata:
    interface ArticleItem {
      id: string;
@@ -678,7 +718,7 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
    ```
 3. Apply the standard wrapper structure with correct padding and **id prop**:
    ```tsx
-   <section 
+   <section
      id={id}  // REQUIRED: Add id prop
      className={cn(
        'px-m md:px-xl py-[32px] md:py-[60px] sm:py-[40px]', // Responsive vertical padding
@@ -693,7 +733,7 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
        />
      )}
-     
+
      <div className="w-full max-w-[1240px] mx-auto">
        {/* Section content goes here */}
      </div>
@@ -709,7 +749,7 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
    ```tsx
    <article className="card">
      <a href={article.href}>
-       <img 
+       <img
          src={article.imageUrl}
          alt={article.imageAlt || `${article.title} - Article image`}
          width={article.imageWidth || 451}

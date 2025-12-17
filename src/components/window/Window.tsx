@@ -69,7 +69,7 @@ export const Window = ({
         <div className="flex items-center gap-s p-m border-b border-shades-light dark:border-shades-extra-light shrink-0">
           <h2
             id="window-title"
-            className="flex-1 font-['Elza_Narrow'] font-black text-[16px] leading-none text-shades-black uppercase flex items-center"
+            className="flex-1 font-['Elza_Narrow'] font-black text-[16px] leading-[0.94] text-shades-black uppercase flex items-center"
           >
             {title}
           </h2>

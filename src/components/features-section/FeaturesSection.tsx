@@ -58,7 +58,7 @@ export const FeaturesSection = ({
         {/* Section Heading */}
         <div className="flex flex-col items-center mb-m md:mb-[40px]">
           <h2 className={twMerge(
-            'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none text-center',
+            'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94] text-center',
             styles.heading
           )}>
             {heading}
@@ -111,7 +111,7 @@ const FeatureItem = ({ feature, imagePosition, styles, isLast }: FeatureItemProp
         <div 
           className={twMerge(
             'relative w-full h-[200px] md:h-[300px] rounded-[24px]',
-            styles.imageBg
+            feature.imageBgColor || styles.imageBg
           )}
         >
           {/* Image Content Slot */}
@@ -131,7 +131,7 @@ const FeatureItem = ({ feature, imagePosition, styles, isLast }: FeatureItemProp
         )}
       >
         <h3 className={twMerge(
-          'font-["Elza_Narrow"] text-[24px] md:text-[40px] uppercase leading-none',
+          'font-["Elza_Narrow"] text-[24px] md:text-[40px] uppercase leading-[0.94]',
           styles.featureTitle
         )}>
           {feature.title}

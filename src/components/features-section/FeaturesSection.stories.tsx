@@ -242,3 +242,36 @@ export const ForceDarkTheme: Story = {
     }
   }
 };
+
+export const CustomBackgroundColors: Story = {
+  args: {
+    themeMode: 'auto',
+    style: 'light',
+    heading: 'Custom Backgrounds',
+    features: [
+      {
+        ...mockFeaturesWithImages[0],
+        imageBgColor: 'bg-primary-100/10'
+      },
+      {
+        ...mockFeaturesWithImages[1],
+        imageBgColor: 'bg-secondary-100/10'
+      },
+      {
+        ...mockFeaturesWithImages[2],
+        imageBgColor: 'bg-[#E8F5E9]'
+      },
+      {
+        ...mockFeaturesWithImages[3],
+        imageBgColor: 'bg-shades-extra-light'
+      }
+    ]
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstrates custom background colors for each feature\'s image container. You can use semantic tokens (e.g., bg-primary-100) or arbitrary values (e.g., bg-[#E8F5E9])'
+      }
+    }
+  }
+};

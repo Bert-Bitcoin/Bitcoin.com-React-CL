@@ -165,7 +165,7 @@ export const defaultTokens: DesignTokens = {
           '"Elza Narrow", "Elza", "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
         fontSize: rem(56),
         fontWeight: 900,
-        lineHeight: '1.05',
+        lineHeight: '0.94',
         letterSpacing: '-0.01em',
         textTransform: 'uppercase'
       },
@@ -174,7 +174,7 @@ export const defaultTokens: DesignTokens = {
           '"Elza Narrow", "Elza", "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
         fontSize: rem(40),
         fontWeight: 900,
-        lineHeight: '1.1',
+        lineHeight: '0.94',
         letterSpacing: '-0.01em',
         textTransform: 'uppercase'
       },
@@ -183,7 +183,7 @@ export const defaultTokens: DesignTokens = {
           '"Elza Narrow", "Elza", "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
         fontSize: rem(32),
         fontWeight: 900,
-        lineHeight: '1.1',
+        lineHeight: '0.94',
         textTransform: 'uppercase'
       },
       'heading-md': {
@@ -191,7 +191,7 @@ export const defaultTokens: DesignTokens = {
           '"Elza Narrow", "Elza", "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
         fontSize: rem(24),
         fontWeight: 900,
-        lineHeight: '1.15',
+        lineHeight: '0.94',
         textTransform: 'uppercase'
       },
       'heading-sm': {
@@ -199,7 +199,7 @@ export const defaultTokens: DesignTokens = {
           '"Elza Narrow", "Elza", "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif',
         fontSize: rem(20),
         fontWeight: 900,
-        lineHeight: '1.15',
+        lineHeight: '0.94',
         textTransform: 'uppercase'
       },
       'body-lg': {

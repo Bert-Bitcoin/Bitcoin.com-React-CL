@@ -86,7 +86,7 @@ export const LinksSection = ({
         {/* Section Heading */}
         <div className="flex flex-col gap-m mb-l">
           <h2 className={twMerge(
-            'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none',
+            'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94]',
             styles.heading
           )}>
             {heading}
@@ -155,7 +155,7 @@ const LinkCard = ({ link, styles }: LinkCardProps) => {
         <div className="flex flex-col gap-s flex-1">
           {/* Title */}
           <h3 className={twMerge(
-            'font-["Elza_Narrow"] text-[18px] md:text-[20px] lg:text-[22px] uppercase leading-none',
+            'font-["Elza_Narrow"] text-[18px] md:text-[20px] lg:text-[22px] uppercase leading-[0.94]',
             styles.linkTitle
           )}>
             {link.title}

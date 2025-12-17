@@ -146,7 +146,7 @@ const HeroTextOnly = ({
       <h1 className={twMerge(
         'font-["Elza_Narrow"]',
         'text-[44px] sm:text-[54px] md:text-[70px] lg:text-[94px]',
-        'uppercase leading-[0.90]',
+        'uppercase leading-[0.94]',
         styles.heading,
         isCentered ? 'max-w-[1000px]' : 'max-w-[900px]'
       )}>
@@ -270,7 +270,7 @@ const HeroWithIllustration = ({
         <h1 className={twMerge(
           'font-["Elza_Narrow"]',
           'text-[44px] sm:text-[54px] md:text-[70px] lg:text-[94px]',
-          'uppercase leading-[0.90]',
+          'uppercase leading-[0.94]',
           styles.heading
         )}>
           {heading}

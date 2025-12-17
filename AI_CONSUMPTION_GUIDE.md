@@ -52,7 +52,10 @@ Use the t-shirt size scale for margin/padding/gap:
 
 ### 1. Headings & Display
 **Font**: `Elza` / `Elza Narrow`
-**Rule**: Must be **UPPERCASE**.
+**Rules**: 
+- Must be **UPPERCASE**
+- Must use **`leading-[0.94]`** for line-height
+
 **Tokens**:
 - `text-display-xl`
 - `text-heading-xl`
@@ -60,7 +63,30 @@ Use the t-shirt size scale for margin/padding/gap:
 - `text-heading-md`
 - `text-heading-sm`
 
-*Note: These utility classes usually include `uppercase` automatically. If applying font manually, you MUST add `uppercase`.*
+*Note: These utility classes include `uppercase` and `lineHeight: '0.94'` automatically. If applying font manually, you MUST add both `uppercase` and `leading-[0.94]`.*
+
+**Example:**
+```tsx
+// ✅ Correct - using token (uppercase + leading-[0.94] automatic)
+<h1 className="text-display-xl">Bitcoin Rewards</h1>
+
+// ✅ Correct - manual usage with both rules
+<h2 className="font-['Elza_Narrow'] text-[70px] uppercase leading-[0.94]">
+  Section Title
+</h2>
+
+// ❌ Incorrect - missing line-height
+<h2 className="font-['Elza_Narrow'] text-[70px] uppercase">
+  Section Title
+</h2>
+
+// ❌ Incorrect - wrong line-height
+<h2 className="font-['Elza_Narrow'] text-[70px] uppercase leading-none">
+  Section Title
+</h2>
+```
+
+**📖 Full Guidelines:** See [ELZA_TYPOGRAPHY_GUIDELINES.md](./ELZA_TYPOGRAPHY_GUIDELINES.md) for comprehensive Elza font usage rules.
 
 ### 2. Numeric Values
 **Font**: `IBM Plex Sans`

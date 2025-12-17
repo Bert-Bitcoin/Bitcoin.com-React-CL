@@ -56,7 +56,7 @@ export const CardsSection = ({
         {/* Section Heading */}
         <div className="flex flex-col gap-m mb-l">
           <h2 className={twMerge(
-            'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-none',
+            'font-["Elza_Narrow"] text-[32px] md:text-[44px] lg:text-[70px] uppercase leading-[0.94]',
             styles.heading
           )}>
             {heading}
@@ -127,7 +127,7 @@ const Card = ({ card, styles }: CardProps) => {
         <div className="flex flex-col gap-s flex-1 w-full">
           {/* Title */}
           <h3 className={twMerge(
-            'font-["Elza_Narrow"] text-[24px] md:text-[28px] lg:text-[32px] uppercase leading-none',
+            'font-["Elza_Narrow"] text-[24px] md:text-[28px] lg:text-[32px] uppercase leading-[0.94]',
             styles.cardTitle
           )}>
             {card.title}

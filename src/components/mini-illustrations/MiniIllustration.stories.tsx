@@ -7,7 +7,8 @@ import {
   BitcoinHandsWalletIllustration,
   SuccessCoinIllustration,
   GemsIllustration,
-  ExperiencePointsIllustration
+  ExperiencePointsIllustration,
+  BtcEthZanoIllustration
 } from '.';
 
 const meta: Meta<typeof MiniIllustration> = {
@@ -81,6 +82,7 @@ export const MultipleIllustrations: Story = {
     <div className="flex gap-m items-center">
       <MiniIllustration illustration={FlameStreakIllustration} size="md" />
       <MiniIllustration illustration={BitcoinHandsWalletIllustration} size="md" />
+      <MiniIllustration illustration={BtcEthZanoIllustration} size="md" />
       <MiniIllustration illustration={SuccessCoinIllustration} size="md" />
       <MiniIllustration illustration={GemsIllustration} size="md" />
       <MiniIllustration illustration={ExperiencePointsIllustration} size="md" />
@@ -100,6 +102,26 @@ export const InCard: Story = {
         </h3>
         <p className="text-body text-text-secondary">
           Your Bitcoin transaction has been completed successfully.
+        </p>
+      </div>
+    </div>
+  )
+};
+
+export const BtcEthZano: Story = {
+  args: {
+    illustration: BtcEthZanoIllustration,
+    size: 'lg'
+  },
+  render: (args: MiniIllustrationProps) => (
+    <div className="flex flex-col items-center gap-m">
+      <MiniIllustration illustration={BtcEthZanoIllustration} size="xl" />
+      <div className="text-center space-y-xs">
+        <h4 className="text-heading-sm font-display text-text-primary">
+          BTC, ETH & ZANO
+        </h4>
+        <p className="text-body-xs text-text-secondary">
+          Multi-cryptocurrency illustration
         </p>
       </div>
     </div>
