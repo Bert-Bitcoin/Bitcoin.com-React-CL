@@ -111,12 +111,20 @@ const FeatureItem = ({ feature, imagePosition, styles, isLast }: FeatureItemProp
         <div 
           className={twMerge(
             'relative w-full h-[200px] md:h-[300px] rounded-[24px]',
+            feature.imageExtendToBottom && 'overflow-visible',
             feature.imageBgColor || styles.imageBg
           )}
         >
           {/* Image Content Slot */}
           {feature.imageElement && (
-            <div className="absolute h-[256px] md:h-[384px] -top-[56px] md:-top-[84px] inset-0 flex items-center justify-center p-xl md:p-xxl">
+            <div 
+              className={twMerge(
+                'absolute flex items-center justify-center',
+                feature.imageExtendToBottom 
+                  ? 'inset-x-0 -top-[56px] md:-top-[84px] bottom-0 pt-xl md:pt-xxl px-xl md:px-xxl pb-0'
+                  : 'inset-0 h-[256px] md:h-[384px] -top-[56px] md:-top-[84px] p-xl md:p-xxl'
+              )}
+            >
               {feature.imageElement}
             </div>
           )}

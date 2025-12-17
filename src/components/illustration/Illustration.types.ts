@@ -95,3 +95,4 @@ export interface IllustrationProps {
    */
   style?: CSSProperties;
 }
+

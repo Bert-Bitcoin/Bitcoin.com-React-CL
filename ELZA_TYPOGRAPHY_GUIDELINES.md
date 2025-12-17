@@ -249,3 +249,4 @@ If you find Elza font usage without `leading-[0.94]`, update it:
 🎯 **Elza font = `uppercase` + `leading-[0.94]`**
 
 No exceptions. This ensures visual consistency, maintains design system integrity, and provides optimal readability across all components.
+

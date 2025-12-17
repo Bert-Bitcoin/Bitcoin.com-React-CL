@@ -49,6 +49,10 @@ const meta = {
     cards: {
       control: 'object',
       description: 'Array of card items to display'
+    },
+    removeTopPadding: {
+      control: 'boolean',
+      description: 'Remove top padding - useful when stacking sections with the same style'
     }
   },
   tags: ['autodocs']
@@ -735,6 +739,238 @@ export const WithPlaceholderImages6Cards: Story = {
           label: 'Read More',
           onClick: () => console.log('News 6 clicked')
         }
+      }
+    ],
+    layout: 6
+  }
+};
+
+/**
+ * Stacked sections without top padding
+ * Demonstrates using removeTopPadding to seamlessly stack sections with the same style
+ */
+export const StackedSectionsNoTopPadding: Story = {
+  render: (args) => (
+    <div>
+      {/* First section - normal padding */}
+      <CardsSection
+        style="light"
+        heading="First Section"
+        description="This section has normal top and bottom padding"
+        cards={[
+          {
+            id: '1',
+            icon: <BitcoinCreditCardsIllustration className="w-full h-full" />,
+            title: 'Free Crypto Credit Cards',
+            description: 'A short article summary',
+            action: {
+              label: 'Learn More',
+              onClick: () => console.log('Card 1 clicked')
+            }
+          },
+          {
+            id: '2',
+            icon: <BitcoinGambleIllustration className="w-full h-full" />,
+            title: 'The Games You Love',
+            description: 'Play your favorite games',
+            action: {
+              label: 'Play Now',
+              onClick: () => console.log('Card 2 clicked')
+            }
+          },
+          {
+            id: '3',
+            icon: <BitcoinHandsWalletIllustration className="w-full h-full" />,
+            title: 'Sharing Is Caring',
+            description: 'Share with your friends',
+            action: {
+              label: 'Share',
+              onClick: () => console.log('Card 3 clicked')
+            }
+          }
+        ]}
+        layout={3}
+      />
+      
+      {/* Second section - removeTopPadding to eliminate gap */}
+      <CardsSection
+        style="light"
+        heading="Second Section"
+        description="This section removes top padding to eliminate the gap between sections"
+        removeTopPadding={true}
+        cards={[
+          {
+            id: '4',
+            icon: <BitcoinWalletNoteIllustration className="w-full h-full" />,
+            title: 'Secure Wallet',
+            description: 'Keep your crypto safe',
+            action: {
+              label: 'Get Started',
+              onClick: () => console.log('Card 4 clicked')
+            }
+          },
+          {
+            id: '5',
+            icon: <SwapFuelCoinsIllustration className="w-full h-full" />,
+            title: 'Easy Swaps',
+            description: 'Exchange crypto instantly',
+            action: {
+              label: 'Swap Now',
+              onClick: () => console.log('Card 5 clicked')
+            }
+          },
+          {
+            id: '6',
+            icon: <PoolBitcoinIllustration className="w-full h-full" />,
+            title: 'Earn Rewards',
+            description: 'Stake and earn passive income',
+            action: {
+              label: 'Start Earning',
+              onClick: () => console.log('Card 6 clicked')
+            }
+          }
+        ]}
+        layout={3}
+      />
+    </div>
+  )
+};
+
+/**
+ * Cards with images at the end
+ * Demonstrates using customContentEnd to add images at the bottom of each card
+ */
+export const WithImagesAtEnd: Story = {
+  args: {
+    style: 'light',
+    heading: 'Featured Services',
+    description: 'Explore our services with visual representations at the bottom of each card',
+    cards: [
+      {
+        id: '1',
+        title: 'Crypto Credit Cards',
+        description: 'Get cashback rewards on every purchase with our Bitcoin credit card',
+        action: {
+          label: 'Apply Now',
+          onClick: () => console.log('Card 1 clicked'),
+          variant: 'primary'
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      },
+      {
+        id: '2',
+        title: 'Gaming Platform',
+        description: 'Play your favorite games and earn crypto rewards while having fun',
+        action: {
+          label: 'Start Playing',
+          onClick: () => console.log('Card 2 clicked'),
+          variant: 'primary'
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      },
+      {
+        id: '3',
+        title: 'Secure Wallet',
+        description: 'Keep your crypto safe with our industry-leading security features',
+        action: {
+          label: 'Get Wallet',
+          onClick: () => console.log('Card 3 clicked'),
+          variant: 'primary'
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      }
+    ],
+    layout: 3
+  }
+};
+
+/**
+ * Cards with images at the end (6-card layout)
+ * Demonstrates using customContentEnd with images in a 6-card grid layout
+ */
+export const WithImagesAtEnd6Cards: Story = {
+  args: {
+    style: 'gray',
+    heading: 'Our Complete Suite',
+    description: 'All the tools you need for your crypto journey',
+    cards: [
+      {
+        id: '1',
+        title: 'Credit Cards',
+        description: 'Spend crypto anywhere',
+        action: {
+          label: 'Learn More',
+          onClick: () => console.log('Card 1 clicked')
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      },
+      {
+        id: '2',
+        title: 'Gaming',
+        description: 'Play and earn rewards',
+        action: {
+          label: 'Learn More',
+          onClick: () => console.log('Card 2 clicked')
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      },
+      {
+        id: '3',
+        title: 'Wallet',
+        description: 'Secure storage solution',
+        action: {
+          label: 'Learn More',
+          onClick: () => console.log('Card 3 clicked')
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      },
+      {
+        id: '4',
+        title: 'Notes & Transfers',
+        description: 'Easy money management',
+        action: {
+          label: 'Learn More',
+          onClick: () => console.log('Card 4 clicked')
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      },
+      {
+        id: '5',
+        title: 'Swap & Exchange',
+        description: 'Instant crypto swaps',
+        action: {
+          label: 'Learn More',
+          onClick: () => console.log('Card 5 clicked')
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
+      },
+      {
+        id: '6',
+        title: 'Staking Pool',
+        description: 'Earn passive income',
+        action: {
+          label: 'Learn More',
+          onClick: () => console.log('Card 6 clicked')
+        },
+        customContentEnd: (
+          <div className="w-full aspect-[360/200] bg-secondary-100 rounded-[8px] overflow-hidden mb-0 flex items-center justify-center"></div>
+        )
       }
     ],
     layout: 6

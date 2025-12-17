@@ -46,3 +46,4 @@ export interface FAQSectionProps {
   enableStructuredData?: boolean;
 }
 
+

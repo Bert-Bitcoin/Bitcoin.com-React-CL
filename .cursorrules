@@ -268,6 +268,65 @@ Implementation pattern:
 ### Rule: website-sections-naming (RECOMMENDED)
 Website section components should be named descriptively and stored in `src/components/` with a clear indication they are section components (e.g., `HeroSection`, `FeaturesSection`, `TestimonialsSection`, etc.).
 
+### Rule: website-sections-remove-top-padding (STRICT)
+All website section components MUST include a `removeTopPadding` prop to allow seamless stacking of sections with the same background style. This is essential for creating continuous content flow without large gaps.
+
+**Required Props:**
+```typescript
+interface WebsiteSectionProps {
+  // ... other props
+  
+  /**
+   * Remove top padding - useful when stacking sections with the same style
+   * @default false
+   */
+  removeTopPadding?: boolean;
+}
+```
+
+**Implementation Pattern:**
+```tsx
+export const WebsiteSection = ({
+  // ... other props
+  removeTopPadding = false
+}: WebsiteSectionProps) => {
+  return (
+    <section
+      className={twMerge(
+        'px-m md:px-xl',
+        removeTopPadding 
+          ? 'pb-[32px] sm:pb-[40px] md:pb-[60px] lg:pb-[80px]'
+          : 'py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
+        // ... other classes
+      )}
+    >
+      {/* section content */}
+    </section>
+  );
+};
+```
+
+**When to use `removeTopPadding={true}`:**
+- Stacking multiple sections with the same background style
+- Creating continuous content flow
+- Reducing visual gaps between related sections
+
+**When NOT to use:**
+- First section on a page (should have normal top padding)
+- Sections with different background styles (the gap helps separate them)
+
+**Example Usage:**
+```tsx
+// First section - normal padding
+<HeroSection style="light" />
+
+// Second section - same style, remove top padding
+<FeaturesSection style="light" removeTopPadding={true} />
+
+// Third section - different style, normal padding
+<CTASection style="black" />
+```
+
 ---
 
 ## 🔍 SEO & Semantic HTML (CRITICAL)
@@ -747,6 +806,7 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
    interface SectionNameProps {
      themeMode?: 'auto' | 'light' | 'dark';
      id?: string;  // REQUIRED: For anchor linking
+     removeTopPadding?: boolean;  // REQUIRED: For stacking sections (default: false)
      enableStructuredData?: boolean;  // REQUIRED: For content sections (default: true)
      // ... component-specific props
    }
@@ -764,12 +824,15 @@ Run `scripts/generate-icons.ts` when icon assets in `src/icons` are changed to r
      // ... other props
    }
    ```
-3. Apply the standard wrapper structure with correct padding and **id prop**:
+3. Apply the standard wrapper structure with correct padding, **id prop**, and **removeTopPadding**:
    ```tsx
    <section
      id={id}  // REQUIRED: Add id prop
      className={cn(
-       'px-m md:px-xl py-[32px] md:py-[60px] sm:py-[40px]', // Responsive vertical padding
+       'px-m md:px-xl',
+       removeTopPadding 
+         ? 'pb-[32px] sm:pb-[40px] md:pb-[60px] lg:pb-[80px]'
+         : 'py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
        themeMode === 'light' && 'light',
        themeMode === 'dark' && 'dark'
      )}

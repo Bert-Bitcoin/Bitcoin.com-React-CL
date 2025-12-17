@@ -145,3 +145,4 @@ This component follows the Figma design:
 - The `backgroundColor` prop only applies to `initials` and `placeholder` types
 - Background colors use design system tokens for consistency across light/dark themes
 
+

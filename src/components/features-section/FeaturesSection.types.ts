@@ -17,6 +17,12 @@ export interface Feature {
    * Use semantic tokens (e.g., 'bg-primary-100') or arbitrary values (e.g., 'bg-[#FF5733]')
    */
   imageBgColor?: string;
+  /**
+   * Allow the image to extend to the bottom edge of the container
+   * Creates a more dynamic look where the illustration touches the bottom
+   * @default false
+   */
+  imageExtendToBottom?: boolean;
 }
 
 export interface FeaturesSectionProps {

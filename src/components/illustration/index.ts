@@ -6,3 +6,4 @@ export type {
   IllustrationProps,
   IllustrationSize
 } from './Illustration.types';
+

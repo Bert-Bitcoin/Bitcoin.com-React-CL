@@ -92,6 +92,8 @@ const featuresWithImages = [
 | `onButtonClick` | `() => void` | - | Click handler for the button |
 | `imageElement` | `ReactNode` | - | Optional React element to display in the image container |
 | `imagePosition` | `'left' \| 'right'` | - | Position of the image (auto-alternates if not specified) |
+| `imageBgColor` | `string` | - | Custom background color for the image container (e.g., `'bg-primary-100'` or `'bg-[#FF5733]'`) |
+| `imageExtendToBottom` | `boolean` | - | Allow the image to extend to the bottom edge of the container for a more dynamic look |
 
 ## Style Variants
 
@@ -121,11 +123,57 @@ The Image Holder is a flexible container designed to hold transparent PNG illust
 - **Desktop**: 300px height
 - **Mobile**: 200px height
 - **Rounded corners**: Uses `rounded-l` token (24px)
-- **Background**: Automatically adapts to the style variant
+- **Background**: Automatically adapts to the style variant (or use custom `imageBgColor`)
 - **Content**: Centered with padding
 
 ### Important Note
 The blue/colored background visible in Figma is for demonstration purposes only and is **not included** in the code. The container is designed to accept transparent PNG illustrations or custom image elements that you provide.
+
+### Custom Background Colors
+
+You can customize the background color of each feature's image container:
+
+```tsx
+const features = [
+  {
+    id: '1',
+    title: 'Feature Title',
+    description: 'Description',
+    buttonText: 'Learn More',
+    imageElement: <MyIllustration />,
+    imageBgColor: 'bg-gradient-to-br from-[#E8E3FF] to-[#F5F3FF]' // Custom gradient
+  }
+];
+```
+
+### Image Extend to Bottom
+
+For a more dynamic, mobile-app-like appearance (similar to the image you provided), use the `imageExtendToBottom` prop to allow illustrations to touch the bottom edge of the container:
+
+```tsx
+const features = [
+  {
+    id: '1',
+    title: 'Instant Transactions',
+    description: 'Send and receive crypto instantly',
+    buttonText: 'Get Started',
+    imageElement: <PhoneIllustration />,
+    imageExtendToBottom: true, // Image touches the bottom edge
+    imageBgColor: 'bg-gradient-to-br from-[#E8E3FF] to-[#F5F3FF]'
+  }
+];
+```
+
+**When to use `imageExtendToBottom`:**
+- ✅ Mobile phone mockups or device illustrations
+- ✅ Vertical illustrations that should "stand" on the bottom edge
+- ✅ Creating a more dynamic, modern look
+- ✅ When the illustration naturally extends downward
+
+**When NOT to use:**
+- ❌ Floating or centered illustrations
+- ❌ Small icons or simple graphics
+- ❌ Illustrations that need breathing room on all sides
 
 ## Responsive Behavior
 

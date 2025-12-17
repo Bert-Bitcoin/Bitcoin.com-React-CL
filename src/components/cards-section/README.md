@@ -52,9 +52,12 @@ function MyPage() {
 | `themeMode` | `'auto' \| 'light' \| 'dark'` | `'auto'` | Theme mode override for the section wrapper |
 | `style` | `'light' \| 'gray' \| 'black'` | `'light'` | Visual style of the section |
 | `heading` | `string` | `'Cards'` | Section heading (displayed in uppercase using Elza Narrow) |
+| `description` | `string` | `undefined` | Optional description text displayed under the heading |
 | `cards` | `CardItem[]` | `[]` | Array of cards to display |
 | `layout` | `3 \| 6` | `3` | Number of cards per row on desktop |
 | `className` | `string` | `undefined` | Additional CSS classes |
+| `id` | `string` | `undefined` | Optional ID for the section element (useful for anchor links and SEO) |
+| `removeTopPadding` | `boolean` | `false` | Remove top padding - useful when stacking sections with the same style |
 
 ## Card Item Structure
 
@@ -372,6 +375,38 @@ const articlesWithImages = [
   layout={3}
 />
 ```
+
+### Stacked Sections Without Top Padding
+
+When stacking multiple sections with the same style, use `removeTopPadding` on subsequent sections to eliminate the gap:
+
+```tsx
+// First section - normal padding
+<CardsSection
+  style="light"
+  heading="First Section"
+  cards={firstCards}
+  layout={3}
+/>
+
+// Second section - remove top padding to eliminate gap
+<CardsSection
+  style="light"
+  heading="Second Section"
+  cards={secondCards}
+  layout={3}
+  removeTopPadding={true}  // Removes top padding
+/>
+```
+
+**When to use:**
+- Stacking sections with the same background style
+- Creating continuous content flow
+- Reducing visual gaps between related sections
+
+**When NOT to use:**
+- Sections with different background styles (the gap helps separate them)
+- First section on a page (should have normal top padding)
 
 ### Cards with All Custom Features Combined
 

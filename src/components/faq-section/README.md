@@ -90,3 +90,4 @@ This component follows the project's design system rules:
 - [Accordion](../accordion/README.md) - The underlying accordion component
 - [NewsSection](../news-section/README.md) - Similar section component pattern
 - [CardsSection](../cards-section/README.md) - Another website section component
+

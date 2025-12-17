@@ -38,7 +38,7 @@ const qrSizeClasses: Record<AppButtonSize, string> = {
   lg: 'w-[54px] h-[54px] p-0'       // matches min-h-[2.375rem] + py-s (38px + 16px)
 };
 
-const iconSizes: Record<AppButtonSize, 'sm' | 'md' | 'lg'> = {
+const iconSizes: Record<AppButtonSize, 'sm' | 'md' | 'lg' | 'xl'> = {
   sm: 'sm',
   md: 'xl',
   lg: 'xl'

@@ -194,3 +194,4 @@ All changes are backward compatible. Existing implementations will continue to w
 
 **No breaking changes** - Just enhanced SEO out of the box! 🎉
 
+

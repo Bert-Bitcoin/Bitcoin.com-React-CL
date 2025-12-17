@@ -275,3 +275,111 @@ export const CustomBackgroundColors: Story = {
     }
   }
 };
+
+export const ImageExtendToBottom: Story = {
+  args: {
+    themeMode: 'auto',
+    style: 'light',
+    heading: 'Dynamic Image Placement',
+    features: [
+      {
+        id: '1',
+        title: 'Instant Transactions',
+        description: 'Send and receive crypto instantly with our advanced blockchain technology. Experience lightning-fast transactions with minimal fees.',
+        buttonText: 'Get Started',
+        onButtonClick: () => console.log('Feature 1 clicked'),
+        imagePosition: 'left',
+        imageExtendToBottom: true,
+        imageBgColor: 'bg-gradient-to-br from-[#E8E3FF] to-[#F5F3FF]',
+        imageElement: (
+          <Illustration
+            src={illustrations.wallet}
+            alt="Wallet Illustration"
+            size="full"
+            objectFit="contain"
+          />
+        )
+      },
+      {
+        id: '2',
+        title: 'Secure By Design',
+        description: 'Industry-leading security features to keep your crypto safe. Multi-factor authentication, biometric login, and encrypted storage.',
+        buttonText: 'Learn More',
+        onButtonClick: () => console.log('Feature 2 clicked'),
+        imagePosition: 'right',
+        imageExtendToBottom: true,
+        imageBgColor: 'bg-gradient-to-br from-[#FFE8E8] to-[#FFF5F5]',
+        imageElement: (
+          <Illustration
+            src={illustrations.gaming}
+            alt="Gaming Illustration"
+            size="full"
+            objectFit="contain"
+          />
+        )
+      },
+      {
+        id: '3',
+        title: 'Transparent Rates',
+        description: 'No hidden fees. See exactly what you\'re paying for every transaction with our clear and transparent pricing structure.',
+        buttonText: 'View Pricing',
+        onButtonClick: () => console.log('Feature 3 clicked'),
+        imagePosition: 'left',
+        imageExtendToBottom: true,
+        imageBgColor: 'bg-gradient-to-br from-[#E8F5FF] to-[#F0F9FF]',
+        imageElement: (
+          <Illustration
+            src={illustrations.rewards}
+            alt="Rewards Illustration"
+            size="full"
+            objectFit="contain"
+          />
+        )
+      }
+    ]
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Demonstrates the imageExtendToBottom feature where illustrations extend to the bottom edge of the container, creating a more dynamic and modern look similar to mobile app interfaces.'
+      }
+    }
+  }
+};
+
+export const MixedImagePlacement: Story = {
+  args: {
+    themeMode: 'auto',
+    style: 'gray',
+    heading: 'Flexible Layouts',
+    features: [
+      {
+        ...mockFeaturesWithImages[0],
+        imageExtendToBottom: true,
+        imageBgColor: 'bg-gradient-to-br from-[#E8E3FF] to-[#F5F3FF]'
+      },
+      {
+        ...mockFeaturesWithImages[1],
+        imageExtendToBottom: false, // Standard placement
+        imageBgColor: 'bg-shades-off-white'
+      },
+      {
+        ...mockFeaturesWithImages[2],
+        imageExtendToBottom: true,
+        imageBgColor: 'bg-gradient-to-br from-[#FFE8E8] to-[#FFF5F5]'
+      },
+      {
+        ...mockFeaturesWithImages[3],
+        imageExtendToBottom: false, // Standard placement
+        imageBgColor: 'bg-shades-off-white'
+      }
+    ]
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Shows a mix of standard and bottom-extended image placements within the same section, demonstrating the flexibility of the component.'
+      }
+    }
+  }
+};

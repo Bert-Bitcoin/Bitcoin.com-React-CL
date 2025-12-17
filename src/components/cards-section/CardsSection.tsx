@@ -37,7 +37,8 @@ export const CardsSection = ({
   cards = [],
   layout = 3,
   className,
-  id
+  id,
+  removeTopPadding = false
 }: CardsSectionProps) => {
   const styles = styleClasses[style];
 
@@ -45,7 +46,10 @@ export const CardsSection = ({
     <section
       id={id}
       className={twMerge(
-        'px-m md:px-xl py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
+        'px-m md:px-xl',
+        removeTopPadding 
+          ? 'pb-[32px] sm:pb-[40px] md:pb-[60px] lg:pb-[80px]'
+          : 'py-[32px] sm:py-[40px] md:py-[60px] lg:py-[80px]',
         styles.bg,
         themeMode === 'light' && 'light',
         themeMode === 'dark' && 'dark',

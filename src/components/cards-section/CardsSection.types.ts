@@ -58,5 +58,7 @@ export interface CardsSectionProps {
   className?: string;
   /** Optional ID for the section element (useful for anchor links and SEO) */
   id?: string;
+  /** Remove top padding - useful when stacking sections with the same style */
+  removeTopPadding?: boolean;
 }
 

@@ -237,3 +237,4 @@ This component follows all project design system rules:
 - ✅ Fully responsive with mobile-first approach
 
 
+

@@ -414,3 +414,4 @@ return <section>...</section>;
 
 ✅ **Goal**: Every website built with these components should achieve 90+ SEO score in Lighthouse.
 
+

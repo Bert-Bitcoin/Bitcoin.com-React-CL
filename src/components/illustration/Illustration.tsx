@@ -152,3 +152,4 @@ export const Illustration = forwardRef<HTMLDivElement, IllustrationProps>(
 );
 
 Illustration.displayName = 'Illustration';
+
