@@ -145,6 +145,7 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
       legalText = defaultLegalText,
       contentClassName,
       topBackgroundColor = 'bg-shades-white',
+      logoAriaLabel = 'Bitcoin.com',
       className,
       ...rest
     },
@@ -394,7 +395,7 @@ export const WebsiteFooter = forwardRef<HTMLElement, WebsiteFooterProps>(
 
           <div className="pt-m">
             <div className="flex flex-col md:flex-row gap-m md:gap-[auto] justify-between md:items-center">
-              <Logo size="lg" theme="dark" className="w-[270px] h-[57px] inline-flex" />
+              <Logo size="lg" theme="dark" className="w-[270px] h-[57px] inline-flex" ariaLabel={logoAriaLabel} />
               <p className="text-body-sm text-[#87858E] flex md:text-right">{legalText}</p>
             </div>
           </div>

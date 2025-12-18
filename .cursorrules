@@ -117,6 +117,24 @@ src/components/Button/
 ### Rule: script-placement (RECOMMENDED)
 Token and icon sync scripts should live in `scripts/` folder and be self-documented.
 
+### Rule: guides-folder-structure (REQUIRED)
+All comprehensive documentation guides (implementation guides, reference documents, change summaries, etc.) MUST be created in the `guides/` folder. The only exception is `AI_CONSUMPTION_GUIDE.md` which remains at the root level as the main entry point. When creating new guides:
+- Store them in `guides/` folder with descriptive ALL_CAPS names (e.g., `NEW_FEATURE_GUIDE.md`)
+- Add a reference to the new guide in the `AI_CONSUMPTION_GUIDE.md` under the "Additional Guides" section
+- Organize guides by category (Typography, SEO, Components, etc.) in the reference list
+- Ensure all guides are discoverable through `AI_CONSUMPTION_GUIDE.md`
+
+Example guide structure:
+```
+guides/
+  - ELZA_TYPOGRAPHY_GUIDELINES.md
+  - SEO_IMPROVEMENTS_PRIORITY_1.md
+  - MODAL_IMPLEMENTATION_SUMMARY.md
+  - [NEW_GUIDE_NAME].md
+```
+
+When referencing guides, use relative paths: `./guides/GUIDE_NAME.md`
+
 ---
 
 ## 📦 Icon & Font Asset Rules
@@ -267,6 +285,222 @@ Implementation pattern:
 
 ### Rule: website-sections-naming (RECOMMENDED)
 Website section components should be named descriptively and stored in `src/components/` with a clear indication they are section components (e.g., `HeroSection`, `FeaturesSection`, `TestimonialsSection`, etc.).
+
+### Rule: website-sections-editable-content (STRICT)
+**All text content within website section components MUST be editable/optional through component props.** Never hardcode text strings, labels, titles, descriptions, or any user-facing content directly in the component implementation. This ensures maximum flexibility for content authors and enables easy customization for different pages, locales, or use cases.
+
+**Required Implementation:**
+
+1. **All Text Content as Props**: Every piece of text that appears in the component must have a corresponding optional prop with a sensible default value.
+
+2. **Include All Text Types**:
+   - Headings (h1, h2, h3, etc.)
+   - Body text and descriptions
+   - Button labels and CTA text
+   - Link labels
+   - Form labels and placeholders
+   - Aria labels and accessibility text
+   - Legal/copyright text
+   - Image alt text
+   - Any other user-facing text
+
+3. **Provide Sensible Defaults**: All text props should be optional with meaningful default values that demonstrate the component's purpose.
+
+**Example Implementation:**
+
+```typescript
+interface WebsiteSectionProps {
+  // Main content text
+  heading?: string;
+  subheading?: string;
+  description?: string;
+  
+  // CTA/Button text
+  ctaLabel?: string;
+  ctaHref?: string;
+  
+  // Accessibility
+  sectionAriaLabel?: string;
+  
+  // ... other props
+}
+
+export const WebsiteSection = ({
+  heading = 'Default Heading',
+  subheading = 'Default Subheading',
+  description = 'Default description text',
+  ctaLabel = 'Learn More',
+  ctaHref = '#',
+  sectionAriaLabel = 'Website Section',
+  // ... other props with defaults
+}: WebsiteSectionProps) => {
+  return (
+    <section aria-label={sectionAriaLabel}>
+      <h2>{heading}</h2>
+      <h3>{subheading}</h3>
+      <p>{description}</p>
+      <a href={ctaHref}>{ctaLabel}</a>
+    </section>
+  );
+};
+```
+
+**Documentation Requirements:**
+- Document all text props in the component's README
+- Include examples showing how to customize all text content
+- Show complete customization examples in Storybook stories
+
+**Why This Matters:**
+- Enables content reuse across different pages
+- Supports internationalization/localization efforts
+- Allows marketing teams to test different copy
+- Makes components truly reusable and flexible
+- Prevents need for component duplication for minor text changes
+
+**Reference Implementation:**
+See `src/components/website-footer/WebsiteFooter.tsx` for a complete example of this pattern, including editable `downloadTitle`, `legalText`, `logoAriaLabel`, and all link labels through the `linkGroups` prop.
+
+### Rule: website-sections-editable-links (STRICT)
+**All links (URLs/hrefs) within website section components MUST be editable/customizable through component props.** Never hardcode URLs, link destinations, or navigation paths directly in the component implementation. This ensures components can be reused across different pages, environments, and use cases without modification.
+
+**Required Implementation:**
+
+1. **All Links as Props**: Every link/URL in the component must be customizable through props with sensible default values.
+
+2. **Include All Link Types**:
+   - Call-to-action (CTA) button links
+   - Navigation links
+   - External resource links (social media, documentation, etc.)
+   - Download links (app stores, files, PDFs)
+   - Footer links
+   - Image links
+   - Logo links
+   - Any other clickable elements that navigate
+
+3. **Provide Flexible Link Structures**: For components with multiple links, use structured data (arrays, objects) to allow full customization:
+
+```typescript
+interface LinkItem {
+  label: string;
+  href: string;
+  isExternal?: boolean;
+  onClick?: () => void;
+}
+
+interface LinkGroup {
+  heading: string;
+  links: LinkItem[];
+}
+
+interface WebsiteSectionProps {
+  // Single link props
+  ctaLabel?: string;
+  ctaHref?: string;
+  
+  // Multiple links via arrays
+  navigationLinks?: LinkItem[];
+  
+  // Grouped links
+  linkGroups?: LinkGroup[];
+  
+  // Specific link overrides
+  googlePlayHref?: string;
+  appStoreHref?: string;
+  
+  // ... other props
+}
+```
+
+**Example Implementation:**
+
+```typescript
+export const WebsiteSection = ({
+  ctaLabel = 'Get Started',
+  ctaHref = '#',
+  navigationLinks = [
+    { label: 'About', href: '/about' },
+    { label: 'Contact', href: '/contact' }
+  ],
+  googlePlayHref = 'https://play.google.com/store/apps/details?id=com.example',
+  appStoreHref = 'https://apps.apple.com/app/example/id123456789',
+  // ... other props
+}: WebsiteSectionProps) => {
+  return (
+    <section>
+      {/* CTA button with editable link */}
+      <a href={ctaHref}>{ctaLabel}</a>
+      
+      {/* Navigation with editable links */}
+      <nav>
+        {navigationLinks.map((link) => (
+          <a key={link.href} href={link.href}>{link.label}</a>
+        ))}
+      </nav>
+      
+      {/* App store buttons with editable links */}
+      <a href={googlePlayHref}>Google Play</a>
+      <a href={appStoreHref}>App Store</a>
+    </section>
+  );
+};
+```
+
+**Documentation Requirements:**
+- Document all link props in the component's README
+- Show examples of customizing single and multiple links
+- Document link structure types (LinkItem, LinkGroup, etc.)
+- Include examples in Storybook stories
+
+**Why This Matters:**
+- Enables reuse across different environments (dev, staging, production)
+- Supports A/B testing different landing pages or destinations
+- Allows dynamic routing based on user context
+- Makes components environment-agnostic
+- Supports deep linking and custom navigation flows
+- Prevents hardcoded URLs that break when routes change
+
+**Common Link Prop Patterns:**
+
+1. **Single CTA Links:**
+```typescript
+ctaHref?: string;
+primaryButtonHref?: string;
+learnMoreHref?: string;
+```
+
+2. **App Store Links:**
+```typescript
+googlePlayHref?: string;
+appStoreHref?: string;
+```
+
+3. **Social Media Links:**
+```typescript
+twitterHref?: string;
+linkedInHref?: string;
+discordHref?: string;
+```
+
+4. **Multiple Links (Arrays):**
+```typescript
+links?: Array<{ label: string; href: string }>;
+navigationLinks?: LinkItem[];
+footerLinks?: LinkItem[];
+```
+
+5. **Grouped Links:**
+```typescript
+linkGroups?: Array<{
+  heading: string;
+  links: Array<{ label: string; href: string }>;
+}>;
+```
+
+**Reference Implementation:**
+See `src/components/website-footer/WebsiteFooter.tsx` for a complete example of this pattern, including:
+- `googlePlayHref` and `appStoreHref` for app store badges
+- `linkGroups` array for footer navigation with custom hrefs
+- Flexible link structure allowing complete customization of all URLs
 
 ### Rule: website-sections-remove-top-padding (STRICT)
 All website section components MUST include a `removeTopPadding` prop to allow seamless stacking of sections with the same background style. This is essential for creating continuous content flow without large gaps.

@@ -86,7 +86,7 @@ Use the t-shirt size scale for margin/padding/gap:
 </h2>
 ```
 
-**📖 Full Guidelines:** See [ELZA_TYPOGRAPHY_GUIDELINES.md](./ELZA_TYPOGRAPHY_GUIDELINES.md) for comprehensive Elza font usage rules.
+**📖 Full Guidelines:** See [ELZA_TYPOGRAPHY_GUIDELINES.md](./guides/ELZA_TYPOGRAPHY_GUIDELINES.md) for comprehensive Elza font usage rules.
 
 ### 2. Numeric Values
 **Font**: `IBM Plex Sans`
@@ -207,4 +207,31 @@ Before finishing a task, verify:
 - **Tailwind Config**: `tailwind.config.ts`
 - **Icons**: `src/icons/`
 - **Example Component**: `src/components/button/Button.tsx`
+
+---
+
+## 📖 Additional Guides
+
+For more detailed information on specific topics, refer to these comprehensive guides in the `guides/` folder:
+
+### Typography & Fonts
+- **[ELZA_TYPOGRAPHY_GUIDELINES.md](./guides/ELZA_TYPOGRAPHY_GUIDELINES.md)** - Comprehensive guide for Elza font usage, capitalization, and line-height rules
+- **[ELZA_QUICK_REFERENCE.md](./guides/ELZA_QUICK_REFERENCE.md)** - Quick reference for Elza font implementation patterns
+- **[ELZA_LINE_HEIGHT_UPDATE_SUMMARY.md](./guides/ELZA_LINE_HEIGHT_UPDATE_SUMMARY.md)** - Summary of line-height standardization for Elza fonts
+
+### Website Sections & Content
+- **[WEBSITE_SECTIONS_EDITABLE_CONTENT_PATTERN.md](./guides/WEBSITE_SECTIONS_EDITABLE_CONTENT_PATTERN.md)** - Pattern for making website section content editable via props
+- **[WEBSITE_SECTIONS_TEXT_CONTENT_EDITABLE.md](./guides/WEBSITE_SECTIONS_TEXT_CONTENT_EDITABLE.md)** - Guidelines for text content editability in sections
+
+### SEO & Optimization
+- **[SEO_IMPROVEMENTS_PRIORITY_1.md](./guides/SEO_IMPROVEMENTS_PRIORITY_1.md)** - Priority 1 SEO improvements and implementation guide
+- **[SEO_REQUIREMENTS_CHECKLIST.md](./guides/SEO_REQUIREMENTS_CHECKLIST.md)** - Checklist for SEO compliance in website sections
+- **[SEO_CHANGES_SUMMARY.md](./guides/SEO_CHANGES_SUMMARY.md)** - Summary of SEO changes and updates
+- **[SEO_RULE_ADDED.md](./guides/SEO_RULE_ADDED.md)** - Documentation of SEO rule additions
+
+### Component Implementation
+- **[MODAL_IMPLEMENTATION_SUMMARY.md](./guides/MODAL_IMPLEMENTATION_SUMMARY.md)** - Summary of modal component implementation patterns
+
+### Change Logs
+- **[CHANGES_SUMMARY.md](./guides/CHANGES_SUMMARY.md)** - Overall summary of major changes and updates to the project
 

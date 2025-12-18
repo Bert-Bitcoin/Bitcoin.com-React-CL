@@ -64,6 +64,11 @@ export interface WebsiteFooterProps extends HTMLAttributes<HTMLElement> {
    * @example 'bg-surface' | 'bg-primary-100' | 'bg-shades-canvas'
    */
   topBackgroundColor?: string;
+  /**
+   * Accessibility label for the logo
+   * @default 'Bitcoin.com'
+   */
+  logoAriaLabel?: string;
 }
 
 

@@ -201,4 +201,61 @@ export const WithCanvasBackground: Story = {
   }
 };
 
+/**
+ * Example showing how ALL text content can be customized through props.
+ * This demonstrates the website-sections-editable-content rule where every
+ * piece of text in the component is editable via props.
+ */
+export const CustomTextContent: Story = {
+  args: {
+    downloadTitle: 'Get our mobile app',
+    logoAriaLabel: 'Your Company Logo',
+    legalText: '© 2024 Your Company. All rights reserved.',
+    linkGroups: [
+      {
+        heading: 'Company',
+        links: [
+          { label: 'About Us', href: '/about' },
+          { label: 'Careers', href: '/careers' },
+          { label: 'Press', href: '/press' },
+          { label: 'Contact', href: '/contact' }
+        ]
+      },
+      {
+        heading: 'Products',
+        links: [
+          { label: 'Our Wallet', href: '/wallet' },
+          { label: 'Buy Crypto', href: '/buy' },
+          { label: 'Exchange', href: '/exchange' }
+        ]
+      },
+      {
+        heading: 'Resources',
+        links: [
+          { label: 'Help Center', href: '/help' },
+          { label: 'Blog', href: '/blog' },
+          { label: 'API Docs', href: '/docs' }
+        ]
+      },
+      {
+        heading: 'Legal',
+        links: [
+          { label: 'Terms of Service', href: '/terms' },
+          { label: 'Privacy Policy', href: '/privacy' }
+        ]
+      },
+      {
+        heading: 'Social',
+        links: [
+          { label: 'Twitter', href: 'https://twitter.com/yourcompany', isExternal: true },
+          { label: 'LinkedIn', href: 'https://linkedin.com/company/yourcompany', isExternal: true },
+          { label: 'GitHub', href: 'https://github.com/yourcompany', isExternal: true }
+        ]
+      }
+    ],
+    googlePlayHref: 'https://play.google.com/store/apps/details?id=com.yourcompany.app',
+    appStoreHref: 'https://apps.apple.com/app/your-app/id123456789'
+  }
+};
+
 

@@ -70,6 +70,56 @@ const linkGroups = [
 />
 ```
 
+### Custom Logo Accessibility Label
+
+```tsx
+<WebsiteFooter 
+  logoAriaLabel="Your Company Logo" 
+/>
+```
+
+### Complete Text Content Customization
+
+All text content in the footer is customizable through props:
+
+```tsx
+<WebsiteFooter
+  downloadTitle="Get our mobile app"
+  logoAriaLabel="Your Company Logo"
+  legalText="© 2024 Your Company. All rights reserved."
+  linkGroups={[
+    {
+      heading: 'Company',
+      links: [
+        { label: 'About Us', href: '/about' },
+        { label: 'Careers', href: '/careers' }
+      ]
+    },
+    {
+      heading: 'Support',
+      links: [
+        { label: 'Help Center', href: '/help' },
+        { label: 'Contact', href: '/contact' }
+      ]
+    }
+  ]}
+  badges={[
+    {
+      id: 'google-play',
+      href: 'https://play.google.com/store/apps/details?id=your.app',
+      alt: 'Get it on Google Play',
+      imageSrc: ''
+    },
+    {
+      id: 'app-store',
+      href: 'https://apps.apple.com/app/your-app/id123456789',
+      alt: 'Download on the App Store',
+      imageSrc: ''
+    }
+  ]}
+/>
+```
+
 ### Matching Previous Section Background
 
 The footer includes a curved white element on top that creates a visual transition. You can customize its color to match the background of the previous section:
@@ -99,6 +149,7 @@ The footer includes a curved white element on top that creates a visual transiti
 | `badges` | `WebsiteFooterBadge[]` | Default badges | Custom badge objects (advanced usage) |
 | `linkGroups` | `WebsiteFooterLinkGroup[]` | Default link groups | Groups of links to display |
 | `legalText` | `string` | `'© {year} Saint Bitts LLC Bitcoin.com. All rights reserved.'` | Legal text at bottom |
+| `logoAriaLabel` | `string` | `'Bitcoin.com'` | Accessibility label for the logo |
 | `topBackgroundColor` | `string` | `'bg-shades-white'` | Background color for the top curved element. Use to match previous section |
 | `contentClassName` | `string` | `undefined` | Additional CSS classes for content wrapper |
 | `className` | `string` | `undefined` | Additional CSS classes for footer element |
