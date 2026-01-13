@@ -33,3 +33,4 @@ export const MiniIllustration: React.FC<MiniIllustrationProps> = ({
 MiniIllustration.displayName = 'MiniIllustration';
 
 
+

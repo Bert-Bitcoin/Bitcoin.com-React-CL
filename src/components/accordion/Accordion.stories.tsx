@@ -258,4 +258,3 @@ export const VariantComparison: Story = {
     </div>
   )
 };
-

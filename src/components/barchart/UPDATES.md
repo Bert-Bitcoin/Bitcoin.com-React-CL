@@ -144,3 +144,4 @@ The BarChart component now has a **cleaner, simpler API** with solid-color bars 
 
 
 
+

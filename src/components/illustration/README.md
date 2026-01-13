@@ -370,3 +370,4 @@ This component follows the project's design system:
 - SVG format is recommended for illustrations for best quality and performance
 - Use semantic token colors for backgrounds: `rgb(var(--color-primary-10))`, `rgb(var(--color-surface-muted))`, etc.
 
+

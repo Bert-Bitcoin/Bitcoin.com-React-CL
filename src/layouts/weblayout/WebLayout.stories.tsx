@@ -505,4 +505,3 @@ export const WithSections: Story = {
     )
   }
 };
-

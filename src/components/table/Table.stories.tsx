@@ -950,4 +950,3 @@ export const NonResponsive: Story = {
     )
   ]
 };
-

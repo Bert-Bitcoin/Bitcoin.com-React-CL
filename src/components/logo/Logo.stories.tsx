@@ -357,4 +357,3 @@ export const Alignment: Story = {
     </div>
   )
 };
-

@@ -91,3 +91,4 @@ This component follows the project's design system rules:
 - [NewsSection](../news-section/README.md) - Similar section component pattern
 - [CardsSection](../cards-section/README.md) - Another website section component
 
+

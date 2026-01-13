@@ -831,4 +831,3 @@ function CryptoWalletDashboardContent() {
     </div>
   );
 }
-
